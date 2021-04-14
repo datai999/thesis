@@ -2,7 +2,7 @@ import React from "react";
 import { Tab, TabView, Text, Icon } from "@ui-kitten/components";
 
 import HomeScreen from "../pages/HomeScreen";
-import ThesisScreen from "../pages/ThesisScreen";
+import TopicScreen from "../pages/TopicScreen";
 
 const HomeIcon = (props) => <Icon {...props} name="home-outline" />;
 const BookOpenIcon = (props) => <Icon {...props} name="book-open-outline" />;
@@ -25,8 +25,8 @@ const Routes = () => {
       <Tab title="Home" icon={HomeIcon}>
         <HomeScreen />
       </Tab>
-      <Tab title="Thesis" icon={BookOpenIcon}>
-        <ThesisScreen />
+      <Tab title="Topic" icon={BookOpenIcon}>
+        <TopicScreen />
       </Tab>
       <Tab title="Assign" icon={PersonDoneIcon}>
         <Text category="h5">Assign</Text>

@@ -10,7 +10,7 @@ import {
 } from "../components/icons";
 
 import HomeScreen from "../pages/HomeScreen";
-import ThesisScreen from "../pages/ThesisScreen";
+import TopicScreen from "../pages/TopicScreen";
 
 const Routes = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(2));
@@ -24,12 +24,12 @@ const Routes = () => {
         return <HomeScreen />;
       default:
       case 2:
-        return <ThesisScreen />;
+        return <TopicScreen />;
     }
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={{ width: menuSize }}>
         <Menu
           style={styles.menu}
@@ -38,22 +38,28 @@ const Routes = () => {
         >
           <MenuItem title="Extend menu" accessoryLeft={MenuIcon} />
           <MenuItem title="Home" accessoryLeft={HomeIcon} />
-          <MenuItem title="Thesis" accessoryLeft={BookOpenIcon} />
+          <MenuItem title="Topic" accessoryLeft={BookOpenIcon} />
           <MenuItem title="Assign" accessoryLeft={PersonDoneIcon} />
           <MenuItem title="Setting" accessoryLeft={SettingIcon} />
         </Menu>
       </View>
 
-      <View>{selectScreen()}</View>
+      <View style={styles.content}>{selectScreen()}</View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "row",
+  },
   menu: {
-    borderColor: "gray",
     borderWidth: 1,
     height: "100%",
+  },
+  content: {
+    flex: 1,
   },
 });
 
