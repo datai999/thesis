@@ -24,6 +24,15 @@ export const PlusIcon = (props) => <Icon {...props} name="plus-outline" />;
 export const ArrowBackIcon = (props) => (
   <Icon {...props} name="arrow-back-outline" />
 );
+
 export const ArrowForwardIcon = (props) => (
   <Icon {...props} name="arrow-forward-outline" />
+);
+
+export const ArrowUpIcon = (props) => (
+  <Icon {...props} name="arrow-up-outline" />
+);
+
+export const ArrowDownIcon = (props) => (
+  <Icon {...props} name="arrow-down-outline" />
 );
