@@ -16,7 +16,7 @@ const TopicBottom = ({ total, currentPage, totalPage }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(0));
   const displayValue = data[selectedIndex.row];
 
-  const renderOption = (title) => <SelectItem title={title} />;
+  const renderOption = (title) => <SelectItem key={title} title={title} />;
 
   return (
     <View style={styles.container}>
