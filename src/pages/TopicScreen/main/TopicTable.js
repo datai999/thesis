@@ -4,13 +4,8 @@ import {
   Divider,
   List,
   Text,
-  Button,
   IndexPath,
-  Menu,
   MenuItem,
-  Icon,
-  ImageProps,
-  Card,
 } from "@ui-kitten/components";
 
 import TopicBottom from "./TopicBottom";
@@ -34,7 +29,7 @@ const data = new Array(5).fill({
   thesisTask: "Todo something when thesis",
   node: "note",
 
-  students: ["Nguyen Duc Anh Tai", "Tai Nguyen Duc Anh", "Duc Anh Tai"],
+  students: ["Nguyen Duc Anh Tai", "Tai Nguyen Duc Anh"],
 });
 
 const TopicTable = () => {
@@ -60,44 +55,42 @@ const TopicTable = () => {
 };
 
 const TopicRowHeader = (props) => {
-  const [sortedIndex, setSortedIndex] = React.useState(new IndexPath(2));
-  const [sorted, setSorted] = React.useState(true);
 
   return (
     <View style={styles.topicRow}>
       <MenuItem
         style={[styles.column, styles.columnHeader, styles.code]}
-        accessoryRight={ArrowDownIcon}
+        // accessoryRight={ArrowDownIcon}
         title="Code"
       />
       <MenuItem
         style={[styles.column, styles.columnHeader, styles.semester]}
-        accessoryRight={ArrowDownIcon}
+        // accessoryRight={ArrowDownIcon}
         title="Semester"
       />
       <MenuItem
         style={[styles.column, styles.columnHeader, styles.majors]}
-        accessoryRight={ArrowDownIcon}
+        // accessoryRight={ArrowDownIcon}
         title="Majors"
       />
       <MenuItem
         style={[styles.column, styles.columnHeader, styles.educationMethod]}
-        accessoryRight={ArrowDownIcon}
+        // accessoryRight={ArrowDownIcon}
         title=" Edu Method"
       />
       <MenuItem
         style={[styles.column, styles.columnHeader, styles.topicName]}
-        accessoryRight={ArrowDownIcon}
+        // accessoryRight={ArrowDownIcon}
         title="Topic Name"
       />
       <MenuItem
         style={[styles.column, styles.columnHeader, styles.guideTeacher]}
-        accessoryRight={ArrowDownIcon}
+        // accessoryRight={ArrowDownIcon}
         title="Guide Teacher"
       />
       <MenuItem
         style={[styles.column, styles.columnHeader, styles.students]}
-        accessoryRight={ArrowDownIcon}
+        // accessoryRight={ArrowDownIcon}
         title="Students"
       />
     </View>
@@ -148,7 +141,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   semester: {
-    width: 80,
+    width: 100,
     textAlign: "center",
   },
   majors: {
