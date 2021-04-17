@@ -36,3 +36,5 @@ export const ArrowUpIcon = (props) => (
 export const ArrowDownIcon = (props) => (
   <Icon {...props} name="arrow-down-outline" />
 );
+
+export const CloseIcon = (props) => <Icon {...props} name="close-outline" />;

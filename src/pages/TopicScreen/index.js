@@ -1,15 +1,23 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { Layout } from "@ui-kitten/components";
 
 import TopicTopBar from "./main/TopicTopBar";
+import TopicAnalyse from "./main/TopicAnalyse";
 import TopicTable from "./main/TopicTable";
 
 const TopicScreen = () => {
+  const [sortField, setSortField] = React.useState("TopicCode");
+  const [sortType, setSortType] = React.useState("Asc");
+
+  var tags = ["Saab", sortField + "-" + sortType];
+
   return (
-    <View style={styles.container}>
-      <TopicTopBar />
+    <Layout style={styles.container}>
+      <TopicTopBar sortField={sortField} sortType={sortType} />
+      <TopicAnalyse tags={tags} />
       <TopicTable />
-    </View>
+    </Layout>
   );
 };
 
