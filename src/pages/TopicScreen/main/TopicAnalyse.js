@@ -11,8 +11,9 @@ const TopicAnalyse = ({ tags }) => (
     renderItem={({ index, item }) => (
       <Button
         style={styles.tag}
-        status="primary"
+        status="info"
         size="tiny"
+        appearance="outline"
         accessoryRight={CloseIcon}
       >
         {item}

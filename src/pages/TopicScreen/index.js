@@ -10,7 +10,7 @@ const TopicScreen = () => {
   const [sortField, setSortField] = React.useState("TopicCode");
   const [sortType, setSortType] = React.useState("Asc");
 
-  var tags = ["Saab", sortField + "-" + sortType];
+  var tags = [sortField + "-" + sortType];
 
   return (
     <Layout style={styles.container}>
