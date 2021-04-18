@@ -1,18 +1,12 @@
 import React from "react";
-import { View, StyleSheet, ListItem } from "react-native";
-import {
-  Divider,
-  List,
-  Text,
-  IndexPath,
-  MenuItem,
-} from "@ui-kitten/components";
+import { StyleSheet } from "react-native";
+import { Layout, Divider, List, Text, MenuItem } from "@ui-kitten/components";
 
 import TopicBottom from "./TopicBottom";
 
 import { ArrowUpIcon, ArrowDownIcon } from "../../../components/icons";
 
-const data = new Array(5).fill({
+const fakeData = new Array(2).fill({
   topicCode: "123",
   topicName: "Name of topic",
   guideTeacher: "Nguyen Thi Ai",
@@ -33,97 +27,63 @@ const data = new Array(5).fill({
 });
 
 const TopicTable = () => {
-  const [topicList, setTopicList] = React.useState([]);
-
-  React.useEffect(() => {
-    setTopicList(data);
-  }, []);
+  const [setting, setSetting] = React.useState(defaultSetting);
+  const [data, setData] = React.useState(fakeData);
 
   return (
-    <View>
-      <TopicRowHeader />
+    <Layout>
+      <TopicRowHeader setting={setting} />
+      <Divider />
       <List
         data={data}
         ItemSeparatorComponent={Divider}
         renderItem={({ index, item }) => (
-          <TopicRow index={index} topic={item} />
+          <TopicRow index={index} topic={item} setting={setting} />
         )}
       />
-      <TopicBottom total={topicList.length} currentPage={1} totalPage={2} />
-    </View>
+      <Divider />
+      <TopicBottom total={data.length} currentPage={1} totalPage={2} />
+    </Layout>
   );
 };
 
-const TopicRowHeader = (props) => {
-
-  return (
-    <View style={styles.topicRow}>
-      <MenuItem
-        style={[styles.column, styles.columnHeader, styles.code]}
-        // accessoryRight={ArrowDownIcon}
-        title="Code"
-      />
-      <MenuItem
-        style={[styles.column, styles.columnHeader, styles.semester]}
-        // accessoryRight={ArrowDownIcon}
-        title="Semester"
-      />
-      <MenuItem
-        style={[styles.column, styles.columnHeader, styles.majors]}
-        // accessoryRight={ArrowDownIcon}
-        title="Majors"
-      />
-      <MenuItem
-        style={[styles.column, styles.columnHeader, styles.educationMethod]}
-        // accessoryRight={ArrowDownIcon}
-        title=" Edu Method"
-      />
-      <MenuItem
-        style={[styles.column, styles.columnHeader, styles.topicName]}
-        // accessoryRight={ArrowDownIcon}
-        title="Topic Name"
-      />
-      <MenuItem
-        style={[styles.column, styles.columnHeader, styles.guideTeacher]}
-        // accessoryRight={ArrowDownIcon}
-        title="Guide Teacher"
-      />
-      <MenuItem
-        style={[styles.column, styles.columnHeader, styles.students]}
-        // accessoryRight={ArrowDownIcon}
-        title="Students"
-      />
-    </View>
-  );
-};
-
-const TopicRow = ({ index, topic }) => (
-  <View style={styles.topicRow}>
-    <MenuItem style={[styles.column, styles.code]} title={topic.topicCode} />
-    <MenuItem style={[styles.column, styles.semester]} title={topic.semester} />
-    <List
-      style={[styles.column, styles.majors]}
-      data={topic.majors}
-      ItemSeparatorComponent={Divider}
-      renderItem={({ index, item }) => <MenuItem title={item} />}
-    />
-    <MenuItem
-      style={[styles.column, styles.educationMethod]}
-      title={topic.educationMethod}
-    />
-    <MenuItem style={[styles.column, styles.topicName]} title="Topic Name" />
-    <MenuItem
-      style={[styles.column, styles.guideTeacher]}
-      title="Guide Teacher"
-    />
-    <List
-      style={[styles.column, styles.students]}
-      data={topic.students}
-      ItemSeparatorComponent={Divider}
-      renderItem={({ index, item }) => <MenuItem title={item} />}
-    />
-  </View>
+const TopicRowHeader = ({ setting }) => (
+  <List
+    horizontal={true}
+    data={Object.values(setting)}
+    renderItem={({ item }) =>
+      item.hide ? null : (
+        <MenuItem
+          style={item.style.concat(styles.columnHeader)}
+          title={item.title}
+        />
+      )
+    }
+  />
 );
+
+const TopicRow = ({ index, topic, setting }) => {
+  return (
+    <List
+      horizontal={true}
+      data={Object.keys(setting)}
+      renderItem={({ item }) => {
+        if (setting[item].hide) return null;
+        if (typeof topic[item] == "string")
+          return <MenuItem style={setting[item].style} title={topic[item]} />;
+        return (
+          <List
+            style={setting[item].style}
+            data={topic[item]}
+            renderItem={({ index, item }) => <MenuItem title={item} />}
+          />
+        );
+      }}
+    />
+  );
+};
+
+export default TopicTable;
 
 const styles = StyleSheet.create({
   topicRow: {
@@ -148,18 +108,54 @@ const styles = StyleSheet.create({
     width: 180,
   },
   educationMethod: {
-    width: 150,
+    width: 110,
     textAlign: "center",
   },
   topicName: {
-    flex: 1,
+    width: 300,
   },
   guideTeacher: {
-    width: "15%",
+    width: 200,
   },
   students: {
-    width: "15%",
+    width: 200,
   },
 });
 
-export default TopicTable;
+const defaultSetting = {
+  topicCode: {
+    title: "Code",
+    hide: false,
+    style: [styles.column, styles.code],
+  },
+  semester: {
+    title: "Semester",
+    hide: false,
+    style: [styles.column, styles.semester],
+  },
+  majors: {
+    title: "Majors",
+    hide: false,
+    style: [styles.column, styles.majors],
+  },
+  educationMethod: {
+    title: "Edu Method",
+    hide: false,
+    style: [styles.column, styles.educationMethod],
+  },
+  topicName: {
+    title: "Topic Name",
+    hide: false,
+    style: [styles.column, styles.topicName],
+  },
+  guideTeacher: {
+    title: "Guide Teacher",
+    hide: false,
+    style: [styles.column, styles.guideTeacher],
+  },
+  students: {
+    title: "Students",
+    hide: false,
+    style: [styles.column, styles.students],
+  },
+};
