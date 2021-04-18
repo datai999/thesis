@@ -1,10 +1,18 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Layout, Divider, List, Text, MenuItem } from "@ui-kitten/components";
+import {
+  Layout,
+  Divider,
+  List,
+  Text,
+  MenuItem,
+  Button,
+  Modal,
+} from "@ui-kitten/components";
 
 import TopicBottom from "./TopicBottom";
 
-import { ArrowUpIcon, ArrowDownIcon } from "../../../components/icons";
+import { SettingIcon } from "../../../components/icons";
 
 const fakeData = new Array(2).fill({
   topicCode: "123",
@@ -47,23 +55,38 @@ const TopicTable = () => {
   );
 };
 
+const settingEvent = () => {
+  alert("setting event");
+};
+
 const TopicRowHeader = ({ setting }) => (
-  <List
-    horizontal={true}
-    data={Object.values(setting)}
-    renderItem={({ item }) =>
-      item.hide ? null : (
-        <MenuItem
-          style={item.style.concat(styles.columnHeader)}
-          title={item.title}
-        />
-      )
-    }
-  />
+  <Layout style={styles.topicRow}>
+    <Button
+      style={styles.index}
+      status="info"
+      size="tiny"
+      appearance="ghost"
+      accessoryRight={SettingIcon}
+      onPress={settingEvent}
+    />
+    <List
+      horizontal={true}
+      data={Object.values(setting)}
+      renderItem={({ item }) =>
+        item.hide ? null : (
+          <MenuItem
+            style={item.style.concat(styles.columnHeader)}
+            title={item.title}
+          />
+        )
+      }
+    />
+  </Layout>
 );
 
-const TopicRow = ({ index, topic, setting }) => {
-  return (
+const TopicRow = ({ index, topic, setting }) => (
+  <Layout style={styles.topicRow}>
+    <MenuItem style={styles.index} title={index + 1} />
     <List
       horizontal={true}
       data={Object.keys(setting)}
@@ -80,8 +103,8 @@ const TopicRow = ({ index, topic, setting }) => {
         );
       }}
     />
-  );
-};
+  </Layout>
+);
 
 export default TopicTable;
 
@@ -95,6 +118,10 @@ const styles = StyleSheet.create({
   },
   columnHeader: {
     fontSize: 30,
+  },
+  index: {
+    width: 30,
+    textAlign: "center",
   },
   code: {
     width: 80,
