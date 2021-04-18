@@ -3,12 +3,12 @@ import { Layout, Divider, List, MenuItem } from "@ui-kitten/components";
 
 import styles from "./styles";
 
-const TopicTableContent = ({ data, setting }) => (
+const TopicTableContent = ({ props }) => (
   <List
-    data={data}
+    data={props.data}
     ItemSeparatorComponent={Divider}
     renderItem={({ index, item }) => (
-      <TopicTableRow index={index} topic={item} setting={setting} />
+      <TopicTableRow index={index} topic={item} setting={props.setting} />
     )}
   />
 );
