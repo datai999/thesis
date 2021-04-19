@@ -18,7 +18,7 @@ import topicTableStyles from "./styles";
 import defaultSetting from "./setting";
 
 const TopicTableHeader = ({ props }) => {
-  const [settingVisible, setSettingVisible] = React.useState(true);
+  const [settingVisible, setSettingVisible] = React.useState(false);
 
   return (
     <Layout style={topicTableStyles.topicRow}>
