@@ -21,6 +21,10 @@ import defaultSetting from "./setting";
 const TopicTableHeader = ({ props }) => {
   const [settingVisible, setSettingVisible] = React.useState(false);
 
+  let settingAnimation = null;
+  const settingAnimationEnd = () =>
+    settingAnimation.zoomOut(500).then((endState) => setSettingVisible(false));
+
   return (
     <Layout style={topicTableStyles.topicRow}>
       <Button
@@ -47,10 +51,13 @@ const TopicTableHeader = ({ props }) => {
       <Modal
         visible={settingVisible}
         backdropStyle={styles.backdrop}
-        onBackdropPress={() => setSettingVisible(false)}
+        onBackdropPress={settingAnimationEnd}
       >
-        <Animatable.View animation="zoomIn">
-          <SettingPopup props={{ ...props, setSettingVisible }} />
+        <Animatable.View
+          animation="zoomIn"
+          ref={(ref) => (settingAnimation = ref)}
+        >
+          <SettingPopup props={{ ...props, settingAnimationEnd }} />
         </Animatable.View>
       </Modal>
     </Layout>
@@ -104,7 +111,7 @@ const SettingPopupBottom = ({ props }) => (
         text: "Default",
         onPress: () => {
           props.setSetting(defaultSetting);
-          props.setSettingVisible(false);
+          props.settingAnimationEnd();
         },
       }}
     />
@@ -133,14 +140,14 @@ const SettingPopupBottom = ({ props }) => (
         text: "Apply",
         onPress: () => {
           props.setSetting(props.newSetting);
-          props.setSettingVisible(false);
+          props.settingAnimationEnd();
         },
       }}
     />
     <SettingPopupBotBtn
       props={{
         text: "Cancel",
-        onPress: () => props.setSettingVisible(false),
+        onPress: props.settingAnimationEnd,
       }}
     />
   </Layout>
