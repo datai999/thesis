@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
+import * as Animatable from "react-native-animatable";
 import {
   Layout,
   List,
@@ -48,7 +49,9 @@ const TopicTableHeader = ({ props }) => {
         backdropStyle={styles.backdrop}
         onBackdropPress={() => setSettingVisible(false)}
       >
-        <SettingPopup props={{ ...props, setSettingVisible }} />
+        <Animatable.View animation="zoomIn">
+          <SettingPopup props={{ ...props, setSettingVisible }} />
+        </Animatable.View>
       </Modal>
     </Layout>
   );
