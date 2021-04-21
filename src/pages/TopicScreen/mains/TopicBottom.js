@@ -8,7 +8,7 @@ import {
   IndexPath,
 } from "@ui-kitten/components";
 
-import { ArrowBackIcon, ArrowForwardIcon } from "../../../components/icons";
+import { ArrowBackIcon, ArrowForwardIcon } from "components/Icons";
 
 const data = [25, 50, 100];
 

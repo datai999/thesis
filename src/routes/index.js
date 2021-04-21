@@ -1,13 +1,13 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { IndexPath, Menu, MenuItem } from "@ui-kitten/components";
+import { StyleSheet } from "react-native";
+import { Layout, IndexPath, Menu, MenuItem } from "@ui-kitten/components";
 import {
   MenuIcon,
   HomeIcon,
   BookOpenIcon,
   PersonDoneIcon,
   SettingIcon,
-} from "../components/icons";
+} from "../components/Icons";
 
 import HomeScreen from "../pages/HomeScreen";
 import TopicScreen from "../pages/TopicScreen";
@@ -29,8 +29,8 @@ const Routes = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={{ width: menuSize }}>
+    <Layout style={styles.container}>
+      <Layout style={{ width: menuSize }}>
         <Menu
           style={styles.menu}
           selectedIndex={selectedIndex}
@@ -42,10 +42,10 @@ const Routes = () => {
           <MenuItem title="Assign" accessoryLeft={PersonDoneIcon} />
           <MenuItem title="Setting" accessoryLeft={SettingIcon} />
         </Menu>
-      </View>
+      </Layout>
 
-      <View style={styles.content}>{selectScreen()}</View>
-    </View>
+      <Layout style={styles.content}>{selectScreen()}</Layout>
+    </Layout>
   );
 };
 
@@ -60,6 +60,10 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+  },
+  rightMenu: {
+    backgroundColor: "red",
+    width: "1%",
   },
 });
 

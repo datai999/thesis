@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { List, Button } from "@ui-kitten/components";
 
-import { CloseIcon } from "../../../components/icons";
+import { CloseIcon } from "components/Icons";
 
 const TopicAnalyse = ({ tags }) => (
   <List

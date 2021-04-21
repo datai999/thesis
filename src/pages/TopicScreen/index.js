@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Layout } from "@ui-kitten/components";
 
-import TopicTopBar from "./Main/TopicTopBar";
-import TopicAnalyse from "./Main/TopicAnalyse";
-import TopicTable from "./Main/TopicTable";
-import TopicBottom from "./Main/TopicBottom";
+import TopicTopBar from "./mains/TopicTopBar";
+import TopicAnalyse from "./mains/TopicAnalyse";
+import TopicTable from "./mains/TopicTable";
+import TopicBottom from "./mains/TopicBottom";
 
 const fakeData = new Array(2).fill({
   topicCode: "123",

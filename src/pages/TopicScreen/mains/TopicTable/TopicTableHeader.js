@@ -13,7 +13,7 @@ import {
 } from "@ui-kitten/components";
 import _ from "lodash";
 
-import { SettingIcon } from "components/icons";
+import { SettingIcon } from "components/Icons";
 
 import topicTableStyles from "./styles";
 import defaultSetting from "./setting";
