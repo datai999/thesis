@@ -39,10 +39,12 @@ const Props = {
   },
   minStudentTake: {
     label: "Min Student",
+    placeholder: "Select",
     arrValue: Array.from({ length: 5 }, (v, k) => k + 1),
   },
   maxStudentTake: {
     label: "Max Student",
+    placeholder: "Select",
     arrValue: Array.from({ length: 5 }, (v, k) => k + 1),
   },
   students: {
