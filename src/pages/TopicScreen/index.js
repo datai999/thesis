@@ -7,30 +7,12 @@ import TopicAnalyse from "./mains/TopicAnalyse";
 import TopicTable from "./mains/TopicTable";
 import TopicBottom from "./mains/TopicBottom";
 
-const fakeData = new Array(2).fill({
-  topicCode: "123",
-  topicName: "Name of topic",
-  guideTeacher: "Nguyen Thi Ai",
-
-  semester: "202",
-  majors: ["Computer Science", "Computer Engineering"],
-  educationMethod: "Formal",
-  maxStudentTake: 3,
-  minStudentTake: 1,
-
-  description: "description",
-
-  mainTask: "To do something",
-  thesisTask: "Todo something when thesis",
-  node: "note",
-
-  students: ["Nguyen Duc Anh Tai", "Tai Nguyen Duc Anh"],
-});
+import getTopic from "actions/GetTopic";
 
 const TopicScreen = () => {
   const [sortField, setSortField] = React.useState("TopicCode");
   const [sortType, setSortType] = React.useState("Asc");
-  const [data, setData] = React.useState(fakeData);
+  const [data, setData] = React.useState(getTopic);
 
   var tags = [sortField + "-" + sortType];
 
