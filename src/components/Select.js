@@ -1,13 +1,7 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
-import {
-  Layout,
-  Select,
-  SelectItem,
-  IndexPath,
-  Text,
-} from "@ui-kitten/components";
+import { Layout, Select, SelectItem, IndexPath } from "@ui-kitten/components";
 
 const selectItems = (arrItem) =>
   Array.from(arrItem, (item) => <SelectItem key={item} title={item} />);
