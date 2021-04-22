@@ -6,7 +6,7 @@ import TopicCreate from "./TopicCreate";
 
 import { SearchIcon, PlusIcon } from "components/Icons";
 
-const TopicTopBar = () => {
+const TopicTopBar = ({ callBack }) => {
   const [value, setValue] = React.useState("");
   const [createVisible, setCreateVisible] = React.useState(true);
 
@@ -32,6 +32,7 @@ const TopicTopBar = () => {
       <TopicCreate
         createVisible={createVisible}
         setCreateVisible={setCreateVisible}
+        callBack={callBack}
       />
     </Layout>
   );

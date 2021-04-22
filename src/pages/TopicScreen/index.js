@@ -18,7 +18,11 @@ const TopicScreen = () => {
 
   return (
     <Layout style={styles.container}>
-      <TopicTopBar sortField={sortField} sortType={sortType} />
+      <TopicTopBar
+        sortField={sortField}
+        sortType={sortType}
+        callBack={() => setData(getTopic())}
+      />
       <TopicAnalyse tags={tags} />
       <TopicTable data={data} />
       <TopicBottom total={data.length} currentPage={1} totalPage={2} />

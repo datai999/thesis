@@ -26,16 +26,12 @@ const form = {
   students: [],
 };
 
-const TopicCreate = ({ createVisible, setCreateVisible }) => {
+const TopicCreate = ({ createVisible, setCreateVisible, callBack }) => {
   let animation = null;
   const animationEnd = () =>
     animation.zoomOut(500).then((endState) => setCreateVisible(false));
 
   const [toggle, setToggle] = React.useState(false);
-
-  const setValue = () => {
-    setToggle(!toggle);
-  };
 
   const refresh = () => setToggle(!toggle);
 
@@ -55,10 +51,14 @@ const TopicCreate = ({ createVisible, setCreateVisible }) => {
           style={styles.card}
           header={() => <Text style={styles.headerText}>Create topic</Text>}
           footer={() => (
-            <TopicCreateBottom animationEnd={animationEnd} form={form} />
+            <TopicCreateBottom
+              animationEnd={animationEnd}
+              form={form}
+              callBack={callBack}
+            />
           )}
         >
-          <TopicCreateForm form={form} setValue={setValue} callBack={refresh} />
+          <TopicCreateForm form={form} callBack={refresh} />
         </Card>
       </Animatable.View>
     </Modal>
