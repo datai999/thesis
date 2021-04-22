@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import { Layout, Input } from "@ui-kitten/components";
 import _ from "lodash";
 
-import Constants from "components/Constants";
+import Props from "data/Props";
 import { MySelect, MyMultiSelect } from "components/Select";
 
 const TopicCreateForm = ({ form, setValue }) => {
@@ -12,53 +12,53 @@ const TopicCreateForm = ({ form, setValue }) => {
       <Layout style={styles.row}>
         <Layout style={styles.left}>
           <MySelect
-            {...Constants.educationMethod}
+            {...Props.educationMethod}
             value={form.educationMethod}
             setValue={(value) => setValue("educationMethod", value)}
           />
           <MySelect
-            {...Constants.semester}
+            {...Props.semester}
             value={form.semester}
             setValue={(value) => setValue("semester", value)}
           />
           <Input
-            {...Constants.guideTeacher}
+            {...Props.guideTeacher}
             value={form.guideTeacher}
             onChangeText={(value) => setValue("guideTeacher", value)}
           />
           <MyMultiSelect
-            {...Constants.majors}
+            {...Props.majors}
             value={form.majors}
             setValue={(value) => setValue("majors", value)}
           />
         </Layout>
         <Layout style={styles.right}>
           <Input
-            {...Constants.topicCode}
+            {...Props.topicCode}
             value={form.topicCode}
             onChangeText={(value) => setValue("topicCode", value)}
           />
           <Input
-            {...Constants.topicName}
+            {...Props.topicName}
             value={form.topicName}
             onChangeText={(value) => setValue("topicName", value)}
           />
           <Layout style={{ flexDirection: "row" }}>
             <MySelect
-              {...Constants.minStudentTake}
+              {...Props.minStudentTake}
               style={styles.left}
               value={form.minStudentTake}
               setValue={(value) => setValue("minStudentTake", value)}
             />
             <MySelect
-              {...Constants.maxStudentTake}
+              {...Props.maxStudentTake}
               style={styles.right}
               value={form.maxStudentTake}
               setValue={(value) => setValue("maxStudentTake", value)}
             />
           </Layout>
           <Input
-            {...Constants.students}
+            {...Props.students}
             value={form.students}
             onChangeText={(value) => setValue("students", value)}
           />
@@ -66,20 +66,20 @@ const TopicCreateForm = ({ form, setValue }) => {
       </Layout>
       <Layout style={styles.row}>
         <Input
-          {...Constants.mainTask}
+          {...Props.mainTask}
           style={styles.left}
           value={form.mainTask}
           onChangeText={(value) => setValue("mainTask", value)}
         />
         <Input
-          {...Constants.thesisTask}
+          {...Props.thesisTask}
           style={styles.right}
           value={form.thesisTask}
           onChangeText={(value) => setValue("thesisTask", value)}
         />
       </Layout>
       <Input
-        {...Constants.description}
+        {...Props.description}
         style={styles.description}
         value={form.description}
         onChangeText={(value) => setValue("description", value)}

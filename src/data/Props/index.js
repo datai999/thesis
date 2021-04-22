@@ -1,6 +1,6 @@
 import React from "react";
 
-const Constants = {
+const Props = {
   educationMethod: {
     label: "Education method",
     placeholder: "Select education method",
@@ -66,4 +66,4 @@ const Constants = {
   },
 };
 
-export default Constants;
+export default Props;
