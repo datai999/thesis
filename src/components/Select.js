@@ -1,42 +1,52 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { Layout, Select, SelectItem, IndexPath } from "@ui-kitten/components";
+import {
+  Layout,
+  Select,
+  SelectItem,
+  IndexPath,
+  Text,
+} from "@ui-kitten/components";
 
 const selectItems = (arrItem) =>
   Array.from(arrItem, (item) => <SelectItem key={item} title={item} />);
 
-const MySelect = ({ value, setValue, ...props }) => {
+const MySelect = ({ name, form, callBack, ...props }) => {
   return (
     <Select
-      {...props}
-      value={value}
-      onSelect={(index) => setValue(props.arrValue[index - 1])}
+      {...props[name]}
+      value={form[name]}
+      onSelect={(index) => callBack(name, props[name].arrValue[index - 1])}
     >
-      {selectItems(props.arrValue)}
+      {selectItems(props[name].arrValue)}
     </Select>
   );
 };
 
-const MyMultiSelect = ({ value, setValue, ...props }) => {
+const MyMultiSelect = ({ name, form, callBack, ...props }) => {
   const indexes = Array.from(
-    value,
-    (item) => new IndexPath(props.arrValue.indexOf(item))
+    form[name],
+    (item) => new IndexPath(props[name].arrValue.indexOf(item))
   ).filter((item) => item.row > -1);
 
   return (
     <Select
-      {...props}
-      value={value.join(", ")}
+      {...props[name]}
+      value={form[name].join(", ")}
       multiSelect={true}
       selectedIndex={indexes}
       onSelect={(arrIndexPath) =>
-        setValue(
-          Array.from(arrIndexPath, (indexPath) => props.arrValue[indexPath.row])
+        callBack(
+          name,
+          Array.from(
+            arrIndexPath,
+            (indexPath) => props[name].arrValue[indexPath.row]
+          )
         )
       }
     >
-      {selectItems(props.arrValue)}
+      {selectItems(props[name].arrValue)}
     </Select>
   );
 };

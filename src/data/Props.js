@@ -31,7 +31,7 @@ const Props = {
   },
   topicCode: {
     label: "Topic code",
-    placeholder: "",
+    placeholder: "Topic code",
   },
   topicName: {
     label: "Topic name",

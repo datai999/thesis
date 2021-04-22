@@ -1,36 +1,29 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Layout, Input } from "@ui-kitten/components";
-import _ from "lodash";
 
 import Props from "data/Props";
 import { MySelect, MyMultiSelect } from "components/Select";
 
-const TopicCreateForm = ({ form, setValue }) => {
+const TopicCreateForm = ({ form, callBack, ...props }) => {
+  const setValue = (field, value) => {
+    form[field] = value;
+    callBack();
+  };
+  const selectProps = { form, callBack: setValue, ...Props };
+
   return (
     <Layout style={styles.container}>
       <Layout style={styles.row}>
         <Layout style={styles.left}>
-          <MySelect
-            {...Props.educationMethod}
-            value={form.educationMethod}
-            setValue={(value) => setValue("educationMethod", value)}
-          />
-          <MySelect
-            {...Props.semester}
-            value={form.semester}
-            setValue={(value) => setValue("semester", value)}
-          />
+          <MySelect {...selectProps} name="educationMethod" />
+          <MySelect {...selectProps} name="semester" />
           <Input
             {...Props.guideTeacher}
             value={form.guideTeacher}
             onChangeText={(value) => setValue("guideTeacher", value)}
           />
-          <MyMultiSelect
-            {...Props.majors}
-            value={form.majors}
-            setValue={(value) => setValue("majors", value)}
-          />
+          <MyMultiSelect {...selectProps} name="majors" />
         </Layout>
         <Layout style={styles.right}>
           <Input
@@ -45,16 +38,14 @@ const TopicCreateForm = ({ form, setValue }) => {
           />
           <Layout style={{ flexDirection: "row" }}>
             <MySelect
-              {...Props.minStudentTake}
+              {...selectProps}
+              name="minStudentTake"
               style={styles.left}
-              value={form.minStudentTake}
-              setValue={(value) => setValue("minStudentTake", value)}
             />
             <MySelect
-              {...Props.maxStudentTake}
+              {...selectProps}
+              name="maxStudentTake"
               style={styles.right}
-              value={form.maxStudentTake}
-              setValue={(value) => setValue("maxStudentTake", value)}
             />
           </Layout>
           <Input

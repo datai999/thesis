@@ -6,24 +6,24 @@ import { Modal, Card, Text, Layout } from "@ui-kitten/components";
 import TopicCreateForm from "./TopicCreateForm";
 import TopicCreateBottom from "./TopicCreateBottom";
 
-const topicCreateForm = {
-  topicCode: "123",
-  topicName: "Name of topic",
-  guideTeacher: "Nguyen Thi Ai",
+const form = {
+  topicCode: "",
+  topicName: "",
+  guideTeacher: "",
 
-  semester: "202",
-  majors: ["Computer Science"],
-  educationMethod: "Formal",
-  maxStudentTake: 3,
-  minStudentTake: 1,
+  semester: "",
+  majors: [],
+  educationMethod: "",
+  maxStudentTake: "",
+  minStudentTake: "",
 
-  description: "description",
+  description: "",
 
-  mainTask: "To do something",
-  thesisTask: "Todo something when thesis",
-  node: "note",
+  mainTask: "",
+  thesisTask: "",
+  node: "",
 
-  students: ["Nguyen Duc Anh Tai", "Tai Nguyen Duc Anh"],
+  students: [],
 };
 
 const TopicCreate = ({ createVisible, setCreateVisible }) => {
@@ -31,13 +31,13 @@ const TopicCreate = ({ createVisible, setCreateVisible }) => {
   const animationEnd = () =>
     animation.zoomOut(500).then((endState) => setCreateVisible(false));
 
-  const [form, setForm] = React.useState(topicCreateForm);
   const [toggle, setToggle] = React.useState(false);
 
-  const setValue = (path, value) => {
-    _.set(form, path, value);
+  const setValue = () => {
     setToggle(!toggle);
   };
+
+  const refresh = () => setToggle(!toggle);
 
   return (
     <Modal
@@ -54,9 +54,11 @@ const TopicCreate = ({ createVisible, setCreateVisible }) => {
         <Card
           style={styles.card}
           header={() => <Text style={styles.headerText}>Create topic</Text>}
-          footer={() => <TopicCreateBottom animationEnd={animationEnd} />}
+          footer={() => (
+            <TopicCreateBottom animationEnd={animationEnd} form={form} />
+          )}
         >
-          <TopicCreateForm form={form} setValue={setValue} />
+          <TopicCreateForm form={form} setValue={setValue} callBack={refresh} />
         </Card>
       </Animatable.View>
     </Modal>

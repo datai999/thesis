@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Dimensions } from "react-native";
 import { Layout, Input, Button } from "@ui-kitten/components";
-import _ from "lodash";
 
 import TopicCreate from "./TopicCreate";
 
