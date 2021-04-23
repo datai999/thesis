@@ -3,8 +3,11 @@ import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { Modal, Card, Text, Layout } from "@ui-kitten/components";
 
+import BottomCard from "components/BottomCard";
+
 import TopicCreateForm from "./TopicCreateForm";
-import TopicCreateBottom from "./TopicCreateBottom";
+
+import createTopic from "actions/CreateTopic";
 
 const form = {
   topicCode: "",
@@ -51,10 +54,10 @@ const TopicCreate = ({ createVisible, setCreateVisible, callBack }) => {
           style={styles.card}
           header={() => <Text style={styles.headerText}>Create topic</Text>}
           footer={() => (
-            <TopicCreateBottom
+            <BottomCard
               animationEnd={animationEnd}
               form={form}
-              callBack={callBack}
+              submit={() => createTopic(form)}
             />
           )}
         >

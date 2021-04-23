@@ -2,17 +2,14 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Layout, Button } from "@ui-kitten/components";
 
-import createTopic from "actions/CreateTopic";
-
-const TopicCreateBottom = ({ animationEnd, form, callBack, ...props }) => {
+const BottomCard = ({ animationEnd, form, submit }) => {
   return (
     <Layout style={styles.popupBot}>
       <Button
         style={styles.popupBotBtn}
         onPress={() => {
-          createTopic(form);
           animationEnd();
-          callBack();
+          submit();
         }}
       >
         Submit
@@ -34,4 +31,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TopicCreateBottom;
+export default BottomCard;

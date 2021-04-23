@@ -21,8 +21,6 @@ const Routes = () => {
     switch (selectedIndex.row) {
       case 0:
         break;
-      case 1:
-        return <HomeScreen />;
       default:
       case 2:
         return <TopicScreen />;

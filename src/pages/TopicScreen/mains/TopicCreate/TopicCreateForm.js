@@ -1,19 +1,29 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Layout, Input } from "@ui-kitten/components";
+import { Layout, Input, Button } from "@ui-kitten/components";
 
 import Props from "data/Props";
 import { MySelect, MyMultiSelect } from "components/Select";
+import TeacherCreateForm from "components/form/TeacherCreateForm";
+import { PlusIcon } from "components/Icons";
 
 const TopicCreateForm = ({ form, callBack, ...props }) => {
+  const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(true);
+
+  const selectProps = { form, callBack: setValue, ...Props };
+  const rightBtnProps = { appearance: "ghost", accessoryRight: PlusIcon };
+
   const setValue = (field, value) => {
     form[field] = value;
     callBack();
   };
-  const selectProps = { form, callBack: setValue, ...Props };
 
   return (
     <Layout style={styles.container}>
+      <TeacherCreateForm
+        visible={teacherCreateVisible}
+        callBack={() => setTeacherCreateVisible(false)}
+      />
       <Layout style={styles.row}>
         <Layout style={styles.left}>
           <MySelect {...selectProps} name="educationMethod" />
@@ -21,6 +31,12 @@ const TopicCreateForm = ({ form, callBack, ...props }) => {
           <Input
             {...Props.guideTeacher}
             value={form.guideTeacher}
+            accessoryRight={() => (
+              <Button
+                {...rightBtnProps}
+                onPress={() => setTeacherCreateVisible(true)}
+              />
+            )}
             onChangeText={(value) => setValue("guideTeacher", value)}
           />
           <MyMultiSelect {...selectProps} name="majors" />
