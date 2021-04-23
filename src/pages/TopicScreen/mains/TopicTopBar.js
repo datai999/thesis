@@ -2,31 +2,9 @@ import React from "react";
 import { StyleSheet, Dimensions } from "react-native";
 import { Layout, Input, Button } from "@ui-kitten/components";
 
-import TopicCreate from "./TopicCreate";
-
 import MyModal from "components/Modal";
-import TopicCreateForm from "components/form/TopicCreateForm";
+import TopicCreateProps from "components/form/topicCreateForm/Props";
 import { SearchIcon, PlusIcon } from "components/Icons";
-
-const form = {
-  topicCode: "",
-  topicName: "",
-  guideTeacher: "",
-
-  semester: "",
-  majors: [],
-  educationMethod: "",
-  maxStudentTake: "",
-  minStudentTake: "",
-
-  description: "",
-
-  mainTask: "",
-  thesisTask: "",
-  node: "",
-
-  students: [],
-};
 
 const TopicTopBar = ({ callBack }) => {
   const [value, setValue] = React.useState("");
@@ -34,10 +12,8 @@ const TopicTopBar = ({ callBack }) => {
 
   const modalTopicCreateProps = {
     visible: createTopicVisible,
-    header: "Create topic",
-    submit: () => console.log(form),
     cancel: () => setCreateTopicVisible(false),
-    body: () => TopicCreateForm(form),
+    ...TopicCreateProps,
   };
 
   return (
