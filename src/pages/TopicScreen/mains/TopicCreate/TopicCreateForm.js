@@ -1,17 +1,27 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Layout, Input, Button } from "@ui-kitten/components";
+import { Layout, Input, Button, Text } from "@ui-kitten/components";
 
 import Props from "data/Props";
+import MyModal from "components/Modal";
 import { MySelect, MyMultiSelect } from "components/Select";
 import TeacherCreateForm from "components/form/TeacherCreateForm";
 import { PlusIcon } from "components/Icons";
+import TeacherCreateForm1 from "components/form/test";
 
 const TopicCreateForm = ({ form, callBack, ...props }) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(true);
 
   const selectProps = { form, callBack: setValue, ...Props };
   const rightBtnProps = { appearance: "ghost", accessoryRight: PlusIcon };
+  const modalTeacherCreateProps = {
+    visible: teacherCreateVisible,
+    headerText: "Create new teacher",
+    submit: () => console.log("sub"),
+    cancel: () => setTeacherCreateVisible(false),
+    body: TeacherCreateForm,
+    form: {},
+  };
 
   const setValue = (field, value) => {
     form[field] = value;
@@ -20,10 +30,8 @@ const TopicCreateForm = ({ form, callBack, ...props }) => {
 
   return (
     <Layout style={styles.container}>
-      <TeacherCreateForm
-        visible={teacherCreateVisible}
-        callBack={() => setTeacherCreateVisible(false)}
-      />
+      <MyModal {...modalTeacherCreateProps} />
+
       <Layout style={styles.row}>
         <Layout style={styles.left}>
           <MySelect {...selectProps} name="educationMethod" />
