@@ -1,30 +1,40 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Layout, Input, Button, Text } from "@ui-kitten/components";
+import * as Animatable from "react-native-animatable";
+import {
+  Modal,
+  Card,
+  Input,
+  Button,
+  Text,
+  Layout,
+} from "@ui-kitten/components";
 
-import Props from "data/Props";
 import MyModal from "components/Modal";
+import Props from "data/Props";
 import { MySelect, MyMultiSelect } from "components/Select";
-import TeacherCreateForm from "components/form/TeacherCreateForm";
+import BottomCard from "components/BottomCard";
 import { PlusIcon } from "components/Icons";
 
-const TopicCreateForm = ({ form, callBack, ...props }) => {
-  console.log(form);
-
+const TeacherCreateForm = (form) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(true);
 
-  const selectProps = { form, callBack: setValue, ...Props };
+  const selectProps = (field) => {
+    return {
+      field,
+      value: form[field],
+      callBack: (value) => (form[field] = value),
+      ...Props[field],
+    };
+  };
   const rightBtnProps = { appearance: "ghost", accessoryRight: PlusIcon };
   const modalTeacherCreateProps = {
     visible: teacherCreateVisible,
-    headerText: "Create new teacher",
-    submit: () => console.log("sub"),
+    header: "Create new teacher",
+    submit: () => console.log(form),
     cancel: () => setTeacherCreateVisible(false),
-    body: TeacherCreateForm,
-    form: {},
+    body: () => <Text>asd</Text>,
   };
-
-
 
   return (
     <Layout style={styles.container}>
@@ -32,8 +42,8 @@ const TopicCreateForm = ({ form, callBack, ...props }) => {
 
       <Layout style={styles.row}>
         <Layout style={styles.left}>
-          <MySelect {...selectProps} name="educationMethod" />
-          <MySelect {...selectProps} name="semester" />
+          <MySelect {...selectProps("educationMethod")} />
+          <MySelect {...selectProps("semester")} />
           <Input
             {...Props.guideTeacher}
             value={form.guideTeacher}
@@ -45,7 +55,7 @@ const TopicCreateForm = ({ form, callBack, ...props }) => {
             )}
             onChangeText={(value) => setValue("guideTeacher", value)}
           />
-          <MyMultiSelect {...selectProps} name="majors" />
+          <MyMultiSelect {...selectProps("majors")} />
         </Layout>
         <Layout style={styles.right}>
           <Input
@@ -59,16 +69,8 @@ const TopicCreateForm = ({ form, callBack, ...props }) => {
             onChangeText={(value) => setValue("topicName", value)}
           />
           <Layout style={{ flexDirection: "row" }}>
-            <MySelect
-              {...selectProps}
-              name="minStudentTake"
-              style={styles.left}
-            />
-            <MySelect
-              {...selectProps}
-              name="maxStudentTake"
-              style={styles.right}
-            />
+            <MySelect {...selectProps("minStudentTake")} style={styles.left} />
+            <MySelect {...selectProps("maxStudentTake")} style={styles.right} />
           </Layout>
           <Input
             {...Props.students}
@@ -121,4 +123,4 @@ const styles = StyleSheet.create({
   description: {},
 });
 
-export default TopicCreateForm;
+export default TeacherCreateForm;

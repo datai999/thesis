@@ -4,11 +4,41 @@ import { Layout, Input, Button } from "@ui-kitten/components";
 
 import TopicCreate from "./TopicCreate";
 
+import MyModal from "components/Modal";
+import TopicCreateForm from "components/form/TopicCreateForm";
 import { SearchIcon, PlusIcon } from "components/Icons";
+
+const form = {
+  topicCode: "",
+  topicName: "",
+  guideTeacher: "",
+
+  semester: "",
+  majors: [],
+  educationMethod: "",
+  maxStudentTake: "",
+  minStudentTake: "",
+
+  description: "",
+
+  mainTask: "",
+  thesisTask: "",
+  node: "",
+
+  students: [],
+};
 
 const TopicTopBar = ({ callBack }) => {
   const [value, setValue] = React.useState("");
-  const [createVisible, setCreateVisible] = React.useState(true);
+  const [createTopicVisible, setCreateTopicVisible] = React.useState(true);
+
+  const modalTopicCreateProps = {
+    visible: createTopicVisible,
+    header: "Create topic",
+    submit: () => console.log(form),
+    cancel: () => setCreateTopicVisible(false),
+    body: () => TopicCreateForm(form),
+  };
 
   return (
     <Layout style={styles.container}>
@@ -17,7 +47,7 @@ const TopicTopBar = ({ callBack }) => {
         status="primary"
         size="small"
         accessoryRight={PlusIcon}
-        onPress={() => setCreateVisible(true)}
+        onPress={() => setCreateTopicVisible(true)}
       >
         NEW
       </Button>
@@ -29,11 +59,7 @@ const TopicTopBar = ({ callBack }) => {
         onChangeText={(nextValue) => setValue(nextValue)}
       />
 
-      <TopicCreate
-        createVisible={createVisible}
-        setCreateVisible={setCreateVisible}
-        callBack={callBack}
-      />
+      <MyModal {...modalTopicCreateProps} />
     </Layout>
   );
 };

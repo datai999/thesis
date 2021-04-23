@@ -5,7 +5,7 @@ import { Modal, Card, Text, Layout } from "@ui-kitten/components";
 
 import BottomCard from "components/BottomCard";
 
-import TopicCreateForm from "./TopicCreateForm";
+import TopicCreateForm from "components/form/TopicCreateForm";
 
 import createTopic from "actions/CreateTopic";
 

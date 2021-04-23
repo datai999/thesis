@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { Modal, Card, Layout, Button, Text } from "@ui-kitten/components";
 
-const MyModal = ({ visible, headerText, submit, cancel, body }) => {
+const MyModal = ({ visible, header, submit, cancel, body }) => {
   let animation = null;
   const animationEnd = () =>
     animation.zoomOut(500).then((endState) => cancel());
@@ -22,7 +22,7 @@ const MyModal = ({ visible, headerText, submit, cancel, body }) => {
       >
         <Card
           style={styles.card}
-          header={() => <Text style={styles.headerText}>{headerText}</Text>}
+          header={() => <Text style={styles.headerText}>{header}</Text>}
           footer={() => (
             <BottomCard animationEnd={animationEnd} submit={submit} />
           )}
