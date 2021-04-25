@@ -5,13 +5,26 @@ import { Button, Layout } from "@ui-kitten/components";
 import Props from "data/Props";
 
 import TopicCreateProps from "components/form/teacherCreateForm/Props";
+import StudentCreateProps from "components/form/studentCreateForm/Props";
+
 import MyModal from "components/Modal";
 import MyInput from "components/Input";
 import { MySelect, MyMultiSelect } from "components/Select";
 import { PlusIcon } from "components/Icons";
 
 const TopicCreate = (form) => {
-  const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(true);
+  const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
+  const [studentCreateVisible, setStudentCreateVisible] = React.useState(true);
+  const modalTeacherCreateProps = {
+    visible: teacherCreateVisible,
+    cancel: () => setTeacherCreateVisible(false),
+    ...TopicCreateProps,
+  };
+  const modalStudentCreateProps = {
+    visible: studentCreateVisible,
+    cancel: () => setStudentCreateVisible(false),
+    ...StudentCreateProps,
+  };
 
   const setValue = (field, value) => (form[field] = value);
 
@@ -35,15 +48,11 @@ const TopicCreate = (form) => {
     size: "small",
     accessoryRight: PlusIcon,
   };
-  const modalTeacherCreateProps = {
-    visible: teacherCreateVisible,
-    cancel: () => setTeacherCreateVisible(false),
-    ...TopicCreateProps,
-  };
 
   return (
     <Layout style={styles.container}>
       <MyModal {...modalTeacherCreateProps} />
+      <MyModal {...modalStudentCreateProps} />
 
       <Layout style={styles.row}>
         <Layout style={styles.left}>
@@ -67,7 +76,15 @@ const TopicCreate = (form) => {
             <MySelect {...selectProps("minStudentTake")} style={styles.left} />
             <MySelect {...selectProps("maxStudentTake")} style={styles.right} />
           </Layout>
-          <MyInput {...inputProps("students")} />
+          <MyInput
+            {...inputProps("students")}
+            accessoryRight={() => (
+              <Button
+                {...rightBtnProps}
+                onPress={() => setTeacherCreateVisible(true)}
+              />
+            )}
+          />
         </Layout>
       </Layout>
       <Layout style={styles.row}>
