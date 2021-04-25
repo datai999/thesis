@@ -1,6 +1,6 @@
 import React from "react";
 
-import TopicCreate from "./TopicCreate";
+import TopicCreateLayout from "./TopicCreateLayout";
 
 const form = {
   topicCode: "",
@@ -25,7 +25,7 @@ const form = {
 const TopicCreateProps = {
   header: "Create topic",
   submit: () => console.log(form),
-  body: () => TopicCreate(form),
+  body: () => TopicCreateLayout(form),
 };
 
 export default TopicCreateProps;
