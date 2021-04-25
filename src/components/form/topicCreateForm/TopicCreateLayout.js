@@ -8,8 +8,6 @@ import TopicCreateProps from "components/form/teacherCreateForm/Props";
 import MyModal from "components/Modal";
 import MyInput from "components/Input";
 import { MySelect, MyMultiSelect } from "components/Select";
-
-import BottomCard from "components/BottomCard";
 import { PlusIcon } from "components/Icons";
 
 const TopicCreate = (form) => {
