@@ -66,6 +66,34 @@ const Props = {
     multiline: true,
     numberOfLines: 5,
   },
+  name: {
+    label: "Name",
+    placeholder: "Type name",
+  },
+  email: {
+    label: "Email",
+    placeholder: "HCMUT email",
+  },
+  phone: {
+    label: "Phone",
+    placeholder: "Type phone",
+  },
+  degree: {
+    label: "Degree",
+    placeholder: "Select degree",
+    arrValue: ["Bachelor", "Master", "Doctor", "Professor"],
+  },
+  subjectDepartment: {
+    label: "Subject Department",
+    placeholder: "Select subject department",
+    arrValue: [
+      "Information System",
+      "Software Technology",
+      "Systems and Networks",
+      "Computer Science",
+      "Computer Engineering",
+    ],
+  },
 };
 
 export default Props;

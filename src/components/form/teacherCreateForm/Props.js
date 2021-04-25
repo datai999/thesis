@@ -3,23 +3,12 @@ import React from "react";
 import TeacherCreateLayout from "./TeacherCreateLayout";
 
 const form = {
-  topicCode: "",
-  topicName: "",
-  guideTeacher: "",
+  name: "",
+  email: "",
+  phone: "",
 
-  semester: "",
-  majors: [],
-  educationMethod: "",
-  maxStudentTake: "",
-  minStudentTake: "",
-
-  description: "",
-
-  mainTask: "",
-  thesisTask: "",
-  node: "",
-
-  students: [],
+  degree_id: "",
+  subject_department_id: "",
 };
 
 const TeacherCreateProps = {
