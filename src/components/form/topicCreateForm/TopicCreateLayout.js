@@ -1,14 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import * as Animatable from "react-native-animatable";
-import {
-  Modal,
-  Card,
-  Input,
-  Button,
-  Text,
-  Layout,
-} from "@ui-kitten/components";
+import { Button, Layout } from "@ui-kitten/components";
 
 import Props from "data/Props";
 
