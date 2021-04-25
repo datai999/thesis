@@ -10,20 +10,32 @@ import {
   Layout,
 } from "@ui-kitten/components";
 
-import MyModal from "components/Modal";
 import Props from "data/Props";
+
+import MyModal from "components/Modal";
+import MyInput from "components/Input";
 import { MySelect, MyMultiSelect } from "components/Select";
+
 import BottomCard from "components/BottomCard";
 import { PlusIcon } from "components/Icons";
 
 const TopicCreate = (form) => {
-  const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(true);
+  const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
+
+  const setValue = (field, value) => (form[field] = value);
 
   const selectProps = (field) => {
     return {
       field,
       value: form[field],
-      callBack: (value) => (form[field] = value),
+      callBack: (value) => setValue(field, value),
+      ...Props[field],
+    };
+  };
+  const inputProps = (field) => {
+    return {
+      value: form[field],
+      callBack: (value) => setValue(field, value),
       ...Props[field],
     };
   };
@@ -44,61 +56,32 @@ const TopicCreate = (form) => {
         <Layout style={styles.left}>
           <MySelect {...selectProps("educationMethod")} />
           <MySelect {...selectProps("semester")} />
-          <Input
-            {...Props.guideTeacher}
-            value={form.guideTeacher}
+          <MyInput
+            {...inputProps("guideTeacher")}
             accessoryRight={() => (
               <Button
                 {...rightBtnProps}
                 onPress={() => setTeacherCreateVisible(true)}
               />
             )}
-            onChangeText={(value) => setValue("guideTeacher", value)}
           />
           <MyMultiSelect {...selectProps("majors")} />
         </Layout>
         <Layout style={styles.right}>
-          <Input
-            {...Props.topicCode}
-            value={form.topicCode}
-            onChangeText={(value) => setValue("topicCode", value)}
-          />
-          <Input
-            {...Props.topicName}
-            value={form.topicName}
-            onChangeText={(value) => setValue("topicName", value)}
-          />
+          <MyInput {...inputProps("topicCode")} />
+          <MyInput {...inputProps("topicName")} />
           <Layout style={{ flexDirection: "row" }}>
             <MySelect {...selectProps("minStudentTake")} style={styles.left} />
             <MySelect {...selectProps("maxStudentTake")} style={styles.right} />
           </Layout>
-          <Input
-            {...Props.students}
-            value={form.students}
-            onChangeText={(value) => setValue("students", value)}
-          />
+          <MyInput {...inputProps("students")} />
         </Layout>
       </Layout>
       <Layout style={styles.row}>
-        <Input
-          {...Props.mainTask}
-          style={styles.left}
-          value={form.mainTask}
-          onChangeText={(value) => setValue("mainTask", value)}
-        />
-        <Input
-          {...Props.thesisTask}
-          style={styles.right}
-          value={form.thesisTask}
-          onChangeText={(value) => setValue("thesisTask", value)}
-        />
+        <MyInput {...inputProps("mainTask")} style={styles.left} />
+        <MyInput {...inputProps("thesisTask")} style={styles.right} />
       </Layout>
-      <Input
-        {...Props.description}
-        style={styles.description}
-        value={form.description}
-        onChangeText={(value) => setValue("description", value)}
-      />
+      <MyInput {...inputProps("description")} style={styles.description} />
     </Layout>
   );
 };
