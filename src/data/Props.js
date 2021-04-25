@@ -94,6 +94,15 @@ const Props = {
       "Computer Engineering",
     ],
   },
+  major: {
+    label: "Major",
+    placeholder: "Select major",
+    arrValue: ["Computer Science", "Computer Engineering"],
+  },
+  studentCode: {
+    label: "Code",
+    placeholder: "Type student code",
+  },
 };
 
 export default Props;

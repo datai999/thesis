@@ -7,8 +7,9 @@ const form = {
   email: "",
   phone: "",
 
-  degree_id: "",
-  subject_department_id: "",
+  education_method_id: "",
+  major_id: "",
+  student_code: "",
 };
 
 const StudentCreateProps = {
