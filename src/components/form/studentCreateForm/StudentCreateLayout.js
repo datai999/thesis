@@ -33,8 +33,9 @@ const StudentCreateLayout = (form) => {
           <MyInput {...inputProps("phone")} />
         </Layout>
         <Layout style={styles.right}>
-          <MySelect {...selectProps("degree")} />
-          <MySelect {...selectProps("subjectDepartment")} />
+          <MyInput {...inputProps("studentCode")} />
+          <MySelect {...selectProps("educationMethod")} />
+          <MySelect {...selectProps("major")} />
         </Layout>
       </Layout>
     </Layout>
