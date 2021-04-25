@@ -15,27 +15,7 @@ import { MySelect, MyMultiSelect } from "components/Select";
 import BottomCard from "components/BottomCard";
 import { PlusIcon } from "components/Icons";
 
-const form = {
-  topicCode: "",
-  topicName: "",
-  guideTeacher: "",
-
-  semester: "",
-  majors: [],
-  educationMethod: "",
-  maxStudentTake: "",
-  minStudentTake: "",
-
-  description: "",
-
-  mainTask: "",
-  thesisTask: "",
-  node: "",
-
-  students: [],
-};
-
-const TeacherCreateForm = () => (
+const TeacherCreateLayout = (form) => (
   <Layout>
     <Text>Teacher</Text>
   </Layout>
@@ -60,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TeacherCreateForm;
+export default TeacherCreateLayout;

@@ -12,6 +12,7 @@ import {
 
 import Props from "data/Props";
 
+import TopicCreateProps from "components/form/teacherCreateForm/Props";
 import MyModal from "components/Modal";
 import MyInput from "components/Input";
 import { MySelect, MyMultiSelect } from "components/Select";
@@ -20,7 +21,7 @@ import BottomCard from "components/BottomCard";
 import { PlusIcon } from "components/Icons";
 
 const TopicCreate = (form) => {
-  const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
+  const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(true);
 
   const setValue = (field, value) => (form[field] = value);
 
@@ -39,13 +40,15 @@ const TopicCreate = (form) => {
       ...Props[field],
     };
   };
-  const rightBtnProps = { appearance: "ghost", accessoryRight: PlusIcon };
+  const rightBtnProps = {
+    appearance: "ghost",
+    size: "small",
+    accessoryRight: PlusIcon,
+  };
   const modalTeacherCreateProps = {
     visible: teacherCreateVisible,
-    header: "Create new teacher",
-    submit: () => console.log(form),
     cancel: () => setTeacherCreateVisible(false),
-    body: () => <Text>asd</Text>,
+    ...TopicCreateProps,
   };
 
   return (
