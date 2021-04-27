@@ -14,7 +14,7 @@ import { PlusIcon } from "components/Icons";
 
 const TopicCreate = (form) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
-  const [studentCreateVisible, setStudentCreateVisible] = React.useState(true);
+  const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
   const modalTeacherCreateProps = {
     visible: teacherCreateVisible,
     cancel: () => setTeacherCreateVisible(false),

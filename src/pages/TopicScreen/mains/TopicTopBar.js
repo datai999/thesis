@@ -8,7 +8,7 @@ import { SearchIcon, PlusIcon } from "components/Icons";
 
 const TopicTopBar = ({ callBack }) => {
   const [value, setValue] = React.useState("");
-  const [createTopicVisible, setCreateTopicVisible] = React.useState(true);
+  const [createTopicVisible, setCreateTopicVisible] = React.useState(false);
 
   const modalTopicCreateProps = {
     visible: createTopicVisible,
