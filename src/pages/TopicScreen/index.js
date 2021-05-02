@@ -1,18 +1,16 @@
+import { Layout } from "@ui-kitten/components";
+import Storage from "data/Storage";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Layout } from "@ui-kitten/components";
-
-import TopicTopBar from "./mains/TopicTopBar";
 import TopicAnalyse from "./mains/TopicAnalyse";
-import TopicTable from "./mains/TopicTable";
 import TopicBottom from "./mains/TopicBottom";
-
-import getTopic from "actions/GetTopic";
+import TopicTable from "./mains/TopicTable";
+import TopicTopBar from "./mains/TopicTopBar";
 
 const TopicScreen = () => {
   const [sortField, setSortField] = React.useState("TopicCode");
   const [sortType, setSortType] = React.useState("Asc");
-  const [data, setData] = React.useState(getTopic);
+  const [data, setData] = React.useState(Storage["topic"]);
 
   var tags = [sortField + "-" + sortType];
 

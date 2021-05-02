@@ -1,28 +1,26 @@
+import { IndexPath, Layout, Menu, MenuItem, Text } from "@ui-kitten/components";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Layout, IndexPath, Menu, MenuItem, Text } from "@ui-kitten/components";
 import {
-  MenuIcon,
-  HomeIcon,
   BookOpenIcon,
+  HomeIcon,
+  MenuIcon,
   PersonDoneIcon,
   SettingIcon,
 } from "../components/Icons";
-
-import HomeScreen from "../pages/HomeScreen";
 import TopicScreen from "../pages/TopicScreen";
 
 const Routes = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(2));
-  const [menuSize, setMenuSize] = React.useState(150);
-  const date = new Date();
+  const [menuSize] = React.useState(150);
 
   const selectScreen = () => {
     switch (selectedIndex.row) {
       case 0:
         break;
+      case 1:
+        break;
       default:
-      case 2:
         return <TopicScreen />;
     }
   };
