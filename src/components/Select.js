@@ -18,7 +18,8 @@ const MySelect = ({ field, callBack, ...props }) => {
       value={props.arrValue && props.arrValue[indexed.row]}
       selectedIndex={indexed.row > -1 ? indexed : null}
       onSelect={(index) => {
-        callBack(props.arrValue[index - 1]);
+        let arrDataReturn = props.arrId ? props.arrId : props.arrValue;
+        callBack(arrDataReturn[index - 1]);
         setIndexed(index);
       }}
     >
@@ -42,8 +43,9 @@ const MyMultiSelect = ({ field, callBack, ...props }) => {
       multiSelect={true}
       selectedIndex={indexes}
       onSelect={(arrIndexPath) => {
+        let arrDataReturn = props.arrId ? props.arrId : props.arrValue;
         callBack(
-          Array.from(arrIndexPath, (indexPath) => props.arrValue[indexPath.row])
+          Array.from(arrIndexPath, (indexPath) => arrDataReturn[indexPath.row])
         );
         setIndexes(arrIndexPath);
       }}

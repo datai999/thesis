@@ -1,5 +1,3 @@
-import React from "react";
-
 import TeacherCreateLayout from "./TeacherCreateLayout";
 
 const form = {
@@ -7,8 +5,8 @@ const form = {
   email: "",
   phone: "",
 
-  degree_id: "",
-  subject_department_id: "",
+  degree: "",
+  subjectDepartment: "",
 };
 
 const TeacherCreateProps = {
