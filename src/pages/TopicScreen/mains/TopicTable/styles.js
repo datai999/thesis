@@ -1,4 +1,3 @@
-import React from "react";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
@@ -24,7 +23,7 @@ const styles = StyleSheet.create({
     width: 100,
     textAlign: "center",
   },
-  majors: {
+  major: {
     width: 180,
   },
   educationMethod: {

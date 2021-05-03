@@ -1,5 +1,3 @@
-import React from "react";
-
 const Storage = {
   topic: new Array(3).fill({
     topicCode: "123",
@@ -7,7 +5,7 @@ const Storage = {
     guideTeacher: "Nguyen Thi Ai",
 
     semester: "202",
-    majors: ["Computer Science", "Computer Engineering"],
+    major: ["Computer Science", "Computer Engineering"],
     educationMethod: "Formal",
     maxStudentTake: 3,
     minStudentTake: 1,

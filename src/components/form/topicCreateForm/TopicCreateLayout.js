@@ -1,16 +1,13 @@
+import { Button, Layout } from "@ui-kitten/components";
+import StudentCreateProps from "components/form/studentCreateForm/Props";
+import TopicCreateProps from "components/form/teacherCreateForm/Props";
+import { PlusIcon } from "components/Icons";
+import MyInput from "components/Input";
+import MyModal from "components/Modal";
+import { MyMultiSelect, MySelect } from "components/Select";
+import Props from "data/Props";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Button, Layout } from "@ui-kitten/components";
-
-import Props from "data/Props";
-
-import TopicCreateProps from "components/form/teacherCreateForm/Props";
-import StudentCreateProps from "components/form/studentCreateForm/Props";
-
-import MyModal from "components/Modal";
-import MyInput from "components/Input";
-import { MySelect, MyMultiSelect } from "components/Select";
-import { PlusIcon } from "components/Icons";
 
 const TopicCreate = (form) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
@@ -67,7 +64,7 @@ const TopicCreate = (form) => {
               />
             )}
           />
-          <MyMultiSelect {...selectProps("majors")} />
+          <MyMultiSelect {...selectProps("major")} />
         </Layout>
         <Layout style={styles.right}>
           <MyInput {...inputProps("topicCode")} />

@@ -1,5 +1,3 @@
-import React from "react";
-
 import TopicCreateLayout from "./TopicCreateLayout";
 
 const form = {
@@ -8,7 +6,7 @@ const form = {
   guideTeacher: "",
 
   semester: "",
-  majors: [],
+  major: [],
   educationMethod: "",
   maxStudentTake: "",
   minStudentTake: "",

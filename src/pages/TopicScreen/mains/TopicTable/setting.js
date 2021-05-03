@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "./styles";
 
 const setting = {
@@ -13,10 +11,10 @@ const setting = {
     hide: false,
     style: [styles.column, styles.semester],
   },
-  majors: {
-    title: "Majors",
+  major: {
+    title: "Major",
     hide: false,
-    style: [styles.column, styles.majors],
+    style: [styles.column, styles.major],
   },
   educationMethod: {
     title: "Edu Method",
