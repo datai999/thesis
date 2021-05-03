@@ -28,23 +28,25 @@ const MySelect = ({ field, callBack, ...props }) => {
 };
 
 const MyMultiSelect = ({ field, callBack, ...props }) => {
-  const indexes = Array.from(
-    props.value,
-    (item) => new IndexPath(props.arrValue.indexOf(item))
-  ).filter((item) => item.row > -1);
+  const [indexes, setIndexes] = React.useState(
+    Array.from(
+      props.value,
+      (item) => new IndexPath(props.arrValue.indexOf(item))
+    ).filter((item) => item.row > -1)
+  );
 
   return (
     <Select
       {...props}
-      value={props.value.join(", ")}
+      value={indexes.map((x) => props.arrValue[x.row] + ", ")}
       multiSelect={true}
       selectedIndex={indexes}
-      onSelect={(arrIndexPath) =>
+      onSelect={(arrIndexPath) => {
         callBack(
-          name,
           Array.from(arrIndexPath, (indexPath) => props.arrValue[indexPath.row])
-        )
-      }
+        );
+        setIndexes(arrIndexPath);
+      }}
     >
       {selectItems(props.arrValue)}
     </Select>
