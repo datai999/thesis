@@ -8,11 +8,11 @@ import { SearchIcon, PlusIcon } from "components/Icons";
 
 const TopicTopBar = ({ callBack }) => {
   const [value, setValue] = React.useState("");
-  const [createTopicVisible, setCreateTopicVisible] = React.useState(false);
+  const [topicCreateVisible, setTopicCreateVisible] = React.useState(false);
 
   const modalTopicCreateProps = {
-    visible: createTopicVisible,
-    cancel: () => setCreateTopicVisible(false),
+    visible: topicCreateVisible,
+    cancel: () => setTopicCreateVisible(false),
     ...TopicCreateProps,
   };
 
@@ -23,7 +23,7 @@ const TopicTopBar = ({ callBack }) => {
         status="primary"
         size="small"
         accessoryRight={PlusIcon}
-        onPress={() => setCreateTopicVisible(true)}
+        onPress={() => setTopicCreateVisible(true)}
       >
         NEW
       </Button>
