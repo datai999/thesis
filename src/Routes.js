@@ -21,6 +21,7 @@ const Routes = () => {
       try {
         const response = await ConstApi.getTypes();
         response.forEach((e) => {
+          Props[e.type].arrId = e.arrId;
           Props[e.type].arrValue = e.arrValue;
         });
       } catch (error) {
