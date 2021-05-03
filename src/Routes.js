@@ -1,5 +1,6 @@
 import { IndexPath, Layout, Menu, MenuItem, Text } from "@ui-kitten/components";
 import ConstApi from "api/ConstApi";
+import Props from "data/Props";
 import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import {
@@ -18,9 +19,10 @@ const Routes = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const response = await ConstApi.getAll();
-        console.log("res");
-        console.log(response);
+        const response = await ConstApi.getTypes();
+        response.forEach((e) => {
+          Props[e.type].arrValue = e.arrValue;
+        });
       } catch (error) {
         console.log(error);
       }
