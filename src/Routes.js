@@ -1,5 +1,6 @@
 import { IndexPath, Layout, Menu, MenuItem, Text } from "@ui-kitten/components";
-import React from "react";
+import ConstApi from "api/ConstApi";
+import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import {
   BookOpenIcon,
@@ -7,12 +8,25 @@ import {
   MenuIcon,
   PersonDoneIcon,
   SettingIcon,
-} from "../components/Icons";
-import TopicScreen from "../pages/TopicScreen";
+} from "./components/Icons";
+import TopicScreen from "./pages/TopicScreen";
 
 const Routes = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(2));
   const [menuSize] = React.useState(150);
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const response = await ConstApi.getAll();
+        console.log("res");
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetch();
+  }, []);
 
   const selectScreen = () => {
     switch (selectedIndex.row) {

@@ -4,7 +4,7 @@ import * as eva from "@eva-design/eva";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 
-import Routes from "./src/routes";
+import Routes from "./src/Routes";
 
 const App = () => {
   return (
