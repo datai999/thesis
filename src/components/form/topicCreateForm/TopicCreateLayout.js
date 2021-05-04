@@ -1,8 +1,9 @@
 import { Button, Layout } from "@ui-kitten/components";
+import TeacherApi from "api/person/TeacherApi";
 import StudentCreateProps from "components/form/studentCreateForm/Props";
 import TopicCreateProps from "components/form/teacherCreateForm/Props";
 import { PlusIcon } from "components/Icons";
-import MyInput from "components/Input";
+import { MyAutocomplete, MyInput } from "components/Input";
 import MyModal from "components/Modal";
 import { MyMultiSelect, MySelect } from "components/Select";
 import Props from "data/Props";
@@ -46,6 +47,15 @@ const TopicCreate = (form) => {
     accessoryRight: PlusIcon,
   };
 
+  const searchTeacher = async (value) => {
+    try {
+      const response = await TeacherApi.search(value);
+      return response.map((teacher) => teacher.name);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Layout style={styles.container}>
       <MyModal {...modalTeacherCreateProps} />
@@ -55,8 +65,9 @@ const TopicCreate = (form) => {
         <Layout style={styles.left}>
           <MySelect {...selectProps("educationMethod")} />
           <MySelect {...selectProps("semester")} />
-          <MyInput
+          <MyAutocomplete
             {...inputProps("guideTeacher")}
+            refreshDataOnChangeText={searchTeacher}
             accessoryRight={() => (
               <Button
                 {...rightBtnProps}
