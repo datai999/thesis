@@ -1,14 +1,18 @@
-import React from "react";
 import { Input } from "@ui-kitten/components";
+import React from "react";
 
 const MyInput = ({ value, callBack, ...props }) => {
-  const [toggle, setToggle] = React.useState(false);
+  const [currentValue, setCurrentValue] = React.useState(value);
   return (
     <Input
       {...props}
       onChangeText={(nextValue) => {
         callBack(nextValue);
-        setToggle(!toggle);
+        setCurrentValue(nextValue);
+      }}
+      onBlur={() => {
+        if (props.onBlur) return props.onBlur(currentValue);
+        return null;
       }}
     />
   );
