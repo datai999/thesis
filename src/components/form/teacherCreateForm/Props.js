@@ -1,17 +1,11 @@
+import TeacherApi from "api/person/TeacherApi";
 import TeacherCreateLayout from "./TeacherCreateLayout";
 
-const form = {
-  name: "",
-  email: "",
-  phone: "",
-
-  degree: "",
-  subjectDepartment: "",
-};
+const form = {};
 
 const TeacherCreateProps = {
   header: "Create new teacher",
-  submit: () => console.log(form),
+  submit: () => TeacherApi.create(form),
   body: () => TeacherCreateLayout(form),
 };
 
