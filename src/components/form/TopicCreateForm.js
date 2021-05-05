@@ -2,7 +2,7 @@ import { Button, Layout } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
 import TopicApi from "api/topic/TopicApi";
-import StudentCreateProps from "components/form/studentCreateForm/Props";
+import StudentCreateForm from "components/form/StudentCreateForm";
 import TeacherCreateForm from "components/form/TeacherCreateForm";
 import { PlusIcon } from "components/Icons";
 import { MyAutocomplete, MyInput } from "components/Input";
@@ -29,9 +29,9 @@ const TopicCreateLayout = () => {
     cancel: () => setTeacherCreateVisible(false),
   };
   const modalStudentCreateProps = {
+    ...StudentCreateForm,
     visible: studentCreateVisible,
     cancel: () => setStudentCreateVisible(false),
-    ...StudentCreateProps,
   };
 
   const setValue = (field, value) => (form[field] = value);

@@ -1,11 +1,20 @@
 import { Layout } from "@ui-kitten/components";
+import StudentApi from "api/person/StudentApi";
 import { MyInput } from "components/Input";
 import { MySelect } from "components/Select";
 import Props from "data/Props";
 import React from "react";
 import { StyleSheet } from "react-native";
 
-const StudentCreateLayout = (form) => {
+const form = {};
+
+const StudentCreateForm = {
+  header: "Create new student",
+  body: () => StudentCreateLayout(),
+  submit: () => StudentApi.create(form),
+};
+
+const StudentCreateLayout = () => {
   const setValue = (field, value) => (form[field] = value);
   const inputProps = (field) => {
     return {
@@ -59,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StudentCreateLayout;
+export default StudentCreateForm;
