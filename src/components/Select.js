@@ -30,10 +30,12 @@ const MySelect = ({ field, callBack, ...props }) => {
 
 const MyMultiSelect = ({ field, callBack, ...props }) => {
   const [indexes, setIndexes] = React.useState(
-    Array.from(
-      props.value,
-      (item) => new IndexPath(props.arrValue.indexOf(item))
-    ).filter((item) => item.row > -1)
+    props.value
+      ? Array.from(
+          props.value,
+          (item) => new IndexPath(props.arrValue.indexOf(item))
+        ).filter((item) => item.row > -1)
+      : []
   );
 
   return (
