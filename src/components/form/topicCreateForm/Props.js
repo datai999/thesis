@@ -1,29 +1,12 @@
+import TopicApi from "api/topic/TopicApi";
 import TopicCreateLayout from "./TopicCreateLayout";
 
-const form = {
-  topicCode: "",
-  topicName: "",
-  guideTeacher: "",
-
-  semester: "",
-  major: [],
-  educationMethod: "",
-  maxStudentTake: "",
-  minStudentTake: "",
-
-  description: "",
-
-  mainTask: "",
-  thesisTask: "",
-  node: "",
-
-  students: [],
-};
+const form = {};
 
 const TopicCreateProps = {
   header: "Create topic",
-  submit: () => console.log(form),
   body: () => TopicCreateLayout(form),
+  submit: () => TopicApi.create(form),
 };
 
 export default TopicCreateProps;
