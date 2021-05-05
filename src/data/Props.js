@@ -2,6 +2,7 @@ const Props = {
   educationMethod: {
     label: "Education method",
     placeholder: "Select education method",
+    arrValue: ["Formal", "CLC", "Link"],
   },
   semester: {
     label: "Semester",
@@ -73,14 +74,23 @@ const Props = {
   degree: {
     label: "Degree",
     placeholder: "Select degree",
+    arrValue: ["Bachelor", "Master", "Doctor", "Professor"],
   },
   subjectDepartment: {
     label: "Subject Department",
     placeholder: "Select subject department",
+    arrValue: [
+      "Information System",
+      "Software Technology",
+      "Systems and Networks",
+      "Computer Science",
+      "Computer Engineering",
+    ],
   },
   major: {
     label: "Major",
     placeholder: "Select major",
+    arrValue: ["Computer Science", "Computer Engineering"],
   },
   studentCode: {
     label: "Code",
