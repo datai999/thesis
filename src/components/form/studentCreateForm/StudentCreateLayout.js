@@ -1,11 +1,9 @@
+import { Layout } from "@ui-kitten/components";
+import { MyInput } from "components/Input";
+import { MySelect } from "components/Select";
+import Props from "data/Props";
 import React from "react";
 import { StyleSheet } from "react-native";
-import * as Animatable from "react-native-animatable";
-import { Text, Layout } from "@ui-kitten/components";
-
-import Props from "data/Props";
-import MyInput from "components/Input";
-import { MySelect } from "components/Select";
 
 const StudentCreateLayout = (form) => {
   const setValue = (field, value) => (form[field] = value);

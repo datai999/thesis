@@ -89,7 +89,7 @@ const TopicCreate = (form) => {
             accessoryRight={() => (
               <Button
                 {...rightBtnProps}
-                onPress={() => setTeacherCreateVisible(true)}
+                onPress={() => setStudentCreateVisible(true)}
               />
             )}
           />
