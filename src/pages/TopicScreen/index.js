@@ -1,6 +1,6 @@
 import { Layout } from "@ui-kitten/components";
-import Storage from "data/Storage";
-import React from "react";
+import TopicApi from "api/topic/TopicApi";
+import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import TopicAnalyse from "./mains/TopicAnalyse";
 import TopicBottom from "./mains/TopicBottom";
@@ -10,9 +10,21 @@ import TopicTopBar from "./mains/TopicTopBar";
 const TopicScreen = () => {
   const [sortField, setSortField] = React.useState("TopicCode");
   const [sortType, setSortType] = React.useState("Asc");
-  const [data, setData] = React.useState(Storage["topic"]);
+  const [data, setData] = React.useState([]);
 
   var tags = [sortField + "-" + sortType];
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const response = await TopicApi.getAll();
+        setData(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetch();
+  }, []);
 
   return (
     <Layout style={styles.container}>
@@ -22,7 +34,7 @@ const TopicScreen = () => {
         callBack={() => setData(getTopic())}
       />
       <TopicAnalyse tags={tags} />
-      <TopicTable data={data} />
+      {/* <TopicTable data={data} /> */}
       <TopicBottom total={data.length} currentPage={1} totalPage={2} />
     </Layout>
   );
