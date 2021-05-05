@@ -1,21 +1,14 @@
 import AxiosClient from "../AxiosClient";
+import CommonApi from "../CommonApi";
 
 const baseURL = "/teacher";
 
 const TeacherApi = {
-  getAll: () => {
-    const url = baseURL;
-    return AxiosClient.get(url);
-  },
+  ...CommonApi(baseURL),
 
   search: (value) => {
     const url = baseURL + "/search?value=" + value;
     return AxiosClient.get(url);
-  },
-
-  create: (data) => {
-    const url = baseURL;
-    return AxiosClient.post(url, data);
   },
 };
 
