@@ -2,7 +2,7 @@ import { Button, Layout } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
 import StudentCreateProps from "components/form/studentCreateForm/Props";
-import TopicCreateProps from "components/form/teacherCreateForm/Props";
+import TeacherCreateProps from "components/form/teacherCreateForm/Props";
 import { PlusIcon } from "components/Icons";
 import { MyAutocomplete, MyInput } from "components/Input";
 import MyModal from "components/Modal";
@@ -11,13 +11,13 @@ import Props from "data/Props";
 import React from "react";
 import { StyleSheet } from "react-native";
 
-const TopicCreate = (form) => {
+const TopicCreateForm = (form) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
   const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
   const modalTeacherCreateProps = {
     visible: teacherCreateVisible,
     cancel: () => setTeacherCreateVisible(false),
-    ...TopicCreateProps,
+    ...TeacherCreateProps,
   };
   const modalStudentCreateProps = {
     visible: studentCreateVisible,
@@ -30,14 +30,12 @@ const TopicCreate = (form) => {
   const selectProps = (field) => {
     return {
       field,
-      value: form[field],
       callBack: (value) => setValue(field, value),
       ...Props[field],
     };
   };
   const inputProps = (field) => {
     return {
-      value: form[field],
       callBack: (value) => setValue(field, value),
       ...Props[field],
     };
@@ -129,4 +127,4 @@ const styles = StyleSheet.create({
   description: {},
 });
 
-export default TopicCreate;
+export default TopicCreateForm;
