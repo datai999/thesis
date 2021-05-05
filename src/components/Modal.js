@@ -1,7 +1,7 @@
-import { Button, Card, Layout, Modal, Text } from "@ui-kitten/components";
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
+import { Modal, Card, Layout, Button, Text } from "@ui-kitten/components";
 
 const MyModal = ({ visible, header, submit, cancel, body }) => {
   let animation = null;
@@ -27,7 +27,7 @@ const MyModal = ({ visible, header, submit, cancel, body }) => {
             <BottomCard animationEnd={animationEnd} submit={submit} />
           )}
         >
-          {body}
+          {body()}
         </Card>
       </Animatable.View>
     </Modal>

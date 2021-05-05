@@ -1,22 +1,19 @@
-import { Button, Input, Layout } from "@ui-kitten/components";
-import TopicApi from "api/topic/TopicApi";
-import TopicCreateForm from "components/form/TopicCreateForm";
-import { PlusIcon, SearchIcon } from "components/Icons";
-import MyModal from "components/Modal";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+import { Layout, Input, Button } from "@ui-kitten/components";
 
-const TopicTopBar = () => {
+import MyModal from "components/Modal";
+import TopicCreateProps from "components/form/topicCreateForm/Props";
+import { SearchIcon, PlusIcon } from "components/Icons";
+
+const TopicTopBar = ({ callBack }) => {
   const [value, setValue] = React.useState("");
   const [topicCreateVisible, setTopicCreateVisible] = React.useState(false);
 
-  const topicForm = {};
   const modalTopicCreateProps = {
     visible: topicCreateVisible,
-    header: "Create topic",
-    body: TopicCreateForm(topicForm),
     cancel: () => setTopicCreateVisible(false),
-    submit: () => TopicApi.create(topicForm),
+    ...TopicCreateProps,
   };
 
   return (
