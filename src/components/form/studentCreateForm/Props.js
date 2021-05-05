@@ -1,20 +1,11 @@
-import React from "react";
-
+import StudentApi from "api/person/StudentApi";
 import StudentCreateLayout from "./StudentCreateLayout";
 
-const form = {
-  name: "",
-  email: "",
-  phone: "",
-
-  educationMethodId: "",
-  majorId: "",
-  studentCode: "",
-};
+const form = {};
 
 const StudentCreateProps = {
   header: "Create new student",
-  submit: () => console.log(form),
+  submit: () => StudentApi.create(form),
   body: () => StudentCreateLayout(form),
 };
 
