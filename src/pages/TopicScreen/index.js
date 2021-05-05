@@ -34,7 +34,7 @@ const TopicScreen = () => {
         callBack={() => setData(getTopic())}
       />
       <TopicAnalyse tags={tags} />
-      {/* <TopicTable data={data} /> */}
+      <TopicTable data={data} />
       <TopicBottom total={data.length} currentPage={1} totalPage={2} />
     </Layout>
   );
