@@ -4,7 +4,7 @@ const CommonApi = (baseURL = "") => {
   let commonApi = new Object();
 
   commonApi["getAll"] = () => {
-    return AxiosClient.post(baseURL);
+    return AxiosClient.get(baseURL);
   };
 
   commonApi["create"] = (data) => {
