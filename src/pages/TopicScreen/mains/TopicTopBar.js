@@ -1,10 +1,9 @@
-import React from "react";
-import { StyleSheet, Dimensions } from "react-native";
-import { Layout, Input, Button } from "@ui-kitten/components";
-
+import { Button, Input, Layout } from "@ui-kitten/components";
+import TopicCreateForm from "components/form/TopicCreateForm";
+import { PlusIcon, SearchIcon } from "components/Icons";
 import MyModal from "components/Modal";
-import TopicCreateProps from "components/form/topicCreateForm/Props";
-import { SearchIcon, PlusIcon } from "components/Icons";
+import React from "react";
+import { StyleSheet } from "react-native";
 
 const TopicTopBar = ({ callBack }) => {
   const [value, setValue] = React.useState("");
@@ -13,7 +12,7 @@ const TopicTopBar = ({ callBack }) => {
   const modalTopicCreateProps = {
     visible: topicCreateVisible,
     cancel: () => setTopicCreateVisible(false),
-    ...TopicCreateProps,
+    ...TopicCreateForm,
   };
 
   return (

@@ -1,6 +1,7 @@
 import { Button, Layout } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
+import TopicApi from "api/topic/TopicApi";
 import StudentCreateProps from "components/form/studentCreateForm/Props";
 import TeacherCreateProps from "components/form/teacherCreateForm/Props";
 import { PlusIcon } from "components/Icons";
@@ -11,7 +12,15 @@ import Props from "data/Props";
 import React from "react";
 import { StyleSheet } from "react-native";
 
-const TopicCreate = (form) => {
+const form = {};
+
+const TopicCreateForm = {
+  header: "Create topic",
+  body: () => TopicCreateLayout(),
+  submit: () => TopicApi.create(form),
+};
+
+const TopicCreateLayout = () => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
   const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
   const modalTeacherCreateProps = {
@@ -129,4 +138,4 @@ const styles = StyleSheet.create({
   description: {},
 });
 
-export default TopicCreate;
+export default TopicCreateForm;
