@@ -2,7 +2,7 @@ import { Button, Layout } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
 import StudentCreateProps from "components/form/studentCreateForm/Props";
-import TopicCreateProps from "components/form/teacherCreateForm/Props";
+import TeacherCreateProps from "components/form/teacherCreateForm/Props";
 import { PlusIcon } from "components/Icons";
 import { MyAutocomplete, MyInput } from "components/Input";
 import MyModal from "components/Modal";
@@ -15,9 +15,9 @@ const TopicCreate = (form) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
   const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
   const modalTeacherCreateProps = {
+    ...TeacherCreateProps,
     visible: teacherCreateVisible,
     cancel: () => setTeacherCreateVisible(false),
-    ...TopicCreateProps,
   };
   const modalStudentCreateProps = {
     visible: studentCreateVisible,
