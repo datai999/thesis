@@ -1,4 +1,5 @@
 import { Button, Layout } from "@ui-kitten/components";
+import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
 import StudentCreateProps from "components/form/studentCreateForm/Props";
 import TopicCreateProps from "components/form/teacherCreateForm/Props";
@@ -47,10 +48,13 @@ const TopicCreate = (form) => {
     accessoryRight: PlusIcon,
   };
 
-  const searchTeacher = async (value) => {
+  const searchPerson = async (type, value) => {
     try {
-      const response = await TeacherApi.search(value);
-      return response.map((teacher) => teacher.name);
+      const response =
+        type == "teacher"
+          ? await TeacherApi.search(value)
+          : await StudentApi.search(value);
+      return response.map((person) => person.name);
     } catch (error) {
       console.log(error);
     }
@@ -67,7 +71,7 @@ const TopicCreate = (form) => {
           <MySelect {...selectProps("semester")} />
           <MyAutocomplete
             {...inputProps("guideTeacher")}
-            refreshDataOnChangeText={searchTeacher}
+            refreshDataOnChangeText={(value) => searchPerson("teacher", value)}
             accessoryRight={() => (
               <Button
                 {...rightBtnProps}
@@ -84,8 +88,9 @@ const TopicCreate = (form) => {
             <MySelect {...selectProps("minStudentTake")} style={styles.left} />
             <MySelect {...selectProps("maxStudentTake")} style={styles.right} />
           </Layout>
-          <MyInput
+          <MyAutocomplete
             {...inputProps("students")}
+            refreshDataOnChangeText={(value) => searchPerson("student", value)}
             accessoryRight={() => (
               <Button
                 {...rightBtnProps}
