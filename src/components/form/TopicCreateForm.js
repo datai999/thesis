@@ -3,7 +3,7 @@ import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
 import TopicApi from "api/topic/TopicApi";
 import StudentCreateProps from "components/form/studentCreateForm/Props";
-import TeacherCreateProps from "components/form/teacherCreateForm/Props";
+import TeacherCreateForm from "components/form/TeacherCreateForm";
 import { PlusIcon } from "components/Icons";
 import { MyAutocomplete, MyInput } from "components/Input";
 import MyModal from "components/Modal";
@@ -24,7 +24,7 @@ const TopicCreateLayout = () => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
   const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
   const modalTeacherCreateProps = {
-    ...TeacherCreateProps,
+    ...TeacherCreateForm,
     visible: teacherCreateVisible,
     cancel: () => setTeacherCreateVisible(false),
   };
