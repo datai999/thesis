@@ -64,10 +64,10 @@ const MyAutocompleteTag = ({ ...props }) => {
   const autocompleteProps = {
     ...props,
     callBack: (newValue) => {
-      let dataCloneDeep = _.cloneDeep(data);
-      dataCloneDeep.push(newValue);
-      setData(dataCloneDeep);
-      props.callBack(newValue);
+      let nextData = _.cloneDeep(data);
+      nextData.push(newValue);
+      setData(nextData);
+      props.callBack(nextData);
     },
   };
 
@@ -89,10 +89,9 @@ const MyAutocompleteTag = ({ ...props }) => {
                 appearance="ghost"
                 accessoryRight={CloseIcon}
                 onPress={() => {
-                  let newData = data.filter(function (ele) {
-                    return ele != item;
-                  });
-                  setData(newData);
+                  let nextData = data.filter((ele) => ele != item);
+                  setData(nextData);
+                  props.callBack(nextData);
                 }}
               />
             )}
