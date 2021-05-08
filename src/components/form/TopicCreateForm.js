@@ -43,13 +43,6 @@ const TopicCreateLayout = () => {
     _.set(form, path, value);
   };
 
-  const addValue = (field, basePath, newValue) => {
-    let path = basePath == "topic" ? basePath + "." + field : basePath;
-    let value = _.get(form, path);
-    value.push(newValue);
-    setValue(field, basePath, value);
-  };
-
   const selectProps = (field, basePath = "topic") => {
     return {
       field,
@@ -63,17 +56,29 @@ const TopicCreateLayout = () => {
       ...Props[field],
     };
   };
-  const inputAutocompleteProps = (field, basePath = "topic") => {
+  const autocompleteProps = (type) => {
+    let field = "guideTeacher";
+    let basePath = field;
+    if (type != "teacher") {
+      field = "students";
+      basePath = "executeStudent";
+    }
     return {
-      value: basePath == "topic" ? null : form[field]?.map((x) => x.name),
-      callBack: (value) => addValue(field, basePath, value),
-      ...Props[field],
+      ...inputProps(field, basePath),
+      refreshDataOnChangeText: (value) => searchPerson(type, value),
+      accessoryRight: () => (
+        <Button
+          appearance="ghost"
+          size="small"
+          accessoryRight={PlusIcon}
+          onPress={() =>
+            type == "teacher"
+              ? setTeacherCreateVisible(true)
+              : setStudentCreateVisible(true)
+          }
+        />
+      ),
     };
-  };
-  const rightBtnProps = {
-    appearance: "ghost",
-    size: "small",
-    accessoryRight: PlusIcon,
   };
 
   const searchPerson = async (type, value) => {
@@ -98,16 +103,7 @@ const TopicCreateLayout = () => {
           <MySelect {...selectProps("educationMethod")} />
           <MySelect {...selectProps("semester")} />
           <MyMultiSelect {...selectProps("major")} />
-          <MyAutocompleteTag
-            {...inputAutocompleteProps("guideTeacher", "guideTeacher")}
-            refreshDataOnChangeText={(value) => searchPerson("teacher", value)}
-            accessoryRight={() => (
-              <Button
-                {...rightBtnProps}
-                onPress={() => setTeacherCreateVisible(true)}
-              />
-            )}
-          />
+          <MyAutocompleteTag {...autocompleteProps("teacher")} />
         </Layout>
         <Layout style={styles.right}>
           <MyInput {...inputProps("topicCode")} />
@@ -116,16 +112,7 @@ const TopicCreateLayout = () => {
             <MySelect {...selectProps("minStudentTake")} style={styles.left} />
             <MySelect {...selectProps("maxStudentTake")} style={styles.right} />
           </Layout>
-          <MyAutocompleteTag
-            {...inputAutocompleteProps("students", "executeStudent")}
-            refreshDataOnChangeText={(value) => searchPerson("student", value)}
-            accessoryRight={() => (
-              <Button
-                {...rightBtnProps}
-                onPress={() => setStudentCreateVisible(true)}
-              />
-            )}
-          />
+          <MyAutocompleteTag {...autocompleteProps("students")} />
         </Layout>
       </Layout>
       <Layout style={styles.row}>
