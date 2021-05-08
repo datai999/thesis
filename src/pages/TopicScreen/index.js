@@ -1,5 +1,6 @@
 import { Layout } from "@ui-kitten/components";
 import TopicApi from "api/topic/TopicApi";
+import _ from "lodash";
 import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import TopicAnalyse from "./mains/TopicAnalyse";
@@ -14,16 +15,17 @@ const TopicScreen = () => {
 
   var tags = [sortField + "-" + sortType];
 
+  const fetchData = async () => {
+    try {
+      const response = await TopicApi.getAll();
+      setData(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    const fetch = async () => {
-      try {
-        const response = await TopicApi.getAll();
-        setData(response);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetch();
+    fetchData();
   }, []);
 
   return (
@@ -31,7 +33,11 @@ const TopicScreen = () => {
       <TopicTopBar
         sortField={sortField}
         sortType={sortType}
-        callBack={() => setData(getTopic())}
+        addNewTopic={(newTopic) => {
+          let newData = _.cloneDeep(data);
+          newData.push(newTopic);
+          setData(newData);
+        }}
       />
       <TopicAnalyse tags={tags} />
       <TopicTable data={data} />

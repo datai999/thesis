@@ -5,7 +5,7 @@ import MyModal from "components/Modal";
 import React from "react";
 import { StyleSheet } from "react-native";
 
-const TopicTopBar = ({ callBack }) => {
+const TopicTopBar = ({ addNewTopic }) => {
   const [value, setValue] = React.useState("");
   const [topicCreateVisible, setTopicCreateVisible] = React.useState(false);
 
@@ -13,6 +13,16 @@ const TopicTopBar = ({ callBack }) => {
     visible: topicCreateVisible,
     cancel: () => setTopicCreateVisible(false),
     ...TopicCreateForm,
+    submit: async () => {
+      try {
+        console.log(TopicCreateForm.submit);
+        let response = await TopicCreateForm.submit();
+        addNewTopic(response);
+        return response;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   };
 
   return (
