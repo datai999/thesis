@@ -12,6 +12,8 @@ const TopicTableContent = ({ props }) => {
         <TopicTableRow
           index={index}
           topic={item.topic}
+          guideTeacher={item.guideTeacher}
+          students={item.executeStudent}
           setting={props.setting}
         />
       )}
@@ -19,7 +21,7 @@ const TopicTableContent = ({ props }) => {
   );
 };
 
-const TopicTableRow = ({ index, topic, setting }) => {
+const TopicTableRow = ({ index, topic, guideTeacher, students, setting }) => {
   return (
     <Layout style={styles.topicRow}>
       <MenuItem style={styles.index} title={index + 1} />
@@ -28,10 +30,13 @@ const TopicTableRow = ({ index, topic, setting }) => {
         data={Object.keys(setting)}
         renderItem={({ item }) => {
           if (setting[item].hide) return null;
+          let data = topic[item];
+          if (item == "guideTeacher") data = guideTeacher;
+          if (item == "students") data = students;
 
-          let dataRender = Array.isArray(topic[item])
-            ? topic[item].map((x) => getRenderText(x))
-            : [getRenderText(topic[item])];
+          let dataRender = Array.isArray(data)
+            ? data.map((x) => getRenderText(x))
+            : [getRenderText(data)];
 
           return (
             <List
