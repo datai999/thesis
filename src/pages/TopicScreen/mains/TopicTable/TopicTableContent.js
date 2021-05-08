@@ -23,20 +23,18 @@ const TopicTableRow = ({ index, topic, setting }) => {
         data={Object.keys(setting)}
         renderItem={({ item }) => {
           if (setting[item].hide) return null;
-          if (["string", "number"].includes(typeof topic[item]))
-            return <MenuItem style={setting[item].style} title={topic[item]} />;
-          if (typeof topic[item] == "object") {
-            let value = null;
-            if (topic[item]) {
-              value = topic[item].name ?? topic[item].value;
-            }
-            return <MenuItem style={setting[item].style} title={value} />;
-          }
+
+          let dataRender = Array.isArray(topic[item])
+            ? topic[item].map((x) => getRenderText(x))
+            : [getRenderText(topic[item])];
+
           return (
             <List
               style={setting[item].style}
-              data={topic[item]}
-              renderItem={(element) => <MenuItem title={element} />}
+              data={dataRender}
+              renderItem={({ ...props }) => (
+                <TopicTableBlock item={props.item} />
+              )}
             />
           );
         }}
@@ -44,5 +42,23 @@ const TopicTableRow = ({ index, topic, setting }) => {
     </Layout>
   );
 };
+
+const TopicTableBlock = ({ key, item }) => {
+  return <MenuItem key={key} title={item} />;
+};
+
+function getRenderText(obj) {
+  if (obj == null) return null;
+  console.log(typeof obj);
+  switch (typeof obj) {
+    case "string":
+    case "number":
+      return obj;
+    case "object":
+      return obj?.name ?? obj?.value;
+    default:
+      return null;
+  }
+}
 
 export default TopicTableContent;
