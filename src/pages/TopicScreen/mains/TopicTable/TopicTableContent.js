@@ -49,7 +49,6 @@ const TopicTableBlock = ({ key, item }) => {
 
 function getRenderText(obj) {
   if (obj == null) return null;
-  console.log(typeof obj);
   switch (typeof obj) {
     case "string":
     case "number":
