@@ -42,7 +42,7 @@ const MyAutocomplete = ({ callBack, ...props }) => {
   return (
     <Autocomplete
       {...props}
-      value={getRenderText(data[indexed])}
+      value={getRenderText(data[indexed]) ?? ""}
       onSelect={(number) => {
         setIndexed(number);
         callBack(data[number]);
