@@ -9,12 +9,11 @@ import { MyAutocomplete, MyInput } from "components/Input";
 import MyModal from "components/Modal";
 import { MyMultiSelect, MySelect } from "components/Select";
 import Props from "data/Props";
+import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
 
-const form = {
-  topic: {},
-};
+const form = {};
 
 const TopicCreateForm = {
   header: "Create topic",
@@ -36,20 +35,24 @@ const TopicCreateLayout = () => {
     cancel: () => setStudentCreateVisible(false),
   };
 
-  const setValue = (field, value) => (form["topic"][field] = value);
+  const setValue = (field, basePath, value) => {
+    console.log(basePath);
+    let path = basePath == "topic" ? basePath + "." + field : basePath;
+    _.set(form, path, value);
+  };
 
-  const selectProps = (field) => {
+  const selectProps = (field, path = "topic") => {
     return {
       field,
       value: form[field],
-      callBack: (value) => setValue(field, value),
+      callBack: (value) => setValue(field, path, value),
       ...Props[field],
     };
   };
-  const inputProps = (field) => {
+  const inputProps = (field, path = "topic") => {
     return {
       value: form[field],
-      callBack: (value) => setValue(field, value),
+      callBack: (value) => setValue(field, path, value),
       ...Props[field],
     };
   };
@@ -81,7 +84,7 @@ const TopicCreateLayout = () => {
           <MySelect {...selectProps("educationMethod")} />
           <MySelect {...selectProps("semester")} />
           <MyAutocomplete
-            {...inputProps("guideTeacher")}
+            {...inputProps("guideTeacher", "guideTeacher")}
             refreshDataOnChangeText={(value) => searchPerson("teacher", value)}
             accessoryRight={() => (
               <Button
@@ -100,7 +103,7 @@ const TopicCreateLayout = () => {
             <MySelect {...selectProps("maxStudentTake")} style={styles.right} />
           </Layout>
           <MyAutocomplete
-            {...inputProps("students")}
+            {...inputProps("students", "executeStudent")}
             refreshDataOnChangeText={(value) => searchPerson("student", value)}
             accessoryRight={() => (
               <Button
