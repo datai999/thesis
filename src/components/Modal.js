@@ -4,9 +4,10 @@ import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
 
 const MyModal = ({ visible, header, submit, cancel, body }) => {
-  let animation = null;
+  const animationRef = React.useRef();
+
   const animationEnd = () =>
-    animation.zoomOut(500).then((endState) => cancel());
+    animationRef.current.zoomOut(500).then((endState) => cancel());
 
   return (
     <Modal
@@ -18,7 +19,7 @@ const MyModal = ({ visible, header, submit, cancel, body }) => {
       <Animatable.View
         style={{ flex: 1 }}
         animation="zoomIn"
-        ref={(ref) => (animation = ref)}
+        ref={animationRef}
       >
         <Card
           style={styles.card}
