@@ -19,28 +19,43 @@ const MyInput = ({ value, callBack, ...props }) => {
 };
 
 const MyAutocomplete = ({ callBack, ...props }) => {
-  const [value, setValue] = React.useState(props.value);
-  const [data, setData] = React.useState(props.data);
+  const [data, setData] = React.useState(props.data ?? []);
+  const [indexed, setIndexed] = React.useState(-1);
 
   const renderOption = (arrItem) => {
-    return arrItem
-      ? Array.from(arrItem, (item) => <SelectItem key={item} title={item} />)
-      : null;
+    return arrItem?.map((item) => {
+      let textRender = getRenderText(item);
+      return <SelectItem key={item} title={textRender} />;
+    });
   };
+
+  function getRenderText(obj) {
+    if (obj == null) return null;
+    switch (typeof obj) {
+      case "string":
+      case "number":
+        return obj;
+      case "object":
+        return obj?.name ?? obj?.value;
+      default:
+        return null;
+    }
+  }
 
   return (
     <Autocomplete
       {...props}
-      value={value}
-      onSelect={(index) => setValue(data[index])}
+      value={getRenderText(data[indexed])}
+      onSelect={(number) => {
+        setIndexed(number);
+        callBack(data[number]);
+      }}
       onChangeText={async (nextValue) => {
-        setValue(nextValue);
         if (props.refreshDataOnChangeText) {
           if (nextValue != null && nextValue != "")
             setData(await props.refreshDataOnChangeText(nextValue));
         }
       }}
-      onBlur={() => callBack(value)}
     >
       {renderOption(data)}
     </Autocomplete>
