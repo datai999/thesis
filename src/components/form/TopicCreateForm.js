@@ -1,10 +1,10 @@
-import { Button, Layout } from "@ui-kitten/components";
+import { Button, Layout, List } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import StudentCreateForm from "components/form/StudentCreateForm";
 import TeacherCreateForm from "components/form/TeacherCreateForm";
-import { PlusIcon } from "components/Icons";
+import { CloseIcon, PlusIcon } from "components/Icons";
 import { MyAutocomplete, MyInput } from "components/Input";
 import MyModal from "components/Modal";
 import { MyMultiSelect, MySelect } from "components/Select";
@@ -13,7 +13,10 @@ import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
 
-const form = {};
+const form = {
+  guideTeacher: [],
+  executeStudent: [],
+};
 
 const TopicCreateForm = {
   header: "Create topic",
@@ -36,23 +39,34 @@ const TopicCreateLayout = () => {
   };
 
   const setValue = (field, basePath, value) => {
-    console.log(basePath);
     let path = basePath == "topic" ? basePath + "." + field : basePath;
     _.set(form, path, value);
   };
 
-  const selectProps = (field, path = "topic") => {
+  const addValue = (field, basePath, newValue) => {
+    let path = basePath == "topic" ? basePath + "." + field : basePath;
+    let value = _.get(form, path);
+    value.push(newValue);
+    setValue(field, basePath, value);
+  };
+
+  const selectProps = (field, basePath = "topic") => {
     return {
       field,
-      value: form[field],
-      callBack: (value) => setValue(field, path, value),
+      callBack: (value) => setValue(field, basePath, value),
       ...Props[field],
     };
   };
-  const inputProps = (field, path = "topic") => {
+  const inputProps = (field, basePath = "topic") => {
     return {
-      value: form[field],
-      callBack: (value) => setValue(field, path, value),
+      callBack: (value) => setValue(field, basePath, value),
+      ...Props[field],
+    };
+  };
+  const inputAutocompleteProps = (field, basePath = "topic") => {
+    return {
+      value: basePath == "topic" ? null : form[field]?.map((x) => x.name),
+      callBack: (value) => addValue(field, basePath, value),
       ...Props[field],
     };
   };
@@ -68,7 +82,7 @@ const TopicCreateLayout = () => {
         type == "teacher"
           ? await TeacherApi.search(value)
           : await StudentApi.search(value);
-      return response.map((person) => person.name);
+      return response;
     } catch (error) {
       console.log(error);
     }
@@ -85,7 +99,7 @@ const TopicCreateLayout = () => {
           <MySelect {...selectProps("semester")} />
           <MyMultiSelect {...selectProps("major")} />
           <MyAutocomplete
-            {...inputProps("guideTeacher", "guideTeacher")}
+            {...inputAutocompleteProps("guideTeacher", "guideTeacher")}
             refreshDataOnChangeText={(value) => searchPerson("teacher", value)}
             accessoryRight={() => (
               <Button
@@ -93,6 +107,30 @@ const TopicCreateLayout = () => {
                 onPress={() => setTeacherCreateVisible(true)}
               />
             )}
+            accessoryLeft={() => {
+              if (
+                form["guideTeacher"] == null ||
+                form["guideTeacher"].length == 0
+              )
+                return null;
+              return (
+                <List
+                  horizontal={true}
+                  data={form["guideTeacher"]}
+                  renderItem={({ index, item }) => (
+                    <Button
+                      style={styles.tag}
+                      status="info"
+                      size="tiny"
+                      appearance="outline"
+                      accessoryRight={CloseIcon}
+                    >
+                      {item?.name}
+                    </Button>
+                  )}
+                />
+              );
+            }}
           />
         </Layout>
         <Layout style={styles.right}>
@@ -103,7 +141,7 @@ const TopicCreateLayout = () => {
             <MySelect {...selectProps("maxStudentTake")} style={styles.right} />
           </Layout>
           <MyAutocomplete
-            {...inputProps("students", "executeStudent")}
+            {...inputAutocompleteProps("students", "executeStudent")}
             refreshDataOnChangeText={(value) => searchPerson("student", value)}
             accessoryRight={() => (
               <Button
@@ -141,6 +179,12 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   description: {},
+  tagList: {
+    flexDirection: "row",
+  },
+  tag: {
+    marginHorizontal: 2,
+  },
 });
 
 export default TopicCreateForm;
