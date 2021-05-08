@@ -1,5 +1,6 @@
 import { Divider, Layout, List, MenuItem } from "@ui-kitten/components";
 import React from "react";
+import { getRenderText } from "utils";
 import styles from "./styles";
 
 const TopicTableContent = ({ props }) => {
@@ -50,18 +51,5 @@ const TopicTableRow = ({ index, topic, setting }) => {
 const TopicTableBlock = ({ key, item }) => {
   return <MenuItem key={key} title={item} />;
 };
-
-function getRenderText(obj) {
-  if (obj == null) return null;
-  switch (typeof obj) {
-    case "string":
-    case "number":
-      return obj;
-    case "object":
-      return obj?.name ?? obj?.value;
-    default:
-      return null;
-  }
-}
 
 export default TopicTableContent;

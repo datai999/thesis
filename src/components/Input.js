@@ -1,5 +1,6 @@
 import { Autocomplete, Input, SelectItem } from "@ui-kitten/components";
 import React from "react";
+import { getRenderText } from "utils";
 
 const MyInput = ({ value, callBack, ...props }) => {
   const [currentValue, setCurrentValue] = React.useState(value);
@@ -28,19 +29,6 @@ const MyAutocomplete = ({ callBack, ...props }) => {
       return <SelectItem key={item} title={textRender} />;
     });
   };
-
-  function getRenderText(obj) {
-    if (obj == null) return null;
-    switch (typeof obj) {
-      case "string":
-      case "number":
-        return obj;
-      case "object":
-        return obj?.name ?? obj?.value;
-      default:
-        return null;
-    }
-  }
 
   return (
     <Autocomplete
