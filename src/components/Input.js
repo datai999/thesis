@@ -59,7 +59,7 @@ const MyAutocomplete = ({ callBack, ...props }) => {
   );
 };
 const MyAutocompleteTag = ({ ...props }) => {
-  const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState(["name"]);
 
   const autocompleteProps = {
     ...props,
@@ -82,7 +82,20 @@ const MyAutocompleteTag = ({ ...props }) => {
             status="info"
             size="tiny"
             appearance="outline"
-            accessoryRight={CloseIcon}
+            accessoryRight={() => (
+              <Button
+                status="info"
+                size="tiny"
+                appearance="ghost"
+                accessoryRight={CloseIcon}
+                onPress={() => {
+                  let newData = data.filter(function (ele) {
+                    return ele != item;
+                  });
+                  setData(newData);
+                }}
+              />
+            )}
           >
             {getRenderText(item)}
           </Button>
