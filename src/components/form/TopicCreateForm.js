@@ -83,6 +83,7 @@ const TopicCreateLayout = () => {
         <Layout style={styles.left}>
           <MySelect {...selectProps("educationMethod")} />
           <MySelect {...selectProps("semester")} />
+          <MyMultiSelect {...selectProps("major")} />
           <MyAutocomplete
             {...inputProps("guideTeacher", "guideTeacher")}
             refreshDataOnChangeText={(value) => searchPerson("teacher", value)}
@@ -93,7 +94,6 @@ const TopicCreateLayout = () => {
               />
             )}
           />
-          <MyMultiSelect {...selectProps("major")} />
         </Layout>
         <Layout style={styles.right}>
           <MyInput {...inputProps("topicCode")} />
