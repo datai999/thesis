@@ -8,7 +8,11 @@ const TopicTableContent = ({ props }) => {
       data={props.data}
       ItemSeparatorComponent={Divider}
       renderItem={({ index, item }) => (
-        <TopicTableRow index={index} topic={item} setting={props.setting} />
+        <TopicTableRow
+          index={index}
+          topic={item.topic}
+          setting={props.setting}
+        />
       )}
     />
   );

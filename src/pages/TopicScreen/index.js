@@ -1,5 +1,5 @@
 import { Layout } from "@ui-kitten/components";
-import TopicApi from "api/topic/TopicApi";
+import TopicAssignApi from "api/topic/TopicAssignApi";
 import _ from "lodash";
 import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
@@ -17,7 +17,7 @@ const TopicScreen = () => {
 
   const fetchData = async () => {
     try {
-      const response = await TopicApi.getAll();
+      const response = await TopicAssignApi.getAll();
       setData(response);
     } catch (error) {
       console.log(error);

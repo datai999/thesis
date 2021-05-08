@@ -1,7 +1,7 @@
 import { Button, Layout } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
-import TopicApi from "api/topic/TopicApi";
+import TopicAssignApi from "api/topic/TopicAssignApi";
 import StudentCreateForm from "components/form/StudentCreateForm";
 import TeacherCreateForm from "components/form/TeacherCreateForm";
 import { PlusIcon } from "components/Icons";
@@ -12,12 +12,14 @@ import Props from "data/Props";
 import React from "react";
 import { StyleSheet } from "react-native";
 
-const form = {};
+const form = {
+  topic: {},
+};
 
 const TopicCreateForm = {
   header: "Create topic",
   body: () => TopicCreateLayout(),
-  submit: () => TopicApi.create(form),
+  submit: () => TopicAssignApi.create(form),
 };
 
 const TopicCreateLayout = () => {
@@ -34,7 +36,7 @@ const TopicCreateLayout = () => {
     cancel: () => setStudentCreateVisible(false),
   };
 
-  const setValue = (field, value) => (form[field] = value);
+  const setValue = (field, value) => (form["topic"][field] = value);
 
   const selectProps = (field) => {
     return {
