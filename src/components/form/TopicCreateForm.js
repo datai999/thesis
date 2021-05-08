@@ -1,11 +1,11 @@
-import { Button, Layout, List } from "@ui-kitten/components";
+import { Button, Layout } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import StudentCreateForm from "components/form/StudentCreateForm";
 import TeacherCreateForm from "components/form/TeacherCreateForm";
-import { CloseIcon, PlusIcon } from "components/Icons";
-import { MyAutocomplete, MyInput } from "components/Input";
+import { PlusIcon } from "components/Icons";
+import { MyAutocompleteTag, MyInput } from "components/Input";
 import MyModal from "components/Modal";
 import { MyMultiSelect, MySelect } from "components/Select";
 import Props from "data/Props";
@@ -98,7 +98,7 @@ const TopicCreateLayout = () => {
           <MySelect {...selectProps("educationMethod")} />
           <MySelect {...selectProps("semester")} />
           <MyMultiSelect {...selectProps("major")} />
-          <MyAutocomplete
+          <MyAutocompleteTag
             {...inputAutocompleteProps("guideTeacher", "guideTeacher")}
             refreshDataOnChangeText={(value) => searchPerson("teacher", value)}
             accessoryRight={() => (
@@ -107,30 +107,6 @@ const TopicCreateLayout = () => {
                 onPress={() => setTeacherCreateVisible(true)}
               />
             )}
-            accessoryLeft={() => {
-              if (
-                form["guideTeacher"] == null ||
-                form["guideTeacher"].length == 0
-              )
-                return null;
-              return (
-                <List
-                  horizontal={true}
-                  data={form["guideTeacher"]}
-                  renderItem={({ index, item }) => (
-                    <Button
-                      style={styles.tag}
-                      status="info"
-                      size="tiny"
-                      appearance="outline"
-                      accessoryRight={CloseIcon}
-                    >
-                      {item?.name}
-                    </Button>
-                  )}
-                />
-              );
-            }}
           />
         </Layout>
         <Layout style={styles.right}>
@@ -140,7 +116,7 @@ const TopicCreateLayout = () => {
             <MySelect {...selectProps("minStudentTake")} style={styles.left} />
             <MySelect {...selectProps("maxStudentTake")} style={styles.right} />
           </Layout>
-          <MyAutocomplete
+          <MyAutocompleteTag
             {...inputAutocompleteProps("students", "executeStudent")}
             refreshDataOnChangeText={(value) => searchPerson("student", value)}
             accessoryRight={() => (

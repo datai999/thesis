@@ -1,4 +1,13 @@
-import { Autocomplete, Input, SelectItem } from "@ui-kitten/components";
+import {
+  Autocomplete,
+  Button,
+  Input,
+  Layout,
+  List,
+  SelectItem,
+} from "@ui-kitten/components";
+import { CloseIcon } from "components/Icons";
+import _ from "lodash";
 import React from "react";
 import { getRenderText } from "utils";
 
@@ -49,5 +58,38 @@ const MyAutocomplete = ({ callBack, ...props }) => {
     </Autocomplete>
   );
 };
+const MyAutocompleteTag = ({ ...props }) => {
+  const [data, setData] = React.useState([]);
 
-export { MyInput, MyAutocomplete };
+  const autocompleteProps = {
+    ...props,
+    callBack: (newValue) => {
+      let dataCloneDeep = _.cloneDeep(data);
+      dataCloneDeep.push(newValue);
+      setData(dataCloneDeep);
+      props.callBack(newValue);
+    },
+  };
+
+  return (
+    <Layout>
+      <MyAutocomplete {...autocompleteProps} />
+      <List
+        horizontal={true}
+        data={data}
+        renderItem={({ item }) => (
+          <Button
+            status="info"
+            size="tiny"
+            appearance="outline"
+            accessoryRight={CloseIcon}
+          >
+            {getRenderText(item)}
+          </Button>
+        )}
+      />
+    </Layout>
+  );
+};
+
+export { MyInput, MyAutocomplete, MyAutocompleteTag };
