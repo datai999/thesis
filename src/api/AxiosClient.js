@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const config = {
-  baseURL: "http://localhost:8080/api",
+  baseURL: "http://datai-thesis.herokuapp.com/api",
   headers: {
     "content-type": "application/json",
   },
