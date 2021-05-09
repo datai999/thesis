@@ -56,7 +56,7 @@ const Routes = () => {
           <MenuItem title="Assign" accessoryLeft={PersonDoneIcon} />
           <MenuItem title="Setting" accessoryLeft={SettingIcon} />
         </Menu>
-        <Text style={{ textAlign: "center", margin: 5 }}>Version:1.26.00</Text>
+        <Text style={{ textAlign: "center", margin: 5 }}>Version:2.09.10</Text>
       </Layout>
 
       <Layout style={styles.content}>{selectScreen()}</Layout>
