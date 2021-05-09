@@ -31,7 +31,6 @@ const MyInput = ({ value, callBack, ...props }) => {
 const MyAutocomplete = ({ callBack, ...props }) => {
   const [value, setValue] = React.useState("");
   const [data, setData] = React.useState(props.data ?? []);
-  const [indexed, setIndexed] = React.useState(-1);
 
   const renderOption = (arrItem) => {
     return arrItem?.map((item) => {
@@ -43,9 +42,8 @@ const MyAutocomplete = ({ callBack, ...props }) => {
   return (
     <Autocomplete
       {...props}
-      value={getRenderText(data[indexed]) ?? value}
+      value={value}
       onSelect={(number) => {
-        setIndexed(number);
         callBack(data[number]);
       }}
       onChangeText={async (nextValue) => {
