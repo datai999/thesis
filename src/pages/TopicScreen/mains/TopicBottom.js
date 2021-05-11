@@ -16,10 +16,10 @@ const renderOption = (title) => <SelectItem key={title} title={title} />;
 const TopicBottom = ({ page, callBack }) => {
   const [selectedSize, setSelectedSize] = React.useState(new IndexPath(0));
 
-  const fetchPage = (numberChange, sizeChange) => {
+  const fetchPage = (numberChange, newSize) => {
     let nextPage = {
       number: page.number + numberChange,
-      size: page.size + sizeChange,
+      size: newSize,
     };
     callBack(nextPage);
   };
@@ -52,7 +52,10 @@ const TopicBottom = ({ page, callBack }) => {
           size="small"
           value={sizeRank[selectedSize.row]}
           selectedIndex={selectedSize}
-          onSelect={(index) => setSelectedSize(index)}
+          onSelect={(index) => {
+            setSelectedSize(index);
+            fetchPage(0, sizeRank[index - 1]);
+          }}
         >
           {sizeRank.map(renderOption)}
         </Select>
