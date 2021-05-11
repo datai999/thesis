@@ -32,7 +32,7 @@ const TopicBottom = ({ page, callBack }) => {
           status="primary"
           appearance="ghost"
           accessoryLeft={ArrowBackIcon}
-          onPress={() => fetchPage(-1, 0)}
+          onPress={() => fetchPage(-1, sizeRank[selectedSize.row])}
         ></Button>
         <Text>
           Page:{page.number + 1}/{page.totalPages}
@@ -41,7 +41,7 @@ const TopicBottom = ({ page, callBack }) => {
           status="primary"
           appearance="ghost"
           accessoryRight={ArrowForwardIcon}
-          onPress={() => fetchPage(1, 0)}
+          onPress={() => fetchPage(1, sizeRank[selectedSize.row])}
         ></Button>
       </View>
 
