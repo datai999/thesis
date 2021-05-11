@@ -47,7 +47,7 @@ const TopicScreen = () => {
         sortType={page.descend}
         addNewTopic={(newTopic) => {
           let newData = _.cloneDeep(data);
-          newData.push(newTopic);
+          newData.unshift(newTopic);
           setData(newData);
         }}
       />
