@@ -7,6 +7,10 @@ const CommonApi = (baseURL = "") => {
     return AxiosClient.get(baseURL);
   };
 
+  commonApi["getPaging"] = (pageParam) => {
+    return AxiosClient.get(baseURL + "/paging", { params: pageParam });
+  };
+
   commonApi["create"] = (data) => {
     return AxiosClient.post(baseURL, data);
   };
