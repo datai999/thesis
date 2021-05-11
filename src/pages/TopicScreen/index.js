@@ -1,4 +1,4 @@
-import { Layout } from "@ui-kitten/components";
+import { Layout, Toggle } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
@@ -21,6 +21,7 @@ const TopicScreen = () => {
   const [data, setData] = React.useState([]);
   const [page, setPage] = React.useState(defaultPage);
   const [sort, setSort] = React.useState(sortDefault);
+  const [english, setEnglish] = React.useState(false);
 
   const tags = [sort.sort + " " + (sort.descend ? "descend" : "increase")];
 
@@ -46,15 +47,23 @@ const TopicScreen = () => {
 
   return (
     <Layout style={styles.container}>
-      <TopicTopBar
-        sortField={page.sort}
-        sortType={page.descend}
-        addNewTopic={(newTopic) => {
-          let newData = _.cloneDeep(data);
-          newData.unshift(newTopic);
-          setData(newData);
-        }}
-      />
+      <Layout style={styles.topBar}>
+        <TopicTopBar
+          sortField={page.sort}
+          sortType={page.descend}
+          addNewTopic={(newTopic) => {
+            let newData = _.cloneDeep(data);
+            newData.unshift(newTopic);
+            setData(newData);
+          }}
+        />
+        <Toggle
+          checked={english}
+          onChange={(nextCheck) => setEnglish(nextCheck)}
+        >
+          {english ? "EN" : "VI"}
+        </Toggle>
+      </Layout>
       <TopicAnalyse tags={tags} />
       <TopicTable data={data} />
       <TopicBottom page={page} callBack={fetchData} />
@@ -65,6 +74,10 @@ const TopicScreen = () => {
 const styles = StyleSheet.create({
   container: {
     margin: 10,
+  },
+  topBar: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
 
