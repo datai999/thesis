@@ -1,6 +1,5 @@
 import { Layout } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
-import _ from "lodash";
 import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import TopicAnalyse from "./mains/TopicAnalyse";
@@ -8,24 +7,37 @@ import TopicBottom from "./mains/TopicBottom";
 import TopicTable from "./mains/TopicTable";
 import TopicTopBar from "./mains/TopicTopBar";
 
+const defaultPage = {
+  number: 0,
+  size: 5,
+};
+
 const TopicScreen = () => {
   const [sortField, setSortField] = React.useState("TopicCode");
   const [sortType, setSortType] = React.useState("Asc");
   const [data, setData] = React.useState([]);
+  const [page, setPage] = React.useState(defaultPage);
 
-  var tags = [sortField + "-" + sortType];
+  let tags = [sortField + "-" + sortType];
 
-  const fetchData = async () => {
+  const fetchData = async (nextPage) => {
     try {
-      const response = await TopicAssignApi.getAll();
-      setData(response);
+      const response = await TopicAssignApi.getPaging(nextPage);
+      setData(response.content);
+      let newPage = {
+        number: response.number,
+        size: response.size,
+        totalPages: response.totalPages,
+        totalElements: response.totalElements,
+      };
+      setPage(newPage);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData(page);
   }, []);
 
   return (
@@ -41,7 +53,7 @@ const TopicScreen = () => {
       />
       <TopicAnalyse tags={tags} />
       <TopicTable data={data} />
-      <TopicBottom total={data.length} currentPage={1} totalPage={2} />
+      <TopicBottom page={page} callBack={fetchData} />
     </Layout>
   );
 };
