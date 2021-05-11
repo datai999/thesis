@@ -10,6 +10,9 @@ import TopicTopBar from "./mains/TopicTopBar";
 const defaultPage = {
   number: 0,
   size: 5,
+};
+
+const sortDefault = {
   sort: "createdAt",
   descend: true,
 };
@@ -17,12 +20,13 @@ const defaultPage = {
 const TopicScreen = () => {
   const [data, setData] = React.useState([]);
   const [page, setPage] = React.useState(defaultPage);
+  const [sort, setSort] = React.useState(sortDefault);
 
-  const tags = [page.sort + "-" + page.descend];
+  const tags = [sort.sort + " " + (sort.descend ? "descend" : "increase")];
 
   const fetchData = async (nextPage) => {
     try {
-      const response = await TopicAssignApi.getPaging(nextPage);
+      const response = await TopicAssignApi.getPaging({ ...nextPage, ...sort });
       setData(response.content);
       let newPage = {
         number: response.number,
@@ -38,7 +42,7 @@ const TopicScreen = () => {
 
   useEffect(() => {
     fetchData(page);
-  }, []);
+  }, [sort]);
 
   return (
     <Layout style={styles.container}>
