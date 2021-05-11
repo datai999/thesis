@@ -10,15 +10,15 @@ import TopicTopBar from "./mains/TopicTopBar";
 const defaultPage = {
   number: 0,
   size: 5,
+  sort: "createdAt",
+  descend: true,
 };
 
 const TopicScreen = () => {
-  const [sortField, setSortField] = React.useState("TopicCode");
-  const [sortType, setSortType] = React.useState("Asc");
   const [data, setData] = React.useState([]);
   const [page, setPage] = React.useState(defaultPage);
 
-  let tags = [sortField + "-" + sortType];
+  const tags = [page.sort + "-" + page.descend];
 
   const fetchData = async (nextPage) => {
     try {
@@ -43,8 +43,8 @@ const TopicScreen = () => {
   return (
     <Layout style={styles.container}>
       <TopicTopBar
-        sortField={sortField}
-        sortType={sortType}
+        sortField={page.sort}
+        sortType={page.descend}
         addNewTopic={(newTopic) => {
           let newData = _.cloneDeep(data);
           newData.push(newTopic);
