@@ -7,20 +7,22 @@ import TopicBottom from "./mains/TopicBottom";
 import TopicTable from "./mains/TopicTable";
 import TopicTopBar from "./mains/TopicTopBar";
 
+const defaultPage = {
+  number: 0,
+  size: 5,
+};
+
 const TopicScreen = () => {
   const [sortField, setSortField] = React.useState("TopicCode");
   const [sortType, setSortType] = React.useState("Asc");
   const [data, setData] = React.useState([]);
-  const [page, setPage] = React.useState({
-    number: 1,
-    size: 5,
-  });
+  const [page, setPage] = React.useState(defaultPage);
 
   let tags = [sortField + "-" + sortType];
 
-  const fetchData = async () => {
+  const fetchData = async (nextPage) => {
     try {
-      const response = await TopicAssignApi.getPaging(page);
+      const response = await TopicAssignApi.getPaging(nextPage);
       setData(response.content);
       let newPage = {
         number: response.number,
@@ -35,7 +37,7 @@ const TopicScreen = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData(page);
   }, []);
 
   return (
@@ -51,7 +53,7 @@ const TopicScreen = () => {
       />
       <TopicAnalyse tags={tags} />
       <TopicTable data={data} />
-      <TopicBottom page={page} callBack={setPage} />
+      <TopicBottom page={page} callBack={fetchData} />
     </Layout>
   );
 };

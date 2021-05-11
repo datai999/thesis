@@ -1,39 +1,47 @@
-import React from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
 import {
-  Text,
   Button,
+  IndexPath,
   Select,
   SelectItem,
-  IndexPath,
+  Text,
 } from "@ui-kitten/components";
-
 import { ArrowBackIcon, ArrowForwardIcon } from "components/Icons";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 
-const data = [25, 50, 100];
+const sizeRank = [5, 10, 20, 30, 50, 100];
 
-const TopicBottom = ({ total, currentPage, totalPage }) => {
-  const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(0));
-  const displayValue = data[selectedIndex.row];
+const renderOption = (title) => <SelectItem key={title} title={title} />;
 
-  const renderOption = (title) => <SelectItem key={title} title={title} />;
+const TopicBottom = ({ page, callBack }) => {
+  const [selectedSize, setSelectedSize] = React.useState(new IndexPath(0));
+
+  const fetchPage = (numberChange, sizeChange) => {
+    let nextPage = {
+      number: page.number + numberChange,
+      size: page.size + sizeChange,
+    };
+    callBack(nextPage);
+  };
 
   return (
     <View style={styles.container}>
-      <Text>Total: {total}</Text>
+      <Text>Total: {page.totalElements}</Text>
       <View style={styles.page}>
         <Button
           status="primary"
           appearance="ghost"
           accessoryLeft={ArrowBackIcon}
+          onPress={() => fetchPage(-1, 0)}
         ></Button>
         <Text>
-          Page:{currentPage}/{totalPage}
+          Page:{page.number + 1}/{page.totalPages}
         </Text>
         <Button
           status="primary"
           appearance="ghost"
           accessoryRight={ArrowForwardIcon}
+          onPress={() => fetchPage(1, 0)}
         ></Button>
       </View>
 
@@ -42,11 +50,11 @@ const TopicBottom = ({ total, currentPage, totalPage }) => {
         <Select
           style={styles.select}
           size="small"
-          value={displayValue}
-          selectedIndex={selectedIndex}
-          onSelect={(index) => setSelectedIndex(index)}
+          value={sizeRank[selectedSize.row]}
+          selectedIndex={selectedSize}
+          onSelect={(index) => setSelectedSize(index)}
         >
-          {data.map(renderOption)}
+          {sizeRank.map(renderOption)}
         </Select>
       </View>
     </View>
