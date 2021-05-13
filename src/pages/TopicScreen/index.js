@@ -22,7 +22,7 @@ const TopicScreen = () => {
   const [data, setData] = React.useState([]);
   const [page, setPage] = React.useState(defaultPage);
   const [sort, setSort] = React.useState(sortDefault);
-  const [english, setEnglish] = React.useState(true);
+  const [english, setEnglish] = React.useState(i18n.languages == "en");
 
   const tags = [sort.sort + " " + (sort.descend ? "descend" : "increase")];
 
