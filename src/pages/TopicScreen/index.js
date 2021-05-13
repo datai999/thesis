@@ -2,6 +2,7 @@ import { Layout, Toggle } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
+import i18n from "utils/i18n";
 import TopicAnalyse from "./mains/TopicAnalyse";
 import TopicBottom from "./mains/TopicBottom";
 import TopicTable from "./mains/TopicTable";
@@ -21,7 +22,7 @@ const TopicScreen = () => {
   const [data, setData] = React.useState([]);
   const [page, setPage] = React.useState(defaultPage);
   const [sort, setSort] = React.useState(sortDefault);
-  const [english, setEnglish] = React.useState(false);
+  const [english, setEnglish] = React.useState(true);
 
   const tags = [sort.sort + " " + (sort.descend ? "descend" : "increase")];
 
@@ -59,7 +60,11 @@ const TopicScreen = () => {
         />
         <Toggle
           checked={english}
-          onChange={(nextCheck) => setEnglish(nextCheck)}
+          onChange={(nextCheck) => {
+            i18n
+              .changeLanguage(nextCheck ? "en" : "vi")
+              .then(() => setEnglish(nextCheck));
+          }}
         >
           {english ? "EN" : "VI"}
         </Toggle>
