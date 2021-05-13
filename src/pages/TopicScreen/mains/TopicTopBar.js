@@ -4,6 +4,7 @@ import { PlusIcon, SearchIcon } from "components/Icons";
 import MyModal from "components/Modal";
 import React from "react";
 import { StyleSheet } from "react-native";
+import i18n from "utils/i18n";
 
 const TopicTopBar = ({ addNewTopic }) => {
   const [value, setValue] = React.useState("");
@@ -15,7 +16,6 @@ const TopicTopBar = ({ addNewTopic }) => {
     ...TopicCreateForm,
     submit: async () => {
       try {
-        console.log(TopicCreateForm.submit);
         let response = await TopicCreateForm.submit();
         addNewTopic(response);
         return response;
@@ -34,12 +34,12 @@ const TopicTopBar = ({ addNewTopic }) => {
         accessoryRight={PlusIcon}
         onPress={() => setTopicCreateVisible(true)}
       >
-        NEW
+        {i18n.t("origin.new")}
       </Button>
       <Input
         style={styles.input}
         value={value}
-        placeholder="Filter and Search"
+        placeholder={i18n.t("origin.filter_and_search")}
         accessoryRight={SearchIcon}
         onChangeText={(nextValue) => setValue(nextValue)}
       />

@@ -1,1 +1,6 @@
-{}
+{
+  "origin": {
+    "new": "NEW",
+    "filter_and_search": "Filter and Search"
+  }
+}
