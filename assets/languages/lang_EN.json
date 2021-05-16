@@ -1,7 +1,10 @@
 {
   "origin": {
     "new": "NEW",
-    "filter&Search": "Filter and Search"
+    "filter&Search": "Filter and Search",
+    "total": "Total",
+    "page": "Page",
+    "record": "Record"
   },
   "educationMethod": "Education method",
   "topicCode": "Code",

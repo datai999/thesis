@@ -1,7 +1,10 @@
 {
   "origin": {
     "new": "Tạo mới",
-    "filter&Search": "Lọc và Tìm kiếm"
+    "filter&Search": "Lọc và Tìm kiếm",
+    "total": "Tổng",
+    "page": "Trang",
+    "record": "Bản ghi"
   },
   "educationMethod": "Phương thức đào tạo",
   "topicCode": "Mã đề tài",
