@@ -1,22 +1,21 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import * as Animatable from "react-native-animatable";
 import {
+  Button,
+  Card,
+  CheckBox,
   Layout,
   List,
   MenuItem,
-  Button,
   Modal,
-  Card,
   Text,
-  CheckBox,
 } from "@ui-kitten/components";
-import _ from "lodash";
-
 import { SettingIcon } from "components/Icons";
-
-import topicTableStyles from "./styles";
+import _ from "lodash";
+import React from "react";
+import { StyleSheet } from "react-native";
+import * as Animatable from "react-native-animatable";
+import i18n from "utils/i18n";
 import defaultSetting from "./setting";
+import topicTableStyles from "./styles";
 
 const TopicTableHeader = ({ props }) => {
   const [settingVisible, setSettingVisible] = React.useState(false);
@@ -42,7 +41,7 @@ const TopicTableHeader = ({ props }) => {
           item.hide ? null : (
             <MenuItem
               style={item.style.concat(topicTableStyles.columnHeader)}
-              title={item.title}
+              title={i18n.t(item.title)}
             />
           )
         }

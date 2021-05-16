@@ -1,0 +1,16 @@
+{
+  "origin": {
+    "new": "NEW",
+    "filter&Search": "Filter and Search",
+    "total": "Total",
+    "page": "Page",
+    "record": "Record"
+  },
+  "educationMethod": "Education method",
+  "topicCode": "Code",
+  "semester": "Semester",
+  "major": "Major",
+  "topicName": "Topic Name",
+  "guideTeacher": "Guide Teacher",
+  "students": "Students"
+}

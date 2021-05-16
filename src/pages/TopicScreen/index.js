@@ -1,7 +1,8 @@
-import { Layout } from "@ui-kitten/components";
+import { Layout, Toggle } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
+import i18n from "utils/i18n";
 import TopicAnalyse from "./mains/TopicAnalyse";
 import TopicBottom from "./mains/TopicBottom";
 import TopicTable from "./mains/TopicTable";
@@ -12,17 +13,22 @@ const defaultPage = {
   size: 5,
 };
 
+const sortDefault = {
+  sort: "createdAt",
+  descend: true,
+};
+
 const TopicScreen = () => {
-  const [sortField, setSortField] = React.useState("TopicCode");
-  const [sortType, setSortType] = React.useState("Asc");
   const [data, setData] = React.useState([]);
   const [page, setPage] = React.useState(defaultPage);
+  const [sort, setSort] = React.useState(sortDefault);
+  const [english, setEnglish] = React.useState(i18n.languages == "en");
 
-  let tags = [sortField + "-" + sortType];
+  const tags = [sort.sort + " " + (sort.descend ? "descend" : "increase")];
 
   const fetchData = async (nextPage) => {
     try {
-      const response = await TopicAssignApi.getPaging(nextPage);
+      const response = await TopicAssignApi.getPaging({ ...nextPage, ...sort });
       setData(response.content);
       let newPage = {
         number: response.number,
@@ -38,19 +44,31 @@ const TopicScreen = () => {
 
   useEffect(() => {
     fetchData(page);
-  }, []);
+  }, [sort]);
 
   return (
     <Layout style={styles.container}>
-      <TopicTopBar
-        sortField={sortField}
-        sortType={sortType}
-        addNewTopic={(newTopic) => {
-          let newData = _.cloneDeep(data);
-          newData.push(newTopic);
-          setData(newData);
-        }}
-      />
+      <Layout style={styles.topBar}>
+        <TopicTopBar
+          sortField={page.sort}
+          sortType={page.descend}
+          addNewTopic={(newTopic) => {
+            let newData = _.cloneDeep(data);
+            newData.unshift(newTopic);
+            setData(newData);
+          }}
+        />
+        <Toggle
+          checked={english}
+          onChange={(nextCheck) => {
+            i18n
+              .changeLanguage(nextCheck ? "en" : "vi")
+              .then(() => setEnglish(nextCheck));
+          }}
+        >
+          {english ? "EN" : "VI"}
+        </Toggle>
+      </Layout>
       <TopicAnalyse tags={tags} />
       <TopicTable data={data} />
       <TopicBottom page={page} callBack={fetchData} />
@@ -61,6 +79,10 @@ const TopicScreen = () => {
 const styles = StyleSheet.create({
   container: {
     margin: 10,
+  },
+  topBar: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
 

@@ -8,6 +8,7 @@ import {
 import { ArrowBackIcon, ArrowForwardIcon } from "components/Icons";
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import i18n from "utils/i18n";
 
 const sizeRank = [5, 10, 20, 30, 50, 100];
 
@@ -26,27 +27,29 @@ const TopicBottom = ({ page, callBack }) => {
 
   return (
     <View style={styles.container}>
-      <Text>Total: {page.totalElements}</Text>
+      <Text>
+        {i18n.t("origin.total")}: {page.totalElements}
+      </Text>
       <View style={styles.page}>
         <Button
           status="primary"
           appearance="ghost"
           accessoryLeft={ArrowBackIcon}
-          onPress={() => fetchPage(-1, 0)}
+          onPress={() => fetchPage(-1, sizeRank[selectedSize.row])}
         ></Button>
         <Text>
-          Page:{page.number + 1}/{page.totalPages}
+          {i18n.t("origin.page")}:{page.number + 1}/{page.totalPages}
         </Text>
         <Button
           status="primary"
           appearance="ghost"
           accessoryRight={ArrowForwardIcon}
-          onPress={() => fetchPage(1, 0)}
+          onPress={() => fetchPage(1, sizeRank[selectedSize.row])}
         ></Button>
       </View>
 
       <View style={styles.record}>
-        <Text>Record</Text>
+        <Text>{i18n.t("origin.record")}</Text>
         <Select
           style={styles.select}
           size="small"

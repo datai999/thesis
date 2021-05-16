@@ -1,0 +1,16 @@
+{
+  "origin": {
+    "new": "Tạo mới",
+    "filter&Search": "Lọc và Tìm kiếm",
+    "total": "Tổng",
+    "page": "Trang",
+    "record": "Bản ghi"
+  },
+  "educationMethod": "Phương thức đào tạo",
+  "topicCode": "Mã đề tài",
+  "semester": "Học kỳ",
+  "major": "Nghành",
+  "topicName": "Tên đề tài",
+  "guideTeacher": "Giảng viên hướng dẫn",
+  "students": "Sinh viên thực hiện"
+}
