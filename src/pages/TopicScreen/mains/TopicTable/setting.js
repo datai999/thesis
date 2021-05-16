@@ -1,38 +1,37 @@
 import styles from "./styles";
-
 const setting = {
   topicCode: {
-    title: "Code",
+    title: "topicCode",
     hide: false,
     style: [styles.column, styles.code],
   },
   semester: {
-    title: "Semester",
+    title: "semester",
     hide: false,
     style: [styles.column, styles.semester],
   },
   major: {
-    title: "Major",
+    title: "major",
     hide: false,
     style: [styles.column, styles.major],
   },
   educationMethod: {
-    title: "Edu Method",
+    title: "educationMethod",
     hide: false,
     style: [styles.column, styles.educationMethod],
   },
   topicName: {
-    title: "Topic Name",
+    title: "topicName",
     hide: false,
     style: [styles.column, styles.topicName],
   },
   guideTeacher: {
-    title: "Guide Teacher",
+    title: "guideTeacher",
     hide: false,
     style: [styles.column, styles.guideTeacher],
   },
   students: {
-    title: "Students",
+    title: "students",
     hide: false,
     style: [styles.column, styles.students],
   },
