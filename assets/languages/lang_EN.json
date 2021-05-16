@@ -2,5 +2,12 @@
   "origin": {
     "new": "NEW",
     "filter_and_search": "Filter and Search"
-  }
+  },
+  "educationMethod": "Education method",
+  "topicCode": "Code",
+  "semester": "Semester",
+  "major": "Major",
+  "topicName": "Topic Name",
+  "guideTeacher": "Guide Teacher",
+  "students": "Students"
 }
