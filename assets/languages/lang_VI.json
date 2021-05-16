@@ -4,7 +4,9 @@
     "filter&Search": "Lọc và Tìm kiếm",
     "total": "Tổng",
     "page": "Trang",
-    "record": "Bản ghi"
+    "record": "Bản ghi",
+    "create": "Tạo",
+    "topic": "Đề tài"
   },
   "educationMethod": "Phương thức đào tạo",
   "topicCode": "Mã đề tài",

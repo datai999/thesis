@@ -12,6 +12,7 @@ import Props from "data/Props";
 import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
+import i18n from "utils/i18n";
 
 const form = {
   guideTeacher: [],
@@ -19,7 +20,7 @@ const form = {
 };
 
 const TopicCreateForm = {
-  header: "Create topic",
+  header: i18n.t("origin.create") + " " + i18n.t("origin.topic"),
   body: () => TopicCreateLayout(),
   submit: () => TopicAssignApi.create(form),
 };

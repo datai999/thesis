@@ -4,7 +4,9 @@
     "filter&Search": "Filter and Search",
     "total": "Total",
     "page": "Page",
-    "record": "Record"
+    "record": "Record",
+    "create": "Create",
+    "topic": "Topic"
   },
   "educationMethod": "Education method",
   "topicCode": "Code",
