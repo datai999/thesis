@@ -39,7 +39,7 @@ const TopicTopBar = ({ addNewTopic }) => {
       <Input
         style={styles.input}
         value={value}
-        placeholder={i18n.t("origin.filter_and_search")}
+        placeholder={i18n.t("origin.filter&Search")}
         accessoryRight={SearchIcon}
         onChangeText={(nextValue) => setValue(nextValue)}
       />
