@@ -51,7 +51,9 @@ const TopicTablePaper = ({ data, page, callBack }) => {
       <DataTable.Header>
         {headerData.map((header) => {
           return (
-            <DataTable.Title key={header}>{i18n.t(header)}</DataTable.Title>
+            <DataTable.Title key={header}>
+              <Text>{i18n.t(header)}</Text>
+            </DataTable.Title>
           );
         })}
       </DataTable.Header>
