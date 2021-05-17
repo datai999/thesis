@@ -20,11 +20,16 @@ const form = {
 
 const TopicCreateForm = {
   header: "topic.create",
-  body: (data) => TopicCreateLayout(data),
+  body: (
+    data,
+    setData = (newData) => {
+      return;
+    }
+  ) => TopicCreateLayout(data, setData),
   submit: (formSubmit = form) => TopicAssignApi.create(formSubmit),
 };
 
-const TopicCreateLayout = (data) => {
+const TopicCreateLayout = (data, setData) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
   const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
 
@@ -42,7 +47,8 @@ const TopicCreateLayout = (data) => {
   const setValue = (field, basePath, value) => {
     let path = basePath == "topic" ? basePath + "." + field : basePath;
     _.set(form, path, value);
-    _.set(data, path, value);
+    let newData = _.set(data, path, value);
+    setData(newData);
   };
 
   const getValue = (field, basePath) => {

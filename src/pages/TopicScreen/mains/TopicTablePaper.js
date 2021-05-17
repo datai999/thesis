@@ -48,7 +48,7 @@ const TopicTablePaper = ({ data, page, callBack }) => {
     header: "topic.update",
     visible: topicUpdateVisible,
     cancel: () => setTopicUpdateVisible(false),
-    body: () => TopicCreateForm.body(currentRow),
+    body: () => TopicCreateForm.body(currentRow, setCurrenRow),
     submit: async () => {
       try {
         let response = await TopicCreateForm.submit(currentRow);
