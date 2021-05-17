@@ -11,8 +11,8 @@ import _ from "lodash";
 import React from "react";
 import { getRenderText } from "utils";
 
-const MyInput = ({ value, callBack, ...props }) => {
-  const [currentValue, setCurrentValue] = React.useState(value);
+const MyInput = ({ callBack, ...props }) => {
+  const [currentValue, setCurrentValue] = React.useState(props.value);
   return (
     <Input
       {...props}
@@ -59,7 +59,7 @@ const MyAutocomplete = ({ callBack, ...props }) => {
   );
 };
 const MyAutocompleteTag = ({ ...props }) => {
-  const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState(props.value ?? []);
 
   const autocompleteProps = {
     ...props,

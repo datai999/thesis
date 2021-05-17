@@ -1,5 +1,6 @@
 import { IndexPath, Select, SelectItem } from "@ui-kitten/components";
 import React from "react";
+import { getRenderText } from "utils";
 
 const selectItems = (arrItem) => {
   return arrItem
@@ -9,7 +10,7 @@ const selectItems = (arrItem) => {
 
 const MySelect = ({ field, callBack, ...props }) => {
   const [indexed, setIndexed] = React.useState(
-    new IndexPath(props.arrValue?.indexOf(props.value))
+    new IndexPath(props.arrValue?.indexOf(getRenderText(props.value)))
   );
 
   return (
@@ -32,7 +33,7 @@ const MyMultiSelect = ({ field, callBack, ...props }) => {
   const [indexes, setIndexes] = React.useState(
     props.value
       ? Array.from(
-          props.value,
+          getRenderText(props.value),
           (item) => new IndexPath(props.arrValue.indexOf(item))
         ).filter((item) => item.row > -1)
       : []
