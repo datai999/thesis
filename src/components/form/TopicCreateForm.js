@@ -20,13 +20,14 @@ const form = {
 
 const TopicCreateForm = {
   header: "topic.create",
-  body: () => TopicCreateLayout(),
-  submit: () => TopicAssignApi.create(form),
+  body: (data) => TopicCreateLayout(data),
+  submit: (formSubmit = form) => TopicAssignApi.create(formSubmit),
 };
 
-const TopicCreateLayout = () => {
+const TopicCreateLayout = (data) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
   const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
+
   const modalTeacherCreateProps = {
     ...TeacherCreateForm,
     visible: teacherCreateVisible,
@@ -41,6 +42,12 @@ const TopicCreateLayout = () => {
   const setValue = (field, basePath, value) => {
     let path = basePath == "topic" ? basePath + "." + field : basePath;
     _.set(form, path, value);
+    _.set(data, path, value);
+  };
+
+  const getValue = (field, basePath) => {
+    let path = basePath == "topic" ? basePath + "." + field : basePath;
+    return _.get(data, path);
   };
 
   const selectProps = (field, basePath = "topic") => {
@@ -48,12 +55,14 @@ const TopicCreateLayout = () => {
       field,
       callBack: (value) => setValue(field, basePath, value),
       ...Props[field],
+      value: getValue(field, basePath),
     };
   };
   const inputProps = (field, basePath = "topic") => {
     return {
       callBack: (value) => setValue(field, basePath, value),
       ...Props[field],
+      value: getValue(field, basePath),
     };
   };
   const autocompleteProps = (type) => {

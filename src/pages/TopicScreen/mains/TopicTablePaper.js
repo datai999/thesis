@@ -1,4 +1,6 @@
 import { IndexPath, Select, SelectItem, Text } from "@ui-kitten/components";
+import TopicCreateForm from "components/form/TopicCreateForm";
+import MyModal from "components/Modal";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { DataTable, List } from "react-native-paper";
@@ -38,6 +40,34 @@ const renderCell = (data) => {
 
 const TopicTablePaper = ({ data, page, callBack }) => {
   const [selectedSize, setSelectedSize] = React.useState(new IndexPath(0));
+  const [topicUpdateVisible, setTopicUpdateVisible] = React.useState(false);
+  const [currentRow, setCurrenRow] = React.useState(null);
+
+  const modalTopicUpdateProps = {
+    ...TopicCreateForm,
+    header: "topic.update",
+    visible: topicUpdateVisible,
+    cancel: () => setTopicUpdateVisible(false),
+    body: () => TopicCreateForm.body(currentRow),
+    submit: async () => {
+      try {
+        let response = await TopicCreateForm.submit(currentRow);
+        console.log(response);
+        return response;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  };
+
+  const rowProps = (row) => {
+    return {
+      onPress: () => {
+        setCurrenRow(row);
+        setTopicUpdateVisible(true);
+      },
+    };
+  };
 
   const fetchPage = (newNumber, newSize) => {
     let nextPage = {
@@ -49,6 +79,7 @@ const TopicTablePaper = ({ data, page, callBack }) => {
 
   return (
     <DataTable>
+      <MyModal {...modalTopicUpdateProps} />
       <DataTable.Header>
         {Object.keys(headerData).map((header) => {
           return (
@@ -59,14 +90,15 @@ const TopicTablePaper = ({ data, page, callBack }) => {
         })}
       </DataTable.Header>
       {data.map((row) => {
+        if (row.topic == null) return;
         return (
-          <DataTable.Row key={row.id} onPress={() => console.log(row)}>
+          <DataTable.Row key={row.id} {...rowProps(row)}>
             {Object.keys(headerData)
               .slice(0, -2)
               .map((field) => {
                 let fieldValue = row.topic[field];
                 return (
-                  <DataTable.Cell key={field} {...headerData[field]}>
+                  <DataTable.Cell key={field} {...rowProps(row)}>
                     {renderCell(fieldValue)}
                   </DataTable.Cell>
                 );
