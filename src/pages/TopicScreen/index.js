@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 import i18n from "utils/i18n";
 import TopicAnalyse from "./mains/TopicAnalyse";
 import TopicBottom from "./mains/TopicBottom";
-import TopicTable from "./mains/TopicTable";
+import TopicTablePaper from "./mains/TopicTablePaper";
 import TopicTopBar from "./mains/TopicTopBar";
 
 const defaultPage = {
@@ -70,7 +70,7 @@ const TopicScreen = () => {
         </Toggle>
       </Layout>
       <TopicAnalyse tags={tags} />
-      <TopicTable data={data} />
+      <TopicTablePaper data={data} />
       <TopicBottom page={page} callBack={fetchData} />
     </Layout>
   );
