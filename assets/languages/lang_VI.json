@@ -2,9 +2,9 @@
   "origin": {
     "new": "Tạo mới",
     "filter&Search": "Lọc và Tìm kiếm",
-    "total": "Tổng",
+    "total": "Tổng trang",
     "page": "Trang",
-    "record": "Bản ghi",
+    "record": "Số bản ghi",
     "create": "Tạo",
     "topic": "Đề tài"
   },

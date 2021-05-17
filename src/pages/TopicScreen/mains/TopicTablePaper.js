@@ -1,4 +1,6 @@
+import { IndexPath, Select, SelectItem, Text } from "@ui-kitten/components";
 import React from "react";
+import { StyleSheet, View } from "react-native";
 import { DataTable } from "react-native-paper";
 import { getRenderText } from "utils";
 import i18n from "utils/i18n";
@@ -12,8 +14,21 @@ const headerData = [
   "guideTeacher",
   "students",
 ];
+const sizeRank = [5, 10, 20, 30, 50, 100];
 
-const TopicTablePaper = ({ data }) => {
+const renderOption = (title) => <SelectItem key={title} title={title} />;
+
+const TopicTablePaper = ({ data, page, callBack }) => {
+  const [selectedSize, setSelectedSize] = React.useState(new IndexPath(0));
+
+  const fetchPage = (newNumber, newSize) => {
+    let nextPage = {
+      number: newNumber,
+      size: newSize,
+    };
+    callBack(nextPage);
+  };
+
   return (
     <DataTable>
       <DataTable.Header>
@@ -39,16 +54,48 @@ const TopicTablePaper = ({ data }) => {
         );
       })}
 
-      <DataTable.Pagination
-        page={1}
-        numberOfPages={3}
-        onPageChange={(page) => {
-          console.log(page);
-        }}
-        label="1-2 of 6"
-      />
+      <View style={styles.pagination}>
+        <View>
+          <Text>
+            {i18n.t("origin.page")}: {page.number + 1} / {page.totalPages}
+          </Text>
+          <Text>
+            {i18n.t("origin.total")}: {page.totalElements}
+          </Text>
+        </View>
+        <DataTable.Pagination
+          page={page.number}
+          numberOfPages={page.totalPages}
+          onPageChange={(nextPage) => {
+            fetchPage(nextPage, sizeRank[selectedSize.row]);
+          }}
+        />
+        <View>
+          <Text>{i18n.t("origin.record")}</Text>
+          <Select
+            style={styles.select}
+            size="small"
+            value={sizeRank[selectedSize.row]}
+            selectedIndex={selectedSize}
+            onSelect={(index) => {
+              setSelectedSize(index);
+              fetchPage(0, sizeRank[index - 1]);
+            }}
+          >
+            {sizeRank.map(renderOption)}
+          </Select>
+        </View>
+      </View>
     </DataTable>
   );
 };
+const styles = StyleSheet.create({
+  pagination: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginHorizontal: "5%",
+  },
+});
 
 export default TopicTablePaper;
