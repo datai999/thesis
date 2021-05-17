@@ -20,9 +20,8 @@ const Routes = () => {
     const fetch = async () => {
       try {
         const response = await ConstApi.getTypes();
-        response.forEach((e) => {
-          Props[e.type].arrId = e.arrId;
-          Props[e.type].arrValue = e.arrValue;
+        Object.keys(response).forEach((e) => {
+          Props[e].arrValue = response[e];
         });
       } catch (error) {
         console.log(error);
