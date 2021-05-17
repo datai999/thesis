@@ -6,7 +6,12 @@
     "page": "Trang",
     "record": "Số bản ghi",
     "create": "Tạo",
-    "topic": "Đề tài"
+    "topic": "Đề tài",
+    "update": "Cập nhật"
+  },
+  "topic": {
+    "create": "Tạo mới đề tài",
+    "update": "Cập nhật đề tài"
   },
   "educationMethod": "Phương thức đào tạo",
   "topicCode": "Mã đề tài",

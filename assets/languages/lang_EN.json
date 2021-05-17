@@ -6,7 +6,12 @@
     "page": "Page",
     "record": "Record",
     "create": "Create",
-    "topic": "Topic"
+    "topic": "Topic",
+    "update": "Update"
+  },
+  "topic": {
+    "create": "Create topic",
+    "update": "Update topic"
   },
   "educationMethod": "Education method",
   "topicCode": "Code",

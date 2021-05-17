@@ -2,6 +2,7 @@ import { Button, Card, Layout, Modal, Text } from "@ui-kitten/components";
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
+import i18n from "utils/i18n";
 
 const MyModal = ({ visible, header, submit, cancel, body }) => {
   const animationRef = React.useRef();
@@ -23,7 +24,7 @@ const MyModal = ({ visible, header, submit, cancel, body }) => {
       >
         <Card
           style={styles.card}
-          header={() => <Text style={styles.headerText}>{header}</Text>}
+          header={() => <Text style={styles.headerText}>{i18n.t(header)}</Text>}
           footer={() => (
             <BottomCard animationEnd={animationEnd} submit={submit} />
           )}
