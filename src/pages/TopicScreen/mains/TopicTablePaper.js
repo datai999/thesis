@@ -1,7 +1,7 @@
 import { IndexPath, Select, SelectItem, Text } from "@ui-kitten/components";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { DataTable } from "react-native-paper";
+import { DataTable, List } from "react-native-paper";
 import { getRenderText } from "utils";
 import i18n from "utils/i18n";
 
@@ -17,6 +17,23 @@ const headerData = [
 const sizeRank = [5, 10, 20, 30, 50, 100];
 
 const renderOption = (title) => <SelectItem key={title} title={title} />;
+
+const reducerLastName = (accumulator, currentValue) =>
+  accumulator + ", " + currentValue.split(" ").slice(-1).join();
+
+const renderCell = (data) => {
+  let renderValue = getRenderText(data);
+  if (Array.isArray(renderValue)) {
+    return (
+      <List.Accordion title={renderValue.reduce(reducerLastName, "").slice(2)}>
+        {renderValue?.map((value) => {
+          return <List.Item key={value} title={value} />;
+        })}
+      </List.Accordion>
+    );
+  }
+  return renderValue;
+};
 
 const TopicTablePaper = ({ data, page, callBack }) => {
   const [selectedSize, setSelectedSize] = React.useState(new IndexPath(0));
@@ -43,13 +60,10 @@ const TopicTablePaper = ({ data, page, callBack }) => {
           <DataTable.Row key={row.id}>
             {headerData.slice(0, -2).map((field) => {
               let fieldValue = row.topic[field];
-              let value = getRenderText(fieldValue);
-              return <DataTable.Cell key={field}>{value}</DataTable.Cell>;
+              return <DataTable.Cell>{renderCell(fieldValue)}</DataTable.Cell>;
             })}
-            <DataTable.Cell>{[getRenderText(row.guideTeacher)]}</DataTable.Cell>
-            <DataTable.Cell>
-              {[getRenderText(row.executeStudent)]}
-            </DataTable.Cell>
+            <DataTable.Cell>{renderCell(row.guideTeacher)}</DataTable.Cell>
+            <DataTable.Cell>{renderCell(row.executeStudent)}</DataTable.Cell>
           </DataTable.Row>
         );
       })}
