@@ -5,15 +5,16 @@ import { DataTable, List } from "react-native-paper";
 import { getRenderText } from "utils";
 import i18n from "utils/i18n";
 
-const headerData = [
-  "topicCode",
-  "semester",
-  "major",
-  "educationMethod",
-  "topicName",
-  "guideTeacher",
-  "students",
-];
+const headerData = {
+  topicCode: {},
+  semester: {},
+  major: {},
+  educationMethod: {},
+  topicName: {},
+  guideTeacher: {},
+  students: {},
+};
+
 const sizeRank = [5, 10, 20, 30, 50, 100];
 
 const renderOption = (title) => <SelectItem key={title} title={title} />;
@@ -49,7 +50,7 @@ const TopicTablePaper = ({ data, page, callBack }) => {
   return (
     <DataTable>
       <DataTable.Header>
-        {headerData.map((header) => {
+        {Object.keys(headerData).map((header) => {
           return (
             <DataTable.Title key={header}>
               <Text>{i18n.t(header)}</Text>
@@ -59,11 +60,17 @@ const TopicTablePaper = ({ data, page, callBack }) => {
       </DataTable.Header>
       {data.map((row) => {
         return (
-          <DataTable.Row key={row.id}>
-            {headerData.slice(0, -2).map((field) => {
-              let fieldValue = row.topic[field];
-              return <DataTable.Cell>{renderCell(fieldValue)}</DataTable.Cell>;
-            })}
+          <DataTable.Row key={row.id} onPress={() => console.log(row)}>
+            {Object.keys(headerData)
+              .slice(0, -2)
+              .map((field) => {
+                let fieldValue = row.topic[field];
+                return (
+                  <DataTable.Cell key={field} {...headerData[field]}>
+                    {renderCell(fieldValue)}
+                  </DataTable.Cell>
+                );
+              })}
             <DataTable.Cell>{renderCell(row.guideTeacher)}</DataTable.Cell>
             <DataTable.Cell>{renderCell(row.executeStudent)}</DataTable.Cell>
           </DataTable.Row>
