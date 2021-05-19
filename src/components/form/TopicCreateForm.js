@@ -1,4 +1,4 @@
-import { Button, Layout } from "@ui-kitten/components";
+import { Button, Layout, Text } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
 import TopicAssignApi from "api/topic/TopicAssignApi";
@@ -12,6 +12,7 @@ import Props from "data/Props";
 import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
+import i18n from "utils/i18n";
 
 const form = {
   guideTeacher: [],
@@ -19,17 +20,17 @@ const form = {
 };
 
 const TopicCreateForm = {
-  header: "topic.create",
   body: (
+    header = "topic.create",
     data,
     setData = (newData) => {
       return;
     }
-  ) => TopicCreateLayout(data, setData),
+  ) => TopicCreateLayout(header, data, setData),
   submit: (formSubmit = form) => TopicAssignApi.create(formSubmit),
 };
 
-const TopicCreateLayout = (data, setData) => {
+const TopicCreateLayout = (header, data, setData) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
   const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
 
@@ -98,11 +99,9 @@ const TopicCreateLayout = (data, setData) => {
 
   const searchPerson = async (type, value) => {
     try {
-      const response =
-        type == "teacher"
-          ? await TeacherApi.search(value)
-          : await StudentApi.search(value);
-      return response;
+      return type == "teacher"
+        ? await TeacherApi.search(value)
+        : await StudentApi.search(value);
     } catch (error) {
       console.log(error);
     }
@@ -113,6 +112,7 @@ const TopicCreateLayout = (data, setData) => {
       <MyModal {...modalTeacherCreateProps} />
       <MyModal {...modalStudentCreateProps} />
 
+      <Text style={styles.headerText}>{i18n.t(header)}</Text>
       <Layout style={styles.row}>
         <Layout style={styles.left}>
           <MySelect {...selectProps("educationMethod")} />
@@ -121,15 +121,13 @@ const TopicCreateLayout = (data, setData) => {
           <MyAutocompleteTag {...autocompleteProps("teacher")} />
         </Layout>
         <Layout style={styles.right}>
-          <MyInput {...inputProps("topicCode")} />
-          <MyInput {...inputProps("topicName")} />
-          <Layout style={{ flexDirection: "row" }}>
-            <MySelect {...selectProps("minStudentTake")} style={styles.left} />
-            <MySelect {...selectProps("maxStudentTake")} style={styles.right} />
-          </Layout>
+          <MySelect {...selectProps("minStudentTake")} />
+          <MySelect {...selectProps("maxStudentTake")} />
           <MyAutocompleteTag {...autocompleteProps("students")} />
+          <MyInput {...inputProps("topicCode")} />
         </Layout>
       </Layout>
+      <MyInput {...inputProps("topicName")} />
       <Layout style={styles.row}>
         <MyInput {...inputProps("mainTask")} style={styles.left} />
         <MyInput {...inputProps("thesisTask")} style={styles.right} />
@@ -155,6 +153,12 @@ const styles = StyleSheet.create({
   right: {
     flex: 1,
     marginLeft: 10,
+  },
+  headerText: {
+    margin: 5,
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 30,
   },
   description: {},
   tagList: {

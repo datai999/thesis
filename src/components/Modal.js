@@ -1,10 +1,9 @@
-import { Button, Layout, Modal, Text } from "@ui-kitten/components";
+import { Button, Layout, Modal } from "@ui-kitten/components";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
-import i18n from "utils/i18n";
 
-const MyModal = ({ visible, header, submit, cancel, body }) => {
+const MyModal = ({ visible, submit, cancel, body }) => {
   const animationRef = React.useRef();
 
   const animationEnd = () =>
@@ -22,7 +21,6 @@ const MyModal = ({ visible, header, submit, cancel, body }) => {
         animation="zoomIn"
         ref={animationRef}
       >
-        <Text style={styles.headerText}>{i18n.t(header)}</Text>
         <ScrollView contentContainerStyle={{ paddingHorizontal: 24 }}>
           {body()}
         </ScrollView>
@@ -57,12 +55,6 @@ const styles = StyleSheet.create({
   },
   backdrop: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  headerText: {
-    margin: 5,
-    fontWeight: "bold",
-    textAlign: "center",
-    fontSize: 30,
   },
   popupBot: {
     flexDirection: "row",
