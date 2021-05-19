@@ -1,6 +1,6 @@
 import { Button, Layout, Modal } from "@ui-kitten/components";
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
 
 const MyModal = ({ visible, submit, cancel, body }) => {
@@ -21,9 +21,7 @@ const MyModal = ({ visible, submit, cancel, body }) => {
         animation="zoomIn"
         ref={animationRef}
       >
-        <ScrollView contentContainerStyle={{ paddingHorizontal: 24 }}>
-          {body()}
-        </ScrollView>
+        {body()}
         <BottomCard animationEnd={animationEnd} submit={submit} />
       </Animatable.View>
     </Modal>
@@ -51,7 +49,7 @@ const BottomCard = ({ animationEnd, submit }) => {
 const styles = StyleSheet.create({
   modal: {
     maxWidth: "100%",
-    maxHeight: "100%%",
+    maxHeight: "100%",
   },
   backdrop: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
