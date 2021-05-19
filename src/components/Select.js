@@ -1,6 +1,7 @@
 import { IndexPath, Select, SelectItem } from "@ui-kitten/components";
 import React from "react";
 import { getRenderText } from "utils";
+import i18n from "utils/i18n";
 
 const selectItems = (arrItem) => {
   return arrItem
@@ -18,6 +19,8 @@ const MySelect = ({ field, callBack, ...props }) => {
   return (
     <Select
       {...props}
+      label={i18n.t(props.label)}
+      placeholder={i18n.t(props.placeholder)}
       value={getRenderText(props.arrValue[indexed.row])}
       selectedIndex={indexed.row > -1 ? indexed : null}
       onSelect={(index) => {
@@ -45,6 +48,8 @@ const MyMultiSelect = ({ field, callBack, ...props }) => {
   return (
     <Select
       {...props}
+      label={i18n.t(props.label)}
+      placeholder={i18n.t(props.placeholder)}
       value={indexes.map((x) => getRenderText(props.arrValue[x.row]) + ", ")}
       multiSelect={true}
       selectedIndex={indexes}

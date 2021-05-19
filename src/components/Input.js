@@ -10,12 +10,15 @@ import { CloseIcon } from "components/Icons";
 import _ from "lodash";
 import React from "react";
 import { getRenderText } from "utils";
+import i18n from "utils/i18n";
 
 const MyInput = ({ callBack, ...props }) => {
   const [currentValue, setCurrentValue] = React.useState(props.value);
   return (
     <Input
       {...props}
+      label={i18n.t(props.label)}
+      placeholder={i18n.t(props.placeholder)}
       onChangeText={(nextValue) => {
         callBack(nextValue);
         setCurrentValue(nextValue);
@@ -42,6 +45,8 @@ const MyAutocomplete = ({ callBack, ...props }) => {
   return (
     <Autocomplete
       {...props}
+      label={i18n.t(props.label)}
+      placeholder={i18n.t(props.placeholder)}
       value={value}
       onSelect={(number) => {
         callBack(data[number]);

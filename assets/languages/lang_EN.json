@@ -1,23 +1,33 @@
 {
+  "description": "Description",
+  "educationMethod": "Education method",
+  "mainTask": "Main task",
+  "major": "Major",
   "origin": {
-    "new": "NEW",
+    "create": "Create",
     "filter&Search": "Filter and Search",
-    "total": "Total",
+    "new": "NEW",
     "page": "Page",
     "record": "Record",
-    "create": "Create",
     "topic": "Topic",
+    "total": "Total",
     "update": "Update"
   },
-  "topic": {
-    "create": "Create topic",
-    "update": "Update topic"
-  },
-  "educationMethod": "Education method",
-  "topicCode": "Code",
   "semester": "Semester",
-  "major": "Major",
-  "topicName": "Topic Name",
-  "guideTeacher": "Guide Teacher",
-  "students": "Students"
+  "student": {
+    "execute": "Student execute",
+    "max": "Max student",
+    "min": "Min student"
+  },
+  "teacher": {
+    "guide": "Guide teacher",
+    "guideSelect": "Select guide teacher"
+  },
+  "thesisTask": "Thesis task",
+  "topic": {
+    "code": "Topic code",
+    "create": "Create topic",
+    "name": "Topic name",
+    "update": "Update topic"
+  }
 }
