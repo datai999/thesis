@@ -1,6 +1,6 @@
-import { Button, Card, Layout, Modal, Text } from "@ui-kitten/components";
+import { Button, Layout, Modal, Text } from "@ui-kitten/components";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
 import i18n from "utils/i18n";
 
@@ -18,19 +18,15 @@ const MyModal = ({ visible, header, submit, cancel, body }) => {
       onBackdropPress={animationEnd}
     >
       <Animatable.View
-        style={{ flex: 1 }}
+        style={{ flex: 1, backgroundColor: "white" }}
         animation="zoomIn"
         ref={animationRef}
       >
-        <Card
-          style={styles.card}
-          header={() => <Text style={styles.headerText}>{i18n.t(header)}</Text>}
-          footer={() => (
-            <BottomCard animationEnd={animationEnd} submit={submit} />
-          )}
-        >
+        <Text style={styles.headerText}>{i18n.t(header)}</Text>
+        <ScrollView contentContainerStyle={{ paddingHorizontal: 24 }}>
           {body()}
-        </Card>
+        </ScrollView>
+        <BottomCard animationEnd={animationEnd} submit={submit} />
       </Animatable.View>
     </Modal>
   );
@@ -57,13 +53,10 @@ const BottomCard = ({ animationEnd, submit }) => {
 const styles = StyleSheet.create({
   modal: {
     width: "50%",
+    maxHeight: "90%",
   },
   backdrop: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  card: {
-    flex: 1,
-    justifyContent: "space-between",
   },
   headerText: {
     margin: 5,
