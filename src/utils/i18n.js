@@ -17,8 +17,9 @@ i18n
   .use(reactI18nextModule) // passes i18n down to react-i18next
   .init({
     resources,
-    lng: "en",
+    lng: "vi",
     fallbackLng: "en",
+    keySeparator: ".",
     interpolation: {
       escapeValue: false, // react already safes from xss
     },

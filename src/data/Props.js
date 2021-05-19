@@ -27,8 +27,14 @@ const Props = {
     placeholder: "topic.code",
   },
   topicName: {
-    label: "topic.name",
-    placeholder: "topic.name",
+    en: {
+      label: "topic.name",
+      placeholder: "topic.name_ph_en",
+    },
+    vi: {
+      label: "topic.name",
+      placeholder: "topic.name_ph_vi",
+    },
   },
   minStudentTake: {
     label: "student.min",

@@ -28,6 +28,8 @@
     "code": "Mã đề tài",
     "create": "Tạo mới đề tài",
     "name": "Tên đề tài",
+    "name_ph_en": "Nhập tên đề tài bằng tiếng anh",
+    "name_ph_vi": "Nhập tên đề tài",
     "update": "Cập nhật đề tài"
   }
 }

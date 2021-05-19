@@ -70,7 +70,7 @@ const TopicCreateLayout = (header, data, setData) => {
   const inputProps = (field, basePath = "topic") => {
     return {
       callBack: (value) => setValue(field, basePath, value),
-      ...Props[field],
+      ..._.get(Props, field),
       value: getValue(field, basePath),
     };
   };
@@ -130,8 +130,14 @@ const TopicCreateLayout = (header, data, setData) => {
         style={{ maxHeight: "100%" }}
         contentContainerStyle={{ paddingHorizontal: 24 }}
       >
-        <MyInput {...inputProps("topicName")} />
-        {multiLang > 0 && <MyInput {...inputProps("topicName")} />}
+        <MyInput {...inputProps("topicName." + i18n.language)} />
+        {multiLang > 0 && (
+          <MyInput
+            {...inputProps(
+              "topicName." + (i18n.language == "en" ? "vi" : "en")
+            )}
+          />
+        )}
 
         <Layout style={styles.row}>
           <Layout style={styles.left}>

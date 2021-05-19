@@ -28,6 +28,8 @@
     "code": "Topic code",
     "create": "Create topic",
     "name": "Topic name",
+    "name_ph_en": "Type topic name",
+    "name_ph_vi": "Type topic name in Vietnamese",
     "update": "Update topic"
   }
 }
