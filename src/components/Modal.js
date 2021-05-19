@@ -52,8 +52,8 @@ const BottomCard = ({ animationEnd, submit }) => {
 
 const styles = StyleSheet.create({
   modal: {
-    width: "50%",
-    maxHeight: "90%",
+    maxWidth: "100%",
+    maxHeight: "100%%",
   },
   backdrop: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
