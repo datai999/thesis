@@ -20,9 +20,8 @@ const Routes = () => {
     const fetch = async () => {
       try {
         const response = await ConstApi.getTypes();
-        response.forEach((e) => {
-          Props[e.type].arrId = e.arrId;
-          Props[e.type].arrValue = e.arrValue;
+        Object.keys(response).forEach((e) => {
+          Props[e].arrValue = response[e];
         });
       } catch (error) {
         console.log(error);
@@ -56,7 +55,7 @@ const Routes = () => {
           <MenuItem title="Assign" accessoryLeft={PersonDoneIcon} />
           <MenuItem title="Setting" accessoryLeft={SettingIcon} />
         </Menu>
-        <Text style={{ textAlign: "center", margin: 5 }}>Version:5.16.22</Text>
+        <Text style={{ textAlign: "center", margin: 5 }}>Version:5.19.22</Text>
       </Layout>
 
       <Layout style={styles.content}>{selectScreen()}</Layout>

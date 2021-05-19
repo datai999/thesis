@@ -1,11 +1,11 @@
 const Props = {
   educationMethod: {
-    label: "Education method",
+    label: "educationMethod",
     placeholder: "Select education method",
     arrValue: ["Formal", "CLC", "Link"],
   },
   semester: {
-    label: "Semester",
+    label: "semester",
     placeholder: "Select semester",
     arrValue: Array(3)
       .fill()
@@ -19,65 +19,65 @@ const Props = {
       ),
   },
   guideTeacher: {
-    label: "Guide teacher",
-    placeholder: "Select guide teacher",
+    label: "teacher.guide",
+    placeholder: "teacher.guideSelect",
   },
   topicCode: {
-    label: "Topic code",
-    placeholder: "Topic code",
+    label: "topic.code",
+    placeholder: "topic.code",
   },
   topicName: {
-    label: "Topic name",
-    placeholder: "Topic name",
+    label: "topic.name",
+    placeholder: "topic.name",
   },
   minStudentTake: {
-    label: "Min Student",
+    label: "student.min",
     placeholder: "Select",
     arrValue: Array.from({ length: 5 }, (v, k) => k + 1),
   },
   maxStudentTake: {
-    label: "Max Student",
+    label: "student.max",
     placeholder: "Select",
     arrValue: Array.from({ length: 5 }, (v, k) => k + 1),
   },
   students: {
-    label: "Student",
+    label: "student.execute",
     placeholder: "Select student",
   },
   mainTask: {
-    label: "Main task",
+    label: "mainTask",
     multiline: true,
     numberOfLines: 3,
   },
   thesisTask: {
-    label: "Thesis task",
+    label: "thesisTask",
     multiline: true,
     numberOfLines: 3,
   },
   description: {
-    label: "Description",
+    label: "description",
     multiline: true,
     numberOfLines: 5,
   },
   name: {
-    label: "Name",
+    label: "name",
     placeholder: "Type name",
   },
   email: {
-    label: "Email",
+    label: "email",
     placeholder: "HCMUT email",
   },
   phone: {
-    label: "Phone",
+    label: "phone",
     placeholder: "Type phone",
   },
   degree: {
-    label: "Degree",
+    label: "degree",
     placeholder: "Select degree",
     arrValue: ["Bachelor", "Master", "Doctor", "Professor"],
   },
   subjectDepartment: {
-    label: "Subject Department",
+    label: "subjectDepartment",
     placeholder: "Select subject department",
     arrValue: [
       "Information System",
@@ -88,12 +88,12 @@ const Props = {
     ],
   },
   major: {
-    label: "Major",
+    label: "major",
     placeholder: "Select major",
     arrValue: ["Computer Science", "Computer Engineering"],
   },
   studentCode: {
-    label: "Code",
+    label: "code",
     placeholder: "Type student code",
   },
 };

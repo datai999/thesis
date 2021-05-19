@@ -1,4 +1,4 @@
-import { Button, Layout } from "@ui-kitten/components";
+import { Button, Layout, Text } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
 import TopicAssignApi from "api/topic/TopicAssignApi";
@@ -11,7 +11,9 @@ import { MyMultiSelect, MySelect } from "components/Select";
 import Props from "data/Props";
 import _ from "lodash";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
+import { IconButton } from "react-native-paper";
+import i18n from "utils/i18n";
 
 const form = {
   guideTeacher: [],
@@ -19,14 +21,21 @@ const form = {
 };
 
 const TopicCreateForm = {
-  header: "Create topic",
-  body: () => TopicCreateLayout(),
-  submit: () => TopicAssignApi.create(form),
+  body: (
+    header = "topic.create",
+    data,
+    setData = (newData) => {
+      return;
+    }
+  ) => TopicCreateLayout(header, data, setData),
+  submit: (formSubmit = form) => TopicAssignApi.create(formSubmit),
 };
 
-const TopicCreateLayout = () => {
+const TopicCreateLayout = (header, data, setData) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
   const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
+  const [multiLang, setMultiLang] = React.useState(0);
+
   const modalTeacherCreateProps = {
     ...TeacherCreateForm,
     visible: teacherCreateVisible,
@@ -41,6 +50,13 @@ const TopicCreateLayout = () => {
   const setValue = (field, basePath, value) => {
     let path = basePath == "topic" ? basePath + "." + field : basePath;
     _.set(form, path, value);
+    let newData = _.set(data, path, value);
+    setData(newData);
+  };
+
+  const getValue = (field, basePath) => {
+    let path = basePath == "topic" ? basePath + "." + field : basePath;
+    return _.get(data, path);
   };
 
   const selectProps = (field, basePath = "topic") => {
@@ -48,12 +64,14 @@ const TopicCreateLayout = () => {
       field,
       callBack: (value) => setValue(field, basePath, value),
       ...Props[field],
+      value: getValue(field, basePath),
     };
   };
   const inputProps = (field, basePath = "topic") => {
     return {
       callBack: (value) => setValue(field, basePath, value),
       ...Props[field],
+      value: getValue(field, basePath),
     };
   };
   const autocompleteProps = (type) => {
@@ -83,51 +101,65 @@ const TopicCreateLayout = () => {
 
   const searchPerson = async (type, value) => {
     try {
-      const response =
-        type == "teacher"
-          ? await TeacherApi.search(value)
-          : await StudentApi.search(value);
-      return response;
+      return type == "teacher"
+        ? await TeacherApi.search(value)
+        : await StudentApi.search(value);
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <Layout style={styles.container}>
+    <Layout style={{ flex: 1 }}>
       <MyModal {...modalTeacherCreateProps} />
       <MyModal {...modalStudentCreateProps} />
 
-      <Layout style={styles.row}>
-        <Layout style={styles.left}>
-          <MySelect {...selectProps("educationMethod")} />
-          <MySelect {...selectProps("semester")} />
-          <MyMultiSelect {...selectProps("major")} />
-          <MyAutocompleteTag {...autocompleteProps("teacher")} />
-        </Layout>
-        <Layout style={styles.right}>
-          <MyInput {...inputProps("topicCode")} />
-          <MyInput {...inputProps("topicName")} />
-          <Layout style={{ flexDirection: "row" }}>
-            <MySelect {...selectProps("minStudentTake")} style={styles.left} />
-            <MySelect {...selectProps("maxStudentTake")} style={styles.right} />
+      <Layout
+        style={{
+          flexDirection: "row",
+          marginBottom: 15,
+        }}
+      >
+        <IconButton
+          icon="translate"
+          onPress={() => setMultiLang(multiLang + 1)}
+        />
+        <Text style={styles.headerText}>{i18n.t(header)}</Text>
+      </Layout>
+      <ScrollView
+        style={{ maxHeight: "100%" }}
+        contentContainerStyle={{ paddingHorizontal: 24 }}
+      >
+        <MyInput {...inputProps("topicName")} />
+        {multiLang > 0 && <MyInput {...inputProps("topicName")} />}
+
+        <Layout style={styles.row}>
+          <Layout style={styles.left}>
+            <MySelect {...selectProps("educationMethod")} />
+            <MySelect {...selectProps("semester")} />
+            <MyMultiSelect {...selectProps("major")} />
+            <MyAutocompleteTag {...autocompleteProps("teacher")} />
           </Layout>
-          <MyAutocompleteTag {...autocompleteProps("students")} />
+          <Layout style={styles.right}>
+            <MySelect {...selectProps("minStudentTake")} />
+            <MySelect {...selectProps("maxStudentTake")} />
+            <MyAutocompleteTag {...autocompleteProps("students")} />
+            <MyInput {...inputProps("topicCode")} />
+          </Layout>
         </Layout>
-      </Layout>
-      <Layout style={styles.row}>
-        <MyInput {...inputProps("mainTask")} style={styles.left} />
-        <MyInput {...inputProps("thesisTask")} style={styles.right} />
-      </Layout>
-      <MyInput {...inputProps("description")} style={styles.description} />
+
+        <MyInput {...inputProps("mainTask")} />
+        {multiLang > 0 && <MyInput {...inputProps("mainTask")} />}
+        <MyInput {...inputProps("thesisTask")} />
+        {multiLang > 0 && <MyInput {...inputProps("thesisTask")} />}
+
+        <MyInput {...inputProps("description")} style={styles.description} />
+      </ScrollView>
     </Layout>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   row: {
     flex: 1,
     flexDirection: "row",
@@ -140,6 +172,13 @@ const styles = StyleSheet.create({
   right: {
     flex: 1,
     marginLeft: 10,
+  },
+  headerText: {
+    margin: 5,
+    marginLeft: "25%",
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 30,
   },
   description: {},
   tagList: {

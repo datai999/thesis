@@ -1,16 +1,33 @@
 {
-  "origin": {
-    "new": "NEW",
-    "filter&Search": "Filter and Search",
-    "total": "Total",
-    "page": "Page",
-    "record": "Record"
-  },
+  "description": "Description",
   "educationMethod": "Education method",
-  "topicCode": "Code",
-  "semester": "Semester",
+  "mainTask": "Main task",
   "major": "Major",
-  "topicName": "Topic Name",
-  "guideTeacher": "Guide Teacher",
-  "students": "Students"
+  "origin": {
+    "create": "Create",
+    "filter&Search": "Filter and Search",
+    "new": "NEW",
+    "page": "Page",
+    "record": "Record",
+    "topic": "Topic",
+    "total": "Total",
+    "update": "Update"
+  },
+  "semester": "Semester",
+  "student": {
+    "execute": "Student execute",
+    "max": "Max student",
+    "min": "Min student"
+  },
+  "teacher": {
+    "guide": "Guide teacher",
+    "guideSelect": "Select guide teacher"
+  },
+  "thesisTask": "Thesis task",
+  "topic": {
+    "code": "Topic code",
+    "create": "Create topic",
+    "name": "Topic name",
+    "update": "Update topic"
+  }
 }

@@ -1,9 +1,9 @@
-import { Button, Card, Layout, Modal, Text } from "@ui-kitten/components";
+import { Button, Layout, Modal } from "@ui-kitten/components";
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
 
-const MyModal = ({ visible, header, submit, cancel, body }) => {
+const MyModal = ({ visible, submit, cancel, body }) => {
   const animationRef = React.useRef();
 
   const animationEnd = () =>
@@ -17,19 +17,12 @@ const MyModal = ({ visible, header, submit, cancel, body }) => {
       onBackdropPress={animationEnd}
     >
       <Animatable.View
-        style={{ flex: 1 }}
+        style={{ flex: 1, backgroundColor: "white" }}
         animation="zoomIn"
         ref={animationRef}
       >
-        <Card
-          style={styles.card}
-          header={() => <Text style={styles.headerText}>{header}</Text>}
-          footer={() => (
-            <BottomCard animationEnd={animationEnd} submit={submit} />
-          )}
-        >
-          {body()}
-        </Card>
+        {body()}
+        <BottomCard animationEnd={animationEnd} submit={submit} />
       </Animatable.View>
     </Modal>
   );
@@ -55,20 +48,11 @@ const BottomCard = ({ animationEnd, submit }) => {
 
 const styles = StyleSheet.create({
   modal: {
-    width: "50%",
+    maxWidth: "100%",
+    maxHeight: "100%",
   },
   backdrop: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  card: {
-    flex: 1,
-    justifyContent: "space-between",
-  },
-  headerText: {
-    margin: 5,
-    fontWeight: "bold",
-    textAlign: "center",
-    fontSize: 30,
   },
   popupBot: {
     flexDirection: "row",
