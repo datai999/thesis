@@ -104,7 +104,7 @@ const Props = {
   },
   major: {
     label: "major",
-    placeholder: "Select major",
+    placeholder: "majorSelect",
     arrValue: ["Computer Science", "Computer Engineering"],
   },
   studentCode: {
