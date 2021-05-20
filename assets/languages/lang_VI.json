@@ -1,8 +1,10 @@
 {
   "description": "Mô tả",
   "educationMethod": "Phương thức đào tạo",
+  "educationMethodSelect": "Chọn phương thức đào tạo",
   "mainTask": "Nhiệm vụ chính",
   "major": "Chuyên ngành",
+  "majorSelect": "Chọn chuyên nghành",
   "origin": {
     "create": "Tạo",
     "filter&Search": "Lọc và Tìm kiếm",
@@ -14,10 +16,12 @@
     "update": "Cập nhật"
   },
   "semester": "Học kỳ",
+  "semesterSelect": "Chọn học kỳ",
   "student": {
     "execute": "Sinh viên thực hiện",
     "max": "Số sinh viên tối đa",
-    "min": "Số sinh viên tối thiểu"
+    "min": "Số sinh viên tối thiểu",
+    "typeName": "Nhập tên sinh viên"
   },
   "teacher": {
     "guide": "Giảng viên hướng dẫn",
@@ -30,6 +34,8 @@
     "name": "Tên đề tài",
     "name_ph_en": "Nhập tên đề tài bằng tiếng anh",
     "name_ph_vi": "Nhập tên đề tài",
+    "task_main_ph_en": "Nhập nhiệm vụ chính bằn tiếng anh",
+    "task_main_ph_vi": "Nhập nhiệm vụ chính bằng tiếng việt",
     "update": "Cập nhật đề tài"
   }
 }

@@ -1,12 +1,12 @@
 const Props = {
   educationMethod: {
     label: "educationMethod",
-    placeholder: "Select education method",
+    placeholder: "educationMethodSelect",
     arrValue: ["Formal", "CLC", "Link"],
   },
   semester: {
     label: "semester",
-    placeholder: "Select semester",
+    placeholder: "semesterSelect",
     arrValue: Array(3)
       .fill()
       .map(
@@ -48,17 +48,26 @@ const Props = {
   },
   students: {
     label: "student.execute",
-    placeholder: "Select student",
+    placeholder: "student.typeName",
   },
   mainTask: {
-    label: "mainTask",
-    multiline: true,
-    numberOfLines: 3,
+    en: {
+      label: "mainTask",
+      placeholder: "topic.task_main_ph_en",
+      multiline: true,
+      numberOfLines: 5,
+    },
+    vi: {
+      label: "mainTask",
+      placeholder: "topic.task_main_ph_vi",
+      multiline: true,
+      numberOfLines: 5,
+    },
   },
   thesisTask: {
     label: "thesisTask",
     multiline: true,
-    numberOfLines: 3,
+    numberOfLines: 5,
   },
   description: {
     label: "description",

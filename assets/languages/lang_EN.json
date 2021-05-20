@@ -1,8 +1,10 @@
 {
   "description": "Description",
   "educationMethod": "Education method",
+  "educationMethodSelect": "Select education method",
   "mainTask": "Main task",
   "major": "Major",
+  "majorSelect": "Select major",
   "origin": {
     "create": "Create",
     "filter&Search": "Filter and Search",
@@ -14,10 +16,12 @@
     "update": "Update"
   },
   "semester": "Semester",
+  "semesterSelect": "Select semester",
   "student": {
     "execute": "Student execute",
     "max": "Max student",
-    "min": "Min student"
+    "min": "Min student",
+    "typeName": "Type student name"
   },
   "teacher": {
     "guide": "Guide teacher",
@@ -30,6 +34,8 @@
     "name": "Topic name",
     "name_ph_en": "Type topic name",
     "name_ph_vi": "Type topic name in Vietnamese",
+    "task_main_ph_en": "Type main task",
+    "task_main_ph_vi": "Type main task in Vietnamese",
     "update": "Update topic"
   }
 }

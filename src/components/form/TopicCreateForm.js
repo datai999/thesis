@@ -154,8 +154,12 @@ const TopicCreateLayout = (header, data, setData) => {
           </Layout>
         </Layout>
 
-        <MyInput {...inputProps("mainTask")} />
-        {multiLang > 0 && <MyInput {...inputProps("mainTask")} />}
+        <MyInput {...inputProps("mainTask." + i18n.language)} />
+        {multiLang > 0 && (
+          <MyInput
+            {...inputProps("mainTask." + (i18n.language == "en" ? "vi" : "en"))}
+          />
+        )}
         <MyInput {...inputProps("thesisTask")} />
         {multiLang > 0 && <MyInput {...inputProps("thesisTask")} />}
 
