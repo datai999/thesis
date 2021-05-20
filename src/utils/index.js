@@ -7,8 +7,12 @@ function getRenderText(obj) {
     case "string":
     case "number":
       return obj;
-    case "object":
-      return obj[i18n.language] ?? obj?.name ?? obj?.value;
+    case "object": {
+      if (obj[i18n.language] != null) return obj[i18n.language];
+      if (typeof obj.name == "object") return obj.name[i18n.language];
+      if (typeof obj.value == "object") return obj.value[i18n.language];
+      return "";
+    }
     default:
       return null;
   }
