@@ -1,5 +1,7 @@
 {
   "description": "Mô tả",
+  "description_ph_en": "Nhập mô tả bằng tiếng anh",
+  "description_ph_vi": "Nhập mô tả",
   "educationMethod": "Phương thức đào tạo",
   "educationMethodSelect": "Chọn phương thức đào tạo",
   "mainTask": "Nhiệm vụ chính",
@@ -36,6 +38,8 @@
     "name_ph_vi": "Nhập tên đề tài",
     "task_main_ph_en": "Nhập nhiệm vụ chính bằn tiếng anh",
     "task_main_ph_vi": "Nhập nhiệm vụ chính bằng tiếng việt",
+    "task_thesis_ph_en": "Nhập nhiệm vụ luận văn bằn tiếng anh",
+    "task_thesis_ph_vi": "Nhập nhiệm vụ luận văn bằng tiếng việt",
     "update": "Cập nhật đề tài"
   }
 }

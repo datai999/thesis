@@ -160,10 +160,26 @@ const TopicCreateLayout = (header, data, setData) => {
             {...inputProps("mainTask." + (i18n.language == "en" ? "vi" : "en"))}
           />
         )}
-        <MyInput {...inputProps("thesisTask")} />
-        {multiLang > 0 && <MyInput {...inputProps("thesisTask")} />}
+        <MyInput {...inputProps("thesisTask." + i18n.language)} />
+        {multiLang > 0 && (
+          <MyInput
+            {...inputProps(
+              "thesisTask." + (i18n.language == "en" ? "vi" : "en")
+            )}
+          />
+        )}
 
-        <MyInput {...inputProps("description")} style={styles.description} />
+        <MyInput
+          {...inputProps("description." + i18n.language)}
+          style={styles.description}
+        />
+        {multiLang > 0 && (
+          <MyInput
+            {...inputProps(
+              "description." + (i18n.language == "en" ? "vi" : "en")
+            )}
+          />
+        )}
       </ScrollView>
     </Layout>
   );

@@ -1,5 +1,7 @@
 {
   "description": "Description",
+  "description_ph_en": "Type description",
+  "description_ph_vi": "Type description in Vietnamese",
   "educationMethod": "Education method",
   "educationMethodSelect": "Select education method",
   "mainTask": "Main task",
@@ -36,6 +38,8 @@
     "name_ph_vi": "Type topic name in Vietnamese",
     "task_main_ph_en": "Type main task",
     "task_main_ph_vi": "Type main task in Vietnamese",
+    "task_thesis_ph_en": "Type thesis task",
+    "task_thesis_ph_vi": "Type thesis task in Vietnamese",
     "update": "Update topic"
   }
 }
