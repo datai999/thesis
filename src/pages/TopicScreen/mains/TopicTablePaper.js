@@ -8,13 +8,27 @@ import { getRenderText } from "utils";
 import i18n from "utils/i18n";
 
 const headerData = {
-  topicCode: {},
-  semester: {},
-  major: {},
-  educationMethod: {},
-  topicName: {},
-  guideTeacher: {},
-  students: {},
+  topicCode: {
+    label: "topic.code",
+  },
+  semester: {
+    label: "semester",
+  },
+  major: {
+    label: "major",
+  },
+  educationMethod: {
+    label: "educationMethod",
+  },
+  topicName: {
+    label: "topic.name",
+  },
+  guideTeacher: {
+    label: "teacher.guide",
+  },
+  students: {
+    label: "student.execute",
+  },
 };
 
 const sizeRank = [5, 10, 20, 30, 50, 100];
@@ -84,7 +98,7 @@ const TopicTablePaper = ({ data, page, callBack }) => {
         {Object.keys(headerData).map((header) => {
           return (
             <DataTable.Title key={header}>
-              <Text>{i18n.t(header)}</Text>
+              <Text>{i18n.t(headerData[header].label)}</Text>
             </DataTable.Title>
           );
         })}
