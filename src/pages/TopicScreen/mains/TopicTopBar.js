@@ -8,7 +8,7 @@ import i18n from "utils/i18n";
 
 const TopicTopBar = ({ addNewTopic }) => {
   const [value, setValue] = React.useState("");
-  const [topicCreateVisible, setTopicCreateVisible] = React.useState(true);
+  const [topicCreateVisible, setTopicCreateVisible] = React.useState(false);
 
   const modalTopicCreateProps = {
     visible: topicCreateVisible,
