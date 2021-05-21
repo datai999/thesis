@@ -147,10 +147,10 @@ const TopicCreateLayout = (header, data, setData) => {
             <MyAutocompleteTag {...autocompleteProps("teacher")} />
           </Layout>
           <Layout style={styles.right}>
+            <MyInput {...inputProps("topicCode")} />
             <MySelect {...selectProps("minStudentTake")} />
             <MySelect {...selectProps("maxStudentTake")} />
             <MyAutocompleteTag {...autocompleteProps("students")} />
-            <MyInput {...inputProps("topicCode")} />
           </Layout>
         </Layout>
 
