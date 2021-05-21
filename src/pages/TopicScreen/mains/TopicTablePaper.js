@@ -61,11 +61,12 @@ const TopicTablePaper = ({ data, page, callBack }) => {
     ...TopicCreateForm,
     visible: topicUpdateVisible,
     cancel: () => setTopicUpdateVisible(false),
-    body: () => TopicCreateForm.body("topic.update", currentRow, setCurrenRow),
+    body: () => TopicCreateForm.body("topic.update", currentRow),
     submit: async () => {
       try {
-        let response = await TopicCreateForm.submit(currentRow);
-        console.log(response);
+        let response = await TopicCreateForm.submit();
+        let index = data.map((x) => x.id).indexOf(response.id);
+        data[index] = response;
         return response;
       } catch (error) {
         console.log(error);

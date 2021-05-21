@@ -15,13 +15,12 @@ import { ScrollView, StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
 import i18n from "utils/i18n";
 
-const form = {
-  guideTeacher: [],
-  executeStudent: [],
-};
+let form = {};
 
 const TopicCreateForm = {
   body: (header = "topic.create", data) => {
+    if (data != null) form = _.cloneDeep(data);
+    else form = {};
     return <TopicCreateLayout header={header} data={data} />;
   },
   submit: (formSubmit = form) => TopicAssignApi.create(formSubmit),
