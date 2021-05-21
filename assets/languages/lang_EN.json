@@ -26,10 +26,14 @@
   "semester": "Semester",
   "semesterSelect": "Select semester",
   "student": {
+    "code": "Student code",
+    "code_type": "Type student code",
+    "create": "Create student",
     "execute": "Student execute",
     "max": "Max student",
     "min": "Min student",
-    "typeName": "Type student name"
+    "typeName": "Type student name",
+    "update": "Update student"
   },
   "subjectDepartment": "Subject department",
   "subjectDepartment_select": "Select subject department",

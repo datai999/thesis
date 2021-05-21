@@ -126,8 +126,8 @@ const Props = {
     arrValue: ["Computer Science", "Computer Engineering"],
   },
   studentCode: {
-    label: "code",
-    placeholder: "Type student code",
+    label: "student.code",
+    placeholder: "student.code_type",
   },
 };
 

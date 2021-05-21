@@ -26,10 +26,14 @@
   "semester": "Học kỳ",
   "semesterSelect": "Chọn học kỳ",
   "student": {
+    "code": "Mã số sinh viên",
+    "code_type": "Nhập mã số sinh viên",
+    "create": "Thêm mới sinh viên",
     "execute": "Sinh viên thực hiện",
     "max": "Số sinh viên tối đa",
     "min": "Số sinh viên tối thiểu",
-    "typeName": "Nhập tên sinh viên"
+    "typeName": "Nhập tên sinh viên",
+    "update": "Cập nhật thông tin sinh viên"
   },
   "subjectDepartment": "Bộ môn",
   "subjectDepartment_select": "Chọn bộ môn",
