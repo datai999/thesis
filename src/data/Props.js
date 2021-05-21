@@ -22,6 +22,10 @@ const Props = {
     label: "teacher.guide",
     placeholder: "teacher.guideSelect",
   },
+  reviewTeacher: {
+    label: "teacher.review",
+    placeholder: "teacher.review_select",
+  },
   topicCode: {
     label: "topic.code",
     placeholder: "topic.code",

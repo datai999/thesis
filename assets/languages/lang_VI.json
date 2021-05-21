@@ -41,7 +41,9 @@
     "create": "Thêm giảng viên",
     "guide": "Giảng viên hướng dẫn",
     "guideSelect": "Chọn giảng viên hướng dẫn",
-    "update": "Cập nhật thông tin giảng viên"
+    "update": "Cập nhật thông tin giảng viên",
+    "review": "Giảng viên phản biện",
+    "review_select": "Chọn giảng viên phản biện"
   },
   "thesisTask": "Nhiệm vụ giai đoạn luận văn",
   "topic": {

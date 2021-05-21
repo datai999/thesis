@@ -41,6 +41,8 @@
     "create": "Create teacher",
     "guide": "Guide teacher",
     "guideSelect": "Select guide teacher",
+    "review": "Review teacher",
+    "review_select": "Select review teacher",
     "update": "Update teacher"
   },
   "thesisTask": "Thesis task",

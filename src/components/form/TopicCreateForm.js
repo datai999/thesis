@@ -71,11 +71,9 @@ const TopicCreateLayout = ({ header, ...props }) => {
       value: getValue(field, basePath),
     };
   };
-  const autocompleteProps = (type) => {
-    let field = "guideTeacher";
+  const autocompleteProps = (type, field) => {
     let basePath = field;
     if (type != "teacher") {
-      field = "students";
       basePath = "executeStudent";
     }
     return {
@@ -141,13 +139,18 @@ const TopicCreateLayout = ({ header, ...props }) => {
             <MySelect {...selectProps("educationMethod")} />
             <MySelect {...selectProps("semester")} />
             <MyMultiSelect {...selectProps("major")} />
-            <MyAutocompleteTag {...autocompleteProps("teacher")} />
+            <MyAutocompleteTag
+              {...autocompleteProps("teacher", "guideTeacher")}
+            />
+            <MyAutocompleteTag
+              {...autocompleteProps("teacher", "reviewTeacher")}
+            />
           </Layout>
           <Layout style={styles.right}>
             <MyInput {...inputProps("topicCode")} />
             <MySelect {...selectProps("minStudentTake")} />
             <MySelect {...selectProps("maxStudentTake")} />
-            <MyAutocompleteTag {...autocompleteProps("students")} />
+            <MyAutocompleteTag {...autocompleteProps("students", "students")} />
           </Layout>
         </Layout>
 
