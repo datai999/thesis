@@ -11,6 +11,8 @@ function getRenderText(obj) {
       if (obj[i18n.language] != null) return obj[i18n.language];
       if (typeof obj.name == "object") return obj.name[i18n.language];
       if (typeof obj.value == "object") return obj.value[i18n.language];
+      if (obj.name != null) return obj.name;
+      if (obj.value != null) return obj.value;
       return "";
     }
     default:
