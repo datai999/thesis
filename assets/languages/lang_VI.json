@@ -26,8 +26,10 @@
     "typeName": "Nhập tên sinh viên"
   },
   "teacher": {
+    "create": "Thêm giảng viên",
     "guide": "Giảng viên hướng dẫn",
-    "guideSelect": "Chọn giảng viên hướng dẫn"
+    "guideSelect": "Chọn giảng viên hướng dẫn",
+    "update": "Cập nhật thông tin giảng viên"
   },
   "thesisTask": "Nhiệm vụ giai đoạn luận văn",
   "topic": {

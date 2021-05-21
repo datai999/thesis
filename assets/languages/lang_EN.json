@@ -26,8 +26,10 @@
     "typeName": "Type student name"
   },
   "teacher": {
+    "create": "Create teacher",
     "guide": "Guide teacher",
-    "guideSelect": "Select guide teacher"
+    "guideSelect": "Select guide teacher",
+    "update": "Update teacher"
   },
   "thesisTask": "Thesis task",
   "topic": {
