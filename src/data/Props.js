@@ -93,25 +93,25 @@ const Props = {
     },
   },
   name: {
-    label: "name",
-    placeholder: "Type name",
+    label: "fullName",
+    placeholder: "fullName_ph",
   },
   email: {
-    label: "email",
+    label: "Email",
     placeholder: "HCMUT email",
   },
   phone: {
     label: "phone",
-    placeholder: "Type phone",
+    placeholder: "phone_type",
   },
   degree: {
     label: "degree",
-    placeholder: "Select degree",
+    placeholder: "degree_select",
     arrValue: ["Bachelor", "Master", "Doctor", "Professor"],
   },
   subjectDepartment: {
     label: "subjectDepartment",
-    placeholder: "Select subject department",
+    placeholder: "subjectDepartment_select",
     arrValue: [
       "Information System",
       "Software Technology",

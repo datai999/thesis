@@ -1,20 +1,26 @@
-import { Layout } from "@ui-kitten/components";
+import { Layout, Text } from "@ui-kitten/components";
 import TeacherApi from "api/person/TeacherApi";
 import { MyInput } from "components/Input";
 import { MySelect } from "components/Select";
 import Props from "data/Props";
 import React from "react";
 import { StyleSheet } from "react-native";
+import i18n from "utils/i18n";
 
 const form = {};
 
 const TeacherCreateForm = {
-  header: "Create new teacher",
-  body: () => TeacherCreateLayout(),
-  submit: () => TeacherApi.create(form),
+  body: (
+    header = "teacher.create",
+    data,
+    setData = (newData) => {
+      console.log(newData);
+    }
+  ) => TeacherCreateLayout(header, data, setData),
+  submit: (formSubmit = form) => TeacherApi.create(formSubmit),
 };
 
-const TeacherCreateLayout = () => {
+const TeacherCreateLayout = (header, data, setData) => {
   const setValue = (field, value) => (form[field] = value);
   const inputProps = (field) => {
     return {
@@ -33,6 +39,7 @@ const TeacherCreateLayout = () => {
   };
   return (
     <Layout style={styles.container}>
+      <Text style={styles.headerText}>{i18n.t(header)}</Text>
       <Layout style={styles.row}>
         <Layout style={styles.left}>
           <MyInput {...inputProps("name")} />
@@ -51,6 +58,7 @@ const TeacherCreateLayout = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: 12,
   },
   row: {
     flex: 1,
@@ -64,6 +72,12 @@ const styles = StyleSheet.create({
   right: {
     flex: 1,
     marginLeft: 10,
+  },
+  headerText: {
+    margin: 5,
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 30,
   },
 });
 

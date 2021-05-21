@@ -1,9 +1,13 @@
 {
+  "degree": "Degree",
+  "degree_select": "Select degree",
   "description": "Description",
   "description_ph_en": "Type description",
   "description_ph_vi": "Type description in Vietnamese",
   "educationMethod": "Education method",
   "educationMethodSelect": "Select education method",
+  "fullName": "Full name",
+  "fullName_ph": "Type full name",
   "mainTask": "Main task",
   "major": "Major",
   "majorSelect": "Select major",
@@ -17,6 +21,8 @@
     "total": "Total",
     "update": "Update"
   },
+  "phone": "Phone number",
+  "phone_type": "Type phone number",
   "semester": "Semester",
   "semesterSelect": "Select semester",
   "student": {
@@ -25,6 +31,8 @@
     "min": "Min student",
     "typeName": "Type student name"
   },
+  "subjectDepartment": "Subject department",
+  "subjectDepartment_select": "Select subject department",
   "teacher": {
     "create": "Create teacher",
     "guide": "Guide teacher",

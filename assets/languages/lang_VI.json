@@ -1,9 +1,13 @@
 {
+  "degree": "Học vị",
+  "degree_select": "Chọn học vị",
   "description": "Mô tả",
   "description_ph_en": "Nhập mô tả bằng tiếng anh",
   "description_ph_vi": "Nhập mô tả",
   "educationMethod": "Phương thức đào tạo",
   "educationMethodSelect": "Chọn phương thức đào tạo",
+  "fullName": "Họ và tên",
+  "fullName_ph": "Nhập họ và tên",
   "mainTask": "Nhiệm vụ chính",
   "major": "Chuyên ngành",
   "majorSelect": "Chọn chuyên nghành",
@@ -17,6 +21,8 @@
     "total": "Tổng trang",
     "update": "Cập nhật"
   },
+  "phone": "Số điện thoại",
+  "phone_type": "Nhập số điện thoại",
   "semester": "Học kỳ",
   "semesterSelect": "Chọn học kỳ",
   "student": {
@@ -25,6 +31,8 @@
     "min": "Số sinh viên tối thiểu",
     "typeName": "Nhập tên sinh viên"
   },
+  "subjectDepartment": "Bộ môn",
+  "subjectDepartment_select": "Chọn bộ môn",
   "teacher": {
     "create": "Thêm giảng viên",
     "guide": "Giảng viên hướng dẫn",
