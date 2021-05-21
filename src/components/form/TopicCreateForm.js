@@ -21,17 +21,20 @@ const form = {
 };
 
 const TopicCreateForm = {
-  body: (header = "topic.create", data) => {
-    return <TopicCreateLayout header={header} data={data} />;
-  },
+  body: (
+    header = "topic.create",
+    data,
+    setData = (newData) => {
+      return;
+    }
+  ) => TopicCreateLayout(header, data, setData),
   submit: (formSubmit = form) => TopicAssignApi.create(formSubmit),
 };
 
-const TopicCreateLayout = ({ header, ...props }) => {
+const TopicCreateLayout = (header, data, setData) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
   const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
   const [multiLang, setMultiLang] = React.useState(0);
-  const [data, setData] = React.useState(props.data);
 
   const modalTeacherCreateProps = {
     ...TeacherCreateForm,
@@ -47,9 +50,8 @@ const TopicCreateLayout = ({ header, ...props }) => {
   const setValue = (field, basePath, value) => {
     let path = basePath == "topic" ? basePath + "." + field : basePath;
     _.set(form, path, value);
-    let nextData = _.cloneDeep(data);
-    _.set(nextData, path, value);
-    setData(nextData);
+    let newData = _.set(data, path, value);
+    setData(newData);
   };
 
   const getValue = (field, basePath) => {
