@@ -1,12 +1,12 @@
 const Props = {
   educationMethod: {
     label: "educationMethod",
-    placeholder: "Select education method",
+    placeholder: "educationMethodSelect",
     arrValue: ["Formal", "CLC", "Link"],
   },
   semester: {
     label: "semester",
-    placeholder: "Select semester",
+    placeholder: "semesterSelect",
     arrValue: Array(3)
       .fill()
       .map(
@@ -22,13 +22,23 @@ const Props = {
     label: "teacher.guide",
     placeholder: "teacher.guideSelect",
   },
+  reviewTeacher: {
+    label: "teacher.review",
+    placeholder: "teacher.review_select",
+  },
   topicCode: {
     label: "topic.code",
     placeholder: "topic.code",
   },
   topicName: {
-    label: "topic.name",
-    placeholder: "topic.name",
+    en: {
+      label: "topic.name",
+      placeholder: "topic.name_ph_en",
+    },
+    vi: {
+      label: "topic.name",
+      placeholder: "topic.name_ph_vi",
+    },
   },
   minStudentTake: {
     label: "student.min",
@@ -42,43 +52,70 @@ const Props = {
   },
   students: {
     label: "student.execute",
-    placeholder: "Select student",
+    placeholder: "student.typeName",
   },
   mainTask: {
-    label: "mainTask",
-    multiline: true,
-    numberOfLines: 3,
+    en: {
+      label: "mainTask",
+      placeholder: "topic.task_main_ph_en",
+      multiline: true,
+      numberOfLines: 5,
+    },
+    vi: {
+      label: "mainTask",
+      placeholder: "topic.task_main_ph_vi",
+      multiline: true,
+      numberOfLines: 5,
+    },
   },
   thesisTask: {
-    label: "thesisTask",
-    multiline: true,
-    numberOfLines: 3,
+    en: {
+      label: "thesisTask",
+      placeholder: "topic.task_thesis_ph_en",
+      multiline: true,
+      numberOfLines: 5,
+    },
+    vi: {
+      label: "thesisTask",
+      placeholder: "topic.task_thesis_ph_vi",
+      multiline: true,
+      numberOfLines: 5,
+    },
   },
   description: {
-    label: "description",
-    multiline: true,
-    numberOfLines: 5,
+    en: {
+      label: "description",
+      placeholder: "description_ph_en",
+      multiline: true,
+      numberOfLines: 5,
+    },
+    vi: {
+      label: "description",
+      placeholder: "description_ph_vi",
+      multiline: true,
+      numberOfLines: 5,
+    },
   },
   name: {
-    label: "name",
-    placeholder: "Type name",
+    label: "fullName",
+    placeholder: "fullName_ph",
   },
   email: {
-    label: "email",
+    label: "Email",
     placeholder: "HCMUT email",
   },
   phone: {
     label: "phone",
-    placeholder: "Type phone",
+    placeholder: "phone_type",
   },
   degree: {
     label: "degree",
-    placeholder: "Select degree",
+    placeholder: "degree_select",
     arrValue: ["Bachelor", "Master", "Doctor", "Professor"],
   },
   subjectDepartment: {
     label: "subjectDepartment",
-    placeholder: "Select subject department",
+    placeholder: "subjectDepartment_select",
     arrValue: [
       "Information System",
       "Software Technology",
@@ -89,12 +126,12 @@ const Props = {
   },
   major: {
     label: "major",
-    placeholder: "Select major",
+    placeholder: "majorSelect",
     arrValue: ["Computer Science", "Computer Engineering"],
   },
   studentCode: {
-    label: "code",
-    placeholder: "Type student code",
+    label: "student.code",
+    placeholder: "student.code_type",
   },
 };
 

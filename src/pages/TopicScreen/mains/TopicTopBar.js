@@ -1,6 +1,6 @@
-import { Button, Input, Layout } from "@ui-kitten/components";
+import { Button, Layout } from "@ui-kitten/components";
 import TopicCreateForm from "components/form/TopicCreateForm";
-import { PlusIcon, SearchIcon } from "components/Icons";
+import { PlusIcon } from "components/Icons";
 import MyModal from "components/Modal";
 import React from "react";
 import { StyleSheet } from "react-native";
@@ -36,13 +36,13 @@ const TopicTopBar = ({ addNewTopic }) => {
       >
         {i18n.t("origin.new")}
       </Button>
-      <Input
+      {/* <Input
         style={styles.input}
         value={value}
         placeholder={i18n.t("origin.filter&Search")}
         accessoryRight={SearchIcon}
         onChangeText={(nextValue) => setValue(nextValue)}
-      />
+      /> */}
 
       <MyModal {...modalTopicCreateProps} />
     </Layout>

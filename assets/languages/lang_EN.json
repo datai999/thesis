@@ -1,8 +1,16 @@
 {
+  "degree": "Degree",
+  "degree_select": "Select degree",
   "description": "Description",
+  "description_ph_en": "Type description",
+  "description_ph_vi": "Type description in Vietnamese",
   "educationMethod": "Education method",
+  "educationMethodSelect": "Select education method",
+  "fullName": "Full name",
+  "fullName_ph": "Type full name",
   "mainTask": "Main task",
   "major": "Major",
+  "majorSelect": "Select major",
   "origin": {
     "create": "Create",
     "filter&Search": "Filter and Search",
@@ -13,21 +21,41 @@
     "total": "Total",
     "update": "Update"
   },
+  "phone": "Phone number",
+  "phone_type": "Type phone number",
   "semester": "Semester",
+  "semesterSelect": "Select semester",
   "student": {
+    "code": "Student code",
+    "code_type": "Type student code",
+    "create": "Create student",
     "execute": "Student execute",
     "max": "Max student",
-    "min": "Min student"
+    "min": "Min student",
+    "typeName": "Type student name",
+    "update": "Update student"
   },
+  "subjectDepartment": "Subject department",
+  "subjectDepartment_select": "Select subject department",
   "teacher": {
+    "create": "Create teacher",
     "guide": "Guide teacher",
-    "guideSelect": "Select guide teacher"
+    "guideSelect": "Select guide teacher",
+    "review": "Review teacher",
+    "review_select": "Select review teacher",
+    "update": "Update teacher"
   },
   "thesisTask": "Thesis task",
   "topic": {
     "code": "Topic code",
     "create": "Create topic",
     "name": "Topic name",
+    "name_ph_en": "Type topic name",
+    "name_ph_vi": "Type topic name in Vietnamese",
+    "task_main_ph_en": "Type main task",
+    "task_main_ph_vi": "Type main task in Vietnamese",
+    "task_thesis_ph_en": "Type thesis task",
+    "task_thesis_ph_vi": "Type thesis task in Vietnamese",
     "update": "Update topic"
   }
 }

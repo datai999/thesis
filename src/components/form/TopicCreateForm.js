@@ -15,26 +15,22 @@ import { ScrollView, StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
 import i18n from "utils/i18n";
 
-const form = {
-  guideTeacher: [],
-  executeStudent: [],
-};
+let form = {};
 
 const TopicCreateForm = {
-  body: (
-    header = "topic.create",
-    data,
-    setData = (newData) => {
-      return;
-    }
-  ) => TopicCreateLayout(header, data, setData),
+  body: (header = "topic.create", data) => {
+    if (data != null) form = _.cloneDeep(data);
+    else form = {};
+    return <TopicCreateLayout header={header} data={data} />;
+  },
   submit: (formSubmit = form) => TopicAssignApi.create(formSubmit),
 };
 
-const TopicCreateLayout = (header, data, setData) => {
+const TopicCreateLayout = ({ header, ...props }) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
   const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
   const [multiLang, setMultiLang] = React.useState(0);
+  const [data, setData] = React.useState(props.data);
 
   const modalTeacherCreateProps = {
     ...TeacherCreateForm,
@@ -50,8 +46,9 @@ const TopicCreateLayout = (header, data, setData) => {
   const setValue = (field, basePath, value) => {
     let path = basePath == "topic" ? basePath + "." + field : basePath;
     _.set(form, path, value);
-    let newData = _.set(data, path, value);
-    setData(newData);
+    let nextData = _.cloneDeep(data);
+    _.set(nextData, path, value);
+    setData(nextData);
   };
 
   const getValue = (field, basePath) => {
@@ -70,15 +67,13 @@ const TopicCreateLayout = (header, data, setData) => {
   const inputProps = (field, basePath = "topic") => {
     return {
       callBack: (value) => setValue(field, basePath, value),
-      ...Props[field],
+      ..._.get(Props, field),
       value: getValue(field, basePath),
     };
   };
-  const autocompleteProps = (type) => {
-    let field = "guideTeacher";
+  const autocompleteProps = (type, field) => {
     let basePath = field;
     if (type != "teacher") {
-      field = "students";
       basePath = "executeStudent";
     }
     return {
@@ -130,30 +125,61 @@ const TopicCreateLayout = (header, data, setData) => {
         style={{ maxHeight: "100%" }}
         contentContainerStyle={{ paddingHorizontal: 24 }}
       >
-        <MyInput {...inputProps("topicName")} />
-        {multiLang > 0 && <MyInput {...inputProps("topicName")} />}
+        <MyInput {...inputProps("topicName." + i18n.language)} />
+        {multiLang > 0 && (
+          <MyInput
+            {...inputProps(
+              "topicName." + (i18n.language == "en" ? "vi" : "en")
+            )}
+          />
+        )}
 
         <Layout style={styles.row}>
           <Layout style={styles.left}>
             <MySelect {...selectProps("educationMethod")} />
             <MySelect {...selectProps("semester")} />
             <MyMultiSelect {...selectProps("major")} />
-            <MyAutocompleteTag {...autocompleteProps("teacher")} />
+            <MyAutocompleteTag
+              {...autocompleteProps("teacher", "guideTeacher")}
+            />
+            <MyAutocompleteTag
+              {...autocompleteProps("teacher", "reviewTeacher")}
+            />
           </Layout>
           <Layout style={styles.right}>
+            <MyInput {...inputProps("topicCode")} />
             <MySelect {...selectProps("minStudentTake")} />
             <MySelect {...selectProps("maxStudentTake")} />
-            <MyAutocompleteTag {...autocompleteProps("students")} />
-            <MyInput {...inputProps("topicCode")} />
+            <MyAutocompleteTag {...autocompleteProps("students", "students")} />
           </Layout>
         </Layout>
 
-        <MyInput {...inputProps("mainTask")} />
-        {multiLang > 0 && <MyInput {...inputProps("mainTask")} />}
-        <MyInput {...inputProps("thesisTask")} />
-        {multiLang > 0 && <MyInput {...inputProps("thesisTask")} />}
+        <MyInput {...inputProps("mainTask." + i18n.language)} />
+        {multiLang > 0 && (
+          <MyInput
+            {...inputProps("mainTask." + (i18n.language == "en" ? "vi" : "en"))}
+          />
+        )}
+        <MyInput {...inputProps("thesisTask." + i18n.language)} />
+        {multiLang > 0 && (
+          <MyInput
+            {...inputProps(
+              "thesisTask." + (i18n.language == "en" ? "vi" : "en")
+            )}
+          />
+        )}
 
-        <MyInput {...inputProps("description")} style={styles.description} />
+        <MyInput
+          {...inputProps("description." + i18n.language)}
+          style={styles.description}
+        />
+        {multiLang > 0 && (
+          <MyInput
+            {...inputProps(
+              "description." + (i18n.language == "en" ? "vi" : "en")
+            )}
+          />
+        )}
       </ScrollView>
     </Layout>
   );

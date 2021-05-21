@@ -8,13 +8,27 @@ import { getRenderText } from "utils";
 import i18n from "utils/i18n";
 
 const headerData = {
-  topicCode: {},
-  semester: {},
-  major: {},
-  educationMethod: {},
-  topicName: {},
-  guideTeacher: {},
-  students: {},
+  topicCode: {
+    label: "topic.code",
+  },
+  semester: {
+    label: "semester",
+  },
+  major: {
+    label: "major",
+  },
+  educationMethod: {
+    label: "educationMethod",
+  },
+  topicName: {
+    label: "topic.name",
+  },
+  guideTeacher: {
+    label: "teacher.guide",
+  },
+  students: {
+    label: "student.execute",
+  },
 };
 
 const sizeRank = [5, 10, 20, 30, 50, 100];
@@ -45,14 +59,14 @@ const TopicTablePaper = ({ data, page, callBack }) => {
 
   const modalTopicUpdateProps = {
     ...TopicCreateForm,
-    header: "topic.update",
     visible: topicUpdateVisible,
     cancel: () => setTopicUpdateVisible(false),
-    body: () => TopicCreateForm.body(currentRow, setCurrenRow),
+    body: () => TopicCreateForm.body("topic.update", currentRow),
     submit: async () => {
       try {
-        let response = await TopicCreateForm.submit(currentRow);
-        console.log(response);
+        let response = await TopicCreateForm.submit();
+        let index = data.map((x) => x.id).indexOf(response.id);
+        data[index] = response;
         return response;
       } catch (error) {
         console.log(error);
@@ -84,7 +98,7 @@ const TopicTablePaper = ({ data, page, callBack }) => {
         {Object.keys(headerData).map((header) => {
           return (
             <DataTable.Title key={header}>
-              <Text>{i18n.t(header)}</Text>
+              <Text>{i18n.t(headerData[header].label)}</Text>
             </DataTable.Title>
           );
         })}
