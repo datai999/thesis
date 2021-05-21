@@ -59,10 +59,9 @@ const TopicTablePaper = ({ data, page, callBack }) => {
 
   const modalTopicUpdateProps = {
     ...TopicCreateForm,
-    header: "topic.update",
     visible: topicUpdateVisible,
     cancel: () => setTopicUpdateVisible(false),
-    body: () => TopicCreateForm.body(currentRow, setCurrenRow),
+    body: () => TopicCreateForm.body("topic.update", currentRow, setCurrenRow),
     submit: async () => {
       try {
         let response = await TopicCreateForm.submit(currentRow);
