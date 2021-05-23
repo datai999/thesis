@@ -2,8 +2,9 @@ import { Button, Layout, Text } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
 import TopicAssignApi from "api/topic/TopicAssignApi";
-import StudentCreateForm from "components/form/StudentCreateForm";
-import TeacherCreateForm from "components/form/TeacherCreateForm";
+import { CouncilForm } from "components/form";
+import StudentForm from "components/form/StudentForm";
+import TeacherForm from "components/form/TeacherForm";
 import { PlusIcon } from "components/Icons";
 import { MyAutocompleteTag, MyInput } from "components/Input";
 import MyModal from "components/Modal";
@@ -17,7 +18,7 @@ import i18n from "utils/i18n";
 
 let form = {};
 
-const TopicCreateForm = {
+const TopicForm = {
   body: (header = "topic.create", data) => {
     if (data != null) form = _.cloneDeep(data);
     else form = {};
@@ -29,18 +30,25 @@ const TopicCreateForm = {
 const TopicCreateLayout = ({ header, ...props }) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
   const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
+  const [councilVisible, setCouncilVisible] = React.useState(true);
   const [multiLang, setMultiLang] = React.useState(0);
   const [data, setData] = React.useState(props.data);
 
   const modalTeacherCreateProps = {
-    ...TeacherCreateForm,
+    ...TeacherForm,
     visible: teacherCreateVisible,
     cancel: () => setTeacherCreateVisible(false),
   };
   const modalStudentCreateProps = {
-    ...StudentCreateForm,
+    ...StudentForm,
     visible: studentCreateVisible,
     cancel: () => setStudentCreateVisible(false),
+  };
+
+  const modalCouncilProps = {
+    ...CouncilForm,
+    visible: councilVisible,
+    cancel: () => setCouncilVisible(false),
   };
 
   const setValue = (field, basePath, value) => {
@@ -108,6 +116,7 @@ const TopicCreateLayout = ({ header, ...props }) => {
     <Layout style={{ flex: 1 }}>
       <MyModal {...modalTeacherCreateProps} />
       <MyModal {...modalStudentCreateProps} />
+      <MyModal {...modalCouncilProps} />
 
       <Layout
         style={{
@@ -215,4 +224,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TopicCreateForm;
+export default TopicForm;
