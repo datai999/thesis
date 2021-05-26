@@ -3,23 +3,25 @@ import { MyInput } from "components/Input";
 import { MySelect } from "components/Select";
 import Props from "data/Props";
 import React from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { StyleSheet } from "react-native";
 import i18n from "utils/i18n";
 
 let form = {};
 
 const CouncilForm = {
-  body: (header = "topic.create", data) => {
+  body: (header = "council.create", data) => {
     if (data != null) form = _.cloneDeep(data);
     else form = {};
     return <CouncilLayout header={header} data={data} />;
   },
   submit: (formSubmit = form) => TopicAssignApi.create(formSubmit),
 };
-
 const CouncilLayout = ({ header, ...props }) => {
   const setValue = (field, value) => (form[field] = value);
   const [data, setData] = React.useState(props.data);
+  const [reserveDate, setReserveDate] = React.useState(new Date());
 
   const inputProps = (field) => {
     return {
@@ -36,18 +38,23 @@ const CouncilLayout = ({ header, ...props }) => {
       ...Props[field],
     };
   };
+
   return (
     <Layout style={styles.container}>
       <Text style={styles.headerText}>{i18n.t(header)}</Text>
       <Layout style={styles.row}>
         <Layout style={styles.left}>
-          <MyInput {...inputProps("name")} />
-          <MyInput {...inputProps("email")} />
-          <MyInput {...inputProps("phone")} />
+          <MySelect {...selectProps("subjectDepartment")} />
+          <MyInput {...inputProps("reserveRoom")} />
         </Layout>
         <Layout style={styles.right}>
-          <MySelect {...selectProps("degree")} />
-          <MySelect {...selectProps("subjectDepartment")} />
+          <MyInput {...inputProps("reserveDate")} />
+
+          <DatePicker
+            popperPlacement="top-start"
+            selected={reserveDate}
+            onChange={(date) => setReserveDate(date)}
+          />
         </Layout>
       </Layout>
     </Layout>

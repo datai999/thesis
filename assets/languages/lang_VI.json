@@ -1,4 +1,10 @@
 {
+  "council": {
+    "create": "Tạo hội đồng",
+    "reserveDate": "Đặt ngày",
+    "reserveRoom": "Đặt phòng",
+    "reserveRoom_type": "Nhập phòng"
+  },
   "degree": "Học vị",
   "degree_select": "Chọn học vị",
   "description": "Mô tả",
@@ -41,11 +47,15 @@
     "create": "Thêm giảng viên",
     "guide": "Giảng viên hướng dẫn",
     "guideSelect": "Chọn giảng viên hướng dẫn",
-    "update": "Cập nhật thông tin giảng viên",
     "review": "Giảng viên phản biện",
-    "review_select": "Chọn giảng viên phản biện"
+    "review_select": "Chọn giảng viên phản biện",
+    "update": "Cập nhật thông tin giảng viên"
   },
   "thesisTask": "Nhiệm vụ giai đoạn luận văn",
+  "time": {
+    "end": "Thời gian kết thúc",
+    "start": "Thời gian bắt đầu"
+  },
   "topic": {
     "code": "Mã đề tài",
     "create": "Tạo mới đề tài",
