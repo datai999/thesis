@@ -1,6 +1,6 @@
 import { Layout, Text } from "@ui-kitten/components";
 import { MyInput } from "components/Input";
-import { DatePickerInput } from "components/Picker";
+import { DatePickerInput, TimePickerInput } from "components/Picker";
 import { MySelect } from "components/Select";
 import Props from "data/Props";
 import React from "react";
@@ -37,15 +37,15 @@ const CouncilLayout = ({ header, ...props }) => {
       ...Props[field],
     };
   };
-  const pickerProps = (field) => {
+  const pickerInputProps = (field) => {
     return {
       pickerProps: {
         popperPlacement: "top-start",
-        dateFormat: "dd/MM/yyyy",
       },
       inputProps: {
         ...Props[field],
       },
+      callBack: (value) => setValue(field, value),
     };
   };
 
@@ -58,7 +58,15 @@ const CouncilLayout = ({ header, ...props }) => {
           <MyInput {...inputProps("reserveRoom")} />
         </Layout>
         <Layout style={styles.right}>
-          <DatePickerInput {...pickerProps("reserveDate")} />
+          <DatePickerInput {...pickerInputProps("reserveDate")} />
+          <Layout style={styles.row}>
+            <Layout style={styles.left}>
+              <TimePickerInput {...pickerInputProps("startTime")} />
+            </Layout>
+            <Layout style={styles.right}>
+              <TimePickerInput {...pickerInputProps("endTime")} />
+            </Layout>
+          </Layout>
         </Layout>
       </Layout>
     </Layout>
