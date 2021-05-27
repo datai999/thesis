@@ -16,7 +16,7 @@ const CouncilForm = {
     else form = {};
     return <CouncilLayout header={header} data={data} />;
   },
-  submit: (formSubmit = form) => TopicAssignApi.create(formSubmit),
+  submit: (formSubmit = form) => console.log(formSubmit),
 };
 const CouncilLayout = ({ header, ...props }) => {
   const setValue = (field, value) => (form[field] = value);

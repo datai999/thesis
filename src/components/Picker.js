@@ -21,23 +21,20 @@ const DatePickerInput = ({ callBack, pickerProps, inputProps, ...props }) => {
 };
 
 const TimePickerInput = ({ callBack, pickerProps, inputProps, ...props }) => {
-  const [date, setDate] = React.useState(new Date());
+  const datePickerProps = {
+    pickerProps: {
+      ...pickerProps,
+      timeCaption: "Time",
+      dateFormat: "h:mm aa",
+      showTimeSelect: "showTimeSelect",
+      showTimeSelectOnly: "showTimeSelectOnly",
+    },
+    inputProps: inputProps,
+    callBack: callBack,
+    ...props,
+  };
 
-  return (
-    <DatePicker
-      timeCaption="Time"
-      dateFormat="h:mm aa"
-      {...pickerProps}
-      showTimeSelect
-      showTimeSelectOnly
-      selected={date}
-      onChange={(nextDate) => {
-        setDate(nextDate);
-        callBack(nextDate);
-      }}
-      customInput={<MyInput {...inputProps} />}
-    />
-  );
+  return <DatePickerInput {...datePickerProps} />;
 };
 
 export { DatePickerInput, TimePickerInput };
