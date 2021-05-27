@@ -1,9 +1,9 @@
 import { Layout, Text } from "@ui-kitten/components";
 import { MyInput } from "components/Input";
+import { DatePickerInput } from "components/Picker";
 import { MySelect } from "components/Select";
 import Props from "data/Props";
 import React from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { StyleSheet } from "react-native";
 import i18n from "utils/i18n";
@@ -21,7 +21,6 @@ const CouncilForm = {
 const CouncilLayout = ({ header, ...props }) => {
   const setValue = (field, value) => (form[field] = value);
   const [data, setData] = React.useState(props.data);
-  const [reserveDate, setReserveDate] = React.useState(new Date());
 
   const inputProps = (field) => {
     return {
@@ -38,6 +37,17 @@ const CouncilLayout = ({ header, ...props }) => {
       ...Props[field],
     };
   };
+  const pickerProps = (field) => {
+    return {
+      pickerProps: {
+        popperPlacement: "top-start",
+        dateFormat: "dd/MM/yyyy",
+      },
+      inputProps: {
+        ...Props[field],
+      },
+    };
+  };
 
   return (
     <Layout style={styles.container}>
@@ -48,13 +58,7 @@ const CouncilLayout = ({ header, ...props }) => {
           <MyInput {...inputProps("reserveRoom")} />
         </Layout>
         <Layout style={styles.right}>
-          <MyInput {...inputProps("reserveDate")} />
-
-          <DatePicker
-            popperPlacement="top-start"
-            selected={reserveDate}
-            onChange={(date) => setReserveDate(date)}
-          />
+          <DatePickerInput {...pickerProps("reserveDate")} />
         </Layout>
       </Layout>
     </Layout>
