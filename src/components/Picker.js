@@ -3,7 +3,7 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const DatePickerInput = ({ callback, pickerProps, inputProps, ...props }) => {
+const DatePickerInput = ({ callBack, pickerProps, inputProps, ...props }) => {
   const [date, setDate] = React.useState(new Date());
 
   return (
@@ -13,14 +13,14 @@ const DatePickerInput = ({ callback, pickerProps, inputProps, ...props }) => {
       selected={date}
       onChange={(nextDate) => {
         setDate(nextDate);
-        callback(nextDate);
+        callBack(nextDate);
       }}
       customInput={<MyInput {...inputProps} />}
     />
   );
 };
 
-const TimePickerInput = ({ callback, pickerProps, inputProps, ...props }) => {
+const TimePickerInput = ({ callBack, pickerProps, inputProps, ...props }) => {
   const [date, setDate] = React.useState(new Date());
 
   return (
@@ -33,7 +33,7 @@ const TimePickerInput = ({ callback, pickerProps, inputProps, ...props }) => {
       selected={date}
       onChange={(nextDate) => {
         setDate(nextDate);
-        callback(nextDate);
+        callBack(nextDate);
       }}
       customInput={<MyInput {...inputProps} />}
     />
