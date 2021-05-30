@@ -146,6 +146,15 @@ const Props = {
   endTime: {
     label: "time.end",
   },
+  councilRole: {
+    label: "council.role",
+    placeholder: "council.role_type",
+    arrValue: [],
+  },
+  councilTeacher: {
+    label: "council.teacher",
+    placeholder: "council.teacher_type",
+  },
 };
 
 export default Props;

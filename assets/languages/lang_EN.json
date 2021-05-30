@@ -3,7 +3,11 @@
     "create": "Create council",
     "reserveDate": "Reserve date",
     "reserveRoom": "Reserve room",
-    "reserveRoom_type": "Type reserve room"
+    "reserveRoom_type": "Type reserve room",
+    "role": "",
+    "role_type": "Select role",
+    "teacher": "",
+    "teacher_type": "Type name of teacher"
   },
   "degree": "Degree",
   "degree_select": "Select degree",

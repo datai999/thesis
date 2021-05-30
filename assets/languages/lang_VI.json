@@ -3,7 +3,11 @@
     "create": "Tạo hội đồng",
     "reserveDate": "Đặt ngày",
     "reserveRoom": "Đặt phòng",
-    "reserveRoom_type": "Nhập phòng"
+    "reserveRoom_type": "Nhập phòng",
+    "role": "",
+    "role_type": "Chọn vai trò",
+    "teacher": "",
+    "teacher_type": "Nhập tên của giảng viên"
   },
   "degree": "Học vị",
   "degree_select": "Chọn học vị",
