@@ -111,21 +111,19 @@ const CouncilLayout = ({ header, ...props }) => {
         </Layout>
       </Layout>
 
-      <Layout>
-        <List
-          data={arrRole}
-          renderItem={({ item }) => {
-            return (
-              <Layout>
-                <MyAutocomplete
-                  {...autocompleteProps("councilTeacher")}
-                  label={item.value[i18n.language]}
-                />
-              </Layout>
-            );
-          }}
-        />
-      </Layout>
+      <List
+        data={arrRole}
+        renderItem={({ item }) => {
+          return (
+            <Layout>
+              <MyAutocomplete
+                {...autocompleteProps("councilTeacher")}
+                label={item.value[i18n.language]}
+              />
+            </Layout>
+          );
+        }}
+      />
     </Layout>
   );
 };
