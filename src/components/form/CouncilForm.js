@@ -1,8 +1,12 @@
-import { Layout, Text } from "@ui-kitten/components";
-import { MyInput } from "components/Input";
+import { Button, Layout, List, Text } from "@ui-kitten/components";
+import { TeacherForm } from "components/form";
+import { PlusIcon } from "components/Icons";
+import { MyAutocompleteTag, MyInput } from "components/Input";
+import MyModal from "components/Modal";
 import { DatePickerInput, TimePickerInput } from "components/Picker";
 import { MySelect } from "components/Select";
 import Props from "data/Props";
+import _ from "lodash";
 import React from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { StyleSheet } from "react-native";
@@ -19,8 +23,18 @@ const CouncilForm = {
   submit: (formSubmit = form) => console.log(formSubmit),
 };
 const CouncilLayout = ({ header, ...props }) => {
-  const setValue = (field, value) => (form[field] = value);
+  const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
+
   const [data, setData] = React.useState(props.data);
+  const [arrRole, setArrRole] = React.useState(Props["councilRole"].arrValue);
+
+  const modalTeacherCreateProps = {
+    ...TeacherForm,
+    visible: teacherCreateVisible,
+    cancel: () => setTeacherCreateVisible(false),
+  };
+
+  const setValue = (field, value) => (form[field] = value);
 
   const inputProps = (field) => {
     return {
@@ -48,9 +62,35 @@ const CouncilLayout = ({ header, ...props }) => {
       callBack: (value) => setValue(field, value),
     };
   };
+  const autocompleteProps = (field) => {
+    let basePath = field;
+    return {
+      ...inputProps(field),
+      refreshDataOnChangeText: (value) => searchPerson("teacher", value),
+      accessoryRight: () => (
+        <Button
+          appearance="ghost"
+          size="small"
+          accessoryRight={PlusIcon}
+          onPress={() => setTeacherCreateVisible(true)}
+        />
+      ),
+    };
+  };
+  const searchPerson = async (type, value) => {
+    try {
+      return type == "teacher"
+        ? await TeacherApi.search(value)
+        : await StudentApi.search(value);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Layout style={styles.container}>
+      <MyModal {...modalTeacherCreateProps} />
+
       <Text style={styles.headerText}>{i18n.t(header)}</Text>
       <Layout style={styles.row}>
         <Layout style={styles.left}>
@@ -69,6 +109,35 @@ const CouncilLayout = ({ header, ...props }) => {
           </Layout>
         </Layout>
       </Layout>
+
+      <Layout>
+        <List
+          data={arrRole}
+          renderItem={({ item }) => {
+            let role = item;
+            let roleProps = _.cloneDeep(selectProps("councilRole"));
+            _.set(roleProps, "value.id", role.id);
+
+            return (
+              <Layout style={styles.row}>
+                <Layout style={styles.left}>
+                  <MySelect {...roleProps} />
+                </Layout>
+                <Layout style={styles.right}>
+                  <MyAutocompleteTag {...autocompleteProps("councilTeacher")} />
+                </Layout>
+              </Layout>
+            );
+          }}
+        />
+      </Layout>
+
+      <Button
+        appearance="ghost"
+        size="small"
+        accessoryRight={PlusIcon}
+        // onPress={() => {}}
+      />
     </Layout>
   );
 };

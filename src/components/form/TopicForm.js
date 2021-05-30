@@ -28,7 +28,7 @@ const TopicForm = {
 const TopicCreateLayout = ({ header, ...props }) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
   const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
-  const [councilVisible, setCouncilVisible] = React.useState(true);
+  const [councilVisible, setCouncilVisible] = React.useState(false);
   const [multiLang, setMultiLang] = React.useState(0);
   const [data, setData] = React.useState(props.data);
 
@@ -158,6 +158,7 @@ const TopicCreateLayout = ({ header, ...props }) => {
             <MySelect {...selectProps("minStudentTake")} />
             <MySelect {...selectProps("maxStudentTake")} />
             <MyAutocompleteTag {...autocompleteProps("students", "students")} />
+            <Button onPress={() => setCouncilVisible(true)} />
           </Layout>
         </Layout>
 
