@@ -1,5 +1,5 @@
 import { Button, Layout } from "@ui-kitten/components";
-import TopicCreateForm from "components/form/TopicCreateForm";
+import { TopicForm } from "components/form";
 import { PlusIcon } from "components/Icons";
 import MyModal from "components/Modal";
 import React from "react";
@@ -8,15 +8,15 @@ import i18n from "utils/i18n";
 
 const TopicTopBar = ({ addNewTopic }) => {
   const [value, setValue] = React.useState("");
-  const [topicCreateVisible, setTopicCreateVisible] = React.useState(false);
+  const [topicCreateVisible, setTopicCreateVisible] = React.useState(true);
 
   const modalTopicCreateProps = {
     visible: topicCreateVisible,
     cancel: () => setTopicCreateVisible(false),
-    ...TopicCreateForm,
+    ...TopicForm,
     submit: async () => {
       try {
-        let response = await TopicCreateForm.submit();
+        let response = await TopicForm.submit();
         addNewTopic(response);
         return response;
       } catch (error) {

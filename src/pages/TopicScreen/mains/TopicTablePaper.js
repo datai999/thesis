@@ -1,5 +1,5 @@
 import { IndexPath, Select, SelectItem, Text } from "@ui-kitten/components";
-import TopicCreateForm from "components/form/TopicCreateForm";
+import { TopicForm } from "components/form";
 import MyModal from "components/Modal";
 import React from "react";
 import { StyleSheet, View } from "react-native";
@@ -58,13 +58,13 @@ const TopicTablePaper = ({ data, page, callBack }) => {
   const [currentRow, setCurrenRow] = React.useState(null);
 
   const modalTopicUpdateProps = {
-    ...TopicCreateForm,
+    ...TopicForm,
     visible: topicUpdateVisible,
     cancel: () => setTopicUpdateVisible(false),
-    body: () => TopicCreateForm.body("topic.update", currentRow),
+    body: () => TopicForm.body("topic.update", currentRow),
     submit: async () => {
       try {
-        let response = await TopicCreateForm.submit();
+        let response = await TopicForm.submit();
         let index = data.map((x) => x.id).indexOf(response.id);
         data[index] = response;
         return response;

@@ -9,7 +9,7 @@ import i18n from "utils/i18n";
 
 const form = {};
 
-const StudentCreateForm = {
+const StudentForm = {
   body: (
     header = "student.create",
     data,
@@ -82,4 +82,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StudentCreateForm;
+export default StudentForm;

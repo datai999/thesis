@@ -133,6 +133,28 @@ const Props = {
     label: "student.code",
     placeholder: "student.code_type",
   },
+  reserveRoom: {
+    label: "council.reserveRoom",
+    placeholder: "council.reserveRoom_type",
+  },
+  reserveDate: {
+    label: "council.reserveDate",
+  },
+  startTime: {
+    label: "time.start",
+  },
+  endTime: {
+    label: "time.end",
+  },
+  councilRole: {
+    label: "council.role",
+    placeholder: "council.role_type",
+    arrValue: [],
+  },
+  councilTeacher: {
+    label: "council.teacher",
+    placeholder: "council.teacher_type",
+  },
 };
 
 export default Props;

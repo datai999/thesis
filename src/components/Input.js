@@ -50,6 +50,7 @@ const MyAutocomplete = ({ callBack, ...props }) => {
       value={value}
       onSelect={(number) => {
         callBack(data[number]);
+        setValue(getRenderText(data[number]));
       }}
       onChangeText={async (nextValue) => {
         setValue(nextValue);
