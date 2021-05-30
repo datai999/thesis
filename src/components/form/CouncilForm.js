@@ -28,6 +28,15 @@ const CouncilLayout = ({ header, ...props }) => {
   const [data, setData] = React.useState(props.data);
   const [arrRole, setArrRole] = React.useState(Props["councilRole"].arrValue);
 
+  React.useEffect(() => {
+    const setDefaultForm = () => {
+      let arrRoleValue = Props["councilRole"].arrValue;
+      setValue("role", arrRoleValue);
+      setValue("teacher", Array(arrRoleValue.length).fill(null));
+    };
+    setDefaultForm();
+  }, []);
+
   const modalTeacherCreateProps = {
     ...TeacherForm,
     visible: teacherCreateVisible,
