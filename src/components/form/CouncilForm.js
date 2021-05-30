@@ -1,7 +1,8 @@
 import { Button, Layout, List, Text } from "@ui-kitten/components";
+import TeacherApi from "api/person/TeacherApi";
 import { TeacherForm } from "components/form";
 import { PlusIcon } from "components/Icons";
-import { MyAutocompleteTag, MyInput } from "components/Input";
+import { MyAutocomplete, MyInput } from "components/Input";
 import MyModal from "components/Modal";
 import { DatePickerInput, TimePickerInput } from "components/Picker";
 import { MySelect } from "components/Select";
@@ -124,7 +125,7 @@ const CouncilLayout = ({ header, ...props }) => {
                   <MySelect {...roleProps} />
                 </Layout>
                 <Layout style={styles.right}>
-                  <MyAutocompleteTag {...autocompleteProps("councilTeacher")} />
+                  <MyAutocomplete {...autocompleteProps("councilTeacher")} />
                 </Layout>
               </Layout>
             );
