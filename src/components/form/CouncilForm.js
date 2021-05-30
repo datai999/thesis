@@ -1,7 +1,6 @@
-import { Button, Layout, List, Text } from "@ui-kitten/components";
+import { Layout, List, Text } from "@ui-kitten/components";
 import TeacherApi from "api/person/TeacherApi";
 import { TeacherForm } from "components/form";
-import { PlusIcon } from "components/Icons";
 import { MyAutocomplete, MyInput } from "components/Input";
 import MyModal from "components/Modal";
 import { DatePickerInput, TimePickerInput } from "components/Picker";
@@ -107,30 +106,17 @@ const CouncilLayout = ({ header, ...props }) => {
         <List
           data={arrRole}
           renderItem={({ item }) => {
-            let role = item;
-            let roleProps = _.cloneDeep(selectProps("councilRole"));
-            _.set(roleProps, "value.id", role.id);
-
             return (
-              <Layout style={styles.row}>
-                <Layout style={(styles.left, { width: "30%" })}>
-                  <MySelect {...roleProps} />
-                </Layout>
-                <Layout style={(styles.right, { width: "60%" })}>
-                  <MyAutocomplete {...autocompleteProps("councilTeacher")} />
-                </Layout>
+              <Layout>
+                <MyAutocomplete
+                  {...autocompleteProps("councilTeacher")}
+                  label={item.value[i18n.language]}
+                />
               </Layout>
             );
           }}
         />
       </Layout>
-
-      <Button
-        appearance="ghost"
-        size="small"
-        accessoryRight={PlusIcon}
-        // onPress={() => {}}
-      />
     </Layout>
   );
 };
