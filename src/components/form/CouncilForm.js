@@ -121,10 +121,10 @@ const CouncilLayout = ({ header, ...props }) => {
 
             return (
               <Layout style={styles.row}>
-                <Layout style={styles.left}>
+                <Layout style={(styles.left, { width: "30%" })}>
                   <MySelect {...roleProps} />
                 </Layout>
-                <Layout style={styles.right}>
+                <Layout style={(styles.right, { width: "60%" })}>
                   <MyAutocomplete {...autocompleteProps("councilTeacher")} />
                 </Layout>
               </Layout>
