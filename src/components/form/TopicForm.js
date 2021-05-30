@@ -158,6 +158,8 @@ const TopicCreateLayout = ({ header, ...props }) => {
             <MySelect {...selectProps("minStudentTake")} />
             <MySelect {...selectProps("maxStudentTake")} />
             <MyAutocompleteTag {...autocompleteProps("students", "students")} />
+
+            {/* TODO change UI */}
             <Button onPress={() => setCouncilVisible(true)} />
           </Layout>
         </Layout>

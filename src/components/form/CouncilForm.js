@@ -111,6 +111,7 @@ const CouncilLayout = ({ header, ...props }) => {
         </Layout>
       </Layout>
 
+      {/* TODO bug layout reserve date */}
       <List
         data={arrRole}
         renderItem={({ item }) => {
