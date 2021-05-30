@@ -68,14 +68,6 @@ const CouncilLayout = ({ header, ...props }) => {
     return {
       ...inputProps(field),
       refreshDataOnChangeText: (value) => searchPerson("teacher", value),
-      accessoryRight: () => (
-        <Button
-          appearance="ghost"
-          size="small"
-          accessoryRight={PlusIcon}
-          onPress={() => setTeacherCreateVisible(true)}
-        />
-      ),
     };
   };
   const searchPerson = async (type, value) => {
