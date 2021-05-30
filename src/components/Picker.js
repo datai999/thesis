@@ -10,6 +10,7 @@ const DatePickerInput = ({ callBack, pickerProps, inputProps, ...props }) => {
     <DatePicker
       dateFormat="dd/MM/yyyy"
       {...pickerProps}
+      {...props}
       selected={date}
       onChange={(nextDate) => {
         setDate(nextDate);
