@@ -20,4 +20,13 @@ function getRenderText(obj) {
   }
 }
 
-export { getRenderText };
+function dateToLocalTime(date){
+  return date.toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"});
+}
+
+function getLocalTime(){
+  return dateToLocalTime(new Date());
+}
+
+export { getRenderText, dateToLocalTime, getLocalTime };
+
