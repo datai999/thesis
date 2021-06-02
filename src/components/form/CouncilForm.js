@@ -137,6 +137,12 @@ const CouncilLayout = ({ header, ...props }) => {
                 )}
                 label={item.value[i18n.language]}
                 value={getRenderText(form.teacher?.[index])}
+                onBlur={(submitValue) => {
+                  if (submitValue == "") {
+                    setValue("teacherId" + "[" + index + "]", null);
+                    setValue("teacher" + "[" + index + "]", null);
+                  }
+                }}
               />
             </Layout>
           );

@@ -61,6 +61,10 @@ const MyAutocomplete = ({ callBack, ...props }) => {
             setData(await props.refreshDataOnChangeText(nextValue));
         }
       }}
+      onBlur={() => {
+        if (props.onBlur) return props.onBlur(value);
+        return null;
+      }}
     >
       {renderOption(data)}
     </Autocomplete>
