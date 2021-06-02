@@ -33,6 +33,9 @@ const CouncilLayout = ({ header, ...props }) => {
   React.useEffect(() => {
     const setDefaultForm = () => {
       let arrRoleValue = Props["councilRole"].arrValue;
+      setValue("reserveDate", new Date());
+      setValue("startTime", new Date());
+      setValue("endTime", new Date());
       setValue("role", arrRoleValue);
       setValue("teacher", Array(arrRoleValue.length).fill(null));
     };
