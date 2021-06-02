@@ -1,6 +1,6 @@
 import CommonApi from "../CommonApi";
 
-const baseURL = "/topic/council";
+const baseURL = "/council";
 
 const CouncilApi = {
   ...CommonApi(baseURL),
