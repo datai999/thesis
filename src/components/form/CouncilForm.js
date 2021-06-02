@@ -50,7 +50,7 @@ const CouncilLayout = ({ header, ...props }) => {
 
   const inputProps = (field, path = field) => {
     return {
-      value: form[field],
+      value: form[field] || "",
       callBack: (value) => setValue(path, value),
       ...Props[field],
     };
