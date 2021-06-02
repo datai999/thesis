@@ -9,7 +9,6 @@ import { MySelect } from "components/Select";
 import Props from "data/Props";
 import _ from "lodash";
 import React from "react";
-import "react-datepicker/dist/react-datepicker.css";
 import { StyleSheet } from "react-native";
 import { toLocalDate, toLocalTime } from "utils";
 import i18n from "utils/i18n";
