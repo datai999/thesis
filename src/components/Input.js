@@ -20,7 +20,7 @@ const MyInput = ({ callBack, ...props }) => {
       {...props}
       label={i18n.t(props.label)}
       placeholder={i18n.t(props.placeholder)}
-      value={currentValue}
+      value={getRenderText(currentValue)}
       onChangeText={(nextValue) => {
         callBack(nextValue);
         setCurrentValue(nextValue);
@@ -34,7 +34,7 @@ const MyInput = ({ callBack, ...props }) => {
 };
 
 const MyAutocomplete = ({ callBack, ...props }) => {
-  const [value, setValue] = React.useState(props.value || "");
+  const [value, setValue] = React.useState(props.value);
   const [data, setData] = React.useState(props.data ?? []);
 
   const renderOption = (arrItem) => {
@@ -49,7 +49,7 @@ const MyAutocomplete = ({ callBack, ...props }) => {
       {...props}
       label={i18n.t(props.label)}
       placeholder={i18n.t(props.placeholder)}
-      value={value}
+      value={getRenderText(value)}
       onSelect={(number) => {
         callBack(data[number]);
         setValue(getRenderText(data[number]));
