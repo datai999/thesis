@@ -11,7 +11,7 @@ import _ from "lodash";
 import React from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { StyleSheet } from "react-native";
-import { getLocalTime } from "utils";
+import { dateToLocalTime, getLocalTime } from "utils";
 import i18n from "utils/i18n";
 
 
@@ -74,7 +74,7 @@ const CouncilLayout = ({ header, ...props }) => {
       inputProps: {
         ...Props[field],
       },
-      callBack: (value) => setValue(field, value),
+      callBack: (value) => setValue(field, dateToLocalTime(value)),
     };
   };
   const autocompleteProps = (field) => {
