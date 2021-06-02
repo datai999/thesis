@@ -47,6 +47,11 @@ const TopicCreateLayout = ({ header, ...props }) => {
     ...CouncilForm,
     visible: councilVisible,
     cancel: () => setCouncilVisible(false),
+    body: () =>
+      CouncilForm.body(
+        form?.council == null ? "council.create" : "council.update",
+        form.council
+      ),
     submit: async () => {
       try {
         let response = await CouncilForm.submit();
