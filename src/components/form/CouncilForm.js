@@ -26,9 +26,6 @@ const CouncilForm = {
 const CouncilLayout = ({ header, ...props }) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
 
-  const [data, setData] = React.useState(props.data);
-  const [arrRole, setArrRole] = React.useState(Props["councilRole"].arrValue);
-
   React.useEffect(() => {
     const setDefaultForm = () => {
       let arrRoleValue = Props["councilRole"].arrValue;
@@ -123,7 +120,7 @@ const CouncilLayout = ({ header, ...props }) => {
 
       {/* TODO bug layout reserve date */}
       <List
-        data={arrRole}
+        data={Props["councilRole"].arrValue}
         renderItem={({ index, item }) => {
           return (
             <Layout>
