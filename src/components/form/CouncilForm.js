@@ -48,12 +48,14 @@ const CouncilLayout = ({ header, ...props }) => {
     cancel: () => setTeacherCreateVisible(false),
   };
 
-  const setValue = (field, value) => (form[field] = value);
+  const setValue = (path, value) => {
+    _.set(form, path, value);
+  };
 
-  const inputProps = (field) => {
+  const inputProps = (field, path = field) => {
     return {
       value: form[field],
-      callBack: (value) => setValue(field, value),
+      callBack: (value) => setValue(path, value),
       ...Props[field],
     };
   };
@@ -81,10 +83,9 @@ const CouncilLayout = ({ header, ...props }) => {
       },
     };
   };
-  const autocompleteProps = (field) => {
-    let basePath = field;
+  const autocompleteProps = (field, path) => {
     return {
-      ...inputProps(field),
+      ...inputProps(field, path),
       refreshDataOnChangeText: (value) => searchPerson("teacher", value),
     };
   };
@@ -128,7 +129,7 @@ const CouncilLayout = ({ header, ...props }) => {
           return (
             <Layout>
               <MyAutocomplete
-                {...autocompleteProps("councilTeacher")}
+                {...autocompleteProps("councilTeacher", "teacher")}
                 label={item.value[i18n.language]}
               />
             </Layout>
