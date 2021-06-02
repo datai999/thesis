@@ -47,6 +47,15 @@ const TopicCreateLayout = ({ header, ...props }) => {
     ...CouncilForm,
     visible: councilVisible,
     cancel: () => setCouncilVisible(false),
+    submit: async () => {
+      try {
+        let response = await CouncilForm.submit();
+        form["council"] = response;
+        return response;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   };
 
   const setValue = (field, basePath, value) => {
