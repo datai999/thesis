@@ -32,7 +32,7 @@ const MyInput = ({ callBack, ...props }) => {
 };
 
 const MyAutocomplete = ({ callBack, ...props }) => {
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState(props.value || "");
   const [data, setData] = React.useState(props.data ?? []);
 
   const renderOption = (arrItem) => {
