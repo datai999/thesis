@@ -11,6 +11,7 @@ import _ from "lodash";
 import React from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { StyleSheet } from "react-native";
+import { getLocalTime } from "utils";
 import i18n from "utils/i18n";
 
 
@@ -33,9 +34,9 @@ const CouncilLayout = ({ header, ...props }) => {
   React.useEffect(() => {
     const setDefaultForm = () => {
       let arrRoleValue = Props["councilRole"].arrValue;
-      setValue("reserveDate", new Date());
-      setValue("startTime", new Date());
-      setValue("endTime", new Date());
+      setValue("reserveDate", getLocalTime());
+      setValue("startTime", getLocalTime());
+      setValue("endTime", getLocalTime());
       setValue("role", arrRoleValue);
       setValue("teacher", Array(arrRoleValue.length).fill(null));
     };
