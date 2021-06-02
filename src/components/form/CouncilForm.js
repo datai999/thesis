@@ -11,9 +11,8 @@ import _ from "lodash";
 import React from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { StyleSheet } from "react-native";
-import { dateToLocalTime, getLocalTime } from "utils";
+import { toLocalDate, toLocalTime } from "utils";
 import i18n from "utils/i18n";
-
 
 let form = {};
 
@@ -34,9 +33,9 @@ const CouncilLayout = ({ header, ...props }) => {
   React.useEffect(() => {
     const setDefaultForm = () => {
       let arrRoleValue = Props["councilRole"].arrValue;
-      setValue("reserveDate", getLocalTime());
-      setValue("startTime", getLocalTime());
-      setValue("endTime", getLocalTime());
+      setValue("reserveDate", toLocalDate(new Date()));
+      setValue("startTime", toLocalTime(new Date()));
+      setValue("endTime", toLocalTime(new Date()));
       setValue("role", arrRoleValue);
       setValue("teacher", Array(arrRoleValue.length).fill(null));
     };
@@ -74,7 +73,12 @@ const CouncilLayout = ({ header, ...props }) => {
       inputProps: {
         ...Props[field],
       },
-      callBack: (value) => setValue(field, dateToLocalTime(value)),
+      callBack: (value) => {
+        let formatValue =
+          field == "reserveDate" ? toLocalDate(value) : toLocalTime(value);
+        console.log(formatValue);
+        setValue(field, formatValue);
+      },
     };
   };
   const autocompleteProps = (field) => {

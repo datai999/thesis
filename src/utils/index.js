@@ -1,3 +1,4 @@
+import dateFormat from 'dateformat';
 import i18n from "utils/i18n";
 
 function getRenderText(obj) {
@@ -20,13 +21,17 @@ function getRenderText(obj) {
   }
 }
 
-function dateToLocalTime(date){
+function dateToLocal(date){
   return date.toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"});
 }
 
-function getLocalTime(){
-  return dateToLocalTime(new Date());
+function toLocalDate(date){
+  return dateFormat(dateToLocal(date), "yyyy-mm-dd");
 }
 
-export { getRenderText, dateToLocalTime, getLocalTime };
+function toLocalTime(date){
+  return dateFormat(dateToLocal(date), "HH:MM");
+}
+
+export { getRenderText, dateToLocal, toLocalDate, toLocalTime };
 
