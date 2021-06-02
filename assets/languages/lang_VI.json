@@ -7,7 +7,8 @@
     "role": "",
     "role_type": "Chọn vai trò",
     "teacher": "",
-    "teacher_type": "Nhập tên của giảng viên"
+    "teacher_type": "Nhập tên của giảng viên",
+    "update": "Cập nhật hội đồng"
   },
   "degree": "Học vị",
   "degree_select": "Chọn học vị",

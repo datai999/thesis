@@ -167,9 +167,16 @@ const TopicCreateLayout = ({ header, ...props }) => {
             <MySelect {...selectProps("minStudentTake")} />
             <MySelect {...selectProps("maxStudentTake")} />
             <MyAutocompleteTag {...autocompleteProps("students", "students")} />
-
-            {/* TODO change UI */}
-            <Button onPress={() => setCouncilVisible(true)} />
+            <Button
+              style={{ marginTop: 22 }}
+              appearance="outline"
+              onPress={() => setCouncilVisible(true)}
+            >
+              {() => {
+                if (form?.council == null) return i18n.t("council.create");
+                return i18n.t("council.update");
+              }}
+            </Button>
           </Layout>
         </Layout>
 
