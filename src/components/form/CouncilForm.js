@@ -1,5 +1,6 @@
 import { Layout, List, Text } from "@ui-kitten/components";
 import TeacherApi from "api/person/TeacherApi";
+import CouncilApi from "api/topic/CouncilApi";
 import { TeacherForm } from "components/form";
 import { MyAutocomplete, MyInput } from "components/Input";
 import MyModal from "components/Modal";
@@ -12,6 +13,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { StyleSheet } from "react-native";
 import i18n from "utils/i18n";
 
+
 let form = {};
 
 const CouncilForm = {
@@ -20,7 +22,7 @@ const CouncilForm = {
     else form = {};
     return <CouncilLayout header={header} data={data} />;
   },
-  submit: (formSubmit = form) => console.log(formSubmit),
+  submit: (formSubmit = form) => CouncilApi.create(formSubmit),
 };
 const CouncilLayout = ({ header, ...props }) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
