@@ -1,15 +1,8 @@
-import { IndexPath, Layout, Menu, MenuItem, Text } from "@ui-kitten/components";
+import { IndexPath, Layout, Text } from "@ui-kitten/components";
 import ConstApi from "api/ConstApi";
 import Props from "data/Props";
 import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
-import {
-  BookOpenIcon,
-  HomeIcon,
-  MenuIcon,
-  PersonDoneIcon,
-  SettingIcon,
-} from "./components/Icons";
 import TopicScreen from "./pages/TopicScreen";
 
 const Routes = () => {
@@ -43,7 +36,8 @@ const Routes = () => {
 
   return (
     <Layout style={styles.container}>
-      <Layout style={{ width: menuSize, backgroundColor: "#f2f6ff" }}>
+      <Text style={{ textAlign: "center", margin: 5 }}>Version:5.31.01</Text>
+      {/* <Layout style={{ width: menuSize, backgroundColor: "#f2f6ff" }}>
         <Menu
           style={styles.menu}
           selectedIndex={selectedIndex}
@@ -55,8 +49,7 @@ const Routes = () => {
           <MenuItem title="Assign" accessoryLeft={PersonDoneIcon} />
           <MenuItem title="Setting" accessoryLeft={SettingIcon} />
         </Menu>
-        <Text style={{ textAlign: "center", margin: 5 }}>Version:5.31.01</Text>
-      </Layout>
+      </Layout> */}
 
       <Layout style={styles.content}>{selectScreen()}</Layout>
     </Layout>
@@ -66,7 +59,7 @@ const Routes = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
+    // flexDirection: "row",
   },
   menu: {
     height: "100%",
