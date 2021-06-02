@@ -10,7 +10,7 @@ import Props from "data/Props";
 import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { toLocalDate, toLocalTime } from "utils";
+import { getRenderText, toLocalDate, toLocalTime } from "utils";
 import i18n from "utils/i18n";
 
 let form = {};
@@ -18,7 +18,6 @@ let form = {};
 const CouncilForm = {
   body: (header = "council.create", data) => {
     if (data != null) form = _.cloneDeep(data);
-    else form = {};
     return <CouncilLayout header={header} data={data} />;
   },
   submit: (formSubmit = form) => CouncilApi.create(formSubmit),
@@ -26,17 +25,24 @@ const CouncilForm = {
 const CouncilLayout = ({ header, ...props }) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
 
-  React.useEffect(() => {
-    const setDefaultForm = () => {
-      let arrRoleValue = Props["councilRole"].arrValue;
-      setValue("reserveDate", toLocalDate(new Date()));
-      setValue("startTime", toLocalTime(new Date()));
-      setValue("endTime", toLocalTime(new Date()));
-      setValue("role", arrRoleValue);
-      setValue("teacher", Array(arrRoleValue.length).fill(null));
+  const setDefaultForm = () => {
+    let arrRoleValue = Props.councilRole.arrValue;
+    form = {
+      reserveDate: toLocalDate(new Date()),
+      startTime: toLocalTime(new Date()),
+      endTime: toLocalTime(new Date()),
+      role: arrRoleValue,
+      teacher: Array(arrRoleValue.length).fill(null),
     };
-    setDefaultForm();
+  };
+
+  React.useEffect(() => {
+    if (props.data == null) setDefaultForm();
   }, []);
+
+  console.log(form);
+  console.log(new Date(form["reserveDate"]));
+  console.log(new Date(form["reserveDate"] + "T" + form["startTime"]));
 
   const modalTeacherCreateProps = {
     ...TeacherForm,
@@ -50,9 +56,9 @@ const CouncilLayout = ({ header, ...props }) => {
 
   const inputProps = (field, path = field) => {
     return {
+      ...Props[field],
       value: form[field] || "",
       callBack: (value) => setValue(path, value),
-      ...Props[field],
     };
   };
   const selectProps = (field) => {
@@ -67,6 +73,10 @@ const CouncilLayout = ({ header, ...props }) => {
     return {
       pickerProps: {
         popperPlacement: "top-start",
+        selected:
+          field == "reserveDate"
+            ? new Date(form[field])
+            : new Date(form["reserveDate"] + "T" + form[field]),
       },
       inputProps: {
         ...Props[field],
@@ -130,6 +140,7 @@ const CouncilLayout = ({ header, ...props }) => {
                   "teacher" + "[" + index + "]"
                 )}
                 label={item.value[i18n.language]}
+                value={getRenderText(form.teacher?.[index])}
               />
             </Layout>
           );
