@@ -40,10 +40,6 @@ const CouncilLayout = ({ header, ...props }) => {
     if (props.data == null) setDefaultForm();
   }, []);
 
-  console.log(form);
-  console.log(new Date(form["reserveDate"]));
-  console.log(new Date(form["reserveDate"] + "T" + form["startTime"]));
-
   const modalTeacherCreateProps = {
     ...TeacherForm,
     visible: teacherCreateVisible,
@@ -57,7 +53,7 @@ const CouncilLayout = ({ header, ...props }) => {
   const inputProps = (field, path = field) => {
     return {
       ...Props[field],
-      value: form[field] || "",
+      value: form[field],
       callBack: (value) => setValue(path, value),
     };
   };
