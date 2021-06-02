@@ -125,11 +125,14 @@ const CouncilLayout = ({ header, ...props }) => {
       {/* TODO bug layout reserve date */}
       <List
         data={arrRole}
-        renderItem={({ item }) => {
+        renderItem={({ index, item }) => {
           return (
             <Layout>
               <MyAutocomplete
-                {...autocompleteProps("councilTeacher", "teacher")}
+                {...autocompleteProps(
+                  "councilTeacher",
+                  "teacher" + "[" + index + "]"
+                )}
                 label={item.value[i18n.language]}
               />
             </Layout>
