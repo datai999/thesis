@@ -28,7 +28,12 @@ const DatePickerInput = ({ callBack, pickerProps, inputProps, ...props }) => {
 
   const CustomInput = React.forwardRef(
     ({ value, onClick, ...customInputProps }, ref) => (
-      <MyInput {...customInputProps} value={value} onClick={onClick} />
+      <MyInput
+        {...customInputProps}
+        value={value}
+        onClick={onClick}
+        onChangeText={(nextValue) => {}}
+      />
     )
   );
 

@@ -17,10 +17,6 @@ const MyInput = ({ callBack, ...props }) => {
 
   return (
     <Input
-      {...props}
-      label={i18n.t(props.label)}
-      placeholder={i18n.t(props.placeholder)}
-      value={getRenderText(currentValue)}
       onChangeText={(nextValue) => {
         callBack(nextValue);
         setCurrentValue(nextValue);
@@ -29,6 +25,10 @@ const MyInput = ({ callBack, ...props }) => {
         if (props.onBlur) return props.onBlur(currentValue);
         return null;
       }}
+      {...props}
+      label={i18n.t(props.label)}
+      value={getRenderText(currentValue)}
+      placeholder={i18n.t(props.placeholder)}
     />
   );
 };
