@@ -6,7 +6,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import i18n from "utils/i18n";
 
 const DatePickerInputKitten = ({ callBack, ...props }) => {
-  const [date, setDate] = React.useState(new Date());
+  const [date, setDate] = React.useState(
+    props.pickerProps?.selected || new Date()
+  );
 
   return (
     <DatePickerKitten
