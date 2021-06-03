@@ -175,7 +175,9 @@ const TopicCreateLayout = ({ header, ...props }) => {
             <Button
               style={{ marginTop: 22 }}
               appearance="outline"
-              onPress={() => setCouncilVisible(true)}
+              onPress={() => {
+                setCouncilVisible(true);
+              }}
             >
               {() => {
                 if (form?.council == null) return i18n.t("council.create");

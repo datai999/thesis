@@ -18,6 +18,7 @@ let form = {};
 const CouncilForm = {
   body: (header = "council.create", data) => {
     if (data != null) form = _.cloneDeep(data);
+    else form = {};
     return <CouncilLayout header={header} data={data} />;
   },
   submit: (formSubmit = form) => CouncilApi.create(formSubmit),
@@ -37,7 +38,7 @@ const CouncilLayout = ({ header, ...props }) => {
   };
 
   React.useEffect(() => {
-    if (props.data == null) setDefaultForm();
+    if (props.data == null || Object.keys(a).length === 0) setDefaultForm();
   }, []);
 
   const modalTeacherCreateProps = {
@@ -66,13 +67,24 @@ const CouncilLayout = ({ header, ...props }) => {
     };
   };
   const pickerInputProps = (field) => {
+    let selectedDate = new Date();
+    if (field == "reserveDate") {
+      if (form[field] && form[field] != "undefine")
+        selectedDate = new Date(form[field]);
+    } else {
+      if (form[field] && form[field] != "undefine") {
+        if (form.reserveDate && form.reserveDate != "undefine") {
+          selectedDate = new Date(form["reserveDate"] + "T" + form[field]);
+        } else {
+          selectedDate = new Date("1999-05-28T" + form[field]);
+        }
+      }
+    }
+
     return {
       pickerProps: {
         popperPlacement: "top-start",
-        selected:
-          field == "reserveDate"
-            ? new Date(form[field])
-            : new Date(form["reserveDate"] + "T" + form[field]),
+        selected: selectedDate,
       },
       inputProps: {
         ...Props[field],
@@ -99,6 +111,9 @@ const CouncilLayout = ({ header, ...props }) => {
       console.log(error);
     }
   };
+
+  console.log(pickerInputProps("reserveDate"));
+  console.log(pickerInputProps("startTime"));
 
   return (
     <Layout style={styles.container}>
