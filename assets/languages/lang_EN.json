@@ -32,6 +32,11 @@
     "total": "Total",
     "update": "Update"
   },
+  "page": {
+    "home": "Home",
+    "setting": "Setting",
+    "topic": "Topic"
+  },
   "phone": "Phone number",
   "phone_type": "Type phone number",
   "semester": "Semester",

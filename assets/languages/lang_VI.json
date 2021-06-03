@@ -32,6 +32,11 @@
     "total": "Tổng trang",
     "update": "Cập nhật"
   },
+  "page": {
+    "home": "Trang chủ",
+    "setting": "Cài đặt",
+    "topic": "Chủ đề"
+  },
   "phone": "Số điện thoại",
   "phone_type": "Nhập số điện thoại",
   "semester": "Học kỳ",
