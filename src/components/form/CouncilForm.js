@@ -4,7 +4,7 @@ import CouncilApi from "api/topic/CouncilApi";
 import { TeacherForm } from "components/form";
 import { MyAutocomplete, MyInput } from "components/Input";
 import MyModal from "components/Modal";
-import { DatePickerInput, TimePickerInput } from "components/Picker";
+import { DatePickerInputKitten, TimePickerInput } from "components/Picker";
 import { MySelect } from "components/Select";
 import Props from "data/Props";
 import _ from "lodash";
@@ -80,7 +80,6 @@ const CouncilLayout = ({ header, ...props }) => {
       callBack: (value) => {
         let formatValue =
           field == "reserveDate" ? toLocalDate(value) : toLocalTime(value);
-        console.log(formatValue);
         setValue(field, formatValue);
       },
     };
@@ -112,7 +111,7 @@ const CouncilLayout = ({ header, ...props }) => {
           <MyInput {...inputProps("reserveRoom")} />
         </Layout>
         <Layout style={styles.right}>
-          <DatePickerInput {...pickerInputProps("reserveDate")} />
+          <DatePickerInputKitten {...pickerInputProps("reserveDate")} />
           <Layout style={styles.row}>
             <Layout style={styles.left}>
               <TimePickerInput {...pickerInputProps("startTime")} />
@@ -124,7 +123,6 @@ const CouncilLayout = ({ header, ...props }) => {
         </Layout>
       </Layout>
 
-      {/* TODO bug layout reserve date */}
       <List
         data={Props["councilRole"].arrValue}
         renderItem={({ index, item }) => {
