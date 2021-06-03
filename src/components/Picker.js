@@ -1,5 +1,5 @@
 import { Datepicker as DatePickerKitten } from "@ui-kitten/components";
-import { MyInput } from "components/input";
+import { MyInput } from "components/Input";
 import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
