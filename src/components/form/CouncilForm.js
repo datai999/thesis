@@ -38,7 +38,8 @@ const CouncilLayout = ({ header, ...props }) => {
   };
 
   React.useEffect(() => {
-    if (props.data == null || Object.keys(a).length === 0) setDefaultForm();
+    if (props.data == null || Object.keys(props.data).length === 0)
+      setDefaultForm();
   }, []);
 
   const modalTeacherCreateProps = {
