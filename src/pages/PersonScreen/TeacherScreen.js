@@ -3,6 +3,7 @@ import TeacherApi from "api/person/TeacherApi";
 import React from "react";
 import { StyleSheet } from "react-native";
 import TeacherTable from "./mains/TeacherTable";
+import TeacherTopBar from "./mains/TeacherTopBar";
 
 const defaultPage = {
   number: 0,
@@ -41,7 +42,17 @@ const TeacherScreen = () => {
 
   return (
     <Layout style={styles.container}>
-      <Layout style={styles.topBar}></Layout>
+      <Layout style={styles.topBar}>
+        <TeacherTopBar
+          sortField={page.sort}
+          sortType={page.descend}
+          addNewRecord={(newRecord) => {
+            let newData = _.cloneDeep(data);
+            newData.unshift(newRecord);
+            setData(newData);
+          }}
+        />
+      </Layout>
       <TeacherTable data={data} page={page} callBack={fetchData} />
     </Layout>
   );
