@@ -47,6 +47,7 @@ const TeacherCreateLayout = (header, data, setData) => {
           <MyInput {...inputProps("phone")} />
         </Layout>
         <Layout style={styles.right}>
+          <MyInput {...inputProps("teacherCode")} />
           <MySelect {...selectProps("degree")} />
           <MySelect {...selectProps("subjectDepartment")} />
         </Layout>

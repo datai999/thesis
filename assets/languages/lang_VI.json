@@ -67,6 +67,8 @@
   "subjectDepartment": "Bộ môn",
   "subjectDepartment_select": "Chọn bộ môn",
   "teacher": {
+    "code": "Mã số giảng viên",
+    "code_type": "Nhập mã số giảng viên",
     "create": "Thêm giảng viên",
     "guide": "Giảng viên hướng dẫn",
     "guideSelect": "Chọn giảng viên hướng dẫn",

@@ -155,6 +155,10 @@ const Props = {
     label: "council.teacher",
     placeholder: "council.teacher_type",
   },
+  teacherCode: {
+    label: "teacher.code",
+    placeholder: "teacher.code_type",
+  },
 };
 
 export default Props;

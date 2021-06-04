@@ -67,6 +67,8 @@
   "subjectDepartment": "Subject department",
   "subjectDepartment_select": "Select subject department",
   "teacher": {
+    "code": "Teacher code",
+    "code_type": "Type teacher code",
     "create": "Create teacher",
     "guide": "Guide teacher",
     "guideSelect": "Select guide teacher",
