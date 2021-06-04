@@ -10,7 +10,7 @@ const selectItems = (arrItem, { callBack, ...props }) => {
           key={item}
           title={getRenderText(item)}
           {...props}
-          onPress={() => {
+          onPressOut={() => {
             if (callBack) callBack(index);
             if (props.onPress) props.onPress();
           }}
@@ -37,7 +37,7 @@ const MySelect = ({ field, callBack, ...props }) => {
         setIndexed(index);
       }}
     >
-      {selectItems(props.arrValue)}
+      {selectItems(props.arrValue, {})}
     </Select>
   );
 };
@@ -69,7 +69,7 @@ const MyMultiSelect = ({ field, callBack, ...props }) => {
         setIndexes(arrIndexPath);
       }}
     >
-      {selectItems(props.arrValue)}
+      {selectItems(props.arrValue, {})}
     </Select>
   );
 };
