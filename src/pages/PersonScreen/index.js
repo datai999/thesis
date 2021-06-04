@@ -1,19 +1,9 @@
-import { Text } from "@ui-kitten/components";
 import React from "react";
-import { StyleSheet } from "react-native";
+import StudentScreen from "./mains/StudentScreen";
+import TeacherScreen from "./mains/TeacherScreen";
 
-const PersonScreen = (mode) => {
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
-
-  console.log(mode);
-
-  return <Text style={{ textAlign: "center" }}>Version:5.31.01</Text>;
+const PersonScreen = ({ ...props }) => {
+  return props.mode == "teacher" ? <TeacherScreen /> : <StudentScreen />;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default PersonScreen;
