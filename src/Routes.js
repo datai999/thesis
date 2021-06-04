@@ -34,6 +34,7 @@ const Routes = () => {
   }, []);
 
   const [personMenuVisible, setPersonMenuVisible] = React.useState(false);
+  const [personScreenMode, setPersonScreenMode] = React.useState("student");
 
   const personMenu = [
     i18n.t("page.person.teacher"),
@@ -41,6 +42,7 @@ const Routes = () => {
   ];
 
   const personMenuProps = {
+    callBack: (item) => setPersonScreenMode(item == 0 ? "teacher" : "student"),
     onPress: () => {
       setPersonMenuVisible(false);
       setSelectedIndex(2);
@@ -90,7 +92,7 @@ const Routes = () => {
           icon={PersonDoneIcon}
           onFocus={() => setPersonMenuVisible(true)}
         >
-          <PersonScreen />
+          <PersonScreen mode={personScreenMode} />
         </Tab>
         <Tab title={i18n.t("page.setting")} icon={SettingIcon}>
           <SettingScreen />

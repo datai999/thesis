@@ -3,10 +3,18 @@ import React from "react";
 import { getRenderText } from "utils";
 import i18n from "utils/i18n";
 
-const selectItems = (arrItem, {...props}) => {
+const selectItems = (arrItem, { callBack, ...props }) => {
   return arrItem
-    ? Array.from(arrItem, (item) => (
-        <SelectItem key={item} title={getRenderText(item)} {...props}/>
+    ? Array.from(arrItem, (item, index) => (
+        <SelectItem
+          key={item}
+          title={getRenderText(item)}
+          {...props}
+          onPress={() => {
+            if (callBack) callBack(index);
+            if (props.onPress) props.onPress();
+          }}
+        />
       ))
     : null;
 };

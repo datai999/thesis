@@ -2,8 +2,10 @@ import { Text } from "@ui-kitten/components";
 import React from "react";
 import { StyleSheet } from "react-native";
 
-const PersonScreen = () => {
+const PersonScreen = (mode) => {
   const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+  console.log(mode);
 
   return <Text style={{ textAlign: "center" }}>Version:5.31.01</Text>;
 };
