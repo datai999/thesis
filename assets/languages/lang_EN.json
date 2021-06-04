@@ -50,6 +50,28 @@
     "setting": "Setting",
     "topic": "Topic"
   },
+  "person": {
+    "code": {
+      "label": "Code",
+      "placeholder": "Type code"
+    },
+    "degree": {
+      "label": "Degree",
+      "placeholder": "Select degree"
+    },
+    "name": {
+      "label": "Full name",
+      "placeholder": "Type full name"
+    },
+    "phone": {
+      "label": "Phone",
+      "placeholder": "Type phone number"
+    },
+    "subjectDepartment": {
+      "label": "pSubject department",
+      "placeholder": "Select subject department"
+    }
+  },
   "phone": "Phone number",
   "phone_type": "Type phone number",
   "semester": "Semester",

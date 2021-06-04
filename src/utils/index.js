@@ -1,4 +1,7 @@
+import link from "assets/link";
+import Props from "data/Props";
 import dateFormat from "dateformat";
+import _ from "lodash";
 import i18n from "utils/i18n";
 
 function getRenderText(obj) {
@@ -33,4 +36,29 @@ function toLocalTime(date) {
   return dateFormat(dateToLocal(date), "HH:MM");
 }
 
+export const createProps = (form) => {
+  const setValue = (path, value) => (form[path] = value);
+  return {
+    set: setValue,
+    input: (path) => {
+      const linkResult = _.get(link, path);
+      return {
+        value: form[linkResult?.api],
+        callBack: (value) => setValue(linkResult?.api, value),
+        ...linkResult,
+      };
+    },
+    select: (path) => {
+      const linkResult = _.get(link, path);
+      return {
+        value: form[linkResult.api],
+        callBack: (value) => setValue(linkResult.api, value),
+        ...linkResult,
+        ...Props[linkResult.api],
+      };
+    },
+  };
+};
+
 export { getRenderText, dateToLocal, toLocalDate, toLocalTime };
+

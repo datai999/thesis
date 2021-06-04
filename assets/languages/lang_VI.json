@@ -50,6 +50,28 @@
     "setting": "Cài đặt",
     "topic": "Chủ đề"
   },
+  "person": {
+    "code": {
+      "label": "Mã số",
+      "placeholder": "Nhập mã số"
+    },
+    "degree": {
+      "label": "Học vị",
+      "placeholder": "Chọn học vị"
+    },
+    "name": {
+      "label": "Họ và tên",
+      "placeholder": "Nhập họ và tên"
+    },
+    "phone": {
+      "label": "Điện thoại",
+      "placeholder": "Nhập số điện thoại"
+    },
+    "subjectDepartment": {
+      "label": "Phòng ban",
+      "placeholder": "Chọn phòng ban"
+    }
+  },
   "phone": "Số điện thoại",
   "phone_type": "Nhập số điện thoại",
   "semester": "Học kỳ",

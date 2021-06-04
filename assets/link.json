@@ -1,0 +1,34 @@
+{
+  "person": {
+    "code": {
+      "api": "code",
+      "label": "person.code.label",
+      "placeholder": "person.code.placeholder"
+    },
+    "degree": {
+      "api": "degree",
+      "label": "person.degree.label",
+      "placeholder": "person.degree.placeholder"
+    },
+    "email": {
+      "api": "email",
+      "label": "Email",
+      "placeholder": "HCMUT email"
+    },
+    "name": {
+      "api": "name",
+      "label": "person.name.label",
+      "placeholder": "person.name.placeholder"
+    },
+    "phone": {
+      "api": "phone",
+      "label": "person.phone.label",
+      "placeholder": "person.phone.placeholder"
+    },
+    "subjectDepartment": {
+      "api": "subjectDepartment",
+      "label": "person.subjectDepartment",
+      "placeholder": "person.subjectDepartment_select"
+    }
+  }
+}

@@ -2,9 +2,9 @@ import { Layout, Text } from "@ui-kitten/components";
 import TeacherApi from "api/person/TeacherApi";
 import { MyInput } from "components/Input";
 import { MySelect } from "components/Select";
-import Props from "data/Props";
 import React from "react";
 import { StyleSheet } from "react-native";
+import { createProps } from "utils";
 import i18n from "utils/i18n";
 
 const form = {};
@@ -21,35 +21,21 @@ const TeacherForm = {
 };
 
 const TeacherCreateLayout = (header, data, setData) => {
-  const setValue = (field, value) => (form[field] = value);
-  const inputProps = (field) => {
-    return {
-      value: form[field],
-      callBack: (value) => setValue(field, value),
-      ...Props[field],
-    };
-  };
-  const selectProps = (field) => {
-    return {
-      field,
-      value: form[field],
-      callBack: (value) => setValue(field, value),
-      ...Props[field],
-    };
-  };
+  const propStore = createProps(form);
+
   return (
     <Layout style={styles.container}>
       <Text style={styles.headerText}>{i18n.t(header)}</Text>
       <Layout style={styles.row}>
         <Layout style={styles.left}>
-          <MyInput {...inputProps("name")} />
-          <MyInput {...inputProps("email")} />
-          <MyInput {...inputProps("phone")} />
+          <MyInput {...propStore.input("person.name")} />
+          <MyInput {...propStore.input("person.email")} />
+          <MyInput {...propStore.input("person.phone")} />
         </Layout>
         <Layout style={styles.right}>
-          <MyInput {...inputProps("teacherCode")} />
-          <MySelect {...selectProps("degree")} />
-          <MySelect {...selectProps("subjectDepartment")} />
+          <MyInput {...propStore.input("person.code")} />
+          <MySelect {...propStore.select("person.degree")} />
+          <MySelect {...propStore.select("person.subjectDepartment")} />
         </Layout>
       </Layout>
     </Layout>
