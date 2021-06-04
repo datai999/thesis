@@ -34,7 +34,7 @@ const Routes = () => {
   }, []);
 
   const [personMenuVisible, setPersonMenuVisible] = React.useState(false);
-  const [personScreenMode, setPersonScreenMode] = React.useState("student");
+  const [personScreenMode, setPersonScreenMode] = React.useState("teacher");
 
   const personMenu = [
     i18n.t("page.person.teacher"),
