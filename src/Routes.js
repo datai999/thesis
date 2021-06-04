@@ -1,4 +1,4 @@
-import { Layout, Popover, Tab, TabView } from "@ui-kitten/components";
+import { Layout, Popover, Tab, TabView, Text } from "@ui-kitten/components";
 import ConstApi from "api/ConstApi";
 import { selectItems } from "components/Select";
 import Props from "data/Props";
@@ -35,17 +35,6 @@ const Routes = () => {
 
   const [personMenuVisible, setPersonMenuVisible] = React.useState(false);
 
-  const renderPersonTab = () => (
-    <Tab
-      title={i18n.t("page.person.get")}
-      icon={PersonDoneIcon}
-      onFocus={() => setPersonMenuVisible(true)}
-      style={{ flex: 1 }}
-    >
-      <PersonScreen />
-    </Tab>
-  );
-
   const personMenu = [
     i18n.t("page.person.teacher"),
     i18n.t("page.person.student"),
@@ -58,12 +47,28 @@ const Routes = () => {
     },
   };
 
+  const renderPersonMenu = (props) => {
+    return (
+      <Popover
+        visible={personMenuVisible}
+        fullWidth={true}
+        onBackdropPress={() => setPersonMenuVisible(false)}
+        anchor={() => (
+          <Text style={{ ...props.style }}>{i18n.t("page.person.get")}</Text>
+        )}
+      >
+        <Layout>{selectItems(personMenu, { ...personMenuProps })}</Layout>
+      </Popover>
+    );
+  };
+
   return (
     <Layout style={styles.container}>
       <TabView
         selectedIndex={selectedIndex}
+        // shouldLoadComponent={(index) => index === selectedIndex}
         onSelect={(index) => {
-          setSelectedIndex(index);
+          if (index != 2) setSelectedIndex(index);
         }}
       >
         <Tab title={i18n.t("page.home")} icon={HomeIcon}>
@@ -72,14 +77,13 @@ const Routes = () => {
         <Tab title={i18n.t("page.topic")} icon={BookOpenIcon}>
           <TopicScreen />
         </Tab>
-        <Popover
-          visible={personMenuVisible}
-          anchor={renderPersonTab}
-          fullWidth={true}
-          onBackdropPress={() => setPersonMenuVisible(false)}
+        <Tab
+          title={renderPersonMenu}
+          icon={PersonDoneIcon}
+          onFocus={() => setPersonMenuVisible(true)}
         >
-          <Layout>{selectItems(personMenu, { ...personMenuProps })}</Layout>
-        </Popover>
+          <PersonScreen />
+        </Tab>
         <Tab title={i18n.t("page.setting")} icon={SettingIcon}>
           <SettingScreen />
         </Tab>
@@ -92,6 +96,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  tabText: { flex: 1, fontSize: 12, fontWeight: "400" },
 });
 
 export default Routes;
