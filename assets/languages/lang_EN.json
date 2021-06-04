@@ -36,7 +36,11 @@
   },
   "page": {
     "home": "Home",
-    "person": "Person",
+    "person": {
+      "get": "Person",
+      "student": "Student",
+      "teacher": "Teacher"
+    },
     "setting": "Setting",
     "topic": "Topic"
   },

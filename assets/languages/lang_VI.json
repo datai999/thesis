@@ -36,7 +36,11 @@
   },
   "page": {
     "home": "Trang chủ",
-    "person": "Con người",
+    "person": {
+      "get": "Con người",
+      "student": "Sinh viên",
+      "teacher": "Giảng viên"
+    },
     "setting": "Cài đặt",
     "topic": "Chủ đề"
   },

@@ -1,5 +1,6 @@
-import { Layout, Tab, TabView } from "@ui-kitten/components";
+import { Layout, Popover, Tab, TabView } from "@ui-kitten/components";
 import ConstApi from "api/ConstApi";
+import { selectItems } from "components/Select";
 import Props from "data/Props";
 import React from "react";
 import { StyleSheet } from "react-native";
@@ -8,7 +9,7 @@ import {
   BookOpenIcon,
   HomeIcon,
   PersonDoneIcon,
-  SettingIcon,
+  SettingIcon
 } from "./components/Icons";
 import HomeScreen from "./pages/HomeScreen";
 import PersonScreen from "./pages/PersonScreen";
@@ -32,11 +33,38 @@ const Routes = () => {
     fetch();
   }, []);
 
+  const [personMenuVisible, setPersonMenuVisible] = React.useState(false);
+
+  const renderPersonTab = () => (
+    <Tab
+      title={i18n.t("page.person.get")}
+      icon={PersonDoneIcon}
+      onFocus={() => setPersonMenuVisible(true)}
+      style={{ flex: 1 }}
+    >
+      <PersonScreen />
+    </Tab>
+  );
+
+  const personMenu = [
+    i18n.t("page.person.teacher"),
+    i18n.t("page.person.student"),
+  ];
+
+  const personMenuProps = {
+    onPress: () => {
+      setPersonMenuVisible(false);
+      setSelectedIndex(2);
+    },
+  };
+
   return (
     <Layout style={styles.container}>
       <TabView
         selectedIndex={selectedIndex}
-        onSelect={(index) => setSelectedIndex(index)}
+        onSelect={(index) => {
+          setSelectedIndex(index);
+        }}
       >
         <Tab title={i18n.t("page.home")} icon={HomeIcon}>
           <HomeScreen />
@@ -44,9 +72,14 @@ const Routes = () => {
         <Tab title={i18n.t("page.topic")} icon={BookOpenIcon}>
           <TopicScreen />
         </Tab>
-        <Tab title={i18n.t("page.person")} icon={PersonDoneIcon}>
-          <PersonScreen />
-        </Tab>
+        <Popover
+          visible={personMenuVisible}
+          anchor={renderPersonTab}
+          fullWidth={true}
+          onBackdropPress={() => setPersonMenuVisible(false)}
+        >
+          <Layout>{selectItems(personMenu, { ...personMenuProps })}</Layout>
+        </Popover>
         <Tab title={i18n.t("page.setting")} icon={SettingIcon}>
           <SettingScreen />
         </Tab>
