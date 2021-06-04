@@ -1,9 +1,10 @@
 import { Layout } from "@ui-kitten/components";
 import TeacherApi from "api/person/TeacherApi";
+import { TeacherForm } from "components/form";
+import TopBar from "components/screen/TopBar";
 import React from "react";
 import { StyleSheet } from "react-native";
 import TeacherTable from "./mains/TeacherTable";
-import TeacherTopBar from "./mains/TeacherTopBar";
 
 const defaultPage = {
   number: 0,
@@ -43,9 +44,8 @@ const TeacherScreen = () => {
   return (
     <Layout style={styles.container}>
       <Layout style={styles.topBar}>
-        <TeacherTopBar
-          sortField={page.sort}
-          sortType={page.descend}
+        <TopBar
+          form={TeacherForm}
           addNewRecord={(newRecord) => {
             let newData = _.cloneDeep(data);
             newData.unshift(newRecord);

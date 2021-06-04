@@ -1,21 +1,20 @@
 import { Button, Layout } from "@ui-kitten/components";
-import { TeacherForm } from "components/form";
 import { PlusIcon } from "components/Icons";
 import MyModal from "components/Modal";
 import React from "react";
 import { StyleSheet } from "react-native";
 import i18n from "utils/i18n";
 
-const TeacherTopBar = ({ addNewRecord }) => {
+const TopBar = ({ addNewRecord, form }) => {
   const [createFormVisible, setCreateFormVisible] = React.useState(false);
 
   const modalTopicCreateProps = {
     visible: createFormVisible,
     cancel: () => setCreateFormVisible(false),
-    ...TeacherForm,
+    ...form,
     submit: async () => {
       try {
-        let response = await TeacherForm.submit();
+        let response = await form.submit();
         addNewRecord(response);
         return response;
       } catch (error) {
@@ -54,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TeacherTopBar;
+export default TopBar;

@@ -1,9 +1,10 @@
 import { Layout } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
+import { TopicForm } from "components/form";
+import TopBar from "components/screen/TopBar";
 import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import TopicTablePaper from "./mains/TopicTablePaper";
-import TopicTopBar from "./mains/TopicTopBar";
 
 const defaultPage = {
   number: 0,
@@ -45,12 +46,11 @@ const TopicScreen = () => {
   return (
     <Layout style={styles.container}>
       <Layout style={styles.topBar}>
-        <TopicTopBar
-          sortField={page.sort}
-          sortType={page.descend}
-          addNewTopic={(newTopic) => {
+      <TopBar
+          form={TopicForm}
+          addNewRecord={(newRecord) => {
             let newData = _.cloneDeep(data);
-            newData.unshift(newTopic);
+            newData.unshift(newRecord);
             setData(newData);
           }}
         />
