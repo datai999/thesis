@@ -54,7 +54,15 @@ const Routes = () => {
         fullWidth={true}
         onBackdropPress={() => setPersonMenuVisible(false)}
         anchor={() => (
-          <Text style={{ ...props.style }}>{i18n.t("page.person.get")}</Text>
+          <Text
+            style={{
+              ...props.style,
+              width: "70%",
+              textAlign: "center",
+            }}
+          >
+            {i18n.t("page.person.get")}
+          </Text>
         )}
       >
         <Layout>{selectItems(personMenu, { ...personMenuProps })}</Layout>
@@ -96,7 +104,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  tabText: { flex: 1, fontSize: 12, fontWeight: "400" },
 });
 
 export default Routes;
