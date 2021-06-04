@@ -25,15 +25,18 @@
   "origin": {
     "create": "Create",
     "filter&Search": "Filter and Search",
+    "language": "Language",
     "new": "NEW",
     "page": "Page",
     "record": "Record",
     "topic": "Topic",
     "total": "Total",
-    "update": "Update"
+    "update": "Update",
+    "version": "Version"
   },
   "page": {
     "home": "Home",
+    "person": "Person",
     "setting": "Setting",
     "topic": "Topic"
   },

@@ -25,15 +25,18 @@
   "origin": {
     "create": "Tạo",
     "filter&Search": "Lọc và Tìm kiếm",
+    "language": "Ngôn ngữ",
     "new": "Tạo mới",
     "page": "Trang",
     "record": "Số bản ghi",
     "topic": "Đề tài",
     "total": "Tổng trang",
-    "update": "Cập nhật"
+    "update": "Cập nhật",
+    "version": "Phiên bản"
   },
   "page": {
     "home": "Trang chủ",
+    "person": "Con người",
     "setting": "Cài đặt",
     "topic": "Chủ đề"
   },
