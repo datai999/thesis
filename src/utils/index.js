@@ -41,7 +41,7 @@ export const createProps = (form) => {
 
   const inputProps = (path) => {
     const linkResult = getLinkProps(path);
-    const apiPath = linkResult.api && path;
+    const apiPath = linkResult.api ?? path;
     return {
       value: _.get(form, apiPath),
       callBack: (value) => setValue(apiPath, value),
@@ -63,7 +63,7 @@ export const createProps = (form) => {
     },
     select: (path) => {
       const linkResult = getLinkProps(path);
-      const apiPath = linkResult.api && path;
+      const apiPath = linkResult.api ?? path;
       return {
         ...inputProps(path),
         ...Props[apiPath.split(".").pop()],

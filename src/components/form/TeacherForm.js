@@ -17,12 +17,12 @@ const TeacherForm = {
       form = _.cloneDeep(data);
       header = "teacher.update";
     } else form = {};
-    return <TeacherLayout header={header} data={data} />;
+    return <TeacherLayout header={header} />;
   },
   submit: (formSubmit = form) => TeacherApi.create(formSubmit),
 };
 
-const TeacherLayout = ({ header, ...props }) => {
+const TeacherLayout = ({ header }) => {
   const propStore = createProps(form);
 
   return (
