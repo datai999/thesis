@@ -24,10 +24,7 @@ const TopicForm = {
     } else form = {};
     return <FormLayout header={header} />;
   },
-  submit: () => {
-    console.log(form);
-    TopicAssignApi.create(form);
-  },
+  submit: () => TopicAssignApi.create(form),
 };
 
 const FormLayout = ({ header }) => {
