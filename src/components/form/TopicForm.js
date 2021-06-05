@@ -1,6 +1,7 @@
 import { Button, Layout, Text } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
+import TopicAssignApi from "api/topic/TopicAssignApi";
 import { CouncilForm } from "components/form";
 import { MyAutocompleteTag, MyInput } from "components/Input";
 import MyModal from "components/Modal";
@@ -25,7 +26,7 @@ const TopicForm = {
   },
   submit: () => {
     console.log(form);
-    // TopicAssignApi.create(form);
+    TopicAssignApi.create(form);
   },
 };
 
@@ -75,9 +76,9 @@ const FormLayout = ({ header }) => {
         style={{ maxHeight: "100%" }}
         contentContainerStyle={{ paddingHorizontal: 24 }}
       >
-        <MyInput {...propStore.inputLang("topic.name")} />
+        <MyInput {...propStore.inputLang("topic.topicName")} />
         {multiLang > 0 && (
-          <MyInput {...propStore.inputToggleLang("topic.name")} />
+          <MyInput {...propStore.inputToggleLang("topic.topicName")} />
         )}
 
         <Layout style={styles.row}>

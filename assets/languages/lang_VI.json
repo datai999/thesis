@@ -137,7 +137,7 @@
       "label": "Số sinh viên tối thiểu",
       "placeholder": "Chọn số sinh viên"
     },
-    "name": {
+    "topicName": {
       "label": "Tên đề tài",
       "placeholder": "Nhập tên đề tài"
     },
