@@ -2,25 +2,24 @@ import { Layout, Text } from "@ui-kitten/components";
 import TeacherApi from "api/person/TeacherApi";
 import { MyInput } from "components/Input";
 import { MySelect } from "components/Select";
+import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { createProps } from "utils";
 import i18n from "utils/i18n";
 
-const form = {};
+let form = {};
 
 const TeacherForm = {
-  body: (
-    header = "teacher.create",
-    data,
-    setData = (newData) => {
-      console.log(newData);
-    }
-  ) => TeacherCreateLayout(header, data, setData),
+  body: (header = "teacher.create", data) => {
+    if (data != null) form = _.cloneDeep(data);
+    else form = {};
+    return <TeacherLayout header={header} data={data} />;
+  },
   submit: (formSubmit = form) => TeacherApi.create(formSubmit),
 };
 
-const TeacherCreateLayout = (header, data, setData) => {
+const TeacherLayout = ({ header, ...props }) => {
   const propStore = createProps(form);
 
   return (

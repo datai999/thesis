@@ -15,13 +15,13 @@ const arrLink = [
 ];  
 
 const TeacherTable = ({ data, page, callBack }) => {
-  const [topicUpdateVisible, setTopicUpdateVisible] = React.useState(false);
+  const [updateForm, setUpdateForm] = React.useState(false);
   const [currentRow, setCurrenRow] = React.useState(null);
 
-  const modalTopicUpdateProps = {
+  const modalUpdateFormProps = {
     ...TeacherForm,
-    visible: topicUpdateVisible,
-    cancel: () => setTopicUpdateVisible(false),
+    visible: updateForm,
+    cancel: () => setUpdateForm(false),
     body: () => TeacherForm.body("teacher.update", currentRow),
     submit: async () => {
       try {
@@ -37,12 +37,12 @@ const TeacherTable = ({ data, page, callBack }) => {
 
   const rowCallBack = (row) => {
     setCurrenRow(row);
-    setTopicUpdateVisible(true);
+    setUpdateForm(true);
   };
 
   return (
     <DataTable>
-      <MyModal {...modalTopicUpdateProps} />
+      <MyModal {...modalUpdateFormProps} />
       <TableHeader arrLink={arrLink} />
       <TableContent arrLink={arrLink} data={data} rowCallBack={rowCallBack} />
       <TableBottom page={page} pageCallBack={callBack} />
