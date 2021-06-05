@@ -43,7 +43,7 @@ export const createProps = (form) => {
     const linkResult = getLinkProps(path);
     const apiPath = linkResult.api && path;
     return {
-      value: form[apiPath],
+      value: _.get(form, apiPath),
       callBack: (value) => setValue(apiPath, value),
       ...linkResult,
     };
@@ -130,3 +130,4 @@ export const getLinkProps = (paths) => {
 };
 
 export { getRenderText, dateToLocal, toLocalDate, toLocalTime };
+
