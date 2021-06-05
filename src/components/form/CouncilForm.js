@@ -1,15 +1,16 @@
 import { Layout, List, Text } from "@ui-kitten/components";
 import TeacherApi from "api/person/TeacherApi";
+import CouncilApi from "api/topic/CouncilApi";
 import { TeacherForm } from "components/form";
 import { MyAutocomplete, MyInput } from "components/Input";
 import MyModal from "components/Modal";
-import { DatePickerInput, TimePickerInput } from "components/Picker";
+import { DatePickerInputKitten, TimePickerInput } from "components/Picker";
 import { MySelect } from "components/Select";
 import Props from "data/Props";
 import _ from "lodash";
 import React from "react";
-import "react-datepicker/dist/react-datepicker.css";
 import { StyleSheet } from "react-native";
+import { getRenderText, toLocalDate, toLocalTime } from "utils";
 import i18n from "utils/i18n";
 
 let form = {};
@@ -20,21 +21,25 @@ const CouncilForm = {
     else form = {};
     return <CouncilLayout header={header} data={data} />;
   },
-  submit: (formSubmit = form) => console.log(formSubmit),
+  submit: (formSubmit = form) => CouncilApi.create(formSubmit),
 };
 const CouncilLayout = ({ header, ...props }) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
 
-  const [data, setData] = React.useState(props.data);
-  const [arrRole, setArrRole] = React.useState(Props["councilRole"].arrValue);
+  const setDefaultForm = () => {
+    let arrRoleValue = Props.councilRole.arrValue;
+    form = {
+      reserveDate: toLocalDate(new Date()),
+      startTime: toLocalTime(new Date()),
+      endTime: toLocalTime(new Date()),
+      role: arrRoleValue,
+      teacher: Array(arrRoleValue.length).fill(null),
+    };
+  };
 
   React.useEffect(() => {
-    const setDefaultForm = () => {
-      let arrRoleValue = Props["councilRole"].arrValue;
-      setValue("role", arrRoleValue);
-      setValue("teacher", Array(arrRoleValue.length).fill(null));
-    };
-    setDefaultForm();
+    if (props.data == null || Object.keys(props.data).length === 0)
+      setDefaultForm();
   }, []);
 
   const modalTeacherCreateProps = {
@@ -43,13 +48,15 @@ const CouncilLayout = ({ header, ...props }) => {
     cancel: () => setTeacherCreateVisible(false),
   };
 
-  const setValue = (field, value) => (form[field] = value);
+  const setValue = (path, value) => {
+    _.set(form, path, value);
+  };
 
-  const inputProps = (field) => {
+  const inputProps = (field, path = field) => {
     return {
-      value: form[field],
-      callBack: (value) => setValue(field, value),
       ...Props[field],
+      value: form[field],
+      callBack: (value) => setValue(path, value),
     };
   };
   const selectProps = (field) => {
@@ -61,20 +68,38 @@ const CouncilLayout = ({ header, ...props }) => {
     };
   };
   const pickerInputProps = (field) => {
+    let selectedDate = new Date();
+    if (field == "reserveDate") {
+      if (form[field] && form[field] != "undefine")
+        selectedDate = new Date(form[field]);
+    } else {
+      if (form[field] && form[field] != "undefine") {
+        if (form.reserveDate && form.reserveDate != "undefine") {
+          selectedDate = new Date(form["reserveDate"] + "T" + form[field]);
+        } else {
+          selectedDate = new Date("1999-05-28T" + form[field]);
+        }
+      }
+    }
+
     return {
       pickerProps: {
         popperPlacement: "top-start",
+        selected: selectedDate,
       },
       inputProps: {
         ...Props[field],
       },
-      callBack: (value) => setValue(field, value),
+      callBack: (value) => {
+        let formatValue =
+          field == "reserveDate" ? toLocalDate(value) : toLocalTime(value);
+        setValue(field, formatValue);
+      },
     };
   };
-  const autocompleteProps = (field) => {
-    let basePath = field;
+  const autocompleteProps = (field, path) => {
     return {
-      ...inputProps(field),
+      ...inputProps(field, path),
       refreshDataOnChangeText: (value) => searchPerson("teacher", value),
     };
   };
@@ -99,7 +124,7 @@ const CouncilLayout = ({ header, ...props }) => {
           <MyInput {...inputProps("reserveRoom")} />
         </Layout>
         <Layout style={styles.right}>
-          <DatePickerInput {...pickerInputProps("reserveDate")} />
+          <DatePickerInputKitten {...pickerInputProps("reserveDate")} />
           <Layout style={styles.row}>
             <Layout style={styles.left}>
               <TimePickerInput {...pickerInputProps("startTime")} />
@@ -111,15 +136,24 @@ const CouncilLayout = ({ header, ...props }) => {
         </Layout>
       </Layout>
 
-      {/* TODO bug layout reserve date */}
       <List
-        data={arrRole}
-        renderItem={({ item }) => {
+        data={Props["councilRole"].arrValue}
+        renderItem={({ index, item }) => {
           return (
             <Layout>
               <MyAutocomplete
-                {...autocompleteProps("councilTeacher")}
+                {...autocompleteProps(
+                  "councilTeacher",
+                  "teacher" + "[" + index + "]"
+                )}
                 label={item.value[i18n.language]}
+                value={getRenderText(form.teacher?.[index])}
+                onBlur={(submitValue) => {
+                  if (submitValue == "") {
+                    setValue("teacherId" + "[" + index + "]", null);
+                    setValue("teacher" + "[" + index + "]", null);
+                  }
+                }}
               />
             </Layout>
           );

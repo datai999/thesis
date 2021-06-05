@@ -19,24 +19,24 @@ const Props = {
       ),
   },
   guideTeacher: {
-    label: "teacher.guide",
-    placeholder: "teacher.guideSelect",
+    label: "teacher.guide.label",
+    placeholder: "teacher.guide.placeholder",
   },
   reviewTeacher: {
     label: "teacher.review",
     placeholder: "teacher.review_select",
   },
   topicCode: {
-    label: "topic.code",
-    placeholder: "topic.code",
+    label: "topic.code.label",
+    placeholder: "topic.code.placeholder",
   },
   topicName: {
     en: {
-      label: "topic.name",
+      label: "topic.name.label",
       placeholder: "topic.name_ph_en",
     },
     vi: {
-      label: "topic.name",
+      label: "topic.name.label",
       placeholder: "topic.name_ph_vi",
     },
   },
@@ -51,8 +51,8 @@ const Props = {
     arrValue: Array.from({ length: 5 }, (v, k) => k + 1),
   },
   students: {
-    label: "student.execute",
-    placeholder: "student.typeName",
+    label: "student.execute.label",
+    placeholder: "student.execute.placeholder",
   },
   mainTask: {
     en: {
@@ -68,54 +68,27 @@ const Props = {
       numberOfLines: 5,
     },
   },
-  thesisTask: {
-    en: {
-      label: "thesisTask",
-      placeholder: "topic.task_thesis_ph_en",
-      multiline: true,
-      numberOfLines: 5,
-    },
-    vi: {
-      label: "thesisTask",
-      placeholder: "topic.task_thesis_ph_vi",
-      multiline: true,
-      numberOfLines: 5,
-    },
-  },
-  description: {
-    en: {
-      label: "description",
-      placeholder: "description_ph_en",
-      multiline: true,
-      numberOfLines: 5,
-    },
-    vi: {
-      label: "description",
-      placeholder: "description_ph_vi",
-      multiline: true,
-      numberOfLines: 5,
-    },
-  },
+
   name: {
-    label: "fullName",
-    placeholder: "fullName_ph",
+    label: "person.name.label",
+    placeholder: "person.name.placeholder",
   },
   email: {
     label: "Email",
     placeholder: "HCMUT email",
   },
   phone: {
-    label: "phone",
-    placeholder: "phone_type",
+    label: "person.phone.label",
+    placeholder: "person.phone.placeholder",
   },
   degree: {
-    label: "degree",
-    placeholder: "degree_select",
+    label: "person.degree.label",
+    placeholder: "person.degree.placeholder",
     arrValue: ["Bachelor", "Master", "Doctor", "Professor"],
   },
   subjectDepartment: {
-    label: "subjectDepartment",
-    placeholder: "subjectDepartment_select",
+    label: "person.subjectDepartment.label",
+    placeholder: "person.subjectDepartment.placeholder",
     arrValue: [
       "Information System",
       "Software Technology",
@@ -154,6 +127,14 @@ const Props = {
   councilTeacher: {
     label: "council.teacher",
     placeholder: "council.teacher_type",
+  },
+  teacherCode: {
+    label: "teacher.code",
+    placeholder: "teacher.code_type",
+  },
+  gender: {
+    label: "person.gender.label",
+    placeholder: "person.gender.placeholder",
   },
 };
 

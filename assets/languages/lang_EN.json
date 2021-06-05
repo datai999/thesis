@@ -7,52 +7,103 @@
     "role": "",
     "role_type": "Select role",
     "teacher": "",
-    "teacher_type": "Type name of teacher"
+    "teacher_type": "Type name of teacher",
+    "update": "Update council"
   },
-  "degree": "Degree",
-  "degree_select": "Select degree",
   "description": "Description",
   "description_ph_en": "Type description",
   "description_ph_vi": "Type description in Vietnamese",
   "educationMethod": "Education method",
   "educationMethodSelect": "Select education method",
-  "fullName": "Full name",
-  "fullName_ph": "Type full name",
   "mainTask": "Main task",
   "major": "Major",
   "majorSelect": "Select major",
   "origin": {
     "create": "Create",
+    "degree": "Degree",
+    "email": "Email",
     "filter&Search": "Filter and Search",
+    "inEn": " in English",
+    "inVi": " in Vietnamese",
+    "language": "Language",
     "new": "NEW",
     "page": "Page",
     "record": "Record",
     "topic": "Topic",
     "total": "Total",
-    "update": "Update"
+    "update": "Update",
+    "version": "Version"
   },
-  "phone": "Phone number",
-  "phone_type": "Type phone number",
+  "page": {
+    "home": "Home",
+    "person": {
+      "get": "Person",
+      "student": "Student",
+      "teacher": "Teacher"
+    },
+    "setting": "Setting",
+    "topic": "Topic"
+  },
+  "person": {
+    "code": {
+      "label": "Code",
+      "placeholder": "Type code"
+    },
+    "degree": {
+      "label": "Degree",
+      "placeholder": "Select degree"
+    },
+    "educationMethod": {
+      "label": "Education method",
+      "placeholder": "Select education method"
+    },
+    "gender": {
+      "label": "Gender",
+      "placeholder": "Select gender"
+    },
+    "major": {
+      "label": "Major",
+      "placeholder": "Select major"
+    },
+    "name": {
+      "label": "Full name",
+      "placeholder": "Type full name"
+    },
+    "phone": {
+      "label": "Phone",
+      "placeholder": "Type phone number"
+    },
+    "subjectDepartment": {
+      "label": "Subject department",
+      "placeholder": "Select subject department"
+    }
+  },
   "semester": "Semester",
   "semesterSelect": "Select semester",
   "student": {
     "code": "Student code",
     "code_type": "Type student code",
     "create": "Create student",
-    "execute": "Student execute",
+    "execute": {
+      "label": "Student execute",
+      "placeholder": "Type student name"
+    },
     "max": "Max student",
     "min": "Min student",
-    "typeName": "Type student name",
     "update": "Update student"
   },
-  "subjectDepartment": "Subject department",
-  "subjectDepartment_select": "Select subject department",
   "teacher": {
+    "code": "Teacher code",
+    "code_type": "Type teacher code",
     "create": "Create teacher",
-    "guide": "Guide teacher",
-    "guideSelect": "Select guide teacher",
-    "review": "Review teacher",
-    "review_select": "Select review teacher",
+    "guide": {
+      "label": "Guide teacher",
+      "placeholder": "Type teacher name"
+    },
+    "review": {
+      "label": "Review teacher",
+      "placeholder": "Type review teacher"
+    },
     "update": "Update teacher"
   },
   "thesisTask": "Thesis task",
@@ -61,15 +112,53 @@
     "start": "Start time"
   },
   "topic": {
-    "code": "Topic code",
     "create": "Create topic",
-    "name": "Topic name",
+    "description": {
+      "label": "Description",
+      "placeholder": "Type description"
+    },
+    "educationMethod": {
+      "label": "Education method",
+      "placeholder": "Select education method"
+    },
+    "mainTask": {
+      "label": "Main task",
+      "placeholder": "Type main task"
+    },
+    "major": {
+      "label": "Major",
+      "placeholder": "Select major"
+    },
+    "maxStudentTake": {
+      "label": "Max student",
+      "placeholder": "Select max student"
+    },
+    "minStudentTake": {
+      "label": "Min student",
+      "placeholder": "Select min student"
+    },
+    "topicName": {
+      "label": "Topic name",
+      "placeholder": "Type topic name"
+    },
     "name_ph_en": "Type topic name",
     "name_ph_vi": "Type topic name in Vietnamese",
+    "semester": {
+      "label": "Semester",
+      "placeholder": "Select semester"
+    },
     "task_main_ph_en": "Type main task",
     "task_main_ph_vi": "Type main task in Vietnamese",
     "task_thesis_ph_en": "Type thesis task",
     "task_thesis_ph_vi": "Type thesis task in Vietnamese",
+    "thesisTask": {
+      "label": "Thesis task",
+      "placeholder": "Type thesis task"
+    },
+    "topicCode": {
+      "label": "Topic code",
+      "placeholder": "Type topic code"
+    },
     "update": "Update topic"
   }
 }

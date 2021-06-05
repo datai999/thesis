@@ -2,118 +2,59 @@ import { Button, Layout, Text } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
 import TopicAssignApi from "api/topic/TopicAssignApi";
-import { CouncilForm, StudentForm, TeacherForm } from "components/form";
-import { PlusIcon } from "components/Icons";
+import { CouncilForm } from "components/form";
 import { MyAutocompleteTag, MyInput } from "components/Input";
 import MyModal from "components/Modal";
 import { MyMultiSelect, MySelect } from "components/Select";
-import Props from "data/Props";
 import _ from "lodash";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
+import { createProps } from "utils";
 import i18n from "utils/i18n";
 
 let form = {};
 
 const TopicForm = {
-  body: (header = "topic.create", data) => {
-    if (data != null) form = _.cloneDeep(data);
-    else form = {};
-    return <TopicCreateLayout header={header} data={data} />;
+  body: (data) => {
+    let header = "topic.create";
+    if (data != null) {
+      form = _.cloneDeep(data);
+      header = "topic.update";
+    } else form = {};
+    return <FormLayout header={header} />;
   },
-  submit: (formSubmit = form) => TopicAssignApi.create(formSubmit),
+  submit: () => TopicAssignApi.create(form),
 };
 
-const TopicCreateLayout = ({ header, ...props }) => {
-  const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
-  const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
+const FormLayout = ({ header }) => {
   const [councilVisible, setCouncilVisible] = React.useState(false);
   const [multiLang, setMultiLang] = React.useState(0);
-  const [data, setData] = React.useState(props.data);
 
-  const modalTeacherCreateProps = {
-    ...TeacherForm,
-    visible: teacherCreateVisible,
-    cancel: () => setTeacherCreateVisible(false),
-  };
-  const modalStudentCreateProps = {
-    ...StudentForm,
-    visible: studentCreateVisible,
-    cancel: () => setStudentCreateVisible(false),
-  };
+  const propStore = createProps(form);
 
   const modalCouncilProps = {
     ...CouncilForm,
     visible: councilVisible,
     cancel: () => setCouncilVisible(false),
-  };
-
-  const setValue = (field, basePath, value) => {
-    let path = basePath == "topic" ? basePath + "." + field : basePath;
-    _.set(form, path, value);
-    let nextData = _.cloneDeep(data);
-    _.set(nextData, path, value);
-    setData(nextData);
-  };
-
-  const getValue = (field, basePath) => {
-    let path = basePath == "topic" ? basePath + "." + field : basePath;
-    return _.get(data, path);
-  };
-
-  const selectProps = (field, basePath = "topic") => {
-    return {
-      field,
-      callBack: (value) => setValue(field, basePath, value),
-      ...Props[field],
-      value: getValue(field, basePath),
-    };
-  };
-  const inputProps = (field, basePath = "topic") => {
-    return {
-      callBack: (value) => setValue(field, basePath, value),
-      ..._.get(Props, field),
-      value: getValue(field, basePath),
-    };
-  };
-  const autocompleteProps = (type, field) => {
-    let basePath = field;
-    if (type != "teacher") {
-      basePath = "executeStudent";
-    }
-    return {
-      ...inputProps(field, basePath),
-      refreshDataOnChangeText: (value) => searchPerson(type, value),
-      accessoryRight: () => (
-        <Button
-          appearance="ghost"
-          size="small"
-          accessoryRight={PlusIcon}
-          onPress={() =>
-            type == "teacher"
-              ? setTeacherCreateVisible(true)
-              : setStudentCreateVisible(true)
-          }
-        />
+    body: () =>
+      CouncilForm.body(
+        form?.council == null ? "council.create" : "council.update",
+        form.council
       ),
-    };
-  };
-
-  const searchPerson = async (type, value) => {
-    try {
-      return type == "teacher"
-        ? await TeacherApi.search(value)
-        : await StudentApi.search(value);
-    } catch (error) {
-      console.log(error);
-    }
+    submit: async () => {
+      try {
+        let response = await CouncilForm.submit();
+        form["council"] = response;
+        return response;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   };
 
   return (
     <Layout style={{ flex: 1 }}>
-      <MyModal {...modalTeacherCreateProps} />
-      <MyModal {...modalStudentCreateProps} />
       <MyModal {...modalCouncilProps} />
 
       <Layout
@@ -132,63 +73,63 @@ const TopicCreateLayout = ({ header, ...props }) => {
         style={{ maxHeight: "100%" }}
         contentContainerStyle={{ paddingHorizontal: 24 }}
       >
-        <MyInput {...inputProps("topicName." + i18n.language)} />
+        <MyInput {...propStore.inputLang("topic.topicName")} />
         {multiLang > 0 && (
-          <MyInput
-            {...inputProps(
-              "topicName." + (i18n.language == "en" ? "vi" : "en")
-            )}
-          />
+          <MyInput {...propStore.inputToggleLang("topic.topicName")} />
         )}
 
         <Layout style={styles.row}>
           <Layout style={styles.left}>
-            <MySelect {...selectProps("educationMethod")} />
-            <MySelect {...selectProps("semester")} />
-            <MyMultiSelect {...selectProps("major")} />
+            <MySelect {...propStore.select("topic.educationMethod")} />
+            <MySelect {...propStore.select("topic.semester")} />
+            <MyMultiSelect {...propStore.select("topic.major")} />
             <MyAutocompleteTag
-              {...autocompleteProps("teacher", "guideTeacher")}
+              {...propStore.inputSearch("topicAssign.guideTeacher", TeacherApi)}
             />
             <MyAutocompleteTag
-              {...autocompleteProps("teacher", "reviewTeacher")}
+              {...propStore.inputSearch(
+                "topicAssign.reviewTeacher",
+                TeacherApi
+              )}
             />
           </Layout>
           <Layout style={styles.right}>
-            <MyInput {...inputProps("topicCode")} />
-            <MySelect {...selectProps("minStudentTake")} />
-            <MySelect {...selectProps("maxStudentTake")} />
-            <MyAutocompleteTag {...autocompleteProps("students", "students")} />
-
-            {/* TODO change UI */}
-            <Button onPress={() => setCouncilVisible(true)} />
+            <MyInput {...propStore.input("topic.topicCode")} />
+            <MySelect {...propStore.select("topic.minStudentTake")} />
+            <MySelect {...propStore.select("topic.maxStudentTake")} />
+            <MyAutocompleteTag
+              {...propStore.inputSearch(
+                "topicAssign.executeStudent",
+                StudentApi
+              )}
+            />
+            <Button
+              style={{ marginTop: 22 }}
+              appearance="outline"
+              onPress={() => {
+                setCouncilVisible(true);
+              }}
+            >
+              {() => {
+                if (form?.council == null) return i18n.t("council.create");
+                return i18n.t("council.update");
+              }}
+            </Button>
           </Layout>
         </Layout>
 
-        <MyInput {...inputProps("mainTask." + i18n.language)} />
+        <MyInput {...propStore.inputLang("topic.mainTask")} />
         {multiLang > 0 && (
-          <MyInput
-            {...inputProps("mainTask." + (i18n.language == "en" ? "vi" : "en"))}
-          />
+          <MyInput {...propStore.inputToggleLang("topic.mainTask")} />
         )}
-        <MyInput {...inputProps("thesisTask." + i18n.language)} />
+        <MyInput {...propStore.inputLang("topic.thesisTask")} />
         {multiLang > 0 && (
-          <MyInput
-            {...inputProps(
-              "thesisTask." + (i18n.language == "en" ? "vi" : "en")
-            )}
-          />
+          <MyInput {...propStore.inputToggleLang("topic.thesisTask")} />
         )}
 
-        <MyInput
-          {...inputProps("description." + i18n.language)}
-          style={styles.description}
-        />
+        <MyInput {...propStore.inputLang("topic.description")} />
         {multiLang > 0 && (
-          <MyInput
-            {...inputProps(
-              "description." + (i18n.language == "en" ? "vi" : "en")
-            )}
-          />
+          <MyInput {...propStore.inputToggleLang("topic.description")} />
         )}
       </ScrollView>
     </Layout>

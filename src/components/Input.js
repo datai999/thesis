@@ -13,12 +13,10 @@ import { getRenderText } from "utils";
 import i18n from "utils/i18n";
 
 const MyInput = ({ callBack, ...props }) => {
-  const [currentValue, setCurrentValue] = React.useState(props.value);
+  const [currentValue, setCurrentValue] = React.useState(props.value || "");
+
   return (
     <Input
-      {...props}
-      label={i18n.t(props.label)}
-      placeholder={i18n.t(props.placeholder)}
       onChangeText={(nextValue) => {
         callBack(nextValue);
         setCurrentValue(nextValue);
@@ -27,12 +25,16 @@ const MyInput = ({ callBack, ...props }) => {
         if (props.onBlur) return props.onBlur(currentValue);
         return null;
       }}
+      {...props}
+      label={i18n.t(props.label)}
+      value={getRenderText(currentValue)}
+      placeholder={i18n.t(props.placeholder)}
     />
   );
 };
 
 const MyAutocomplete = ({ callBack, ...props }) => {
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState(props.value);
   const [data, setData] = React.useState(props.data ?? []);
 
   const renderOption = (arrItem) => {
@@ -47,7 +49,7 @@ const MyAutocomplete = ({ callBack, ...props }) => {
       {...props}
       label={i18n.t(props.label)}
       placeholder={i18n.t(props.placeholder)}
-      value={value}
+      value={getRenderText(value)}
       onSelect={(number) => {
         callBack(data[number]);
         setValue(getRenderText(data[number]));
@@ -58,6 +60,10 @@ const MyAutocomplete = ({ callBack, ...props }) => {
           if (nextValue != null && nextValue != "")
             setData(await props.refreshDataOnChangeText(nextValue));
         }
+      }}
+      onBlur={() => {
+        if (props.onBlur) return props.onBlur(value);
+        return null;
       }}
     >
       {renderOption(data)}

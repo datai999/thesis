@@ -7,52 +7,103 @@
     "role": "",
     "role_type": "Chọn vai trò",
     "teacher": "",
-    "teacher_type": "Nhập tên của giảng viên"
+    "teacher_type": "Nhập tên của giảng viên",
+    "update": "Cập nhật hội đồng"
   },
-  "degree": "Học vị",
-  "degree_select": "Chọn học vị",
   "description": "Mô tả",
   "description_ph_en": "Nhập mô tả bằng tiếng anh",
   "description_ph_vi": "Nhập mô tả",
   "educationMethod": "Phương thức đào tạo",
   "educationMethodSelect": "Chọn phương thức đào tạo",
-  "fullName": "Họ và tên",
-  "fullName_ph": "Nhập họ và tên",
   "mainTask": "Nhiệm vụ chính",
   "major": "Chuyên ngành",
   "majorSelect": "Chọn chuyên nghành",
   "origin": {
     "create": "Tạo",
+    "degree": "Học vị",
+    "email": "Email",
     "filter&Search": "Lọc và Tìm kiếm",
+    "inEn": " bằng tiếng Anh",
+    "inVi": " bằng tiếng Việt",
+    "language": "Ngôn ngữ",
     "new": "Tạo mới",
     "page": "Trang",
     "record": "Số bản ghi",
     "topic": "Đề tài",
     "total": "Tổng trang",
-    "update": "Cập nhật"
+    "update": "Cập nhật",
+    "version": "Phiên bản"
   },
-  "phone": "Số điện thoại",
-  "phone_type": "Nhập số điện thoại",
+  "page": {
+    "home": "Trang chủ",
+    "person": {
+      "get": "Con người",
+      "student": "Sinh viên",
+      "teacher": "Giảng viên"
+    },
+    "setting": "Cài đặt",
+    "topic": "Chủ đề"
+  },
+  "person": {
+    "code": {
+      "label": "Mã số",
+      "placeholder": "Nhập mã số"
+    },
+    "degree": {
+      "label": "Học vị",
+      "placeholder": "Chọn học vị"
+    },
+    "educationMethod": {
+      "label": "Phương thức đào tạo",
+      "placeholder": "Chọn phương thức đào tạo"
+    },
+    "gender": {
+      "label": "Giới tính",
+      "placeholder": "Chọn giới tính"
+    },
+    "major": {
+      "label": "Chuyên nghành",
+      "placeholder": "Chọn chuyên ngành"
+    },
+    "name": {
+      "label": "Họ và tên",
+      "placeholder": "Nhập họ và tên"
+    },
+    "phone": {
+      "label": "Điện thoại",
+      "placeholder": "Nhập số điện thoại"
+    },
+    "subjectDepartment": {
+      "label": "Phòng ban",
+      "placeholder": "Chọn phòng ban"
+    }
+  },
   "semester": "Học kỳ",
   "semesterSelect": "Chọn học kỳ",
   "student": {
     "code": "Mã số sinh viên",
     "code_type": "Nhập mã số sinh viên",
     "create": "Thêm mới sinh viên",
-    "execute": "Sinh viên thực hiện",
+    "execute": {
+      "label": "Sinh viên thực hiện",
+      "placeholder": "Nhập tên sinh viên"
+    },
     "max": "Số sinh viên tối đa",
     "min": "Số sinh viên tối thiểu",
-    "typeName": "Nhập tên sinh viên",
     "update": "Cập nhật thông tin sinh viên"
   },
-  "subjectDepartment": "Bộ môn",
-  "subjectDepartment_select": "Chọn bộ môn",
   "teacher": {
+    "code": "Mã số giảng viên",
+    "code_type": "Nhập mã số giảng viên",
     "create": "Thêm giảng viên",
-    "guide": "Giảng viên hướng dẫn",
-    "guideSelect": "Chọn giảng viên hướng dẫn",
-    "review": "Giảng viên phản biện",
-    "review_select": "Chọn giảng viên phản biện",
+    "guide": {
+      "label": "Giảng viên hướng dẫn",
+      "placeholder": "Nhập tên giảng viên"
+    },
+    "review": {
+      "label": "Giảng viên phản biện",
+      "placeholder": "Nhập tên giảng viên"
+    },
     "update": "Cập nhật thông tin giảng viên"
   },
   "thesisTask": "Nhiệm vụ giai đoạn luận văn",
@@ -61,15 +112,53 @@
     "start": "Thời gian bắt đầu"
   },
   "topic": {
-    "code": "Mã đề tài",
     "create": "Tạo mới đề tài",
-    "name": "Tên đề tài",
+    "description": {
+      "label": "Mô tả đề tài",
+      "placeholder": "Nhập mô tả đề tài"
+    },
+    "educationMethod": {
+      "label": "Phương thức đào tạo",
+      "placeholder": "Chọn phương thức đào tạo"
+    },
+    "mainTask": {
+      "label": "Nhiệm vụ chính",
+      "placeholder": "Nhập nhiệm vụ chính"
+    },
+    "major": {
+      "label": "Chuyên ngành",
+      "placeholder": "Chọn chuyên nghành"
+    },
+    "maxStudentTake": {
+      "label": "Số sinh viên tối đa",
+      "placeholder": "Chọn số sinh viên"
+    },
+    "minStudentTake": {
+      "label": "Số sinh viên tối thiểu",
+      "placeholder": "Chọn số sinh viên"
+    },
+    "topicName": {
+      "label": "Tên đề tài",
+      "placeholder": "Nhập tên đề tài"
+    },
     "name_ph_en": "Nhập tên đề tài bằng tiếng anh",
     "name_ph_vi": "Nhập tên đề tài",
-    "task_main_ph_en": "Nhập nhiệm vụ chính bằn tiếng anh",
+    "semester": {
+      "label": "Học kỳ",
+      "placeholder": "Chọn học kỳ"
+    },
+    "task_main_ph_en": "Nhập nhiệm vụ chính bằng tiếng anh",
     "task_main_ph_vi": "Nhập nhiệm vụ chính bằng tiếng việt",
     "task_thesis_ph_en": "Nhập nhiệm vụ luận văn bằn tiếng anh",
     "task_thesis_ph_vi": "Nhập nhiệm vụ luận văn bằng tiếng việt",
+    "thesisTask": {
+      "label": "Nhiệm vụ giai đoạn luận văn",
+      "placeholder": "Nhập nhiệm vụ giai đoạn luận văn"
+    },
+    "topicCode": {
+      "label": "Mã đề tài",
+      "placeholder": "Nhập mã đề tài"
+    },
     "update": "Cập nhật đề tài"
   }
 }

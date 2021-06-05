@@ -1,0 +1,77 @@
+{
+  "person": {
+    "code": {
+      "api": "code",
+      "label": "person.code.label",
+      "placeholder": "person.code.placeholder"
+    },
+    "degree": {
+      "api": "degree",
+      "label": "person.degree.label",
+      "placeholder": "person.degree.placeholder"
+    },
+    "educationMethod": {
+      "api": "educationMethod",
+      "label": "person.educationMethod.label",
+      "placeholder": "person.educationMethod.placeholder"
+    },
+    "email": {
+      "api": "email",
+      "label": "Email",
+      "placeholder": "HCMUT email"
+    },
+    "gender": {
+      "api": "gender",
+      "label": "person.gender.label",
+      "placeholder": "person.gender.placeholder"
+    },
+    "major": {
+      "api": "major",
+      "label": "person.major.label",
+      "placeholder": "person.major.placeholder"
+    },
+    "name": {
+      "api": "name",
+      "label": "person.name.label",
+      "placeholder": "person.name.placeholder"
+    },
+    "phone": {
+      "api": "phone",
+      "label": "person.phone.label",
+      "placeholder": "person.phone.placeholder"
+    },
+    "subjectDepartment": {
+      "api": "subjectDepartment",
+      "label": "person.subjectDepartment.label",
+      "placeholder": "person.subjectDepartment.placeholder"
+    }
+  },
+  "topic": {
+    "description": {
+      "multiline": true,
+      "numberOfLines": 5
+    },
+    "mainTask": {
+      "multiline": true,
+      "numberOfLines": 5
+    },
+    "thesisTask": {
+      "multiline": true,
+      "numberOfLines": 5
+    }
+  },
+  "topicAssign": {
+    "executeStudent": {
+      "label": "student.execute.label",
+      "placeholder": "student.execute.placeholder"
+    },
+    "guideTeacher": {
+      "label": "teacher.guide.label",
+      "placeholder": "teacher.guide.placeholder"
+    },
+    "reviewTeacher": {
+      "label": "teacher.review.label",
+      "placeholder": "teacher.review.placeholder"
+    }
+  }
+}

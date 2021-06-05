@@ -3,10 +3,18 @@ import React from "react";
 import { getRenderText } from "utils";
 import i18n from "utils/i18n";
 
-const selectItems = (arrItem) => {
+const selectItems = (arrItem, { callBack, ...props }) => {
   return arrItem
-    ? Array.from(arrItem, (item) => (
-        <SelectItem key={item} title={getRenderText(item)} />
+    ? Array.from(arrItem, (item, index) => (
+        <SelectItem
+          key={item}
+          title={getRenderText(item)}
+          {...props}
+          onPressOut={() => {
+            if (callBack) callBack(index);
+            if (props.onPress) props.onPress();
+          }}
+        />
       ))
     : null;
 };
@@ -29,7 +37,7 @@ const MySelect = ({ field, callBack, ...props }) => {
         setIndexed(index);
       }}
     >
-      {selectItems(props.arrValue)}
+      {selectItems(props.arrValue, {})}
     </Select>
   );
 };
@@ -61,9 +69,10 @@ const MyMultiSelect = ({ field, callBack, ...props }) => {
         setIndexes(arrIndexPath);
       }}
     >
-      {selectItems(props.arrValue)}
+      {selectItems(props.arrValue, {})}
     </Select>
   );
 };
 
-export { MySelect, MyMultiSelect };
+export { selectItems, MySelect, MyMultiSelect };
+

@@ -1,22 +1,25 @@
-import { IndexPath, Layout, Menu, MenuItem, Text } from "@ui-kitten/components";
+import { Layout, Popover, Tab, TabView, Text } from "@ui-kitten/components";
 import ConstApi from "api/ConstApi";
+import { selectItems } from "components/Select";
 import Props from "data/Props";
-import React, { useEffect } from "react";
+import React from "react";
 import { StyleSheet } from "react-native";
+import i18n from "utils/i18n";
 import {
   BookOpenIcon,
   HomeIcon,
-  MenuIcon,
   PersonDoneIcon,
-  SettingIcon,
+  SettingIcon
 } from "./components/Icons";
+import HomeScreen from "./pages/HomeScreen";
+import PersonScreen from "./pages/PersonScreen";
+import SettingScreen from "./pages/SettingScreen";
 import TopicScreen from "./pages/TopicScreen";
 
 const Routes = () => {
-  const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(2));
-  const [menuSize] = React.useState(150);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetch = async () => {
       try {
         const response = await ConstApi.getTypes();
@@ -30,35 +33,71 @@ const Routes = () => {
     fetch();
   }, []);
 
-  const selectScreen = () => {
-    switch (selectedIndex.row) {
-      case 0:
-        break;
-      case 1:
-        break;
-      default:
-        return <TopicScreen />;
-    }
+  const [personMenuVisible, setPersonMenuVisible] = React.useState(false);
+  const [personScreenMode, setPersonScreenMode] = React.useState("student");
+
+  const personMenu = [
+    i18n.t("page.person.teacher"),
+    i18n.t("page.person.student"),
+  ];
+
+  const personMenuProps = {
+    callBack: (item) => setPersonScreenMode(item == 0 ? "teacher" : "student"),
+    onPress: () => {
+      setPersonMenuVisible(false);
+      setSelectedIndex(2);
+    },
+  };
+
+  const renderPersonMenu = (props) => {
+    return (
+      <Popover
+        visible={personMenuVisible}
+        fullWidth={true}
+        onBackdropPress={() => setPersonMenuVisible(false)}
+        anchor={() => (
+          <Text
+            style={{
+              ...props.style,
+              width: "70%",
+              textAlign: "center",
+            }}
+          >
+            {i18n.t("page.person.get")}
+          </Text>
+        )}
+      >
+        <Layout>{selectItems(personMenu, { ...personMenuProps })}</Layout>
+      </Popover>
+    );
   };
 
   return (
     <Layout style={styles.container}>
-      <Layout style={{ width: menuSize, backgroundColor: "#f2f6ff" }}>
-        <Menu
-          style={styles.menu}
-          selectedIndex={selectedIndex}
-          onSelect={(index) => setSelectedIndex(index)}
+      <TabView
+        selectedIndex={selectedIndex}
+        // shouldLoadComponent={(index) => index === selectedIndex}
+        onSelect={(index) => {
+          if (index != 2) setSelectedIndex(index);
+        }}
+      >
+        <Tab title={i18n.t("page.home")} icon={HomeIcon}>
+          <HomeScreen />
+        </Tab>
+        <Tab title={i18n.t("page.topic")} icon={BookOpenIcon}>
+          <TopicScreen />
+        </Tab>
+        <Tab
+          title={renderPersonMenu}
+          icon={PersonDoneIcon}
+          onFocus={() => setPersonMenuVisible(true)}
         >
-          <MenuItem title="Extend menu" accessoryLeft={MenuIcon} />
-          <MenuItem title="Home" accessoryLeft={HomeIcon} />
-          <MenuItem title="Topic" accessoryLeft={BookOpenIcon} />
-          <MenuItem title="Assign" accessoryLeft={PersonDoneIcon} />
-          <MenuItem title="Setting" accessoryLeft={SettingIcon} />
-        </Menu>
-        <Text style={{ textAlign: "center", margin: 5 }}>Version:5.31.01</Text>
-      </Layout>
-
-      <Layout style={styles.content}>{selectScreen()}</Layout>
+          <PersonScreen mode={personScreenMode} />
+        </Tab>
+        <Tab title={i18n.t("page.setting")} icon={SettingIcon}>
+          <SettingScreen />
+        </Tab>
+      </TabView>
     </Layout>
   );
 };
@@ -66,17 +105,6 @@ const Routes = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-  },
-  menu: {
-    height: "100%",
-  },
-  content: {
-    flex: 1,
-  },
-  rightMenu: {
-    backgroundColor: "red",
-    width: "1%",
   },
 });
 
