@@ -113,9 +113,6 @@ const CouncilLayout = ({ header, ...props }) => {
     }
   };
 
-  console.log(pickerInputProps("reserveDate"));
-  console.log(pickerInputProps("startTime"));
-
   return (
     <Layout style={styles.container}>
       <MyModal {...modalTeacherCreateProps} />

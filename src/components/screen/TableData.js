@@ -49,10 +49,6 @@ export const TableContent = ({ links, data, rowCallBack }) => {
       <DataTable.Row key={row.id}>
         {linkProps.map((linkProp) => {
           let fieldValue = _.get(row, linkProp.api);
-          if (links.length < 5) {
-            console.log(linkProp);
-            console.log(_.get(row, linkProp.api));
-          }
           return (
             <DataTable.Cell
               key={linkProp.api}
