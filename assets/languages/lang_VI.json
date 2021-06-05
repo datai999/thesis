@@ -83,7 +83,7 @@
     "code_type": "Nhập mã số sinh viên",
     "create": "Thêm mới sinh viên",
     "execute": {
-      "label":"Sinh viên thực hiện",
+      "label": "Sinh viên thực hiện",
       "placeholder": "Nhập tên sinh viên"
     },
     "max": "Số sinh viên tối đa",
@@ -113,28 +113,36 @@
       "placeholder": "Nhập mã đề tài"
     },
     "create": "Tạo mới đề tài",
-    "name_ph_en": "Nhập tên đề tài bằng tiếng anh",
-    "name_ph_vi": "Nhập tên đề tài",
-    "task_main_ph_en": "Nhập nhiệm vụ chính bằn tiếng anh",
-    "task_main_ph_vi": "Nhập nhiệm vụ chính bằng tiếng việt",
-    "task_thesis_ph_en": "Nhập nhiệm vụ luận văn bằn tiếng anh",
-    "task_thesis_ph_vi": "Nhập nhiệm vụ luận văn bằng tiếng việt",
-    "update": "Cập nhật đề tài",
-    "semester": {
-      "label": "Học kỳ",
-      "placeholder": "Chọn học kỳ"
+    "educationMethod": {
+      "label": "Phương thức đào tạo",
+      "placeholder": "Chọn phương thức đào tạo"
     },
     "major": {
       "label": "Chuyên ngành",
       "placeholder": "Chọn chuyên nghành"
     },
-    "educationMethod": {
-      "label": "Phương thức đào tạo",
-      "placeholder": "Chọn phương thức đào tạo"
+    "maxStudentTake": {
+      "label": "Số sinh viên tối đa",
+      "placeholder": "Chọn số sinh viên"
+    },
+    "minStudentTake": {
+      "label": "Số sinh viên tối thiểu",
+      "placeholder": "Chọn số sinh viên"
     },
     "name": {
       "label": "Tên đề tài",
       "placeholder": "Nhập tên đề tài"
-    }
+    },
+    "name_ph_en": "Nhập tên đề tài bằng tiếng anh",
+    "name_ph_vi": "Nhập tên đề tài",
+    "semester": {
+      "label": "Học kỳ",
+      "placeholder": "Chọn học kỳ"
+    },
+    "task_main_ph_en": "Nhập nhiệm vụ chính bằn tiếng anh",
+    "task_main_ph_vi": "Nhập nhiệm vụ chính bằng tiếng việt",
+    "task_thesis_ph_en": "Nhập nhiệm vụ luận văn bằn tiếng anh",
+    "task_thesis_ph_vi": "Nhập nhiệm vụ luận văn bằng tiếng việt",
+    "update": "Cập nhật đề tài"
   }
 }

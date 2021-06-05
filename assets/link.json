@@ -52,55 +52,65 @@
       "label": "topic.code.label",
       "placeholder": "topic.code.placeholder"
     },
-    "semester": {
-      "api": "semester",
-      "label": "topic.semester.label",
-      "placeholder": "topic.semester.placeholder"
+    "educationMethod": {
+      "api": "educationMethod",
+      "label": "topic.educationMethod.label",
+      "placeholder": "topic.educationMethod.placeholder"
     },
     "major": {
       "api": "major",
       "label": "topic.major.label",
       "placeholder": "topic.major.placeholder"
     },
-    "educationMethod": {
-      "api": "educationMethod",
-      "label": "topic.educationMethod.label",
-      "placeholder": "topic.educationMethod.placeholder"
+    "maxStudentTake": {
+      "api": "maxStudentTake",
+      "label": "topic.maxStudentTake.label",
+      "placeholder": "topic.maxStudentTake.placeholder"
+    },
+    "minStudentTake": {
+      "api": "minStudentTake",
+      "label": "topic.minStudentTake.label",
+      "placeholder": "topic.minStudentTake.placeholder"
     },
     "name": {
       "api": "name",
       "label": "topic.name.label",
       "placeholder": "topic.name.placeholder"
+    },
+    "semester": {
+      "api": "semester",
+      "label": "topic.semester.label",
+      "placeholder": "topic.semester.placeholder"
     }
   },
   "topicAssign": {
-    "topic": {
-      "code": {
-        "ref": "topic.code"
-      },
-      "semester": {
-        "ref": "topic.semester"
-      },
-      "major": {
-        "ref": "topic.major"
-      },
-      "educationMethod": {
-        "ref": "topic.educationMethod"
-      },
+    "executeStudent": {
       "name": {
-        "ref": "topic.name"
+        "label": "student.execute.label",
+        "ref": "person.name"
       }
     },
     "guideTeacher": {
       "name": {
-        "ref": "person.name",
-        "label": "teacher.guide.label"
+        "label": "teacher.guide.label",
+        "ref": "person.name"
       }
     },
-    "executeStudent": {
+    "topic": {
+      "code": {
+        "ref": "topic.code"
+      },
+      "educationMethod": {
+        "ref": "topic.educationMethod"
+      },
+      "major": {
+        "ref": "topic.major"
+      },
       "name": {
-        "ref": "person.name",
-        "label": "student.execute.label"
+        "ref": "topic.name"
+      },
+      "semester": {
+        "ref": "topic.semester"
       }
     }
   }

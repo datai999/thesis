@@ -12,25 +12,31 @@ import _ from "lodash";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
+import { createProps } from "utils";
 import i18n from "utils/i18n";
 
 let form = {};
 
 const TopicForm = {
-  body: (header = "topic.create", data) => {
-    if (data != null) form = _.cloneDeep(data);
-    else form = {};
-    return <TopicCreateLayout header={header} data={data} />;
+  body: (data) => {
+    let header = "topic.create";
+    if (data != null) {
+      form = _.cloneDeep(data);
+      header = "topic.update";
+    } else form = {};
+    return <FormLayout header={header} data={data} />;
   },
   submit: (formSubmit = form) => TopicAssignApi.create(formSubmit),
 };
 
-const TopicCreateLayout = ({ header, ...props }) => {
+const FormLayout = ({ header, ...props }) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
   const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
   const [councilVisible, setCouncilVisible] = React.useState(false);
   const [multiLang, setMultiLang] = React.useState(0);
   const [data, setData] = React.useState(props.data);
+
+  const propStore = createProps(form);
 
   const modalTeacherCreateProps = {
     ...TeacherForm,
@@ -76,14 +82,6 @@ const TopicCreateLayout = ({ header, ...props }) => {
     return _.get(data, path);
   };
 
-  const selectProps = (field, basePath = "topic") => {
-    return {
-      field,
-      callBack: (value) => setValue(field, basePath, value),
-      ...Props[field],
-      value: getValue(field, basePath),
-    };
-  };
   const inputProps = (field, basePath = "topic") => {
     return {
       callBack: (value) => setValue(field, basePath, value),
@@ -157,9 +155,9 @@ const TopicCreateLayout = ({ header, ...props }) => {
 
         <Layout style={styles.row}>
           <Layout style={styles.left}>
-            <MySelect {...selectProps("educationMethod")} />
-            <MySelect {...selectProps("semester")} />
-            <MyMultiSelect {...selectProps("major")} />
+            <MySelect {...propStore.select("topic.educationMethod")} />
+            <MySelect {...propStore.select("topic.semester")} />
+            <MyMultiSelect {...propStore.select("topic.major")} />
             <MyAutocompleteTag
               {...autocompleteProps("teacher", "guideTeacher")}
             />
@@ -168,9 +166,9 @@ const TopicCreateLayout = ({ header, ...props }) => {
             />
           </Layout>
           <Layout style={styles.right}>
-            <MyInput {...inputProps("topicCode")} />
-            <MySelect {...selectProps("minStudentTake")} />
-            <MySelect {...selectProps("maxStudentTake")} />
+            <MyInput {...propStore.input("topic.code")} />
+            <MySelect {...propStore.select("topic.minStudentTake")} />
+            <MySelect {...propStore.select("topic.maxStudentTake")} />
             <MyAutocompleteTag {...autocompleteProps("students", "students")} />
             <Button
               style={{ marginTop: 22 }}
