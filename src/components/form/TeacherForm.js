@@ -11,9 +11,12 @@ import i18n from "utils/i18n";
 let form = {};
 
 const TeacherForm = {
-  body: (header = "teacher.create", data) => {
-    if (data != null) form = _.cloneDeep(data);
-    else form = {};
+  body: (data) => {
+    let header = "teacher.create";
+    if (data != null) {
+      form = _.cloneDeep(data);
+      header = "teacher.update";
+    } else form = {};
     return <TeacherLayout header={header} data={data} />;
   },
   submit: (formSubmit = form) => TeacherApi.create(formSubmit),

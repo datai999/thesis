@@ -1,6 +1,6 @@
 import React from "react";
 import StudentScreen from "./mains/StudentScreen";
-import TeacherScreen from "./TeacherScreen";
+import TeacherScreen from "./mains/TeacherScreen";
 
 const PersonScreen = ({ ...props }) => {
   return props.mode == "teacher" ? <TeacherScreen /> : <StudentScreen />;

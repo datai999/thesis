@@ -6,8 +6,8 @@ import { DataTable } from "react-native-paper";
 import { getLinkProps, getRenderText } from "utils";
 import i18n from "utils/i18n";
 
-export const TableHeader = ({ arrLink }) => {
-  const linkProps = getLinkProps(arrLink);
+export const TableHeader = ({ links }) => {
+  const linkProps = getLinkProps(links);
 
   return (
     <DataTable.Header>
@@ -22,8 +22,8 @@ export const TableHeader = ({ arrLink }) => {
   );
 };
 
-export const TableContent = ({ arrLink, data, rowCallBack }) => {
-  const linkProps = getLinkProps(arrLink);
+export const TableContent = ({ links, data, rowCallBack }) => {
+  const linkProps = getLinkProps(links);
 
   const reducerLastName = (accumulator, currentValue) =>
     accumulator + ", " + currentValue.split(" ").slice(-1).join();
@@ -120,9 +120,8 @@ export const TableBottom = ({ page, pageCallBack }) => {
   );
 };
 
-export const Table = ({
-  arrLink,
-  headerText,
+export const TableData = ({
+  links,
   updateForm,
   data,
   page,
@@ -135,7 +134,7 @@ export const Table = ({
     ...updateForm,
     visible: updateFormVisible,
     cancel: () => setUpdateFormVisible(false),
-    body: () => updateForm.body(headerText, currentRow),
+    body: () => updateForm.body(currentRow),
     submit: async () => {
       try {
         let response = await updateForm.submit();
@@ -156,8 +155,8 @@ export const Table = ({
   return (
     <DataTable>
       <MyModal {...modalUpdateFormProps} />
-      <TableHeader arrLink={arrLink} />
-      <TableContent arrLink={arrLink} data={data} rowCallBack={rowCallBack} />
+      <TableHeader links={links} />
+      <TableContent links={links} data={data} rowCallBack={rowCallBack} />
       <TableBottom page={page} pageCallBack={pageCallBack} />
     </DataTable>
   );

@@ -1,8 +1,6 @@
 import { Layout } from "@ui-kitten/components";
-import TeacherApi from "api/person/TeacherApi";
-import { TeacherForm } from "components/form";
+import { TableData } from "components/screen/TableData";
 import TopBar from "components/screen/TopBar";
-import { Table } from "components/table";
 import React from "react";
 import { StyleSheet } from "react-native";
 
@@ -16,24 +14,14 @@ const sortDefault = {
   descend: true,
 };
 
-const arrLink = [
-  "person.code",
-  "person.name",
-  "person.gender",
-  "person.subjectDepartment",
-  "person.degree",
-  "person.email",
-  "person.phone",
-];
-
-const TeacherScreen = () => {
+const OverTable = ({ links, form, api }) => {
   const [data, setData] = React.useState([]);
   const [page, setPage] = React.useState(defaultPage);
   const [sort, setSort] = React.useState(sortDefault);
 
   const fetchData = async (nextPage) => {
     try {
-      const response = await TeacherApi.getPaging({ ...nextPage, ...sort });
+      const response = await api.getPaging({ ...nextPage, ...sort });
       setData(response.content);
       let newPage = {
         number: response.number,
@@ -55,7 +43,7 @@ const TeacherScreen = () => {
     <Layout style={styles.container}>
       <Layout style={styles.topBar}>
         <TopBar
-          form={TeacherForm}
+          form={form}
           addNewRecord={(newRecord) => {
             let newData = _.cloneDeep(data);
             newData.unshift(newRecord);
@@ -63,10 +51,9 @@ const TeacherScreen = () => {
           }}
         />
       </Layout>
-      <Table
-        arrLink={arrLink}
-        headerText={"teacher.update"}
-        updateForm={TeacherForm}
+      <TableData
+        links={links}
+        updateForm={form}
         data={data}
         page={page}
         pageCallBack={fetchData}
@@ -85,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TeacherScreen;
+export default OverTable;
