@@ -15,6 +15,11 @@
       "label": "Email",
       "placeholder": "HCMUT email"
     },
+    "gender": {
+      "api": "gender",
+      "label": "person.gender.label",
+      "placeholder": "person.gender.placeholder"
+    },
     "name": {
       "api": "name",
       "label": "person.name.label",
@@ -27,8 +32,8 @@
     },
     "subjectDepartment": {
       "api": "subjectDepartment",
-      "label": "person.subjectDepartment",
-      "placeholder": "person.subjectDepartment_select"
+      "label": "person.subjectDepartment.label",
+      "placeholder": "person.subjectDepartment.placeholder"
     }
   }
 }

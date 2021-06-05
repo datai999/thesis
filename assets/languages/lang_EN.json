@@ -59,6 +59,10 @@
       "label": "Degree",
       "placeholder": "Select degree"
     },
+    "gender": {
+      "label": "Gender",
+      "placeholder": "Select gender"
+    },
     "name": {
       "label": "Full name",
       "placeholder": "Type full name"
@@ -68,7 +72,7 @@
       "placeholder": "Type phone number"
     },
     "subjectDepartment": {
-      "label": "pSubject department",
+      "label": "Subject department",
       "placeholder": "Select subject department"
     }
   },

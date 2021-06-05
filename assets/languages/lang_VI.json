@@ -59,6 +59,10 @@
       "label": "Học vị",
       "placeholder": "Chọn học vị"
     },
+    "gender": {
+      "label": "Giới tính",
+      "placeholder": "Chọn giới tính"
+    },
     "name": {
       "label": "Họ và tên",
       "placeholder": "Nhập họ và tên"

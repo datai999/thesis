@@ -60,5 +60,9 @@ export const createProps = (form) => {
   };
 };
 
+export const getLinkProps = (arrPath) => {
+  return Array.from(arrPath, (path) => _.get(link, path));
+};
+
 export { getRenderText, dateToLocal, toLocalDate, toLocalTime };
 

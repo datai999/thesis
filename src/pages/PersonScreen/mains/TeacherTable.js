@@ -4,29 +4,18 @@ import MyModal from "components/Modal";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { DataTable, List } from "react-native-paper";
-import { getRenderText } from "utils";
+import { getRenderText, getLinkProps } from "utils";
 import i18n from "utils/i18n";
 
-const headerData = {
-  name: {
-    label: "origin.fullName",
-  },
-  gender: {
-    label: "origin.gender",
-  },
-  subjectDepartment: {
-    label: "origin.subjectDepartment",
-  },
-  degree: {
-    label: "origin.degree",
-  },
-  email: {
-    label: "origin.email",
-  },
-  phone: {
-    label: "origin.phone",
-  },
-};
+const linkProps = getLinkProps([
+  "person.code",
+  "person.name",
+  "person.gender",
+  "person.subjectDepartment",
+  "person.degree",
+  "person.email",
+  "person.phone",
+]);
 
 const sizeRank = [5, 10, 20, 30, 50, 100];
 
@@ -53,8 +42,6 @@ const TeacherTable = ({ data, page, callBack }) => {
   const [selectedSize, setSelectedSize] = React.useState(new IndexPath(0));
   const [topicUpdateVisible, setTopicUpdateVisible] = React.useState(false);
   const [currentRow, setCurrenRow] = React.useState(null);
-
-  console.log(data);
 
   const modalTopicUpdateProps = {
     ...TopicForm,
@@ -94,10 +81,10 @@ const TeacherTable = ({ data, page, callBack }) => {
     <DataTable>
       <MyModal {...modalTopicUpdateProps} />
       <DataTable.Header>
-        {Object.keys(headerData).map((header) => {
+        {linkProps.map((linkProp) => {
           return (
-            <DataTable.Title key={header}>
-              <Text>{i18n.t(headerData[header].label)}</Text>
+            <DataTable.Title key={linkProp}>
+              <Text>{i18n.t(linkProp.label)}</Text>
             </DataTable.Title>
           );
         })}
@@ -105,15 +92,14 @@ const TeacherTable = ({ data, page, callBack }) => {
       {data.map((row) => {
         return (
           <DataTable.Row key={row.id} {...rowProps(row)}>
-            {Object.keys(headerData)
-              .map((field) => {
-                let fieldValue = row[field];
-                return (
-                  <DataTable.Cell key={field} {...rowProps(row)}>
-                    {renderCell(fieldValue)}
-                  </DataTable.Cell>
-                );
-              })}
+            {linkProps.map((linkProp) => {
+              let fieldValue = row[linkProp.api];
+              return (
+                <DataTable.Cell key={linkProp} {...rowProps(row)}>
+                  {renderCell(fieldValue)}
+                </DataTable.Cell>
+              );
+            })}
           </DataTable.Row>
         );
       })}
