@@ -1,7 +1,7 @@
 import { IndexPath, Layout, Select, Text } from "@ui-kitten/components";
+import MyModal from "components/Modal";
 import { selectItems } from "components/Select";
 import React from "react";
-import { StyleSheet } from "react-native";
 import { DataTable } from "react-native-paper";
 import { getLinkProps, getRenderText } from "utils";
 import i18n from "utils/i18n";
@@ -79,7 +79,14 @@ export const TableBottom = ({ page, pageCallBack }) => {
   };
 
   return (
-    <Layout style={styles.pagination}>
+    <Layout
+      style={{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginHorizontal: "5%",
+      }}
+    >
       <Layout>
         <Text>
           {i18n.t("origin.page")}: {page.number + 1} / {page.totalPages}
@@ -98,7 +105,6 @@ export const TableBottom = ({ page, pageCallBack }) => {
       <Layout>
         <Text>{i18n.t("origin.record")}</Text>
         <Select
-          style={styles.select}
           size="small"
           value={sizeRank[selectedSize.row]}
           selectedIndex={selectedSize}
@@ -114,11 +120,45 @@ export const TableBottom = ({ page, pageCallBack }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  pagination: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginHorizontal: "5%",
-  },
-});
+export const Table = ({
+  arrLink,
+  headerText,
+  updateForm,
+  data,
+  page,
+  pageCallBack,
+}) => {
+  const [updateFormVisible, setUpdateFormVisible] = React.useState(false);
+  const [currentRow, setCurrenRow] = React.useState(null);
+
+  const modalUpdateFormProps = {
+    ...updateForm,
+    visible: updateFormVisible,
+    cancel: () => setUpdateFormVisible(false),
+    body: () => updateForm.body(headerText, currentRow),
+    submit: async () => {
+      try {
+        let response = await updateForm.submit();
+        let index = data.map((x) => x.id).indexOf(response.id);
+        data[index] = response;
+        return response;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  };
+
+  const rowCallBack = (row) => {
+    setCurrenRow(row);
+    setUpdateFormVisible(true);
+  };
+
+  return (
+    <DataTable>
+      <MyModal {...modalUpdateFormProps} />
+      <TableHeader arrLink={arrLink} />
+      <TableContent arrLink={arrLink} data={data} rowCallBack={rowCallBack} />
+      <TableBottom page={page} pageCallBack={pageCallBack} />
+    </DataTable>
+  );
+};

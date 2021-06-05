@@ -2,9 +2,9 @@ import { Layout } from "@ui-kitten/components";
 import TeacherApi from "api/person/TeacherApi";
 import { TeacherForm } from "components/form";
 import TopBar from "components/screen/TopBar";
+import { Table } from "components/table";
 import React from "react";
 import { StyleSheet } from "react-native";
-import TeacherTable from "./mains/TeacherTable";
 
 const defaultPage = {
   number: 0,
@@ -15,6 +15,16 @@ const sortDefault = {
   sort: "createdAt",
   descend: true,
 };
+
+const arrLink = [
+  "person.code",
+  "person.name",
+  "person.gender",
+  "person.subjectDepartment",
+  "person.degree",
+  "person.email",
+  "person.phone",
+];
 
 const TeacherScreen = () => {
   const [data, setData] = React.useState([]);
@@ -53,7 +63,14 @@ const TeacherScreen = () => {
           }}
         />
       </Layout>
-      <TeacherTable data={data} page={page} callBack={fetchData} />
+      <Table
+        arrLink={arrLink}
+        headerText={"teacher.update"}
+        updateForm={TeacherForm}
+        data={data}
+        page={page}
+        pageCallBack={fetchData}
+      />
     </Layout>
   );
 };
