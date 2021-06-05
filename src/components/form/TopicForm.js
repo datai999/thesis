@@ -1,7 +1,7 @@
 import { Button, Layout, Text } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
-import { CouncilForm, StudentForm, TeacherForm } from "components/form";
+import { CouncilForm } from "components/form";
 import { MyAutocompleteTag, MyInput } from "components/Input";
 import MyModal from "components/Modal";
 import { MyMultiSelect, MySelect } from "components/Select";
@@ -30,23 +30,10 @@ const TopicForm = {
 };
 
 const FormLayout = ({ header }) => {
-  const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
-  const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
   const [councilVisible, setCouncilVisible] = React.useState(false);
   const [multiLang, setMultiLang] = React.useState(0);
 
   const propStore = createProps(form);
-
-  const modalTeacherCreateProps = {
-    ...TeacherForm,
-    visible: teacherCreateVisible,
-    cancel: () => setTeacherCreateVisible(false),
-  };
-  const modalStudentCreateProps = {
-    ...StudentForm,
-    visible: studentCreateVisible,
-    cancel: () => setStudentCreateVisible(false),
-  };
 
   const modalCouncilProps = {
     ...CouncilForm,
@@ -70,8 +57,6 @@ const FormLayout = ({ header }) => {
 
   return (
     <Layout style={{ flex: 1 }}>
-      <MyModal {...modalTeacherCreateProps} />
-      <MyModal {...modalStudentCreateProps} />
       <MyModal {...modalCouncilProps} />
 
       <Layout
