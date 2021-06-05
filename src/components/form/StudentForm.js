@@ -2,54 +2,43 @@ import { Layout, Text } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import { MyInput } from "components/Input";
 import { MySelect } from "components/Select";
-import Props from "data/Props";
+import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
+import { createProps } from "utils";
 import i18n from "utils/i18n";
 
-const form = {};
+let form = {};
 
 const StudentForm = {
-  body: (
-    header = "student.create",
-    data,
-    setData = (newData) => {
-      console.log(newData);
-    }
-  ) => StudentCreateLayout(header, data, setData),
+  body: (data) => {
+    let header = "student.create";
+    if (data != null) {
+      form = _.cloneDeep(data);
+      header = "student.update";
+    } else form = {};
+    return <FormLayout header={header} data={data} />;
+  },
   submit: (formSubmit = form) => StudentApi.create(formSubmit),
 };
 
-const StudentCreateLayout = (header, data, setData) => {
-  const setValue = (field, value) => (form[field] = value);
-  const inputProps = (field) => {
-    return {
-      value: form[field],
-      callBack: (value) => setValue(field, value),
-      ...Props[field],
-    };
-  };
-  const selectProps = (field) => {
-    return {
-      field,
-      value: form[field],
-      callBack: (value) => setValue(field, value),
-      ...Props[field],
-    };
-  };
+const FormLayout = ({ header }) => {
+  const propStore = createProps(form);
+
   return (
     <Layout style={styles.container}>
       <Text style={styles.headerText}>{i18n.t(header)}</Text>
       <Layout style={styles.row}>
         <Layout style={styles.left}>
-          <MyInput {...inputProps("name")} />
-          <MyInput {...inputProps("email")} />
-          <MyInput {...inputProps("phone")} />
+          <MyInput {...propStore.input("person.name")} />
+          <MySelect {...propStore.select("person.gender")} />
+          <MyInput {...propStore.input("person.email")} />
+          <MyInput {...propStore.input("person.phone")} />
         </Layout>
         <Layout style={styles.right}>
-          <MyInput {...inputProps("studentCode")} />
-          <MySelect {...selectProps("educationMethod")} />
-          <MySelect {...selectProps("major")} />
+          <MyInput {...propStore.input("person.code")} />
+          <MySelect {...propStore.select("person.educationMethod")} />
+          <MySelect {...propStore.select("person.major")} />
         </Layout>
       </Layout>
     </Layout>
