@@ -10,7 +10,7 @@ const SettingScreen = () => {
     <Layout>
       <Layout style={styles.row}>
         <Text>{i18n.t("origin.version")}:</Text>
-        <Text>5.31.01</Text>
+        <Text>6.06.02</Text>
       </Layout>
 
       <Divider />
