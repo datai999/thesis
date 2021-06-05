@@ -159,6 +159,10 @@ const Props = {
     label: "teacher.code",
     placeholder: "teacher.code_type",
   },
+  gender: {
+    label: "person.gender.label",
+    placeholder: "person.gender.placeholder",
+  },
 };
 
 export default Props;

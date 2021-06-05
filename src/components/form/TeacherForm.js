@@ -31,6 +31,7 @@ const TeacherLayout = ({ header, ...props }) => {
       <Layout style={styles.row}>
         <Layout style={styles.left}>
           <MyInput {...propStore.input("person.name")} />
+          <MySelect {...propStore.select("person.gender")} />
           <MyInput {...propStore.input("person.email")} />
           <MyInput {...propStore.input("person.phone")} />
         </Layout>
