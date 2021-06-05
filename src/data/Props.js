@@ -68,34 +68,7 @@ const Props = {
       numberOfLines: 5,
     },
   },
-  thesisTask: {
-    en: {
-      label: "thesisTask",
-      placeholder: "topic.task_thesis_ph_en",
-      multiline: true,
-      numberOfLines: 5,
-    },
-    vi: {
-      label: "thesisTask",
-      placeholder: "topic.task_thesis_ph_vi",
-      multiline: true,
-      numberOfLines: 5,
-    },
-  },
-  description: {
-    en: {
-      label: "description",
-      placeholder: "description_ph_en",
-      multiline: true,
-      numberOfLines: 5,
-    },
-    vi: {
-      label: "description",
-      placeholder: "description_ph_vi",
-      multiline: true,
-      numberOfLines: 5,
-    },
-  },
+
   name: {
     label: "person.name.label",
     placeholder: "person.name.placeholder",

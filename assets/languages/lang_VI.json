@@ -100,8 +100,10 @@
       "label": "Giảng viên hướng dẫn",
       "placeholder": "Nhập tên giảng viên"
     },
-    "review": "Giảng viên phản biện",
-    "review_select": "Chọn giảng viên phản biện",
+    "review": {
+      "label": "Giảng viên phản biện",
+      "placeholder": "Nhập tên giảng viên"
+    },
     "update": "Cập nhật thông tin giảng viên"
   },
   "thesisTask": "Nhiệm vụ giai đoạn luận văn",

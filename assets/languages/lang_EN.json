@@ -100,8 +100,10 @@
       "label": "Guide teacher",
       "placeholder": "Type teacher name"
     },
-    "review": "Review teacher",
-    "review_select": "Select review teacher",
+    "review": {
+      "label": "Review teacher",
+      "placeholder": "Type review teacher"
+    },
     "update": "Update teacher"
   },
   "thesisTask": "Thesis task",

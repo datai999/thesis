@@ -9,8 +9,8 @@ const arrLink = [
   "topic.major",
   "topic.educationMethod",
   "topic.name",
-  "topicAssign.guideTeacher.name",
-  "topicAssign.executeStudent.name",
+  "topicAssign.guideTeacher",
+  "topicAssign.executeStudent",
 ];
 
 const overTableProps = {

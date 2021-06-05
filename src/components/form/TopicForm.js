@@ -2,11 +2,9 @@ import { Button, Layout, Text } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
 import { CouncilForm, StudentForm, TeacherForm } from "components/form";
-import { PlusIcon } from "components/Icons";
 import { MyAutocompleteTag, MyInput } from "components/Input";
 import MyModal from "components/Modal";
 import { MyMultiSelect, MySelect } from "components/Select";
-import Props from "data/Props";
 import _ from "lodash";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
@@ -23,7 +21,7 @@ const TopicForm = {
       form = _.cloneDeep(data);
       header = "topic.update";
     } else form = {};
-    return <FormLayout header={header} data={data} />;
+    return <FormLayout header={header} />;
   },
   submit: () => {
     console.log(form);
@@ -31,12 +29,11 @@ const TopicForm = {
   },
 };
 
-const FormLayout = ({ header, ...props }) => {
+const FormLayout = ({ header }) => {
   const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
   const [studentCreateVisible, setStudentCreateVisible] = React.useState(false);
   const [councilVisible, setCouncilVisible] = React.useState(false);
   const [multiLang, setMultiLang] = React.useState(0);
-  const [data, setData] = React.useState(props.data);
 
   const propStore = createProps(form);
 
@@ -69,59 +66,6 @@ const FormLayout = ({ header, ...props }) => {
         console.log(error);
       }
     },
-  };
-
-  const setValue = (field, basePath, value) => {
-    let path = basePath == "topic" ? basePath + "." + field : basePath;
-    _.set(form, path, value);
-    let nextData = _.cloneDeep(data);
-    _.set(nextData, path, value);
-    setData(nextData);
-  };
-
-  const getValue = (field, basePath) => {
-    let path = basePath == "topic" ? basePath + "." + field : basePath;
-    return _.get(data, path);
-  };
-
-  const inputProps = (field, basePath = "topic") => {
-    return {
-      callBack: (value) => setValue(field, basePath, value),
-      ..._.get(Props, field),
-      value: getValue(field, basePath),
-    };
-  };
-  const autocompleteProps = (type, field) => {
-    let basePath = field;
-    if (type != "teacher") {
-      basePath = "executeStudent";
-    }
-    return {
-      ...inputProps(field, basePath),
-      refreshDataOnChangeText: (value) => searchPerson(type, value),
-      accessoryRight: () => (
-        <Button
-          appearance="ghost"
-          size="small"
-          accessoryRight={PlusIcon}
-          onPress={() =>
-            type == "teacher"
-              ? setTeacherCreateVisible(true)
-              : setStudentCreateVisible(true)
-          }
-        />
-      ),
-    };
-  };
-
-  const searchPerson = async (type, value) => {
-    try {
-      return type == "teacher"
-        ? await TeacherApi.search(value)
-        : await StudentApi.search(value);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
@@ -157,17 +101,25 @@ const FormLayout = ({ header, ...props }) => {
             <MySelect {...propStore.select("topic.semester")} />
             <MyMultiSelect {...propStore.select("topic.major")} />
             <MyAutocompleteTag
-              {...autocompleteProps("teacher", "guideTeacher")}
+              {...propStore.inputSearch("topicAssign.guideTeacher", TeacherApi)}
             />
             <MyAutocompleteTag
-              {...autocompleteProps("teacher", "reviewTeacher")}
+              {...propStore.inputSearch(
+                "topicAssign.reviewTeacher",
+                TeacherApi
+              )}
             />
           </Layout>
           <Layout style={styles.right}>
             <MyInput {...propStore.input("topic.topicCode")} />
             <MySelect {...propStore.select("topic.minStudentTake")} />
             <MySelect {...propStore.select("topic.maxStudentTake")} />
-            <MyAutocompleteTag {...autocompleteProps("students", "students")} />
+            <MyAutocompleteTag
+              {...propStore.inputSearch(
+                "topicAssign.executeStudent",
+                StudentApi
+              )}
+            />
             <Button
               style={{ marginTop: 22 }}
               appearance="outline"
