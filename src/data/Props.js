@@ -97,25 +97,25 @@ const Props = {
     },
   },
   name: {
-    label: "fullName",
-    placeholder: "fullName_ph",
+    label: "person.name.label",
+    placeholder: "person.name.placeholder",
   },
   email: {
     label: "Email",
     placeholder: "HCMUT email",
   },
   phone: {
-    label: "phone",
-    placeholder: "phone_type",
+    label: "person.phone.label",
+    placeholder: "person.phone.placeholder",
   },
   degree: {
-    label: "degree",
-    placeholder: "degree_select",
+    label: "person.degree.label",
+    placeholder: "person.degree.placeholder",
     arrValue: ["Bachelor", "Master", "Doctor", "Professor"],
   },
   subjectDepartment: {
-    label: "subjectDepartment",
-    placeholder: "subjectDepartment_select",
+    label: "person.subjectDepartment.label",
+    placeholder: "person.subjectDepartment.placeholder",
     arrValue: [
       "Information System",
       "Software Technology",

@@ -10,15 +10,11 @@
     "teacher_type": "Nhập tên của giảng viên",
     "update": "Cập nhật hội đồng"
   },
-  "degree": "Học vị",
-  "degree_select": "Chọn học vị",
   "description": "Mô tả",
   "description_ph_en": "Nhập mô tả bằng tiếng anh",
   "description_ph_vi": "Nhập mô tả",
   "educationMethod": "Phương thức đào tạo",
   "educationMethodSelect": "Chọn phương thức đào tạo",
-  "fullName": "Họ và tên",
-  "fullName_ph": "Nhập họ và tên",
   "mainTask": "Nhiệm vụ chính",
   "major": "Chuyên ngành",
   "majorSelect": "Chọn chuyên nghành",
@@ -27,14 +23,10 @@
     "degree": "Học vị",
     "email": "Email",
     "filter&Search": "Lọc và Tìm kiếm",
-    "fullName": "Đầy đủ tên",
-    "gender": "Giới tính",
     "language": "Ngôn ngữ",
     "new": "Tạo mới",
     "page": "Trang",
-    "phone": "Số điện thoại",
     "record": "Số bản ghi",
-    "subjectDepartment": "Bộ môn",
     "topic": "Đề tài",
     "total": "Tổng trang",
     "update": "Cập nhật",
@@ -76,8 +68,6 @@
       "placeholder": "Chọn phòng ban"
     }
   },
-  "phone": "Số điện thoại",
-  "phone_type": "Nhập số điện thoại",
   "semester": "Học kỳ",
   "semesterSelect": "Chọn học kỳ",
   "student": {
@@ -90,8 +80,6 @@
     "typeName": "Nhập tên sinh viên",
     "update": "Cập nhật thông tin sinh viên"
   },
-  "subjectDepartment": "Bộ môn",
-  "subjectDepartment_select": "Chọn bộ môn",
   "teacher": {
     "code": "Mã số giảng viên",
     "code_type": "Nhập mã số giảng viên",

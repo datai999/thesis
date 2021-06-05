@@ -10,15 +10,11 @@
     "teacher_type": "Type name of teacher",
     "update": "Update council"
   },
-  "degree": "Degree",
-  "degree_select": "Select degree",
   "description": "Description",
   "description_ph_en": "Type description",
   "description_ph_vi": "Type description in Vietnamese",
   "educationMethod": "Education method",
   "educationMethodSelect": "Select education method",
-  "fullName": "Full name",
-  "fullName_ph": "Type full name",
   "mainTask": "Main task",
   "major": "Major",
   "majorSelect": "Select major",
@@ -27,14 +23,10 @@
     "degree": "Degree",
     "email": "Email",
     "filter&Search": "Filter and Search",
-    "fullName": "Full name",
-    "gender": "Gender",
     "language": "Language",
     "new": "NEW",
     "page": "Page",
-    "phone": "Phone",
     "record": "Record",
-    "subjectDepartment": "Subject Department",
     "topic": "Topic",
     "total": "Total",
     "update": "Update",
@@ -76,8 +68,6 @@
       "placeholder": "Select subject department"
     }
   },
-  "phone": "Phone number",
-  "phone_type": "Type phone number",
   "semester": "Semester",
   "semesterSelect": "Select semester",
   "student": {
@@ -90,8 +80,6 @@
     "typeName": "Type student name",
     "update": "Update student"
   },
-  "subjectDepartment": "Subject department",
-  "subjectDepartment_select": "Select subject department",
   "teacher": {
     "code": "Teacher code",
     "code_type": "Type teacher code",
