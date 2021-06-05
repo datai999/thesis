@@ -61,7 +61,20 @@ export const createProps = (form) => {
 };
 
 export const getLinkProps = (arrPath) => {
-  return Array.from(arrPath, (path) => _.get(link, path));
+  return Array.from(arrPath, (path) => {
+    let linkProps = _.get(link, path);
+    if (linkProps.ref != null) {
+      let linkRefProps = _.get(link, linkProps.ref);
+      return {
+        ...linkRefProps,
+        ...linkProps,
+        api:
+          path.slice(path.indexOf(".") + 1, path.lastIndexOf(".") + 1) +
+          linkRefProps.api,
+      };
+    }
+    return linkProps;
+  });
 };
 
 export { getRenderText, dateToLocal, toLocalDate, toLocalTime };

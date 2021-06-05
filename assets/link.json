@@ -45,5 +45,63 @@
       "label": "person.subjectDepartment.label",
       "placeholder": "person.subjectDepartment.placeholder"
     }
+  },
+  "topic": {
+    "code": {
+      "api": "topicCode",
+      "label": "topic.code.label",
+      "placeholder": "topic.code.placeholder"
+    },
+    "semester": {
+      "api": "semester",
+      "label": "topic.semester.label",
+      "placeholder": "topic.semester.placeholder"
+    },
+    "major": {
+      "api": "major",
+      "label": "topic.major.label",
+      "placeholder": "topic.major.placeholder"
+    },
+    "educationMethod": {
+      "api": "educationMethod",
+      "label": "topic.educationMethod.label",
+      "placeholder": "topic.educationMethod.placeholder"
+    },
+    "name": {
+      "api": "name",
+      "label": "topic.name.label",
+      "placeholder": "topic.name.placeholder"
+    }
+  },
+  "topicAssign": {
+    "topic": {
+      "code": {
+        "ref": "topic.code"
+      },
+      "semester": {
+        "ref": "topic.semester"
+      },
+      "major": {
+        "ref": "topic.major"
+      },
+      "educationMethod": {
+        "ref": "topic.educationMethod"
+      },
+      "name": {
+        "ref": "topic.name"
+      }
+    },
+    "guideTeacher": {
+      "name": {
+        "ref": "person.name",
+        "label": "teacher.guide.label"
+      }
+    },
+    "executeStudent": {
+      "name": {
+        "ref": "person.name",
+        "label": "student.execute.label"
+      }
+    }
   }
 }

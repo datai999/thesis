@@ -19,24 +19,24 @@ const Props = {
       ),
   },
   guideTeacher: {
-    label: "teacher.guide",
-    placeholder: "teacher.guideSelect",
+    label: "teacher.guide.label",
+    placeholder: "teacher.guide.placeholder",
   },
   reviewTeacher: {
     label: "teacher.review",
     placeholder: "teacher.review_select",
   },
   topicCode: {
-    label: "topic.code",
-    placeholder: "topic.code",
+    label: "topic.code.label",
+    placeholder: "topic.code.placeholder",
   },
   topicName: {
     en: {
-      label: "topic.name",
+      label: "topic.name.label",
       placeholder: "topic.name_ph_en",
     },
     vi: {
-      label: "topic.name",
+      label: "topic.name.label",
       placeholder: "topic.name_ph_vi",
     },
   },
@@ -51,8 +51,8 @@ const Props = {
     arrValue: Array.from({ length: 5 }, (v, k) => k + 1),
   },
   students: {
-    label: "student.execute",
-    placeholder: "student.typeName",
+    label: "student.execute.label",
+    placeholder: "student.execute.placeholder",
   },
   mainTask: {
     en: {

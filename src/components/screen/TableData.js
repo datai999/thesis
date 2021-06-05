@@ -48,7 +48,11 @@ export const TableContent = ({ links, data, rowCallBack }) => {
     return (
       <DataTable.Row key={row.id}>
         {linkProps.map((linkProp) => {
-          let fieldValue = row[linkProp.api];
+          let fieldValue = _.get(row, linkProp.api);
+          if (links.length < 5) {
+            console.log(linkProp);
+            console.log(_.get(row, linkProp.api));
+          }
           return (
             <DataTable.Cell
               key={linkProp.api}
@@ -120,13 +124,7 @@ export const TableBottom = ({ page, pageCallBack }) => {
   );
 };
 
-export const TableData = ({
-  links,
-  updateForm,
-  data,
-  page,
-  pageCallBack,
-}) => {
+export const TableData = ({ links, updateForm, data, page, pageCallBack }) => {
   const [updateFormVisible, setUpdateFormVisible] = React.useState(false);
   const [currentRow, setCurrenRow] = React.useState(null);
 

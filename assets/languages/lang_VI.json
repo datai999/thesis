@@ -82,18 +82,22 @@
     "code": "Mã số sinh viên",
     "code_type": "Nhập mã số sinh viên",
     "create": "Thêm mới sinh viên",
-    "execute": "Sinh viên thực hiện",
+    "execute": {
+      "label":"Sinh viên thực hiện",
+      "placeholder": "Nhập tên sinh viên"
+    },
     "max": "Số sinh viên tối đa",
     "min": "Số sinh viên tối thiểu",
-    "typeName": "Nhập tên sinh viên",
     "update": "Cập nhật thông tin sinh viên"
   },
   "teacher": {
     "code": "Mã số giảng viên",
     "code_type": "Nhập mã số giảng viên",
     "create": "Thêm giảng viên",
-    "guide": "Giảng viên hướng dẫn",
-    "guideSelect": "Chọn giảng viên hướng dẫn",
+    "guide": {
+      "label": "Giảng viên hướng dẫn",
+      "placeholder": "Nhập tên giảng viên"
+    },
     "review": "Giảng viên phản biện",
     "review_select": "Chọn giảng viên phản biện",
     "update": "Cập nhật thông tin giảng viên"
@@ -104,15 +108,33 @@
     "start": "Thời gian bắt đầu"
   },
   "topic": {
-    "code": "Mã đề tài",
+    "code": {
+      "label": "Mã đề tài",
+      "placeholder": "Nhập mã đề tài"
+    },
     "create": "Tạo mới đề tài",
-    "name": "Tên đề tài",
     "name_ph_en": "Nhập tên đề tài bằng tiếng anh",
     "name_ph_vi": "Nhập tên đề tài",
     "task_main_ph_en": "Nhập nhiệm vụ chính bằn tiếng anh",
     "task_main_ph_vi": "Nhập nhiệm vụ chính bằng tiếng việt",
     "task_thesis_ph_en": "Nhập nhiệm vụ luận văn bằn tiếng anh",
     "task_thesis_ph_vi": "Nhập nhiệm vụ luận văn bằng tiếng việt",
-    "update": "Cập nhật đề tài"
+    "update": "Cập nhật đề tài",
+    "semester": {
+      "label": "Học kỳ",
+      "placeholder": "Chọn học kỳ"
+    },
+    "major": {
+      "label": "Chuyên ngành",
+      "placeholder": "Chọn chuyên nghành"
+    },
+    "educationMethod": {
+      "label": "Phương thức đào tạo",
+      "placeholder": "Chọn phương thức đào tạo"
+    },
+    "name": {
+      "label": "Tên đề tài",
+      "placeholder": "Nhập tên đề tài"
+    }
   }
 }

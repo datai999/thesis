@@ -82,18 +82,22 @@
     "code": "Student code",
     "code_type": "Type student code",
     "create": "Create student",
-    "execute": "Student execute",
+    "execute": {
+      "label":"Student execute",
+      "placeholder": "Type student name"
+    },
     "max": "Max student",
     "min": "Min student",
-    "typeName": "Type student name",
     "update": "Update student"
   },
   "teacher": {
     "code": "Teacher code",
     "code_type": "Type teacher code",
     "create": "Create teacher",
-    "guide": "Guide teacher",
-    "guideSelect": "Select guide teacher",
+    "guide": {
+      "label": "Guide teacher",
+      "placeholder": "Type teacher name"
+    },
     "review": "Review teacher",
     "review_select": "Select review teacher",
     "update": "Update teacher"
@@ -104,15 +108,33 @@
     "start": "Start time"
   },
   "topic": {
-    "code": "Topic code",
+    "code": {
+      "label": "Topic code",
+      "placeholder": "Type topic code"
+    },
     "create": "Create topic",
-    "name": "Topic name",
     "name_ph_en": "Type topic name",
     "name_ph_vi": "Type topic name in Vietnamese",
     "task_main_ph_en": "Type main task",
     "task_main_ph_vi": "Type main task in Vietnamese",
     "task_thesis_ph_en": "Type thesis task",
     "task_thesis_ph_vi": "Type thesis task in Vietnamese",
-    "update": "Update topic"
+    "update": "Update topic",
+    "semester": {
+      "label": "Semester",
+      "placeholder": "Select semester"
+    },
+    "major": {
+      "label": "Major",
+      "placeholder": "Select major"
+    },
+    "educationMethod": {
+      "label": "Education method",
+      "placeholder": "Select education method"
+    },
+    "name": {
+      "label": "Topic name",
+      "placeholder": "Type topic name"
+    }
   }
 }

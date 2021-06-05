@@ -17,7 +17,7 @@ import SettingScreen from "./pages/SettingScreen";
 import TopicScreen from "./pages/TopicScreen";
 
 const Routes = () => {
-  const [selectedIndex, setSelectedIndex] = React.useState(2);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   React.useEffect(() => {
     const fetch = async () => {
