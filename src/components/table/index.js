@@ -13,7 +13,7 @@ export const TableHeader = ({ arrLink }) => {
     <DataTable.Header>
       {linkProps.map((linkProp) => {
         return (
-          <DataTable.Title key={linkProp}>
+          <DataTable.Title key={linkProp.api}>
             <Text>{i18n.t(linkProp.label)}</Text>
           </DataTable.Title>
         );
@@ -50,7 +50,7 @@ export const TableContent = ({ arrLink, data, rowProps }) => {
         {linkProps.map((linkProp) => {
           let fieldValue = row[linkProp.api];
           return (
-            <DataTable.Cell key={linkProp} {...rowProps(row)}>
+            <DataTable.Cell key={linkProp.api} {...rowProps(row)}>
               {renderCell(fieldValue)}
             </DataTable.Cell>
           );
@@ -60,7 +60,7 @@ export const TableContent = ({ arrLink, data, rowProps }) => {
   });
 };
 
-export const TableBottom = ({page, fetchPage}) => {
+export const TableBottom = ({ page, fetchPage }) => {
   const [selectedSize, setSelectedSize] = React.useState(new IndexPath(0));
 
   const sizeRank = [5, 10, 20, 30, 50, 100];

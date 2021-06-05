@@ -1,8 +1,8 @@
 import { TopicForm } from "components/form";
 import MyModal from "components/Modal";
+import { TableBottom, TableContent, TableHeader } from "components/table";
 import React from "react";
 import { DataTable } from "react-native-paper";
-import { TableHeader, TableContent, TableBottom } from "components/table";
 
 const arrLink = [
   "person.code",
