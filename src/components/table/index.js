@@ -22,7 +22,7 @@ export const TableHeader = ({ arrLink }) => {
   );
 };
 
-export const TableContent = ({ arrLink, data, rowProps }) => {
+export const TableContent = ({ arrLink, data, rowCallBack }) => {
   const linkProps = getLinkProps(arrLink);
 
   const reducerLastName = (accumulator, currentValue) =>
@@ -46,11 +46,16 @@ export const TableContent = ({ arrLink, data, rowProps }) => {
 
   return data.map((row) => {
     return (
-      <DataTable.Row key={row.id} {...rowProps(row)}>
+      <DataTable.Row key={row.id}>
         {linkProps.map((linkProp) => {
           let fieldValue = row[linkProp.api];
           return (
-            <DataTable.Cell key={linkProp.api} {...rowProps(row)}>
+            <DataTable.Cell
+              key={linkProp.api}
+              onPress={() => {
+                rowCallBack(row);
+              }}
+            >
               {renderCell(fieldValue)}
             </DataTable.Cell>
           );
@@ -60,10 +65,18 @@ export const TableContent = ({ arrLink, data, rowProps }) => {
   });
 };
 
-export const TableBottom = ({ page, fetchPage }) => {
+export const TableBottom = ({ page, pageCallBack }) => {
   const [selectedSize, setSelectedSize] = React.useState(new IndexPath(0));
 
   const sizeRank = [5, 10, 20, 30, 50, 100];
+
+  const fetchPage = (newNumber, newSize) => {
+    let nextPage = {
+      number: newNumber,
+      size: newSize,
+    };
+    pageCallBack(nextPage);
+  };
 
   return (
     <Layout style={styles.pagination}>
