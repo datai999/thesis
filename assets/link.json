@@ -10,6 +10,11 @@
       "label": "person.degree.label",
       "placeholder": "person.degree.placeholder"
     },
+    "educationMethod": {
+      "api": "educationMethod",
+      "label": "person.educationMethod.label",
+      "placeholder": "person.educationMethod.placeholder"
+    },
     "email": {
       "api": "email",
       "label": "Email",
@@ -19,6 +24,11 @@
       "api": "gender",
       "label": "person.gender.label",
       "placeholder": "person.gender.placeholder"
+    },
+    "major": {
+      "api": "major",
+      "label": "person.major.label",
+      "placeholder": "person.major.placeholder"
     },
     "name": {
       "api": "name",

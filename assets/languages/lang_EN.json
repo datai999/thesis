@@ -51,9 +51,17 @@
       "label": "Degree",
       "placeholder": "Select degree"
     },
+    "educationMethod": {
+      "label": "Education method",
+      "placeholder": "Select education method"
+    },
     "gender": {
       "label": "Gender",
       "placeholder": "Select gender"
+    },
+    "major": {
+      "label": "Major",
+      "placeholder": "Select major"
     },
     "name": {
       "label": "Full name",

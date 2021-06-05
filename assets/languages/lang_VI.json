@@ -51,9 +51,17 @@
       "label": "Học vị",
       "placeholder": "Chọn học vị"
     },
+    "educationMethod": {
+      "label": "Phương thức đào tạo",
+      "placeholder": "Chọn phương thức đào tạo"
+    },
     "gender": {
       "label": "Giới tính",
       "placeholder": "Chọn giới tính"
+    },
+    "major": {
+      "label": "Chuyên nghành",
+      "placeholder": "Chọn chuyên ngành"
     },
     "name": {
       "label": "Họ và tên",

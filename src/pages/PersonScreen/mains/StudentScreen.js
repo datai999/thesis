@@ -1,8 +1,26 @@
-import { Text } from "@ui-kitten/components";
+import StudentApi from "api/person/StudentApi";
+import { StudentForm } from "components/form";
+import OverTable from "components/screen/OverTable";
 import React from "react";
 
+const arrLink = [
+  "person.code",
+  "person.name",
+  "person.gender",
+  "person.educationMethod",
+  "person.major",
+  "person.email",
+  "person.phone",
+];
+
+const overTableProps = {
+  links: arrLink,
+  form: StudentForm,
+  api: StudentApi,
+};
+
 const StudentScreen = () => {
-  return <Text style={{ textAlign: "center" }}>Student screen</Text>;
+  return <OverTable {...overTableProps} />;
 };
 
 export default StudentScreen;
