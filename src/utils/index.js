@@ -41,9 +41,10 @@ export const createProps = (form) => {
 
   const inputProps = (path) => {
     const linkResult = getLinkProps(path);
+    const apiPath = linkResult.api && path;
     return {
-      value: form[linkResult?.api],
-      callBack: (value) => setValue(linkResult?.api, value),
+      value: form[apiPath],
+      callBack: (value) => setValue(apiPath, value),
       ...linkResult,
     };
   };
@@ -51,6 +52,9 @@ export const createProps = (form) => {
   return {
     set: setValue,
     input: inputProps,
+    inputLang: (path) => inputProps(path + "." + i18n.language),
+    inputToggleLang: (path) =>
+      inputProps(path + "." + (i18n.language == "en" ? "vi" : "en")),
     inputSearch: (path, api) => {
       return {
         ...inputProps(path),
@@ -59,11 +63,10 @@ export const createProps = (form) => {
     },
     select: (path) => {
       const linkResult = getLinkProps(path);
+      const apiPath = linkResult.api && path;
       return {
-        value: form[linkResult.api],
-        callBack: (value) => setValue(linkResult.api, value),
-        ...linkResult,
-        ...Props[linkResult.api.split(".").pop()],
+        ...inputProps(path),
+        ...Props[apiPath.split(".").pop()],
       };
     },
   };
@@ -71,15 +74,52 @@ export const createProps = (form) => {
 
 export const getLinkProps = (paths) => {
   const getLinkProp = (path) => {
+    let lastPath = path.split(".").pop();
+    let lang = false;
+    if (lastPath == "en" || lastPath == "vi") {
+      lang = true;
+      path = path.slice(0, path.lastIndexOf("."));
+    }
+
     let linkProps = _.get(link, path);
+
+    if (linkProps == null || linkProps.api == null) {
+      linkProps = {
+        ...linkProps,
+        api: path,
+      };
+    }
+
     if (linkProps.link != null) {
       let linkRefProps = _.get(link, linkProps.link);
-      return {
+      linkProps = {
         ...linkRefProps,
         ...linkProps,
         api:
           path.slice(path.indexOf(".") + 1, path.lastIndexOf(".") + 1) +
           linkRefProps.api,
+      };
+    }
+
+    linkProps = {
+      ...linkProps,
+      label: linkProps.label
+        ? i18n.t(linkProps.label)
+        : i18n.t(linkProps.api + ".label"),
+      placeholder: linkProps.placeholder
+        ? i18n.t(linkProps.placeholder)
+        : i18n.t(linkProps.api + ".placeholder"),
+    };
+
+    if (lang) {
+      let tail =
+        lastPath == "en" ? i18n.t("origin.inEn") : i18n.t("origin.inVi");
+      return {
+        ...linkProps,
+        label: linkProps.label ? linkProps.label + tail : null,
+        placeholder: linkProps.placeholder
+          ? linkProps.placeholder + tail
+          : null,
       };
     }
     return linkProps;
@@ -90,4 +130,3 @@ export const getLinkProps = (paths) => {
 };
 
 export { getRenderText, dateToLocal, toLocalDate, toLocalTime };
-

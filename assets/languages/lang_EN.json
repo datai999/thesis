@@ -23,6 +23,8 @@
     "degree": "Degree",
     "email": "Email",
     "filter&Search": "Filter and Search",
+    "inEn": " in English",
+    "inVi": " in Vietnamese",
     "language": "Language",
     "new": "NEW",
     "page": "Page",
@@ -108,14 +110,18 @@
     "start": "Start time"
   },
   "topic": {
-    "code": {
-      "label": "Topic code",
-      "placeholder": "Type topic code"
-    },
     "create": "Create topic",
+    "description": {
+      "label": "Description",
+      "placeholder": "Type description"
+    },
     "educationMethod": {
       "label": "Education method",
       "placeholder": "Select education method"
+    },
+    "mainTask": {
+      "label": "Main task",
+      "placeholder": "Type main task"
     },
     "major": {
       "label": "Major",
@@ -143,6 +149,14 @@
     "task_main_ph_vi": "Type main task in Vietnamese",
     "task_thesis_ph_en": "Type thesis task",
     "task_thesis_ph_vi": "Type thesis task in Vietnamese",
+    "thesisTask": {
+      "label": "Thesis task",
+      "placeholder": "Type thesis task"
+    },
+    "topicCode": {
+      "label": "Topic code",
+      "placeholder": "Type topic code"
+    },
     "update": "Update topic"
   }
 }

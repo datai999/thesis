@@ -4,11 +4,11 @@ import OverTable from "components/screen/OverTable";
 import React from "react";
 
 const arrLink = [
-  "topicAssign.topic.code",
-  "topicAssign.topic.semester",
-  "topicAssign.topic.major",
-  "topicAssign.topic.educationMethod",
-  "topicAssign.topic.name",
+  "topic.topicCode",
+  "topic.semester",
+  "topic.major",
+  "topic.educationMethod",
+  "topic.name",
   "topicAssign.guideTeacher.name",
   "topicAssign.executeStudent.name",
 ];

@@ -47,40 +47,17 @@
     }
   },
   "topic": {
-    "code": {
-      "api": "topicCode",
-      "label": "topic.code.label",
-      "placeholder": "topic.code.placeholder"
+    "description": {
+      "multiline": true,
+      "numberOfLines": 5
     },
-    "educationMethod": {
-      "api": "educationMethod",
-      "label": "topic.educationMethod.label",
-      "placeholder": "topic.educationMethod.placeholder"
+    "mainTask": {
+      "multiline": true,
+      "numberOfLines": 5
     },
-    "major": {
-      "api": "major",
-      "label": "topic.major.label",
-      "placeholder": "topic.major.placeholder"
-    },
-    "maxStudentTake": {
-      "api": "maxStudentTake",
-      "label": "topic.maxStudentTake.label",
-      "placeholder": "topic.maxStudentTake.placeholder"
-    },
-    "minStudentTake": {
-      "api": "minStudentTake",
-      "label": "topic.minStudentTake.label",
-      "placeholder": "topic.minStudentTake.placeholder"
-    },
-    "name": {
-      "api": "name",
-      "label": "topic.name.label",
-      "placeholder": "topic.name.placeholder"
-    },
-    "semester": {
-      "api": "semester",
-      "label": "topic.semester.label",
-      "placeholder": "topic.semester.placeholder"
+    "thesisTask": {
+      "multiline": true,
+      "numberOfLines": 5
     }
   },
   "topicAssign": {
@@ -94,29 +71,6 @@
       "name": {
         "label": "teacher.guide.label",
         "link": "person.name"
-      }
-    },
-    "topic": {
-      "code": {
-        "link": "topic.code"
-      },
-      "educationMethod": {
-        "link": "topic.educationMethod"
-      },
-      "major": {
-        "link": "topic.major"
-      },
-      "maxStudentTake": {
-        "link": "topic.maxStudentTake"
-      },
-      "minStudentTake": {
-        "link": "topic.minStudentTake"
-      },
-      "name": {
-        "link": "topic.name"
-      },
-      "semester": {
-        "link": "topic.semester"
       }
     }
   }

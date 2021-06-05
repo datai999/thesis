@@ -23,6 +23,8 @@
     "degree": "Học vị",
     "email": "Email",
     "filter&Search": "Lọc và Tìm kiếm",
+    "inEn": " bằng tiếng Anh",
+    "inVi": " bằng tiếng Việt",
     "language": "Ngôn ngữ",
     "new": "Tạo mới",
     "page": "Trang",
@@ -108,14 +110,18 @@
     "start": "Thời gian bắt đầu"
   },
   "topic": {
-    "code": {
-      "label": "Mã đề tài",
-      "placeholder": "Nhập mã đề tài"
-    },
     "create": "Tạo mới đề tài",
+    "description": {
+      "label": "Mô tả đề tài",
+      "placeholder": "Nhập mô tả đề tài"
+    },
     "educationMethod": {
       "label": "Phương thức đào tạo",
       "placeholder": "Chọn phương thức đào tạo"
+    },
+    "mainTask": {
+      "label": "Nhiệm vụ chính",
+      "placeholder": "Nhập nhiệm vụ chính"
     },
     "major": {
       "label": "Chuyên ngành",
@@ -139,10 +145,18 @@
       "label": "Học kỳ",
       "placeholder": "Chọn học kỳ"
     },
-    "task_main_ph_en": "Nhập nhiệm vụ chính bằn tiếng anh",
+    "task_main_ph_en": "Nhập nhiệm vụ chính bằng tiếng anh",
     "task_main_ph_vi": "Nhập nhiệm vụ chính bằng tiếng việt",
     "task_thesis_ph_en": "Nhập nhiệm vụ luận văn bằn tiếng anh",
     "task_thesis_ph_vi": "Nhập nhiệm vụ luận văn bằng tiếng việt",
+    "thesisTask": {
+      "label": "Nhiệm vụ giai đoạn luận văn",
+      "placeholder": "Nhập nhiệm vụ giai đoạn luận văn"
+    },
+    "topicCode": {
+      "label": "Mã đề tài",
+      "placeholder": "Nhập mã đề tài"
+    },
     "update": "Cập nhật đề tài"
   }
 }

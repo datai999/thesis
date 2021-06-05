@@ -146,20 +146,16 @@ const FormLayout = ({ header, ...props }) => {
         style={{ maxHeight: "100%" }}
         contentContainerStyle={{ paddingHorizontal: 24 }}
       >
-        <MyInput {...inputProps("topicName." + i18n.language)} />
+        <MyInput {...propStore.inputLang("topic.name")} />
         {multiLang > 0 && (
-          <MyInput
-            {...inputProps(
-              "topicName." + (i18n.language == "en" ? "vi" : "en")
-            )}
-          />
+          <MyInput {...propStore.inputToggleLang("topic.name")} />
         )}
 
         <Layout style={styles.row}>
           <Layout style={styles.left}>
-            <MySelect {...propStore.select("topicAssign.topic.educationMethod")} />
-            <MySelect {...propStore.select("topicAssign.topic.semester")} />
-            <MyMultiSelect {...propStore.select("topicAssign.topic.major")} />
+            <MySelect {...propStore.select("topic.educationMethod")} />
+            <MySelect {...propStore.select("topic.semester")} />
+            <MyMultiSelect {...propStore.select("topic.major")} />
             <MyAutocompleteTag
               {...autocompleteProps("teacher", "guideTeacher")}
             />
@@ -168,9 +164,9 @@ const FormLayout = ({ header, ...props }) => {
             />
           </Layout>
           <Layout style={styles.right}>
-            <MyInput {...propStore.input("topicAssign.topic.code")} />
-            <MySelect {...propStore.select("topicAssign.topic.minStudentTake")} />
-            <MySelect {...propStore.select("topicAssign.topic.maxStudentTake")} />
+            <MyInput {...propStore.input("topic.topicCode")} />
+            <MySelect {...propStore.select("topic.minStudentTake")} />
+            <MySelect {...propStore.select("topic.maxStudentTake")} />
             <MyAutocompleteTag {...autocompleteProps("students", "students")} />
             <Button
               style={{ marginTop: 22 }}
@@ -187,31 +183,18 @@ const FormLayout = ({ header, ...props }) => {
           </Layout>
         </Layout>
 
-        <MyInput {...inputProps("mainTask." + i18n.language)} />
+        <MyInput {...propStore.inputLang("topic.mainTask")} />
         {multiLang > 0 && (
-          <MyInput
-            {...inputProps("mainTask." + (i18n.language == "en" ? "vi" : "en"))}
-          />
+          <MyInput {...propStore.inputToggleLang("topic.mainTask")} />
         )}
-        <MyInput {...inputProps("thesisTask." + i18n.language)} />
+        <MyInput {...propStore.inputLang("topic.thesisTask")} />
         {multiLang > 0 && (
-          <MyInput
-            {...inputProps(
-              "thesisTask." + (i18n.language == "en" ? "vi" : "en")
-            )}
-          />
+          <MyInput {...propStore.inputToggleLang("topic.thesisTask")} />
         )}
 
-        <MyInput
-          {...inputProps("description." + i18n.language)}
-          style={styles.description}
-        />
+        <MyInput {...propStore.inputLang("topic.description")} />
         {multiLang > 0 && (
-          <MyInput
-            {...inputProps(
-              "description." + (i18n.language == "en" ? "vi" : "en")
-            )}
-          />
+          <MyInput {...propStore.inputToggleLang("topic.description")} />
         )}
       </ScrollView>
     </Layout>
