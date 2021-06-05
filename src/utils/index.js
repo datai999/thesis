@@ -37,34 +37,43 @@ function toLocalTime(date) {
 }
 
 export const createProps = (form) => {
-  const setValue = (path, value) => (form[path] = value);
+  const setValue = (path, value) => _.set(form, path, value);
+
+  const inputProps = (path) => {
+    const linkResult = getLinkProps(path);
+    return {
+      value: form[linkResult?.api],
+      callBack: (value) => setValue(linkResult?.api, value),
+      ...linkResult,
+    };
+  };
+
   return {
     set: setValue,
-    input: (path) => {
-      const linkResult = _.get(link, path);
+    input: inputProps,
+    inputSearch: (path, api) => {
       return {
-        value: form[linkResult?.api],
-        callBack: (value) => setValue(linkResult?.api, value),
-        ...linkResult,
+        ...inputProps(path),
+        refreshDataOnChangeText: (value) => api.search(value),
       };
     },
     select: (path) => {
-      const linkResult = _.get(link, path);
+      const linkResult = getLinkProps(path);
       return {
         value: form[linkResult.api],
         callBack: (value) => setValue(linkResult.api, value),
         ...linkResult,
-        ...Props[linkResult.api],
+        ...Props[linkResult.api.split(".").pop()],
       };
     },
   };
 };
 
-export const getLinkProps = (arrPath) => {
-  return Array.from(arrPath, (path) => {
+export const getLinkProps = (paths) => {
+  const getLinkProp = (path) => {
     let linkProps = _.get(link, path);
-    if (linkProps.ref != null) {
-      let linkRefProps = _.get(link, linkProps.ref);
+    if (linkProps.link != null) {
+      let linkRefProps = _.get(link, linkProps.link);
       return {
         ...linkRefProps,
         ...linkProps,
@@ -74,7 +83,10 @@ export const getLinkProps = (arrPath) => {
       };
     }
     return linkProps;
-  });
+  };
+
+  if (Array.isArray(paths)) return Array.from(paths, getLinkProp);
+  return getLinkProp(paths);
 };
 
 export { getRenderText, dateToLocal, toLocalDate, toLocalTime };

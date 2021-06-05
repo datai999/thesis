@@ -1,7 +1,6 @@
 import { Button, Layout, Text } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
-import TopicAssignApi from "api/topic/TopicAssignApi";
 import { CouncilForm, StudentForm, TeacherForm } from "components/form";
 import { PlusIcon } from "components/Icons";
 import { MyAutocompleteTag, MyInput } from "components/Input";
@@ -26,7 +25,10 @@ const TopicForm = {
     } else form = {};
     return <FormLayout header={header} data={data} />;
   },
-  submit: (formSubmit = form) => TopicAssignApi.create(formSubmit),
+  submit: () => {
+    console.log(form);
+    // TopicAssignApi.create(form);
+  },
 };
 
 const FormLayout = ({ header, ...props }) => {
@@ -155,9 +157,9 @@ const FormLayout = ({ header, ...props }) => {
 
         <Layout style={styles.row}>
           <Layout style={styles.left}>
-            <MySelect {...propStore.select("topic.educationMethod")} />
-            <MySelect {...propStore.select("topic.semester")} />
-            <MyMultiSelect {...propStore.select("topic.major")} />
+            <MySelect {...propStore.select("topicAssign.topic.educationMethod")} />
+            <MySelect {...propStore.select("topicAssign.topic.semester")} />
+            <MyMultiSelect {...propStore.select("topicAssign.topic.major")} />
             <MyAutocompleteTag
               {...autocompleteProps("teacher", "guideTeacher")}
             />
@@ -166,9 +168,9 @@ const FormLayout = ({ header, ...props }) => {
             />
           </Layout>
           <Layout style={styles.right}>
-            <MyInput {...propStore.input("topic.code")} />
-            <MySelect {...propStore.select("topic.minStudentTake")} />
-            <MySelect {...propStore.select("topic.maxStudentTake")} />
+            <MyInput {...propStore.input("topicAssign.topic.code")} />
+            <MySelect {...propStore.select("topicAssign.topic.minStudentTake")} />
+            <MySelect {...propStore.select("topicAssign.topic.maxStudentTake")} />
             <MyAutocompleteTag {...autocompleteProps("students", "students")} />
             <Button
               style={{ marginTop: 22 }}

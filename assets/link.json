@@ -87,30 +87,36 @@
     "executeStudent": {
       "name": {
         "label": "student.execute.label",
-        "ref": "person.name"
+        "link": "person.name"
       }
     },
     "guideTeacher": {
       "name": {
         "label": "teacher.guide.label",
-        "ref": "person.name"
+        "link": "person.name"
       }
     },
     "topic": {
       "code": {
-        "ref": "topic.code"
+        "link": "topic.code"
       },
       "educationMethod": {
-        "ref": "topic.educationMethod"
+        "link": "topic.educationMethod"
       },
       "major": {
-        "ref": "topic.major"
+        "link": "topic.major"
+      },
+      "maxStudentTake": {
+        "link": "topic.maxStudentTake"
+      },
+      "minStudentTake": {
+        "link": "topic.minStudentTake"
       },
       "name": {
-        "ref": "topic.name"
+        "link": "topic.name"
       },
       "semester": {
-        "ref": "topic.semester"
+        "link": "topic.semester"
       }
     }
   }
