@@ -62,14 +62,17 @@
   },
   "topicAssign": {
     "executeStudent": {
+      "api": "executeStudent",
       "label": "student.execute.label",
       "placeholder": "student.execute.placeholder"
     },
     "guideTeacher": {
+      "api": "guideTeacher",
       "label": "teacher.guide.label",
       "placeholder": "teacher.guide.placeholder"
     },
     "reviewTeacher": {
+      "api": "reviewTeacher",
       "label": "teacher.review.label",
       "placeholder": "teacher.review.placeholder"
     }
