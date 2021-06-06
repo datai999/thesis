@@ -82,8 +82,12 @@ export const getLinkProps = (paths) => {
 
     let linkProps = _.get(link, path);
 
+    let apiValue = path;
+    if (linkProps != null && linkProps.api == null)
+      apiValue = path.split(".").pop();
+
     linkProps = {
-      api: path,
+      api: apiValue,
       ...linkProps,
       label: linkProps?.label
         ? i18n.t(linkProps?.label)
