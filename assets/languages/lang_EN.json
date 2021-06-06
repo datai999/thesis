@@ -2,8 +2,10 @@
   "council": {
     "create": "Create council",
     "reserveDate": "Reserve date",
-    "reserveRoom": "Reserve room",
-    "reserveRoom_type": "Type reserve room",
+    "reserveRoom": {
+      "label": "Reserve room",
+      "placeholder": "Type reserve room"
+    },
     "role": "",
     "role_type": "Select role",
     "teacher": "",
@@ -137,10 +139,6 @@
       "label": "Min student",
       "placeholder": "Select min student"
     },
-    "topicName": {
-      "label": "Topic name",
-      "placeholder": "Type topic name"
-    },
     "name_ph_en": "Type topic name",
     "name_ph_vi": "Type topic name in Vietnamese",
     "semester": {
@@ -158,6 +156,10 @@
     "topicCode": {
       "label": "Topic code",
       "placeholder": "Type topic code"
+    },
+    "topicName": {
+      "label": "Topic name",
+      "placeholder": "Type topic name"
     },
     "update": "Update topic"
   }

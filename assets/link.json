@@ -45,6 +45,7 @@
     "subjectDepartment": {
       "label": "person.subjectDepartment.label",
       "placeholder": "person.subjectDepartment.placeholder"
-    }
+    },
+    "reserveRoom": {}
   }
 }

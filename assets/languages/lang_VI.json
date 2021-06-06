@@ -2,8 +2,10 @@
   "council": {
     "create": "Tạo hội đồng",
     "reserveDate": "Đặt ngày",
-    "reserveRoom": "Đặt phòng",
-    "reserveRoom_type": "Nhập phòng",
+    "reserveRoom":{
+      "label": "Phòng đặt sẵn",
+      "placeholder": "Nhập phòng"
+    },
     "role": "",
     "role_type": "Chọn vai trò",
     "teacher": "",

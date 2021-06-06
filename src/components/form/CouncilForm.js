@@ -99,7 +99,7 @@ const FormLayout = ({ header }) => {
       <Layout style={styles.row}>
         <Layout style={styles.left}>
           <MySelect {...propStore.select("council.subjectDepartment")} />
-          <MyInput {...inputProps("reserveRoom")} />
+          <MyInput {...propStore.input("council.reserveRoom")} />
         </Layout>
         <Layout style={styles.right}>
           <DatePickerInputKitten {...pickerInputProps("reserveDate")} />
