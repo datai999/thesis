@@ -19,9 +19,13 @@ const selectItems = (arrItem, { callBack, ...props }) => {
     : null;
 };
 
-const MySelect = ({ field, callBack, ...props }) => {
+const MySelect = ({ callBack, ...props }) => {
   const [indexed, setIndexed] = React.useState(
-    new IndexPath(props.arrValue?.map((x) => x.id).indexOf(props.value?.id))
+    new IndexPath(
+      props.arrValue
+        ?.map((x) => x.id ?? x)
+        .indexOf(props.value?.id ?? props.value)
+    )
   );
 
   return (
@@ -42,15 +46,15 @@ const MySelect = ({ field, callBack, ...props }) => {
   );
 };
 
-const MyMultiSelect = ({ field, callBack, ...props }) => {
+const MyMultiSelect = ({ callBack, ...props }) => {
   const [indexes, setIndexes] = React.useState(
     props.value
       ? Array.from(
-          props.value?.map((x) => x.id),
+          props.value?.map((x) => x.id ?? x),
           (item) =>
-            new IndexPath(props.arrValue?.map((x) => x.id).indexOf(item))
+            new IndexPath(props.arrValue?.map((x) => x.id ?? x).indexOf(item))
         ).filter((item) => item.row > -1)
-      : []
+      : null
   );
 
   return (
@@ -58,7 +62,7 @@ const MyMultiSelect = ({ field, callBack, ...props }) => {
       {...props}
       label={i18n.t(props.label)}
       placeholder={i18n.t(props.placeholder)}
-      value={indexes.map((x) => getRenderText(props.arrValue[x.row]) + ", ")}
+      value={indexes?.map((x) => getRenderText(props.arrValue[x.row]) + ", ")}
       multiSelect={true}
       selectedIndex={indexes}
       onSelect={(arrIndexPath) => {

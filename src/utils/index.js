@@ -62,11 +62,10 @@ export const createProps = (form) => {
       };
     },
     select: (path) => {
-      const linkResult = getLinkProps(path);
-      const apiPath = linkResult.api ?? path;
+      const inputProp = inputProps(path);
       return {
-        ...inputProps(path),
-        ...Props[apiPath.split(".").pop()],
+        ...Props[inputProp.api.split(".").pop()],
+        ...inputProp,
       };
     },
   };
