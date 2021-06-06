@@ -120,6 +120,7 @@ export const getLinkProps = (paths) => {
         placeholder: linkProps.placeholder
           ? linkProps.placeholder + tail
           : null,
+        api: linkProps.api + "." + lastPath,
       };
     }
     return linkProps;
