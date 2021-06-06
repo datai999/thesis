@@ -2,7 +2,7 @@ import { Layout, List, Text } from "@ui-kitten/components";
 import TeacherApi from "api/person/TeacherApi";
 import CouncilApi from "api/topic/CouncilApi";
 import { MyAutocomplete, MyInput } from "components/Input";
-import { DatePickerInputKitten, TimePickerInput } from "components/Picker";
+import { DatePickerInputKitten } from "components/Picker";
 import { MySelect } from "components/Select";
 import Props from "data/Props";
 import _ from "lodash";
@@ -37,36 +37,6 @@ const CouncilForm = {
 const FormLayout = ({ header }) => {
   const propStore = createProps(form);
 
-  const setValue = (path, value) => {
-    _.set(form, path, value);
-  };
-
-  const pickerInputProps = (field) => {
-    let selectedDate = new Date();
-
-    if (form[field] && form[field] != "undefine") {
-      if (form.reserveDate && form.reserveDate != "undefine") {
-        selectedDate = new Date(form["reserveDate"] + "T" + form[field]);
-      } else {
-        selectedDate = new Date("1999-05-28T" + form[field]);
-      }
-    }
-
-    return {
-      pickerProps: {
-        popperPlacement: "top-start",
-        selected: selectedDate,
-      },
-      inputProps: {
-        ...Props[field],
-      },
-      callBack: (value) => {
-        let formatValue = toLocalTime(value);
-        setValue(field, formatValue);
-      },
-    };
-  };
-
   const inputSearch = propStore.inputSearch("council.teacher", TeacherApi);
   const councilTeacherProps = Props.councilRole.arrValue.map(
     (councilRole, index) => {
@@ -92,10 +62,10 @@ const FormLayout = ({ header }) => {
           <DatePickerInputKitten {...propStore.input("council.reserveDate")} />
           <Layout style={styles.row}>
             <Layout style={styles.left}>
-              <TimePickerInput {...pickerInputProps("startTime")} />
+              <MySelect {...propStore.select("council.startTime")} />
             </Layout>
             <Layout style={styles.right}>
-              <TimePickerInput {...pickerInputProps("endTime")} />
+              <MySelect {...propStore.select("council.endTime")} />
             </Layout>
           </Layout>
         </Layout>

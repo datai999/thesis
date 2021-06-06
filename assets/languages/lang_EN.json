@@ -109,8 +109,14 @@
   },
   "thesisTask": "Thesis task",
   "time": {
-    "end": "End time",
-    "start": "Start time"
+    "end": {
+      "label": "End time",
+      "placeholder": "Select end time"
+    },
+    "start": {
+      "label": "Start time",
+      "placeholder": "Select start time"
+    }
   },
   "topic": {
     "create": "Create topic",
