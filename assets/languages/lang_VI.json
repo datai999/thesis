@@ -6,10 +6,6 @@
       "label": "Phòng đặt sẵn",
       "placeholder": "Nhập phòng"
     },
-    "role": "",
-    "role_type": "Chọn vai trò",
-    "teacher": "",
-    "teacher_type": "Nhập tên của giảng viên",
     "update": "Cập nhật hội đồng"
   },
   "description": "Mô tả",

@@ -6,10 +6,6 @@
       "label": "Reserve room",
       "placeholder": "Type reserve room"
     },
-    "role": "",
-    "role_type": "Select role",
-    "teacher": "",
-    "teacher_type": "Type name of teacher",
     "update": "Update council"
   },
   "description": "Description",

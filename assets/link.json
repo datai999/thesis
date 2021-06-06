@@ -46,6 +46,9 @@
       "label": "person.subjectDepartment.label",
       "placeholder": "person.subjectDepartment.placeholder"
     },
-    "reserveRoom": {}
+    "reserveRoom": {},
+    "teacher": {
+      "placeholder": "person.name.placeholder"
+    }
   }
 }

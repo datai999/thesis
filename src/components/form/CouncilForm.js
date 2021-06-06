@@ -8,7 +8,7 @@ import Props from "data/Props";
 import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { createProps, getRenderText, toLocalDate, toLocalTime } from "utils";
+import { createProps, toLocalDate, toLocalTime } from "utils";
 import i18n from "utils/i18n";
 
 let form = {};
@@ -40,13 +40,6 @@ const FormLayout = ({ header }) => {
     _.set(form, path, value);
   };
 
-  const inputProps = (field, path = field) => {
-    return {
-      ...Props[field],
-      value: form[field],
-      callBack: (value) => setValue(path, value),
-    };
-  };
   const pickerInputProps = (field) => {
     let selectedDate = new Date();
     if (field == "reserveDate") {
@@ -77,21 +70,19 @@ const FormLayout = ({ header }) => {
       },
     };
   };
-  const autocompleteProps = (field, path) => {
-    return {
-      ...inputProps(field, path),
-      refreshDataOnChangeText: (value) => searchPerson("teacher", value),
-    };
-  };
-  const searchPerson = async (type, value) => {
-    try {
-      return type == "teacher"
-        ? await TeacherApi.search(value)
-        : await StudentApi.search(value);
-    } catch (error) {
-      console.log(error);
+
+  const inputSearch = propStore.inputSearch("council.teacher", TeacherApi);
+  const councilTeacherProps = Props.councilRole.arrValue.map(
+    (councilRole, index) => {
+      return {
+        ...inputSearch,
+        label: councilRole.value[i18n.language],
+        value: form.teacher?.[index]?.name,
+        callBack: (value) =>
+          propStore.set(inputSearch.api + "[" + index + "]", value),
+      };
     }
-  };
+  );
 
   return (
     <Layout style={styles.container}>
@@ -115,21 +106,15 @@ const FormLayout = ({ header }) => {
       </Layout>
 
       <List
-        data={Props["councilRole"].arrValue}
-        renderItem={({ index, item }) => {
+        data={councilTeacherProps}
+        renderItem={({ item }) => {
           return (
             <Layout>
               <MyAutocomplete
-                {...autocompleteProps(
-                  "councilTeacher",
-                  "teacher" + "[" + index + "]"
-                )}
-                label={item.value[i18n.language]}
-                value={getRenderText(form.teacher?.[index])}
+                {...item}
                 onBlur={(submitValue) => {
                   if (submitValue == "") {
-                    setValue("teacherId" + "[" + index + "]", null);
-                    setValue("teacher" + "[" + index + "]", null);
+                    item.callBack(null);
                   }
                 }}
               />

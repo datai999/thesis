@@ -18,68 +18,11 @@ const Props = {
           ((index % 3) + 1)
       ),
   },
-  guideTeacher: {
-    label: "teacher.guide.label",
-    placeholder: "teacher.guide.placeholder",
-  },
-  reviewTeacher: {
-    label: "teacher.review",
-    placeholder: "teacher.review_select",
-  },
-  topicCode: {
-    label: "topic.code.label",
-    placeholder: "topic.code.placeholder",
-  },
-  topicName: {
-    en: {
-      label: "topic.name.label",
-      placeholder: "topic.name_ph_en",
-    },
-    vi: {
-      label: "topic.name.label",
-      placeholder: "topic.name_ph_vi",
-    },
-  },
   minStudentTake: {
-    label: "student.min",
-    placeholder: "Select",
     arrValue: Array.from({ length: 5 }, (v, k) => k + 1),
   },
   maxStudentTake: {
-    label: "student.max",
-    placeholder: "Select",
     arrValue: Array.from({ length: 5 }, (v, k) => k + 1),
-  },
-  students: {
-    label: "student.execute.label",
-    placeholder: "student.execute.placeholder",
-  },
-  mainTask: {
-    en: {
-      label: "mainTask",
-      placeholder: "topic.task_main_ph_en",
-      multiline: true,
-      numberOfLines: 5,
-    },
-    vi: {
-      label: "mainTask",
-      placeholder: "topic.task_main_ph_vi",
-      multiline: true,
-      numberOfLines: 5,
-    },
-  },
-
-  name: {
-    label: "person.name.label",
-    placeholder: "person.name.placeholder",
-  },
-  email: {
-    label: "Email",
-    placeholder: "HCMUT email",
-  },
-  phone: {
-    label: "person.phone.label",
-    placeholder: "person.phone.placeholder",
   },
   degree: {
     label: "person.degree.label",
@@ -102,10 +45,6 @@ const Props = {
     placeholder: "majorSelect",
     arrValue: ["Computer Science", "Computer Engineering"],
   },
-  studentCode: {
-    label: "student.code",
-    placeholder: "student.code_type",
-  },
   reserveRoom: {
     label: "council.reserveRoom",
     placeholder: "council.reserveRoom_type",
@@ -123,14 +62,6 @@ const Props = {
     label: "council.role",
     placeholder: "council.role_type",
     arrValue: [],
-  },
-  councilTeacher: {
-    label: "council.teacher",
-    placeholder: "council.teacher_type",
-  },
-  teacherCode: {
-    label: "teacher.code",
-    placeholder: "teacher.code_type",
   },
   gender: {
     label: "person.gender.label",
