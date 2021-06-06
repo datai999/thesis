@@ -1,52 +1,40 @@
 import { Layout, List, Text } from "@ui-kitten/components";
 import TeacherApi from "api/person/TeacherApi";
 import CouncilApi from "api/topic/CouncilApi";
-import { TeacherForm } from "components/form";
 import { MyAutocomplete, MyInput } from "components/Input";
-import MyModal from "components/Modal";
 import { DatePickerInputKitten, TimePickerInput } from "components/Picker";
 import { MySelect } from "components/Select";
 import Props from "data/Props";
 import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { getRenderText, toLocalDate, toLocalTime } from "utils";
+import { createProps, getRenderText, toLocalDate, toLocalTime } from "utils";
 import i18n from "utils/i18n";
 
 let form = {};
 
-const CouncilForm = {
-  body: (header = "council.create", data) => {
-    if (data != null) form = _.cloneDeep(data);
-    else form = {};
-    return <CouncilLayout header={header} data={data} />;
-  },
-  submit: (formSubmit = form) => CouncilApi.create(formSubmit),
+const defaultForm = {
+  reserveDate: toLocalDate(new Date()),
+  startTime: toLocalTime(new Date()),
+  endTime: toLocalTime(new Date()),
+  role: Props.councilRole.arrValue,
+  teacher: Array(Props.councilRole.arrValue.length).fill(null),
 };
-const CouncilLayout = ({ header, ...props }) => {
-  const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
 
-  const setDefaultForm = () => {
-    let arrRoleValue = Props.councilRole.arrValue;
-    form = {
-      reserveDate: toLocalDate(new Date()),
-      startTime: toLocalTime(new Date()),
-      endTime: toLocalTime(new Date()),
-      role: arrRoleValue,
-      teacher: Array(arrRoleValue.length).fill(null),
-    };
-  };
+const CouncilForm = {
+  body: (data) => {
+    let header = "council.create";
+    if (data != null) {
+      form = _.cloneDeep(data);
+      header = "council.update";
+    } else form = defaultForm;
+    return <FormLayout header={header} />;
+  },
+  submit: () => CouncilApi.create(form),
+};
 
-  React.useEffect(() => {
-    if (props.data == null || Object.keys(props.data).length === 0)
-      setDefaultForm();
-  }, []);
-
-  const modalTeacherCreateProps = {
-    ...TeacherForm,
-    visible: teacherCreateVisible,
-    cancel: () => setTeacherCreateVisible(false),
-  };
+const FormLayout = ({ header }) => {
+  const propStore = createProps(form);
 
   const setValue = (path, value) => {
     _.set(form, path, value);
@@ -115,8 +103,6 @@ const CouncilLayout = ({ header, ...props }) => {
 
   return (
     <Layout style={styles.container}>
-      <MyModal {...modalTeacherCreateProps} />
-
       <Text style={styles.headerText}>{i18n.t(header)}</Text>
       <Layout style={styles.row}>
         <Layout style={styles.left}>

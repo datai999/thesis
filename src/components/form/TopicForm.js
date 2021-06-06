@@ -37,15 +37,11 @@ const FormLayout = ({ header }) => {
     ...CouncilForm,
     visible: councilVisible,
     cancel: () => setCouncilVisible(false),
-    body: () =>
-      CouncilForm.body(
-        form?.council == null ? "council.create" : "council.update",
-        form.council
-      ),
+    body: () => CouncilForm.body(form.council),
     submit: async () => {
       try {
         let response = await CouncilForm.submit();
-        form["council"] = response;
+        form.council = response;
         return response;
       } catch (error) {
         console.log(error);
