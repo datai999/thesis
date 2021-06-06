@@ -8,17 +8,18 @@ import Props from "data/Props";
 import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { createProps, toLocalDate, toLocalTime } from "utils";
+import { createProps, toLocalTime } from "utils";
 import i18n from "utils/i18n";
 
 let form = {};
 
-const defaultForm = {
-  reserveDate: toLocalDate(new Date()),
-  startTime: toLocalTime(new Date()),
-  endTime: toLocalTime(new Date()),
-  role: Props.councilRole.arrValue,
-  teacher: Array(Props.councilRole.arrValue.length).fill(null),
+const defaultForm = () => {
+  return {
+    startTime: toLocalTime(new Date()),
+    endTime: toLocalTime(new Date()),
+    role: Props.councilRole.arrValue,
+    teacher: Array(Props.councilRole.arrValue.length).fill(null),
+  };
 };
 
 const CouncilForm = {
@@ -27,7 +28,7 @@ const CouncilForm = {
     if (data != null) {
       form = _.cloneDeep(data);
       header = "council.update";
-    } else form = defaultForm;
+    } else form = defaultForm();
     return <FormLayout header={header} />;
   },
   submit: () => CouncilApi.create(form),
@@ -42,16 +43,12 @@ const FormLayout = ({ header }) => {
 
   const pickerInputProps = (field) => {
     let selectedDate = new Date();
-    if (field == "reserveDate") {
-      if (form[field] && form[field] != "undefine")
-        selectedDate = new Date(form[field]);
-    } else {
-      if (form[field] && form[field] != "undefine") {
-        if (form.reserveDate && form.reserveDate != "undefine") {
-          selectedDate = new Date(form["reserveDate"] + "T" + form[field]);
-        } else {
-          selectedDate = new Date("1999-05-28T" + form[field]);
-        }
+
+    if (form[field] && form[field] != "undefine") {
+      if (form.reserveDate && form.reserveDate != "undefine") {
+        selectedDate = new Date(form["reserveDate"] + "T" + form[field]);
+      } else {
+        selectedDate = new Date("1999-05-28T" + form[field]);
       }
     }
 
@@ -64,8 +61,7 @@ const FormLayout = ({ header }) => {
         ...Props[field],
       },
       callBack: (value) => {
-        let formatValue =
-          field == "reserveDate" ? toLocalDate(value) : toLocalTime(value);
+        let formatValue = toLocalTime(value);
         setValue(field, formatValue);
       },
     };
@@ -93,7 +89,7 @@ const FormLayout = ({ header }) => {
           <MyInput {...propStore.input("council.reserveRoom")} />
         </Layout>
         <Layout style={styles.right}>
-          <DatePickerInputKitten {...pickerInputProps("reserveDate")} />
+          <DatePickerInputKitten {...propStore.input("council.reserveDate")} />
           <Layout style={styles.row}>
             <Layout style={styles.left}>
               <TimePickerInput {...pickerInputProps("startTime")} />

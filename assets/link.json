@@ -49,6 +49,7 @@
     "reserveRoom": {},
     "teacher": {
       "placeholder": "person.name.placeholder"
-    }
+    },
+    "reserveDate":{}
   }
 }

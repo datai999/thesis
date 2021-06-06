@@ -1,8 +1,11 @@
 {
   "council": {
     "create": "Tạo hội đồng",
-    "reserveDate": "Đặt ngày",
-    "reserveRoom":{
+    "reserveDate": {
+      "label": "Ngày hẹn sẵn",
+      "placeholder": "Chọn ngày"
+    },
+    "reserveRoom": {
       "label": "Phòng đặt sẵn",
       "placeholder": "Nhập phòng"
     },
@@ -135,10 +138,6 @@
       "label": "Số sinh viên tối thiểu",
       "placeholder": "Chọn số sinh viên"
     },
-    "topicName": {
-      "label": "Tên đề tài",
-      "placeholder": "Nhập tên đề tài"
-    },
     "name_ph_en": "Nhập tên đề tài bằng tiếng anh",
     "name_ph_vi": "Nhập tên đề tài",
     "semester": {
@@ -156,6 +155,10 @@
     "topicCode": {
       "label": "Mã đề tài",
       "placeholder": "Nhập mã đề tài"
+    },
+    "topicName": {
+      "label": "Tên đề tài",
+      "placeholder": "Nhập tên đề tài"
     },
     "update": "Cập nhật đề tài"
   }

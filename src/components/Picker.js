@@ -3,23 +3,20 @@ import { MyInput } from "components/Input";
 import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import i18n from "utils/i18n";
+import { toLocalDate } from "utils";
 
 const DatePickerInputKitten = ({ callBack, ...props }) => {
   const [date, setDate] = React.useState(
-    props.pickerProps?.selected || new Date()
+    props.value ? new Date(props.value) : null
   );
 
   return (
     <DatePickerKitten
       date={date}
-      placement="top start"
-      {...props?.inputProps}
       {...props}
-      label={i18n.t(props?.inputProps?.label)}
       onSelect={(nextDate) => {
         setDate(nextDate);
-        callBack(nextDate);
+        callBack(toLocalDate(nextDate));
       }}
     />
   );
@@ -72,3 +69,4 @@ const TimePickerInput = ({ callBack, pickerProps, inputProps, ...props }) => {
 };
 
 export { DatePickerInput, TimePickerInput, DatePickerInputKitten };
+

@@ -1,7 +1,10 @@
 {
   "council": {
     "create": "Create council",
-    "reserveDate": "Reserve date",
+    "reserveDate": {
+      "label": "Reserve date",
+      "placeholder": "Select date"
+    },
     "reserveRoom": {
       "label": "Reserve room",
       "placeholder": "Type reserve room"
