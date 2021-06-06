@@ -82,32 +82,15 @@ export const getLinkProps = (paths) => {
 
     let linkProps = _.get(link, path);
 
-    if (linkProps == null || linkProps.api == null) {
-      linkProps = {
-        ...linkProps,
-        api: path,
-      };
-    }
-
-    if (linkProps.link != null) {
-      let linkRefProps = _.get(link, linkProps.link);
-      linkProps = {
-        ...linkRefProps,
-        ...linkProps,
-        api:
-          path.slice(path.indexOf(".") + 1, path.lastIndexOf(".") + 1) +
-          linkRefProps.api,
-      };
-    }
-
     linkProps = {
+      api: path,
       ...linkProps,
-      label: linkProps.label
-        ? i18n.t(linkProps.label)
-        : i18n.t(linkProps.api + ".label"),
-      placeholder: linkProps.placeholder
-        ? i18n.t(linkProps.placeholder)
-        : i18n.t(linkProps.api + ".placeholder"),
+      label: linkProps?.label
+        ? i18n.t(linkProps?.label)
+        : i18n.t(path + ".label"),
+      placeholder: linkProps?.placeholder
+        ? i18n.t(linkProps?.placeholder)
+        : i18n.t(path + ".placeholder"),
     };
 
     if (lang) {
