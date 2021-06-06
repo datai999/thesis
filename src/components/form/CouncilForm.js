@@ -47,14 +47,6 @@ const FormLayout = ({ header }) => {
       callBack: (value) => setValue(path, value),
     };
   };
-  const selectProps = (field) => {
-    return {
-      field,
-      value: form[field],
-      callBack: (value) => setValue(field, value),
-      ...Props[field],
-    };
-  };
   const pickerInputProps = (field) => {
     let selectedDate = new Date();
     if (field == "reserveDate") {
@@ -106,7 +98,7 @@ const FormLayout = ({ header }) => {
       <Text style={styles.headerText}>{i18n.t(header)}</Text>
       <Layout style={styles.row}>
         <Layout style={styles.left}>
-          <MySelect {...selectProps("subjectDepartment")} />
+          <MySelect {...propStore.select("council.subjectDepartment")} />
           <MyInput {...inputProps("reserveRoom")} />
         </Layout>
         <Layout style={styles.right}>
