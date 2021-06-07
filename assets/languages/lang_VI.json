@@ -1,6 +1,6 @@
 {
   "council": {
-    "create": "Tạo hội đồng",
+    "create": "Thêm hội đồng",
     "reserveDate": {
       "label": "Ngày hẹn sẵn",
       "placeholder": "Chọn ngày"
@@ -12,10 +12,10 @@
     "update": "Cập nhật hội đồng"
   },
   "criterion": {
-    "create": "Tạo tiêu chí"
+    "create": "Thêm tiêu chí"
   },
   "criterionTemplate": {
-    "create": "Tạo mẫu tiêu chí",
+    "create": "Thêm mẫu tiêu chí",
     "criterion": {
       "label": "Các tiêu chí",
       "placeholder": "Nhập tiêu chí"
@@ -43,14 +43,14 @@
   "major": "Chuyên ngành",
   "majorSelect": "Chọn chuyên nghành",
   "origin": {
-    "create": "Tạo",
+    "create": "Thêm",
     "degree": "Học vị",
     "email": "Email",
     "filter&Search": "Lọc và Tìm kiếm",
     "inEn": " bằng tiếng Anh",
     "inVi": " bằng tiếng Việt",
     "language": "Ngôn ngữ",
-    "new": "Tạo mới",
+    "new": "Thêm",
     "page": "Trang",
     "record": "Số bản ghi",
     "topic": "Đề tài",
@@ -138,7 +138,7 @@
     "start": "Thời gian bắt đầu"
   },
   "topic": {
-    "create": "Tạo mới đề tài",
+    "create": "Thêm đề tài",
     "description": {
       "label": "Mô tả đề tài",
       "placeholder": "Nhập mô tả đề tài"
