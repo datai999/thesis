@@ -4,7 +4,7 @@ import {
   BookOpenIcon,
   CheckMarkSquare,
   HomeIcon,
-  PersonDoneIcon,
+  PeopleIcon,
   SettingIcon
 } from "components/Icons";
 import { selectItems } from "components/Select";
@@ -94,7 +94,7 @@ const Routes = () => {
         </Tab>
         <Tab
           title={renderPersonMenu}
-          icon={PersonDoneIcon}
+          icon={PeopleIcon}
           onFocus={() => setPersonMenuVisible(true)}
         >
           <PersonScreen mode={personScreenMode} />

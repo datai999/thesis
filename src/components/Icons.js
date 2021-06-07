@@ -42,3 +42,5 @@ export const CloseIcon = (props) => <Icon {...props} name="close-outline" />;
 export const CheckMarkSquare = (props) => (
   <Icon {...props} name="checkmark-square-outline" />
 );
+
+export const PeopleIcon = (props) => <Icon {...props} name="people-outline" />;
