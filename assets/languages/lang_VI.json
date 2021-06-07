@@ -36,6 +36,8 @@
     "version": "Phiên bản"
   },
   "page": {
+    "criterion": "Tiêu chí",
+    "evaluate": "Đánh giá",
     "home": "Trang chủ",
     "person": {
       "get": "Con người",
@@ -43,8 +45,7 @@
       "teacher": "Giảng viên"
     },
     "setting": "Cài đặt",
-    "topic": "Chủ đề",
-    "evaluate": "Đánh giá"
+    "topic": "Chủ đề"
   },
   "person": {
     "code": {

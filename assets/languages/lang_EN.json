@@ -36,6 +36,7 @@
     "version": "Version"
   },
   "page": {
+    "criterion": "Criterion",
     "evaluate": "Evaluate",
     "home": "Home",
     "person": {

@@ -4,6 +4,7 @@ import {
   BookOpenIcon,
   CheckMarkSquare,
   HomeIcon,
+  PantoneIcon,
   PeopleIcon,
   SettingIcon
 } from "components/Icons";
@@ -12,6 +13,7 @@ import Props from "data/Props";
 import React from "react";
 import { StyleSheet } from "react-native";
 import i18n from "utils/i18n";
+import CriterionScreen from "./pages/CriterionScreen";
 import EvaluateScreen from "./pages/EvaluateScreen";
 import HomeScreen from "./pages/HomeScreen";
 import PersonScreen from "./pages/PersonScreen";
@@ -19,7 +21,7 @@ import SettingScreen from "./pages/SettingScreen";
 import TopicScreen from "./pages/TopicScreen";
 
 const Routes = () => {
-  const [selectedIndex, setSelectedIndex] = React.useState(2);
+  const [selectedIndex, setSelectedIndex] = React.useState(4);
 
   React.useEffect(() => {
     const fetch = async () => {
@@ -98,6 +100,9 @@ const Routes = () => {
           onFocus={() => setPersonMenuVisible(true)}
         >
           <PersonScreen mode={personScreenMode} />
+        </Tab>
+        <Tab title={i18n.t("page.criterion")} icon={PantoneIcon}>
+          <CriterionScreen />
         </Tab>
         <Tab title={i18n.t("page.setting")} icon={SettingIcon}>
           <SettingScreen />
