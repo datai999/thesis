@@ -14,7 +14,7 @@ export const CreateBtn = ({ form, data, callBack, props }) => {
     submit: async () => {
       try {
         let response = await form.submit();
-        callBack(response);
+        if (callBack) callBack(response);
         return response;
       } catch (error) {
         console.log(error);
