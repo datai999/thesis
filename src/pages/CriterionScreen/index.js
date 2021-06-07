@@ -1,13 +1,23 @@
-import { Layout } from "@ui-kitten/components";
+import CriterionTemplateApi from "api/score/CriterionTemplateApi";
+import { TeacherForm } from "components/form";
+import OverTable from "components/screen/OverTable";
 import React from "react";
-import { Text } from "react-native";
+
+const arrLink = [
+  "criterionTemplate.name",
+  "criterionTemplate.scoreMethod",
+  "criterionTemplate.description",
+  "criterionTemplate.criterion",
+];
+
+const overTableProps = {
+  links: arrLink,
+  form: TeacherForm,
+  api: CriterionTemplateApi,
+};
 
 const CriterionScreen = () => {
-  return (
-    <Layout>
-      <Text>CriterionScreen screen</Text>
-    </Layout>
-  );
+  return <OverTable {...overTableProps} />;
 };
 
 export default CriterionScreen;

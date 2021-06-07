@@ -11,6 +11,24 @@
     },
     "update": "Update council"
   },
+  "criterionTemplate": {
+    "criterion": {
+      "label": "Criterions",
+      "placeholder": "Type criterion"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Type description"
+    },
+    "name": {
+      "label": "Criterion template name",
+      "placeholder": "Type criterion template name"
+    },
+    "scoreMethod": {
+      "label": "Score method",
+      "placeholder": "Select score method"
+    }
+  },
   "description": "Description",
   "description_ph_en": "Type description",
   "description_ph_vi": "Type description in Vietnamese",

@@ -11,6 +11,24 @@
     },
     "update": "Cập nhật hội đồng"
   },
+  "criterionTemplate": {
+    "criterion": {
+      "label": "Các tiêu chí",
+      "placeholder": "Nhập tiêu chí"
+    },
+    "description": {
+      "label": "Mô tả",
+      "placeholder": "Nhập mô tả"
+    },
+    "name": {
+      "label": "Tên mẫu tiêu chí",
+      "placeholder": "Nhập tên mẫu tiêu chí"
+    },
+    "scoreMethod": {
+      "label": "Phương pháp chấm điểm",
+      "placeholder": "Chọn phương pháp chấm điểm"
+    }
+  },
   "description": "Mô tả",
   "description_ph_en": "Nhập mô tả bằng tiếng anh",
   "description_ph_vi": "Nhập mô tả",
