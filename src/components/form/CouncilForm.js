@@ -2,8 +2,7 @@ import { Layout, List, Text } from "@ui-kitten/components";
 import TeacherApi from "api/person/TeacherApi";
 import CouncilApi from "api/topic/CouncilApi";
 import { MyAutocomplete, MyInput } from "components/Input";
-import { DatePickerInputKitten } from "components/Picker";
-import { MySelect } from "components/Select";
+import { DatePicker, MySelect } from "components/Select";
 import Props from "data/Props";
 import _ from "lodash";
 import React from "react";
@@ -57,7 +56,7 @@ const FormLayout = ({ header }) => {
           <MyInput {...propStore.input("council.reserveRoom")} />
         </Layout>
         <Layout style={styles.right}>
-          <DatePickerInputKitten {...propStore.input("council.reserveDate")} />
+          <DatePicker {...propStore.input("council.reserveDate")} />
           <Layout style={styles.row}>
             <Layout style={styles.left}>
               <MySelect

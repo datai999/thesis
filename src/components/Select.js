@@ -1,9 +1,14 @@
-import { IndexPath, Select, SelectItem } from "@ui-kitten/components";
+import {
+  Datepicker,
+  IndexPath,
+  Select,
+  SelectItem
+} from "@ui-kitten/components";
 import React from "react";
-import { getRenderText } from "utils";
+import { getRenderText, toLocalDate } from "utils";
 import i18n from "utils/i18n";
 
-const selectItems = (arrItem, { callBack, ...props }) => {
+export const selectItems = (arrItem, { callBack, ...props }) => {
   return arrItem
     ? Array.from(arrItem, (item, index) => (
         <SelectItem
@@ -19,7 +24,7 @@ const selectItems = (arrItem, { callBack, ...props }) => {
     : null;
 };
 
-const MySelect = ({ callBack, ...props }) => {
+export const MySelect = ({ callBack, ...props }) => {
   const [indexed, setIndexed] = React.useState(
     new IndexPath(
       props.arrValue
@@ -46,7 +51,7 @@ const MySelect = ({ callBack, ...props }) => {
   );
 };
 
-const MyMultiSelect = ({ callBack, ...props }) => {
+export const MyMultiSelect = ({ callBack, ...props }) => {
   const [indexes, setIndexes] = React.useState(
     props.value
       ? Array.from(
@@ -78,5 +83,19 @@ const MyMultiSelect = ({ callBack, ...props }) => {
   );
 };
 
-export { selectItems, MySelect, MyMultiSelect };
+export const DatePicker = ({ callBack, ...props }) => {
+  const [date, setDate] = React.useState(
+    props.value ? new Date(props.value) : null
+  );
 
+  return (
+    <Datepicker
+      date={date}
+      {...props}
+      onSelect={(nextDate) => {
+        setDate(nextDate);
+        callBack(toLocalDate(nextDate));
+      }}
+    />
+  );
+};
