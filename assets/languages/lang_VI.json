@@ -11,6 +11,9 @@
     },
     "update": "Cập nhật hội đồng"
   },
+  "criterion": {
+    "create": "Tạo tiêu chí"
+  },
   "criterionTemplate": {
     "create": "Tạo mẫu tiêu chí",
     "criterion": {

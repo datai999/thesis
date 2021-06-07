@@ -16,6 +16,8 @@ import i18n from "utils/i18n";
 let form = {};
 
 const TopicForm = {
+  create: i18n.t("topic.create"),
+  update: i18n.t("topic.update"),
   body: (data) => {
     let header = "topic.create";
     if (data != null) {

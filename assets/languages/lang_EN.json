@@ -11,6 +11,9 @@
     },
     "update": "Update council"
   },
+  "criterion": {
+    "create": "Create criterion template"
+  },
   "criterionTemplate": {
     "create": "Create criterion template",
     "criterion": {

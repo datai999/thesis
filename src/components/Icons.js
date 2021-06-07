@@ -48,3 +48,5 @@ export const PeopleIcon = (props) => <Icon {...props} name="people-outline" />;
 export const PantoneIcon = (props) => (
   <Icon {...props} name="pantone-outline" />
 );
+
+export const EditIcon = (props) => <Icon {...props} name="edit-outline" />;

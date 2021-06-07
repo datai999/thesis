@@ -12,6 +12,8 @@ import i18n from "utils/i18n";
 let form = {};
 
 const CouncilForm = {
+  create: i18n.t("criterionTemplate.create"),
+  update: i18n.t("criterionTemplate.update"),
   body: (data) => {
     let header = "criterionTemplate.create";
     if (data != null) {
