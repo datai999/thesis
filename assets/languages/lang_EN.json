@@ -36,6 +36,7 @@
     "version": "Version"
   },
   "page": {
+    "evaluate": "Evaluate",
     "home": "Home",
     "person": {
       "get": "Person",

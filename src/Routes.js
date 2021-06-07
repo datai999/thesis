@@ -7,17 +7,19 @@ import { StyleSheet } from "react-native";
 import i18n from "utils/i18n";
 import {
   BookOpenIcon,
+  CheckMarkSquare,
   HomeIcon,
   PersonDoneIcon,
   SettingIcon
 } from "./components/Icons";
+import EvaluateScreen from "./pages/EvaluateScreen";
 import HomeScreen from "./pages/HomeScreen";
 import PersonScreen from "./pages/PersonScreen";
 import SettingScreen from "./pages/SettingScreen";
 import TopicScreen from "./pages/TopicScreen";
 
 const Routes = () => {
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(2);
 
   React.useEffect(() => {
     const fetch = async () => {
@@ -45,7 +47,7 @@ const Routes = () => {
     callBack: (item) => setPersonScreenMode(item == 0 ? "teacher" : "student"),
     onPress: () => {
       setPersonMenuVisible(false);
-      setSelectedIndex(2);
+      setSelectedIndex(3);
     },
   };
 
@@ -78,7 +80,7 @@ const Routes = () => {
         selectedIndex={selectedIndex}
         // shouldLoadComponent={(index) => index === selectedIndex}
         onSelect={(index) => {
-          if (index != 2) setSelectedIndex(index);
+          if (index != 3) setSelectedIndex(index);
         }}
       >
         <Tab title={i18n.t("page.home")} icon={HomeIcon}>
@@ -86,6 +88,9 @@ const Routes = () => {
         </Tab>
         <Tab title={i18n.t("page.topic")} icon={BookOpenIcon}>
           <TopicScreen />
+        </Tab>
+        <Tab title={i18n.t("page.evaluate")} icon={CheckMarkSquare}>
+          <EvaluateScreen />
         </Tab>
         <Tab
           title={renderPersonMenu}
