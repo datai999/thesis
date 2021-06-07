@@ -1,6 +1,7 @@
 import { IndexPath, Layout, Select, Text } from "@ui-kitten/components";
 import MyModal from "components/Modal";
 import { selectItems } from "components/Select";
+import _ from "lodash";
 import React from "react";
 import { DataTable, List } from "react-native-paper";
 import { getLinkProps, getRenderText } from "utils";
