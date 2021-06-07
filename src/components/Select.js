@@ -38,7 +38,7 @@ export const MySelect = ({ callBack, ...props }) => {
       {...props}
       label={i18n.t(props.label)}
       placeholder={i18n.t(props.placeholder)}
-      value={getRenderText(props.arrValue[indexed.row])}
+      value={getRenderText(props.arrValue?.[indexed.row])}
       selectedIndex={indexed.row > -1 ? indexed : null}
       onSelect={(index) => {
         let arrDataReturn = props.arrId ? props.arrId : props.arrValue;

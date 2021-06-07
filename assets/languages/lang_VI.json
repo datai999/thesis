@@ -12,6 +12,7 @@
     "update": "Cập nhật hội đồng"
   },
   "criterionTemplate": {
+    "create": "Tạo mẫu tiêu chí",
     "criterion": {
       "label": "Các tiêu chí",
       "placeholder": "Nhập tiêu chí"
@@ -27,7 +28,8 @@
     "scoreMethod": {
       "label": "Phương pháp chấm điểm",
       "placeholder": "Chọn phương pháp chấm điểm"
-    }
+    },
+    "update": "Cập nhật mẫu tiêu chí"
   },
   "description": "Mô tả",
   "description_ph_en": "Nhập mô tả bằng tiếng anh",

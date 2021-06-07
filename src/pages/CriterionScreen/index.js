@@ -1,5 +1,5 @@
 import CriterionTemplateApi from "api/score/CriterionTemplateApi";
-import { TeacherForm } from "components/form";
+import { CriterionTemplateForm } from "components/form";
 import OverTable from "components/screen/OverTable";
 import React from "react";
 
@@ -12,7 +12,7 @@ const arrLink = [
 
 const overTableProps = {
   links: arrLink,
-  form: TeacherForm,
+  form: CriterionTemplateForm,
   api: CriterionTemplateApi,
 };
 

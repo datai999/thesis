@@ -12,6 +12,7 @@
     "update": "Update council"
   },
   "criterionTemplate": {
+    "create": "Create criterion template",
     "criterion": {
       "label": "Criterions",
       "placeholder": "Type criterion"
@@ -27,7 +28,8 @@
     "scoreMethod": {
       "label": "Score method",
       "placeholder": "Select score method"
-    }
+    },
+    "update": "Update criterion template"
   },
   "description": "Description",
   "description_ph_en": "Type description",

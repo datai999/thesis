@@ -1,5 +1,4 @@
 {
-  "criterionTemplate": {},
   "council": {
     "endTime": {
       "arrValue": [
@@ -78,6 +77,14 @@
     "teacher": {
       "placeholder": "person.name.placeholder"
     }
+  },
+  "criterionTemplate": {
+    "description": {
+      "multiline": true,
+      "numberOfLines": 5
+    },
+    "name": {},
+    "scoreMethod": {}
   },
   "person": {
     "code": {},
