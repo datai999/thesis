@@ -78,6 +78,13 @@
       "placeholder": "person.name.placeholder"
     }
   },
+  "criterion": {
+    "description": {
+      "multiline": true,
+      "numberOfLines": 5
+    },
+    "name": {}
+  },
   "criterionTemplate": {
     "description": {
       "multiline": true,

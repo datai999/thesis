@@ -12,7 +12,16 @@
     "update": "Update council"
   },
   "criterion": {
-    "create": "Create criterion template"
+    "create": "Create criterion",
+    "description": {
+      "label": "Description",
+      "placeholder": "Type description"
+    },
+    "name": {
+      "label": "Criterion name",
+      "placeholder": "Type criterion name"
+    },
+    "update": "Update criterion"
   },
   "criterionTemplate": {
     "create": "Create criterion template",

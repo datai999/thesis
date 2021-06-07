@@ -1,6 +1,6 @@
 import CriterionTemplateApi from "api/score/CriterionTemplateApi";
 import { CreateBtn } from "components/Button";
-import { CriterionTemplateForm, TopicForm } from "components/form";
+import { CriterionForm, CriterionTemplateForm } from "components/form";
 import OverTable from "components/screen/OverTable";
 import React from "react";
 
@@ -12,8 +12,7 @@ const arrLink = [
 ];
 
 const overTopBar = () => {
-  const [count, setCount] = React.useState(0);
-  return <CreateBtn form={TopicForm} />;
+  return <CreateBtn form={CriterionForm} />;
 };
 
 const overTableProps = {

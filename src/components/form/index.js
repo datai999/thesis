@@ -1,4 +1,5 @@
 import CouncilForm from "./CouncilForm";
+import CriterionForm from "./CriterionForm";
 import CriterionTemplateForm from "./CriterionTemplateForm";
 import StudentForm from "./StudentForm";
 import TeacherForm from "./TeacherForm";
@@ -10,5 +11,6 @@ export {
   TeacherForm,
   TopicForm,
   CriterionTemplateForm,
+  CriterionForm,
 };
 

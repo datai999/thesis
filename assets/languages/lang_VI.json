@@ -12,7 +12,16 @@
     "update": "Cập nhật hội đồng"
   },
   "criterion": {
-    "create": "Thêm tiêu chí"
+    "create": "Thêm tiêu chí",
+    "description": {
+      "label": "Mô tả",
+      "placeholder": "Nhập mô tả"
+    },
+    "name": {
+      "label": "Tên tiêu chí",
+      "placeholder": "Nhập tên tiêu chí"
+    },
+    "update": "Cập nhật tiêu chí"
   },
   "criterionTemplate": {
     "create": "Thêm mẫu tiêu chí",
