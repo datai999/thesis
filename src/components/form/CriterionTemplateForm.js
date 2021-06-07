@@ -31,12 +31,7 @@ const FormLayout = ({ header }) => {
 
   return (
     <Layout style={styles.container}>
-      <Layout
-        style={{
-          flexDirection: "row",
-          marginBottom: 15,
-        }}
-      >
+      <Layout style={{ flexDirection: "row" }}>
         <IconButton
           icon="translate"
           onPress={() => setMultiLang(multiLang + 1)}

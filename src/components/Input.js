@@ -4,7 +4,7 @@ import {
   Input,
   Layout,
   List,
-  SelectItem,
+  SelectItem
 } from "@ui-kitten/components";
 import { CloseIcon } from "components/Icons";
 import _ from "lodash";
@@ -26,6 +26,7 @@ const MyInput = ({ callBack, ...props }) => {
         return null;
       }}
       {...props}
+      style={{ marginVertical: 5 }}
       label={i18n.t(props.label)}
       value={getRenderText(currentValue)}
       placeholder={i18n.t(props.placeholder)}
@@ -47,6 +48,7 @@ const MyAutocomplete = ({ callBack, ...props }) => {
   return (
     <Autocomplete
       {...props}
+      style={{ marginVertical: 5 }}
       label={i18n.t(props.label)}
       placeholder={i18n.t(props.placeholder)}
       value={getRenderText(value)}
@@ -117,3 +119,4 @@ const MyAutocompleteTag = ({ ...props }) => {
 };
 
 export { MyInput, MyAutocomplete, MyAutocompleteTag };
+

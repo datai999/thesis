@@ -55,12 +55,7 @@ const FormLayout = ({ header }) => {
     <Layout style={{ flex: 1 }}>
       <MyModal {...modalCouncilProps} />
 
-      <Layout
-        style={{
-          flexDirection: "row",
-          marginBottom: 15,
-        }}
-      >
+      <Layout style={{ flexDirection: "row" }}>
         <IconButton
           icon="translate"
           onPress={() => setMultiLang(multiLang + 1)}

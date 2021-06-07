@@ -36,6 +36,7 @@ export const MySelect = ({ callBack, ...props }) => {
   return (
     <Select
       {...props}
+      style={{ marginVertical: 5 }}
       label={i18n.t(props.label)}
       placeholder={i18n.t(props.placeholder)}
       value={getRenderText(props.arrValue?.[indexed.row])}
@@ -65,6 +66,7 @@ export const MyMultiSelect = ({ callBack, ...props }) => {
   return (
     <Select
       {...props}
+      style={{ marginVertical: 5 }}
       label={i18n.t(props.label)}
       placeholder={i18n.t(props.placeholder)}
       value={indexes?.map((x) => getRenderText(props.arrValue[x.row]) + ", ")}
@@ -91,6 +93,7 @@ export const DatePicker = ({ callBack, ...props }) => {
   return (
     <Datepicker
       date={date}
+      style={{ marginVertical: 5 }}
       {...props}
       onSelect={(nextDate) => {
         setDate(nextDate);
