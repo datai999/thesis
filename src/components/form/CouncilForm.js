@@ -8,15 +8,13 @@ import Props from "data/Props";
 import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { createProps, toLocalTime } from "utils";
+import { createProps } from "utils";
 import i18n from "utils/i18n";
 
 let form = {};
 
 const defaultForm = () => {
   return {
-    startTime: toLocalTime(new Date()),
-    endTime: toLocalTime(new Date()),
     role: Props.councilRole.arrValue,
     teacher: Array(Props.councilRole.arrValue.length).fill(null),
   };
@@ -62,10 +60,16 @@ const FormLayout = ({ header }) => {
           <DatePickerInputKitten {...propStore.input("council.reserveDate")} />
           <Layout style={styles.row}>
             <Layout style={styles.left}>
-              <MySelect {...propStore.select("council.startTime")} />
+              <MySelect
+                {...propStore.select("council.startTime")}
+                value={form.startTime ? form.startTime.slice(0, 5) : null}
+              />
             </Layout>
             <Layout style={styles.right}>
-              <MySelect {...propStore.select("council.endTime")} />
+              <MySelect
+                {...propStore.select("council.endTime")}
+                value={form.endTime ? form.endTime.slice(0, 5) : null}
+              />
             </Layout>
           </Layout>
         </Layout>
