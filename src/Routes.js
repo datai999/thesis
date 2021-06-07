@@ -1,17 +1,17 @@
 import { Layout, Popover, Tab, TabView, Text } from "@ui-kitten/components";
 import ConstApi from "api/ConstApi";
-import { selectItems } from "components/Select";
-import Props from "data/Props";
-import React from "react";
-import { StyleSheet } from "react-native";
-import i18n from "utils/i18n";
 import {
   BookOpenIcon,
   CheckMarkSquare,
   HomeIcon,
   PersonDoneIcon,
   SettingIcon
-} from "./components/Icons";
+} from "components/Icons";
+import { selectItems } from "components/Select";
+import Props from "data/Props";
+import React from "react";
+import { StyleSheet } from "react-native";
+import i18n from "utils/i18n";
 import EvaluateScreen from "./pages/EvaluateScreen";
 import HomeScreen from "./pages/HomeScreen";
 import PersonScreen from "./pages/PersonScreen";
