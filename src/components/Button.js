@@ -32,7 +32,6 @@ export const CreateBtn = ({ form, data, callBack, props }) => {
         size="small"
         accessoryRight={data ? EditIcon : PlusIcon}
         onPress={() => setCreateFormVisible(true)}
-        // label={data ? form.update : form.create}
         {...props}
       >
         {data ? form.update : form.create}
