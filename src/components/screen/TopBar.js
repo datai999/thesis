@@ -2,10 +2,9 @@ import { Button, Layout } from "@ui-kitten/components";
 import { PlusIcon } from "components/Icons";
 import MyModal from "components/Modal";
 import React from "react";
-import { StyleSheet } from "react-native";
 import i18n from "utils/i18n";
 
-const TopBar = ({ addNewRecord, form }) => {
+const TopBar = ({ form, addNewRecord, overTopBar }) => {
   const [createFormVisible, setCreateFormVisible] = React.useState(false);
 
   const modalTopicCreateProps = {
@@ -24,9 +23,11 @@ const TopBar = ({ addNewRecord, form }) => {
   };
 
   return (
-    <Layout style={styles.container}>
+    <Layout style={{ flexDirection: "row" }}>
+      <MyModal {...modalTopicCreateProps} />
+
       <Button
-        style={styles.btnNew}
+        style={{ marginHorizontal: 10 }}
         status="primary"
         size="small"
         accessoryRight={PlusIcon}
@@ -34,23 +35,10 @@ const TopBar = ({ addNewRecord, form }) => {
       >
         {i18n.t("origin.new")}
       </Button>
-      <MyModal {...modalTopicCreateProps} />
+
+      {overTopBar && overTopBar()}
     </Layout>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    margin: 10,
-    flexDirection: "row",
-    width: "50%",
-  },
-  btnNew: {
-    marginHorizontal: 10,
-  },
-  input: {
-    width: "80%",
-  },
-});
 
 export default TopBar;

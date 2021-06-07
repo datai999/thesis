@@ -14,7 +14,7 @@ const sortDefault = {
   descend: true,
 };
 
-const OverTable = ({ links, form, api }) => {
+const OverTable = ({ links, form, api, overTopBar }) => {
   const [data, setData] = React.useState([]);
   const [page, setPage] = React.useState(defaultPage);
   const [sort, setSort] = React.useState(sortDefault);
@@ -44,6 +44,7 @@ const OverTable = ({ links, form, api }) => {
       <Layout style={styles.topBar}>
         <TopBar
           form={form}
+          overTopBar={overTopBar}
           addNewRecord={(newRecord) => {
             let newData = _.cloneDeep(data);
             newData.unshift(newRecord);
