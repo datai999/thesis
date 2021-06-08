@@ -29,13 +29,14 @@ export const TableContent = ({ links, data, rowCallBack }) => {
   const reducerLastName = (accumulator, currentValue) =>
     accumulator + ", " + currentValue.split(" ").slice(-1).join();
 
+  const reducer = (accumulator, currentValue) =>
+    accumulator + ", " + currentValue;
+
   const renderCell = (fieldValue) => {
     let renderValue = getRenderText(fieldValue);
     if (Array.isArray(renderValue)) {
       return (
-        <List.Accordion
-          title={renderValue.reduce(reducerLastName, "").slice(2)}
-        >
+        <List.Accordion title={renderValue.reduce(reducer, "").slice(2)}>
           {renderValue?.map((value) => {
             return <List.Item key={value} title={value} />;
           })}
