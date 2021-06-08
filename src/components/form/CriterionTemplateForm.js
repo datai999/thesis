@@ -80,8 +80,9 @@ const CriterionSelect = () => {
     fetch();
   }, []);
 
-  const refresh = () => {
-    form.criterion = selectedCriterion.length > 0 ? selectedCriterion : null;
+  const refresh = (nextData) => {
+    console.log(nextData);
+    form.criterion = nextData.length > 0 ? nextData : null;
     setToggle(!toggle);
   };
 
@@ -94,13 +95,14 @@ const CriterionSelect = () => {
       moveToRight(criterion);
     } else {
       selectedCriterion.unshift(criterion);
-      refresh();
+      refresh(selectedCriterion);
     }
   };
 
   const moveToRight = (criterion) => {
-    selectedCriterion.pop(criterion);
-    refresh();
+    let nextData = selectedCriterion.filter((ele) => ele.id != criterion.id);
+    setSelectedCriterion(nextData);
+    refresh(nextData);
   };
 
   return (
