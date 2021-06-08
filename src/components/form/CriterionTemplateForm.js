@@ -1,11 +1,12 @@
-import { Layout, Text } from "@ui-kitten/components";
+import { Layout, List, Text } from "@ui-kitten/components";
+import CriterionApi from "api/score/CriterionApi";
 import CriterionTemplateApi from "api/score/CriterionTemplateApi";
 import { MyInput } from "components/Input";
 import { MySelect } from "components/Select";
 import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { IconButton } from "react-native-paper";
+import { Chip, IconButton } from "react-native-paper";
 import { createProps } from "utils";
 import i18n from "utils/i18n";
 
@@ -52,6 +53,94 @@ const FormLayout = ({ header }) => {
           {...propStore.inputToggleLang("criterionTemplate.description")}
         />
       )}
+
+      <CriterionSelect />
+    </Layout>
+  );
+};
+
+const CriterionSelect = () => {
+  const [criterions, setCriterions] = React.useState();
+  const [selectedCriterion] = React.useState(form.criterion ?? []);
+  const [toggle, setToggle] = React.useState(false);
+
+  React.useEffect(() => {
+    const fetch = async () => {
+      try {
+        const response = await CriterionApi.getAll();
+        setCriterions(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetch();
+  }, []);
+
+  const refresh = () => {
+    form.criterion = selectedCriterion.length > 0 ? selectedCriterion : null;
+    setToggle(!toggle);
+  };
+
+  const includeCriterion = (criterion) => {
+    return selectedCriterion.map((item) => item.id).includes(criterion.id);
+  };
+
+  const moveToLeft = (criterion) => {
+    if (includeCriterion(criterion)) {
+      selectedCriterion.pop(criterion);
+    } else {
+      selectedCriterion.push(criterion);
+    }
+    refresh();
+  };
+
+  const moveToRight = (criterion) => {
+    selectedCriterion.pop(criterion);
+    refresh();
+  };
+
+  return (
+    <Layout>
+      <Text>Select criterion</Text>
+      <Layout style={styles.row}>
+        <Layout style={styles.left}>
+          <List
+            data={selectedCriterion}
+            renderItem={({ item }) => {
+              return (
+                <Text>
+                  <Chip
+                    icon="check"
+                    mode="outlined"
+                    onPress={() => moveToRight(item)}
+                  >
+                    {item.name[i18n.language]}
+                  </Chip>
+                </Text>
+              );
+            }}
+          />
+        </Layout>
+        <Layout style={styles.right}>
+          <List
+            data={criterions}
+            renderItem={({ item }) => {
+              return (
+                <Text>
+                  <Chip
+                    icon={includeCriterion(item) ? "check" : "menu-left"}
+                    mode="outlined"
+                    selected={includeCriterion(item)}
+                    onPress={() => moveToLeft(item)}
+                  >
+                    {item.name[i18n.language]}
+                  </Chip>
+                </Text>
+              );
+            }}
+          />
+        </Layout>
+      </Layout>
     </Layout>
   );
 };
