@@ -5,7 +5,7 @@ import { MyInput } from "components/Input";
 import { MySelect } from "components/Select";
 import _ from "lodash";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { Chip, IconButton } from "react-native-paper";
 import { createProps } from "utils";
 import i18n from "utils/i18n";
@@ -40,21 +40,23 @@ const FormLayout = ({ header }) => {
         <Text style={styles.headerText}>{i18n.t(header)}</Text>
       </Layout>
 
-      <MyInput {...propStore.inputLang("criterionTemplate.name")} />
-      {multiLang > 0 && (
-        <MyInput {...propStore.inputToggleLang("criterionTemplate.name")} />
-      )}
+      <ScrollView>
+        <MyInput {...propStore.inputLang("criterionTemplate.name")} />
+        {multiLang > 0 && (
+          <MyInput {...propStore.inputToggleLang("criterionTemplate.name")} />
+        )}
 
-      <MySelect {...propStore.select("criterionTemplate.scoreMethod")} />
+        <MySelect {...propStore.select("criterionTemplate.scoreMethod")} />
 
-      <MyInput {...propStore.inputLang("criterionTemplate.description")} />
-      {multiLang > 0 && (
-        <MyInput
-          {...propStore.inputToggleLang("criterionTemplate.description")}
-        />
-      )}
+        <MyInput {...propStore.inputLang("criterionTemplate.description")} />
+        {multiLang > 0 && (
+          <MyInput
+            {...propStore.inputToggleLang("criterionTemplate.description")}
+          />
+        )}
 
-      <CriterionSelect />
+        <CriterionSelect />
+      </ScrollView>
     </Layout>
   );
 };
@@ -102,43 +104,49 @@ const CriterionSelect = () => {
   return (
     <Layout>
       <Text>Select criterion</Text>
+
       <Layout style={styles.row}>
         <Layout style={styles.left}>
-          <List
-            data={selectedCriterion}
-            renderItem={({ item }) => {
-              return (
-                <Text>
-                  <Chip
-                    icon="check"
-                    mode="outlined"
-                    onPress={() => moveToRight(item)}
-                  >
-                    {item.name[i18n.language]}
-                  </Chip>
-                </Text>
-              );
-            }}
-          />
+          <ScrollView style={{ minHeight: 200, maxHeight: 200 }}>
+            <List
+              data={selectedCriterion}
+              renderItem={({ item }) => {
+                return (
+                  <Text>
+                    <Chip
+                      icon="check"
+                      mode="outlined"
+                      onPress={() => moveToRight(item)}
+                    >
+                      {item.name[i18n.language]}
+                    </Chip>
+                  </Text>
+                );
+              }}
+            />
+          </ScrollView>
         </Layout>
+
         <Layout style={styles.right}>
-          <List
-            data={criterions}
-            renderItem={({ item }) => {
-              return (
-                <Text>
-                  <Chip
-                    icon={includeCriterion(item) ? "check" : "menu-left"}
-                    mode="outlined"
-                    selected={includeCriterion(item)}
-                    onPress={() => moveToLeft(item)}
-                  >
-                    {item.name[i18n.language]}
-                  </Chip>
-                </Text>
-              );
-            }}
-          />
+          <ScrollView style={{ minHeight: 200, maxHeight: 200 }}>
+            <List
+              data={criterions}
+              renderItem={({ item }) => {
+                return (
+                  <Text>
+                    <Chip
+                      icon={includeCriterion(item) ? "check" : "menu-left"}
+                      mode="outlined"
+                      selected={includeCriterion(item)}
+                      onPress={() => moveToLeft(item)}
+                    >
+                      {item.name[i18n.language]}
+                    </Chip>
+                  </Text>
+                );
+              }}
+            />
+          </ScrollView>
         </Layout>
       </Layout>
     </Layout>
