@@ -17,10 +17,12 @@
       "label": "Mô tả",
       "placeholder": "Nhập mô tả"
     },
+    "existed": "Tiêu chí tham khảo",
     "name": {
       "label": "Tên tiêu chí",
       "placeholder": "Nhập tên tiêu chí"
     },
+    "selected": "Tiêu chí đã chọn",
     "update": "Cập nhật tiêu chí"
   },
   "criterionTemplate": {

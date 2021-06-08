@@ -105,10 +105,11 @@ const CriterionSelect = () => {
 
   return (
     <Layout>
-      <Text>Select criterion</Text>
-
       <Layout style={styles.row}>
         <Layout style={styles.left}>
+          <Text appearance="hint" category="label" style={{ marginBottom: 5 }}>
+            {i18n.t("criterion.selected")}
+          </Text>
           <ScrollView style={{ minHeight: 200, maxHeight: 200 }}>
             <List
               data={selectedCriterion}
@@ -147,6 +148,9 @@ const CriterionSelect = () => {
         </Layout>
 
         <Layout style={styles.right}>
+          <Text appearance="hint" category="label" style={{ marginBottom: 5 }}>
+            {i18n.t("criterion.existed")}
+          </Text>
           <ScrollView style={{ minHeight: 200, maxHeight: 200 }}>
             <List
               data={criterions}
@@ -185,10 +189,12 @@ const styles = StyleSheet.create({
   left: {
     flex: 1,
     marginRight: 10,
+    marginVertical: 10,
   },
   right: {
     flex: 1,
     marginLeft: 10,
+    marginVertical: 10,
   },
   headerText: {
     margin: 5,

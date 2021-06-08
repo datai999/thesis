@@ -17,10 +17,12 @@
       "label": "Description",
       "placeholder": "Type description"
     },
+    "existed": "Existence criteria",
     "name": {
       "label": "Criterion name",
       "placeholder": "Type criterion name"
     },
+    "selected": "Selected criteria",
     "update": "Update criterion"
   },
   "criterionTemplate": {
