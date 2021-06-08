@@ -63,14 +63,16 @@ const FormLayout = ({ header }) => {
 
 const CriterionSelect = () => {
   const [criterions, setCriterions] = React.useState();
-  const [selectedCriterion] = React.useState(form.criterion ?? []);
+  const [selectedCriterion, setSelectedCriterion] = React.useState(
+    form.criterion ?? []
+  );
   const [toggle, setToggle] = React.useState(false);
 
   React.useEffect(() => {
     const fetch = async () => {
       try {
         const response = await CriterionApi.getAll();
-        setCriterions(response);
+        setCriterions(response ?? []);
       } catch (error) {
         console.log(error);
       }
@@ -125,6 +127,23 @@ const CriterionSelect = () => {
               }}
             />
           </ScrollView>
+        </Layout>
+
+        <Layout style={{ justifyContent: "center" }}>
+          <IconButton
+            icon="arrow-left-bold-box-outline"
+            onPress={() => {
+              setSelectedCriterion(criterions);
+              form.criterion = criterions.length > 0 ? criterions : null;
+            }}
+          />
+          <IconButton
+            icon="arrow-right-bold-box-outline"
+            onPress={() => {
+              setSelectedCriterion([]);
+              form.criterion = null;
+            }}
+          />
         </Layout>
 
         <Layout style={styles.right}>
