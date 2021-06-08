@@ -15,7 +15,7 @@ export const TableHeader = ({ links }) => {
       {linkProps.map((linkProp) => {
         return (
           <DataTable.Title key={linkProp.api}>
-            <Text>{i18n.t(linkProp.label)}</Text>
+            <Text category="s1">{i18n.t(linkProp.label)}</Text>
           </DataTable.Title>
         );
       })}
