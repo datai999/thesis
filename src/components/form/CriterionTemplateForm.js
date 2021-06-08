@@ -81,7 +81,6 @@ const CriterionSelect = () => {
   }, []);
 
   const refresh = (nextData) => {
-    console.log(nextData);
     form.criterion = nextData.length > 0 ? nextData : null;
     setToggle(!toggle);
   };
