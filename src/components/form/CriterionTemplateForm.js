@@ -180,6 +180,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 12,
+    minWidth: 700,
+    maxWidth: 700,
   },
   row: {
     flex: 1,
