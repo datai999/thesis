@@ -91,11 +91,11 @@ const CriterionSelect = () => {
 
   const moveToLeft = (criterion) => {
     if (includeCriterion(criterion)) {
-      selectedCriterion.pop(criterion);
+      moveToRight(criterion);
     } else {
-      selectedCriterion.push(criterion);
+      selectedCriterion.unshift(criterion);
+      refresh();
     }
-    refresh();
   };
 
   const moveToRight = (criterion) => {
