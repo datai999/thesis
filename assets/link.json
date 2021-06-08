@@ -86,6 +86,7 @@
     "name": {}
   },
   "criterionTemplate": {
+    "criterion": {},
     "description": {
       "multiline": true,
       "numberOfLines": 5
