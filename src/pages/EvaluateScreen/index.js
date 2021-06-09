@@ -6,6 +6,7 @@ import {
   Layout
 } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
+import { AvatarIcon } from "components/Icons";
 import React from "react";
 import { ScrollView, StyleSheet, Text } from "react-native";
 import i18n from "utils/i18n";
@@ -26,7 +27,13 @@ const EvaluateTarget = ({ topAssign }) => {
             title={topicAssign.topic?.topicName?.[i18n.language]}
           >
             {topicAssign.executeStudent?.map((student) => {
-              return <DrawerItem title={student.name} />;
+              return (
+                <DrawerItem
+                  accessoryLeft={AvatarIcon}
+                  key={student.id}
+                  title={student.name}
+                />
+              );
             })}
           </DrawerGroup>
         );
