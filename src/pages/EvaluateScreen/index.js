@@ -11,7 +11,7 @@ import { ScrollView, StyleSheet, Text } from "react-native";
 import i18n from "utils/i18n";
 import { user } from "utils/user";
 
-const EvaluateTarget = ({ topAssignData }) => {
+const EvaluateTarget = ({ topAssign }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(0));
 
   return (
@@ -19,32 +19,29 @@ const EvaluateTarget = ({ topAssignData }) => {
       selectedIndex={selectedIndex}
       onSelect={(index) => setSelectedIndex(index)}
     >
-      {topAssignData?.map((topicAssign) => {
+      {topAssign?.map((topicAssign) => {
         return (
           <DrawerGroup
-            title={topicAssign.topic.name[i18n.language]}
-          ></DrawerGroup>
+            key={topicAssign.id}
+            title={topicAssign.topic?.topicName?.[i18n.language]}
+          >
+            {topicAssign.executeStudent?.map((student) => {
+              return <DrawerItem title={student.name} />;
+            })}
+          </DrawerGroup>
         );
       })}
-      <DrawerGroup title="Akveo React Native111111111111">
-        <DrawerItem title="UI Kitten" />
-        <DrawerItem title="Kitten Tricks" />
-      </DrawerGroup>
-      <DrawerGroup title="Akveo React Native111111111111">
-        <DrawerItem title="UI Kitten" />
-        <DrawerItem title="Kitten Tricks" />
-      </DrawerGroup>
     </Drawer>
   );
 };
 
 const EvaluateScreen = () => {
-  let topAssignData;
+  const [topAssign, setTopAssign] = React.useState();
 
   const fetchTopicAssign = async () => {
     try {
       let response = await TopicAssignApi.searchByTeacherCode(user.code);
-      topAssignData = response;
+      setTopAssign(response);
     } catch (error) {
       console.log(error);
     }
@@ -59,7 +56,7 @@ const EvaluateScreen = () => {
       <Layout style={styles.row}>
         <Layout style={styles.left}>
           <ScrollView>
-            <EvaluateTarget topAssignData={topAssignData} />
+            <EvaluateTarget topAssign={topAssign} />
           </ScrollView>
         </Layout>
 
