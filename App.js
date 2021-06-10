@@ -19,6 +19,7 @@ import {
 } from "components/Icons";
 import * as React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import i18n from "utils/i18n";
 import CriterionScreen from "./src//pages/CriterionScreen";
 import EvaluateScreen from "./src//pages/EvaluateScreen";
 import HomeScreen from "./src/pages/HomeScreen";
@@ -52,15 +53,30 @@ const DrawerContent = ({ navigation, state, callback }) => {
         navigation.navigate(state.routeNames[index.section ?? index.row]);
       }}
     >
-      <DrawerItem title="home" accessoryLeft={HomeIcon} />
-      <DrawerItem title="topic" accessoryLeft={BookOpenIcon} />
-      <DrawerItem title="evaluate" accessoryLeft={CheckMarkSquare} />
-      <DrawerGroup title="person" accessoryLeft={PeopleIcon}>
-        <DrawerItem title="teacher" accessoryLeft={PeopleIcon} />
-        <DrawerItem title="student" accessoryLeft={PeopleIcon} />
+      <DrawerItem title={i18n.t("screen.home")} accessoryLeft={HomeIcon} />
+      <DrawerItem title={i18n.t("screen.topic")} accessoryLeft={BookOpenIcon} />
+      <DrawerItem
+        title={i18n.t("screen.evaluate")}
+        accessoryLeft={CheckMarkSquare}
+      />
+      <DrawerGroup title={i18n.t("screen.person")} accessoryLeft={PeopleIcon}>
+        <DrawerItem
+          title={i18n.t("screen.teacher")}
+          accessoryLeft={PeopleIcon}
+        />
+        <DrawerItem
+          title={i18n.t("screen.student")}
+          accessoryLeft={PeopleIcon}
+        />
       </DrawerGroup>
-      <DrawerItem title="criterion" accessoryLeft={PantoneIcon} />
-      <DrawerItem title="setting" accessoryLeft={SettingIcon} />
+      <DrawerItem
+        title={i18n.t("screen.criterion")}
+        accessoryLeft={PantoneIcon}
+      />
+      <DrawerItem
+        title={i18n.t("screen.setting")}
+        accessoryLeft={SettingIcon}
+      />
     </Drawer>
   );
 };
