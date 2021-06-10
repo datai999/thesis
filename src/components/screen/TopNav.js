@@ -4,23 +4,23 @@ import { MenuIcon, SettingIcon } from "components/Icons";
 import React from "react";
 import i18n from "utils/i18n";
 
-const renderSettingsAction = () => {
-  const navigation = useNavigation();
-
-  return (
-    <TopNavigationAction
-      icon={SettingIcon}
-      onPress={() => navigation.toggleDrawer()}
-    />
-  );
-};
-
 const renderMenuAction = () => {
   const navigation = useNavigation();
   return (
     <TopNavigationAction
       icon={MenuIcon}
       onPress={() => navigation.toggleDrawer()}
+    />
+  );
+};
+
+const renderSettingsAction = () => {
+  const navigation = useNavigation();
+
+  return (
+    <TopNavigationAction
+      icon={SettingIcon}
+      onPress={() => navigation.navigate("setting")}
     />
   );
 };
