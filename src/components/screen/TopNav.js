@@ -5,7 +5,14 @@ import React from "react";
 import i18n from "utils/i18n";
 
 const renderSettingsAction = () => {
-  return <TopNavigationAction icon={SettingIcon} />;
+  const navigation = useNavigation();
+
+  return (
+    <TopNavigationAction
+      icon={SettingIcon}
+      onPress={() => navigation.toggleDrawer()}
+    />
+  );
 };
 
 const renderMenuAction = () => {
