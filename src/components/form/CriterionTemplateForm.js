@@ -12,14 +12,14 @@ import i18n from "utils/i18n";
 
 let form = {};
 
-const CouncilForm = {
+const CriterionTemplateForm = {
   create: i18n.t("criterionTemplate.create"),
   update: i18n.t("criterionTemplate.update"),
   body: (data) => {
-    let header = CouncilForm.create;
+    let header = CriterionTemplateForm.create;
     if (data != null) {
       form = _.cloneDeep(data);
-      header = CouncilForm.update;
+      header = CriterionTemplateForm.update;
     } else form = {};
     return <FormLayout header={header} />;
   },
@@ -231,4 +231,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CouncilForm;
+export default CriterionTemplateForm;
