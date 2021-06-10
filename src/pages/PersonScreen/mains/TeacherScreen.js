@@ -14,6 +14,7 @@ const arrLink = [
 ];
 
 const overTableProps = {
+  title: "screen.teacher",
   links: arrLink,
   form: TeacherForm,
   api: TeacherApi,

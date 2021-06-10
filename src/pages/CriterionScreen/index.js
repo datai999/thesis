@@ -16,6 +16,7 @@ const overTopBar = () => {
 };
 
 const overTableProps = {
+  title: "screen.criterion",
   links: arrLink,
   form: CriterionTemplateForm,
   api: CriterionTemplateApi,

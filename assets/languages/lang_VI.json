@@ -115,6 +115,15 @@
       "placeholder": "Chọn phòng ban"
     }
   },
+  "screen": {
+    "criterion": "Màn hình tiêu chí",
+    "evaluate": "Màn hình đánh giá",
+    "home": "Màn hình chính",
+    "setting": "Màn hình cài đặt",
+    "student": "Màn hình sinh viên",
+    "teacher": "Màn hình giảng viên",
+    "topic": "Màn hình đề tài"
+  },
   "semester": "Học kỳ",
   "semesterSelect": "Chọn học kỳ",
   "student": {

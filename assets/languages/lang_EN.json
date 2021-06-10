@@ -115,6 +115,15 @@
       "placeholder": "Select subject department"
     }
   },
+  "screen": {
+    "criterion": "Criterion screen",
+    "evaluate": "Evaluate screen",
+    "home": "Home screen",
+    "setting": "Setting screen",
+    "student": "Student screen",
+    "teacher": "Teacher screen",
+    "topic": "Topic screen"
+  },
   "semester": "Semester",
   "semesterSelect": "Select semester",
   "student": {

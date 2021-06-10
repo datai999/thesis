@@ -1,6 +1,7 @@
 import { Layout } from "@ui-kitten/components";
 import { TableData } from "components/screen/TableData";
 import TopBar from "components/screen/TopBar";
+import TopNav from "components/screen/TopNav";
 import React from "react";
 import { StyleSheet } from "react-native";
 
@@ -14,7 +15,7 @@ const sortDefault = {
   descend: true,
 };
 
-const OverTable = ({ links, form, api, overTopBar }) => {
+const OverTable = ({ title, links, form, api, overTopBar }) => {
   const [data, setData] = React.useState([]);
   const [page, setPage] = React.useState(defaultPage);
   const [sort, setSort] = React.useState(sortDefault);
@@ -40,25 +41,28 @@ const OverTable = ({ links, form, api, overTopBar }) => {
   }, []);
 
   return (
-    <Layout style={styles.container}>
-      <Layout style={styles.topBar}>
-        <TopBar
-          form={form}
-          overTopBar={overTopBar}
-          addNewRecord={(newRecord) => {
-            let newData = _.cloneDeep(data);
-            newData.unshift(newRecord);
-            setData(newData);
-          }}
+    <Layout>
+      <TopNav title={title} />
+      <Layout style={styles.container}>
+        <Layout style={styles.topBar}>
+          <TopBar
+            form={form}
+            overTopBar={overTopBar}
+            addNewRecord={(newRecord) => {
+              let newData = _.cloneDeep(data);
+              newData.unshift(newRecord);
+              setData(newData);
+            }}
+          />
+        </Layout>
+        <TableData
+          links={links}
+          updateForm={form}
+          data={data}
+          page={page}
+          pageCallBack={fetchData}
         />
       </Layout>
-      <TableData
-        links={links}
-        updateForm={form}
-        data={data}
-        page={page}
-        pageCallBack={fetchData}
-      />
     </Layout>
   );
 };
