@@ -44,7 +44,7 @@ const BottomCard = ({ animationEnd, submit, bottomExceed }) => {
       >
         {i18n.t("origin.submit")}
       </Button>
-      {bottomExceed && bottomExceed()}
+      {bottomExceed && bottomExceed(animationEnd)}
       <Button style={styles.popupBotBtn} onPress={animationEnd}>
         {i18n.t("origin.cancel")}
       </Button>
