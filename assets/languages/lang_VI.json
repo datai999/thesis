@@ -26,6 +26,8 @@
     "update": "Cập nhật tiêu chí"
   },
   "criterionTemplate": {
+    "applyThesis": "Áp dụng cho luận văn",
+    "applyTopic": "Áp dụng cho đề tài",
     "create": "Thêm mẫu tiêu chí",
     "criterion": {
       "label": "Các tiêu chí",

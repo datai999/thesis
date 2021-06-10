@@ -26,6 +26,8 @@
     "update": "Update criterion"
   },
   "criterionTemplate": {
+    "applyThesis": "Apply for thesis",
+    "applyTopic": "Apply for topic",
     "create": "Create criterion template",
     "criterion": {
       "label": "Criterions",

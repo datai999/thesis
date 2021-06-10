@@ -1,4 +1,4 @@
-import { Layout, List, Text } from "@ui-kitten/components";
+import { Button, Layout, List, Text } from "@ui-kitten/components";
 import CriterionApi from "api/score/CriterionApi";
 import CriterionTemplateApi from "api/score/CriterionTemplateApi";
 import { MyInput } from "components/Input";
@@ -16,15 +16,38 @@ const CouncilForm = {
   create: i18n.t("criterionTemplate.create"),
   update: i18n.t("criterionTemplate.update"),
   body: (data) => {
-    let header = "criterionTemplate.create";
+    let header = CouncilForm.create;
     if (data != null) {
       form = _.cloneDeep(data);
-      header = "criterionTemplate.update";
+      header = CouncilForm.update;
     } else form = {};
     return <FormLayout header={header} />;
   },
+  bottomExceed: renderBottomExceed,
   submit: () => CriterionTemplateApi.create(form),
 };
+
+function renderBottomExceed() {
+  if (!_.isEmpty(form)) {
+    return (
+      <Layout
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          width: "55%",
+        }}
+      >
+        <Button style={{ margin: 5 }}>
+          {i18n.t("criterionTemplate.applyTopic")}
+        </Button>
+        <Button style={{ margin: 5 }}>
+          {i18n.t("criterionTemplate.applyThesis")}
+        </Button>
+      </Layout>
+    );
+  }
+  return null;
+}
 
 const FormLayout = ({ header }) => {
   const propStore = createProps(form);

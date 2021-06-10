@@ -95,7 +95,7 @@ export default function App() {
         <SafeAreaProvider>
           <NavigationContainer>
             <Navigator
-              initialRouteName="topic"
+              initialRouteName="criterion"
               drawerContent={(props) => (
                 <DrawerContent {...props} callback={setMode} />
               )}
