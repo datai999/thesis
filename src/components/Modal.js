@@ -2,6 +2,7 @@ import { Button, Layout, Modal } from "@ui-kitten/components";
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
+import i18n from "utils/i18n";
 
 const MyModal = ({ visible, submit, cancel, body }) => {
   const animationRef = React.useRef();
@@ -37,10 +38,10 @@ const BottomCard = ({ animationEnd, submit }) => {
           if (await submit()) animationEnd();
         }}
       >
-        Submit
+        {i18n.t("origin.submit")}
       </Button>
       <Button style={styles.popupBotBtn} onPress={animationEnd}>
-        Cancel
+        {i18n.t("origin.cancel")}
       </Button>
     </Layout>
   );

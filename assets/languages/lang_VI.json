@@ -54,6 +54,7 @@
   "major": "Chuyên ngành",
   "majorSelect": "Chọn chuyên nghành",
   "origin": {
+    "cancel": "Hủy bỏ",
     "create": "Thêm",
     "degree": "Học vị",
     "email": "Email",
@@ -64,6 +65,7 @@
     "new": "Thêm",
     "page": "Trang",
     "record": "Số bản ghi",
+    "submit": "Xác nhận",
     "topic": "Đề tài",
     "total": "Tổng trang",
     "update": "Cập nhật",

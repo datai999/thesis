@@ -54,6 +54,7 @@
   "major": "Major",
   "majorSelect": "Select major",
   "origin": {
+    "cancel": "Cancel",
     "create": "Create",
     "degree": "Degree",
     "email": "Email",
@@ -64,6 +65,7 @@
     "new": "NEW",
     "page": "Page",
     "record": "Record",
+    "submit": "Submit",
     "topic": "Topic",
     "total": "Total",
     "update": "Update",
