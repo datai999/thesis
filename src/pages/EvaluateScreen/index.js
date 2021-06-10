@@ -13,7 +13,7 @@ import { ScrollView, StyleSheet, Text } from "react-native";
 import i18n from "utils/i18n";
 import { user } from "utils/user";
 
-const EvaluateTarget = ({ topAssign }) => {
+const EvaluateTarget = ({ topicAssign }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(0));
 
   return (
@@ -21,13 +21,13 @@ const EvaluateTarget = ({ topAssign }) => {
       selectedIndex={selectedIndex}
       onSelect={(index) => setSelectedIndex(index)}
     >
-      {topAssign?.map((topicAssign) => {
+      {topicAssign?.map((topic) => {
         return (
           <DrawerGroup
-            key={topicAssign.id}
-            title={topicAssign.topic?.topicName?.[i18n.language]}
+            key={topic.id}
+            title={topic.topic?.topicName?.[i18n.language]}
           >
-            {topicAssign.executeStudent?.map((student) => {
+            {topic.executeStudent?.map((student) => {
               return (
                 <DrawerItem
                   accessoryLeft={AvatarIcon}
@@ -44,12 +44,13 @@ const EvaluateTarget = ({ topAssign }) => {
 };
 
 const EvaluateScreen = () => {
-  const [topAssign, setTopAssign] = React.useState();
+  const [topicAssign, setTopicAssign] = React.useState();
 
   const fetchTopicAssign = async () => {
     try {
-      let response = await TopicAssignApi.searchByTeacherCode(user.code);
-      setTopAssign(response);
+      TopicAssignApi.searchByTeacherCode(user.code).then((result) => {
+        setTopicAssign(result);
+      });
     } catch (error) {
       console.log(error);
     }
@@ -65,7 +66,7 @@ const EvaluateScreen = () => {
       <Layout style={styles.row}>
         <Layout style={styles.left}>
           <ScrollView>
-            <EvaluateTarget topAssign={topAssign} />
+            <EvaluateTarget topicAssign={topicAssign} />
           </ScrollView>
         </Layout>
 
