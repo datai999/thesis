@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
 import i18n from "utils/i18n";
 
-const MyModal = ({ visible, submit, cancel, body }) => {
+const MyModal = ({ visible, submit, cancel, body, bottomExceed }) => {
   const animationRef = React.useRef();
 
   const animationEnd = () =>
@@ -23,13 +23,17 @@ const MyModal = ({ visible, submit, cancel, body }) => {
         ref={animationRef}
       >
         {body()}
-        <BottomCard animationEnd={animationEnd} submit={submit} />
+        <BottomCard
+          animationEnd={animationEnd}
+          submit={submit}
+          bottomExceed={bottomExceed}
+        />
       </Animatable.View>
     </Modal>
   );
 };
 
-const BottomCard = ({ animationEnd, submit }) => {
+const BottomCard = ({ animationEnd, submit, bottomExceed }) => {
   return (
     <Layout style={styles.popupBot}>
       <Button
@@ -40,6 +44,7 @@ const BottomCard = ({ animationEnd, submit }) => {
       >
         {i18n.t("origin.submit")}
       </Button>
+      {bottomExceed && bottomExceed()}
       <Button style={styles.popupBotBtn} onPress={animationEnd}>
         {i18n.t("origin.cancel")}
       </Button>
