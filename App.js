@@ -4,9 +4,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import {
   ApplicationProvider,
   Drawer,
+  DrawerGroup,
   DrawerItem,
-  IconRegistry,
-  IndexPath
+  IconRegistry
 } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import {
@@ -28,20 +28,37 @@ import TopicScreen from "./src/pages/TopicScreen";
 
 const { Navigator, Screen } = createDrawerNavigator();
 
-const DrawerContent = ({ navigation, state }) => {
+const DrawerContent = ({ navigation, state, callback }) => {
+  const [selectedIndex, setSelectedIndex] = React.useState(null);
+
   return (
     <Drawer
-      selectedIndex={new IndexPath(state.index)}
+      selectedIndex={selectedIndex}
       onSelect={(index) => {
-        if (index.row == 0) return;
+        if (index.row == 3) {
+          return;
+        }
         navigation.navigate(state.routeNames[index.row]);
+      }}
+      onSelect={(index) => {
+        if (index.row == 0 && !index.section) return;
+        if (index.row == 3 && !index.section) return;
+        setSelectedIndex(index);
+
+        if (index.section == 3) {
+          callback(index.row == 0 ? "teacher" : "student");
+        }
+
+        navigation.navigate(state.routeNames[index.section ?? index.row]);
       }}
     >
       <DrawerItem title="home" accessoryLeft={HomeIcon} />
       <DrawerItem title="topic" accessoryLeft={BookOpenIcon} />
       <DrawerItem title="evaluate" accessoryLeft={CheckMarkSquare} />
-      <DrawerItem title="teacher" accessoryLeft={PeopleIcon} />
-      <DrawerItem title="student" accessoryLeft={PeopleIcon} />
+      <DrawerGroup title="person" accessoryLeft={PeopleIcon}>
+        <DrawerItem title="teacher" accessoryLeft={PeopleIcon} />
+        <DrawerItem title="student" accessoryLeft={PeopleIcon} />
+      </DrawerGroup>
       <DrawerItem title="criterion" accessoryLeft={PantoneIcon} />
       <DrawerItem title="setting" accessoryLeft={SettingIcon} />
     </Drawer>
@@ -49,6 +66,12 @@ const DrawerContent = ({ navigation, state }) => {
 };
 
 export default function App() {
+  const [mode, setMode] = React.useState();
+
+  const renderPersonScreen = () => {
+    return <PersonScreen mode={mode} />;
+  };
+
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
@@ -57,13 +80,14 @@ export default function App() {
           <NavigationContainer>
             <Navigator
               initialRouteName="topic"
-              drawerContent={(props) => <DrawerContent {...props} />}
+              drawerContent={(props) => (
+                <DrawerContent {...props} callback={setMode} />
+              )}
             >
               <Screen name="home" component={HomeScreen} />
               <Screen name="topic" component={TopicScreen} />
               <Screen name="evaluate" component={EvaluateScreen} />
-              <Screen name="teacher" component={PersonScreen} />
-              <Screen name="student" component={PersonScreen} />
+              <Screen name="person" component={renderPersonScreen} />
               <Screen name="criterion" component={CriterionScreen} />
               <Screen name="setting" component={SettingScreen} />
             </Navigator>
