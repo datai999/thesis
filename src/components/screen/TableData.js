@@ -46,7 +46,7 @@ export function renderCell(fieldValue) {
   return renderValue;
 }
 
-export const TableContent = ({ links, data, rowCallBack }) => {
+export const TableContent = ({ links, data = [], rowCallBack }) => {
   const linkProps = getLinkProps(links);
 
   return data.map((row, index) => {
