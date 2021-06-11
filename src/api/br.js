@@ -1,4 +1,4 @@
-import CommonApi from "../CommonApi";
+import CommonApi from "./CommonApi";
 
 const constCommonApi = CommonApi("/const");
 const settingCommonApi = CommonApi("/setting");
