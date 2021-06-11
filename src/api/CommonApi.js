@@ -14,6 +14,9 @@ const CommonApi = (baseURL = "") => {
     get: (url, param) => {
       return AxiosClient.get(baseURL + url, { params: param });
     },
+    post: (url, requestBody) => {
+      return AxiosClient.post(baseURL + url, requestBody);
+    },
   };
 };
 
