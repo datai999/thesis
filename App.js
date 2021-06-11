@@ -9,6 +9,7 @@ import {
   IconRegistry
 } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
+import { ConstApi } from "api/br";
 import {
   BookOpenIcon,
   CheckMarkSquare,
@@ -17,6 +18,7 @@ import {
   PeopleIcon,
   SettingIcon
 } from "components/Icons";
+import Props from "data/Props";
 import * as React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import i18n from "utils/i18n";
@@ -87,6 +89,20 @@ export default function App() {
   const renderPersonScreen = () => {
     return <PersonScreen mode={mode} />;
   };
+
+  React.useEffect(() => {
+    const fetch = async () => {
+      try {
+        const response = await ConstApi.getTypes();
+        Object.keys(response).forEach((e) => {
+          Props[e].arrValue = response[e];
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetch();
+  }, []);
 
   return (
     <>
