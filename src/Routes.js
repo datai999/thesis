@@ -1,5 +1,5 @@
 import { Layout, Popover, Tab, TabView, Text } from "@ui-kitten/components";
-import ConstApi from "api/br/ConstApi";
+import { ConstApi } from "api/br";
 import {
   BookOpenIcon,
   CheckMarkSquare,
