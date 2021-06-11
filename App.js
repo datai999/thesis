@@ -95,7 +95,9 @@ export default function App() {
       try {
         const response = await ConstApi.getTypes();
         Object.keys(response).forEach((e) => {
-          Props[e].arrValue = response[e];
+          if (Props[e]) {
+            Props[e].arrValue = response[e];
+          }
         });
       } catch (error) {
         console.log(error);
