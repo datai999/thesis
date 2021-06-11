@@ -26,28 +26,28 @@ export const TableHeader = ({ links }) => {
   );
 };
 
-export const TableContent = ({ links, data, rowCallBack }) => {
-  const linkProps = getLinkProps(links);
-
+export function renderCell(fieldValue) {
   const reducerLastName = (accumulator, currentValue) =>
     accumulator + ", " + currentValue.split(" ").slice(-1).join();
 
   const reducer = (accumulator, currentValue) =>
     accumulator + ", " + currentValue;
 
-  const renderCell = (fieldValue) => {
-    let renderValue = getRenderText(fieldValue);
-    if (Array.isArray(renderValue)) {
-      return (
-        <List.Accordion title={renderValue.reduce(reducer, "").slice(2)}>
-          {renderValue?.map((value) => {
-            return <List.Item key={value} title={value} />;
-          })}
-        </List.Accordion>
-      );
-    }
-    return renderValue;
-  };
+  let renderValue = getRenderText(fieldValue);
+  if (Array.isArray(renderValue)) {
+    return (
+      <List.Accordion title={renderValue.reduce(reducer, "").slice(2)}>
+        {renderValue?.map((value) => {
+          return <List.Item key={value} title={value} />;
+        })}
+      </List.Accordion>
+    );
+  }
+  return renderValue;
+}
+
+export const TableContent = ({ links, data, rowCallBack }) => {
+  const linkProps = getLinkProps(links);
 
   return data.map((row, index) => {
     return (
