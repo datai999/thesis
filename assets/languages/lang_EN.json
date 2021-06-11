@@ -26,6 +26,7 @@
     "update": "Update criterion"
   },
   "criterionTemplate": {
+    "allTemplate": "All template",
     "applyThesis": "Apply for thesis",
     "applyTopic": "Apply for topic",
     "create": "Create criterion template",
@@ -45,6 +46,8 @@
       "label": "Score method",
       "placeholder": "Select score method"
     },
+    "thesisTemplate": "Thesis template",
+    "topicTemplate": "Topic template",
     "update": "Update criterion template"
   },
   "description": "Description",

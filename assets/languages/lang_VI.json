@@ -26,6 +26,7 @@
     "update": "Cập nhật tiêu chí"
   },
   "criterionTemplate": {
+    "allTemplate": "Tất cả mẫu tiêu chí",
     "applyThesis": "Áp dụng cho luận văn",
     "applyTopic": "Áp dụng cho đề tài",
     "create": "Thêm mẫu tiêu chí",
@@ -45,6 +46,8 @@
       "label": "Phương pháp chấm điểm",
       "placeholder": "Chọn phương pháp chấm điểm"
     },
+    "thesisTemplate": "Mẫu tiêu chí cho luận văn",
+    "topicTemplate": "Mẫu tiêu chí cho đề tài",
     "update": "Cập nhật mẫu tiêu chí"
   },
   "description": "Mô tả",

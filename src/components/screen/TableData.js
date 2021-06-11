@@ -122,7 +122,14 @@ export const TableBottom = ({ page, pageCallBack }) => {
   );
 };
 
-export const TableData = ({ links, updateForm, data, page, pageCallBack }) => {
+export const TableData = ({
+  links,
+  updateForm,
+  data,
+  page,
+  pageCallBack,
+  topContent,
+}) => {
   const [updateFormVisible, setUpdateFormVisible] = React.useState(false);
   const [currentRow, setCurrenRow] = React.useState(null);
 
@@ -152,6 +159,7 @@ export const TableData = ({ links, updateForm, data, page, pageCallBack }) => {
     <DataTable>
       <MyModal {...modalUpdateFormProps} />
       <TableHeader links={links} />
+      {topContent && topContent({ links, rowCallBack })}
       <TableContent links={links} data={data} rowCallBack={rowCallBack} />
       <TableBottom page={page} pageCallBack={pageCallBack} />
     </DataTable>

@@ -15,7 +15,7 @@ const sortDefault = {
   descend: true,
 };
 
-const OverTable = ({ title, links, form, api, overTopBar }) => {
+const OverTable = ({ title, links, form, api, overTopBar, topContent }) => {
   const [data, setData] = React.useState([]);
   const [page, setPage] = React.useState(defaultPage);
   const [sort, setSort] = React.useState(sortDefault);
@@ -61,6 +61,7 @@ const OverTable = ({ title, links, form, api, overTopBar }) => {
           data={data}
           page={page}
           pageCallBack={fetchData}
+          topContent={topContent}
         />
       </Layout>
     </Layout>
