@@ -10,12 +10,8 @@ export const ConstApi = {
 
 export const SettingApi = {
   ...settingCommonApi,
-  settingTopicTemplate: (topicAssign) =>
+  setTemplate: (topicAssign, thesis) =>
     settingCommonApi.post("/template", topicAssign, {
-      params: { thesis: false },
-    }),
-  settingThesisTemplate: (topicAssign) =>
-    settingCommonApi.post("/template", topicAssign, {
-      params: { thesis: true },
+      params: { thesis: thesis },
     }),
 };

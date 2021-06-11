@@ -29,11 +29,8 @@ const CriterionTemplateForm = {
 };
 
 function renderBottomExceed(animationEnd) {
-  function applyTopic() {
-    SettingApi.settingTopicTemplate(form).then(animationEnd);
-  }
-  function applyThesis() {
-    SettingApi.settingThesisTemplate(form).then(animationEnd);
+  function applyTemplate(isThesis) {
+    SettingApi.setTemplate(form, isThesis).then(animationEnd);
   }
 
   if (!_.isEmpty(form)) {
@@ -45,10 +42,10 @@ function renderBottomExceed(animationEnd) {
           width: "55%",
         }}
       >
-        <Button style={{ margin: 5 }} onPress={applyTopic}>
+        <Button style={{ margin: 5 }} onPress={() => applyTemplate(false)}>
           {i18n.t("criterionTemplate.applyTopic")}
         </Button>
-        <Button style={{ margin: 5 }} onPress={applyThesis}>
+        <Button style={{ margin: 5 }} onPress={() => applyTemplate(true)}>
           {i18n.t("criterionTemplate.applyThesis")}
         </Button>
       </Layout>
