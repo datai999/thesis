@@ -1,4 +1,5 @@
 import { Button, Layout, List, Text } from "@ui-kitten/components";
+import { SettingApi } from "api/br";
 import CriterionApi from "api/score/CriterionApi";
 import CriterionTemplateApi from "api/score/CriterionTemplateApi";
 import { MyInput } from "components/Input";
@@ -27,7 +28,14 @@ const CriterionTemplateForm = {
   submit: () => CriterionTemplateApi.create(form),
 };
 
-function renderBottomExceed() {
+function renderBottomExceed(animationEnd) {
+  function applyTopic() {
+    SettingApi.settingTopicTemplate(form).then(animationEnd);
+  }
+  function applyThesis() {
+    SettingApi.settingThesisTemplate(form).then(animationEnd);
+  }
+
   if (!_.isEmpty(form)) {
     return (
       <Layout
@@ -37,16 +45,15 @@ function renderBottomExceed() {
           width: "55%",
         }}
       >
-        <Button style={{ margin: 5 }}>
+        <Button style={{ margin: 5 }} onPress={applyTopic}>
           {i18n.t("criterionTemplate.applyTopic")}
         </Button>
-        <Button style={{ margin: 5 }}>
+        <Button style={{ margin: 5 }} onPress={applyThesis}>
           {i18n.t("criterionTemplate.applyThesis")}
         </Button>
       </Layout>
     );
   }
-  return null;
 }
 
 const FormLayout = ({ header }) => {
