@@ -49,6 +49,8 @@ export function renderCell(fieldValue) {
 export const TableContent = ({ links, data = [], rowCallBack }) => {
   const linkProps = getLinkProps(links);
 
+  if (data == null) return null;
+
   return data.map((row, index) => {
     return (
       <DataTable.Row key={row.id}>
