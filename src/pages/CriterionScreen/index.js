@@ -21,18 +21,12 @@ const overTopBar = () => {
 function renderTopContent({ links, rowCallBack }) {
   return (
     <Layout>
-      <Text appearance="hint" category="label">
-        {i18n.t("criterionTemplate.topicTemplate")}
-      </Text>
+      <Text category="s2">{i18n.t("criterionTemplate.topicTemplate")}</Text>
       <Divider />
-      <Text appearance="hint" category="label">
-        {i18n.t("criterionTemplate.thesisTemplate")}
-      </Text>
+      <Text category="s2">{i18n.t("criterionTemplate.thesisTemplate")}</Text>
       <Divider />
       <TableContent links={links} data={[]} rowCallBack={rowCallBack} />
-      <Text appearance="hint" category="label">
-        {i18n.t("criterionTemplate.allTemplate")}
-      </Text>
+      <Text category="s2">{i18n.t("criterionTemplate.allTemplate")}</Text>
     </Layout>
   );
 }
