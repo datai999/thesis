@@ -12,6 +12,9 @@ export const TableHeader = ({ links }) => {
 
   return (
     <DataTable.Header>
+      <DataTable.Title>
+        <Text category="s1">No</Text>
+      </DataTable.Title>
       {linkProps.map((linkProp) => {
         return (
           <DataTable.Title key={linkProp.api}>
@@ -46,18 +49,16 @@ export const TableContent = ({ links, data, rowCallBack }) => {
     return renderValue;
   };
 
-  return data.map((row) => {
+  return data.map((row, index) => {
     return (
       <DataTable.Row key={row.id}>
+        <DataTable.Cell onPress={() => rowCallBack(row)}>
+          {renderCell(index + 1)}
+        </DataTable.Cell>
         {linkProps.map((linkProp) => {
           let fieldValue = _.get(row, linkProp.api);
           return (
-            <DataTable.Cell
-              key={linkProp.api}
-              onPress={() => {
-                rowCallBack(row);
-              }}
-            >
+            <DataTable.Cell key={linkProp.api} onPress={() => rowCallBack(row)}>
               {renderCell(fieldValue)}
             </DataTable.Cell>
           );
