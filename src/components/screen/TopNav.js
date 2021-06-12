@@ -25,6 +25,7 @@ const renderSettingsAction = () => {
 const TopNav = ({ title }) => {
   return (
     <TopNavigation
+      style={{ backgroundColor: "#3366FF" }}
       title={i18n.t(title)}
       alignment="center"
       accessoryLeft={renderMenuAction}
