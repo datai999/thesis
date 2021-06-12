@@ -1,14 +1,13 @@
 import {
-    Drawer,
-    DrawerGroup,
-    DrawerItem,
-    IndexPath,
-    Layout,
-    Text
+  Drawer,
+  DrawerGroup,
+  DrawerItem,
+  IndexPath,
+  Layout,
+  Text
 } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import { AvatarIcon } from "components/Icons";
-import TopNav from "components/screen/TopNav";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { getRenderText } from "utils";
@@ -69,7 +68,6 @@ const EvaluateScreen = () => {
 
   return (
     <Layout style={styles.container}>
-      <TopNav title={"screen.evaluate"} />
       <Layout style={styles.row}>
         <Layout style={styles.left}>
           <ScrollView>

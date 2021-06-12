@@ -50,7 +50,6 @@ function renderTopContent({ ...props }) {
 }
 
 const overTableProps = {
-  title: "screen.criterion",
   links: arrLink,
   form: CriterionTemplateForm,
   api: CriterionTemplateApi,

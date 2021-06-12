@@ -5,7 +5,6 @@ import i18n from "utils/i18n";
 import { navHolder } from "utils/nav";
 
 const renderMenuAction = () => {
-  console.log(navHolder);
   return (
     <TopNavigationAction
       icon={MenuIcon}

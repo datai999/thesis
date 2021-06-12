@@ -14,7 +14,6 @@ const arrLink = [
 ];
 
 const overTableProps = {
-  title: "screen.topic",
   links: arrLink,
   form: TopicForm,
   api: TopicAssignApi,
