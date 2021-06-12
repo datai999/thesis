@@ -1,27 +1,13 @@
 import * as eva from "@eva-design/eva";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
-import {
-  ApplicationProvider,
-  Drawer,
-  DrawerGroup,
-  DrawerItem,
-  IconRegistry
-} from "@ui-kitten/components";
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import { ConstApi } from "api/br";
-import {
-  BookOpenIcon,
-  CheckMarkSquare,
-  HomeIcon,
-  PantoneIcon,
-  PeopleIcon,
-  SettingIcon
-} from "components/Icons";
+import LeftMenu from "components/LeftMenu";
 import Props from "data/Props";
 import * as React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import i18n from "utils/i18n";
 import CriterionScreen from "./src//pages/CriterionScreen";
 import EvaluateScreen from "./src//pages/EvaluateScreen";
 import HomeScreen from "./src/pages/HomeScreen";
@@ -31,78 +17,20 @@ import TopicScreen from "./src/pages/TopicScreen";
 
 const { Navigator, Screen } = createDrawerNavigator();
 
-const DrawerContent = ({ navigation, state, callback }) => {
-  const [selectedIndex, setSelectedIndex] = React.useState(null);
-
-  return (
-    <Drawer
-      selectedIndex={selectedIndex}
-      onSelect={(index) => {
-        if (index.row == 3) {
-          return;
-        }
-        navigation.navigate(state.routeNames[index.row]);
-      }}
-      onSelect={(index) => {
-        if (index.row == 0 && !index.section) return;
-        if (index.row == 3 && !index.section) return;
-        setSelectedIndex(index);
-
-        if (index.section == 3) {
-          callback(index.row == 0 ? "teacher" : "student");
-        }
-
-        navigation.navigate(state.routeNames[index.section ?? index.row]);
-      }}
-    >
-      <DrawerItem title={i18n.t("screen.home")} accessoryLeft={HomeIcon} />
-      <DrawerItem title={i18n.t("screen.topic")} accessoryLeft={BookOpenIcon} />
-      <DrawerItem
-        title={i18n.t("screen.evaluate")}
-        accessoryLeft={CheckMarkSquare}
-      />
-      <DrawerGroup title={i18n.t("screen.person")} accessoryLeft={PeopleIcon}>
-        <DrawerItem
-          title={i18n.t("screen.teacher")}
-          accessoryLeft={PeopleIcon}
-        />
-        <DrawerItem
-          title={i18n.t("screen.student")}
-          accessoryLeft={PeopleIcon}
-        />
-      </DrawerGroup>
-      <DrawerItem
-        title={i18n.t("screen.criterion")}
-        accessoryLeft={PantoneIcon}
-      />
-      <DrawerItem
-        title={i18n.t("screen.setting")}
-        accessoryLeft={SettingIcon}
-      />
-    </Drawer>
-  );
+const fetch = () => {
+  ConstApi.getTypes().then((response) => {
+    Object.keys(response).forEach((e) => {
+      if (Props[e]) {
+        Props[e].arrValue = response[e];
+      }
+    });
+  });
 };
 
 export default function App() {
   const [mode, setMode] = React.useState();
 
-  const renderPersonScreen = () => {
-    return <PersonScreen mode={mode} />;
-  };
-
   React.useEffect(() => {
-    const fetch = async () => {
-      try {
-        const response = await ConstApi.getTypes();
-        Object.keys(response).forEach((e) => {
-          if (Props[e]) {
-            Props[e].arrValue = response[e];
-          }
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
     fetch();
   }, []);
 
@@ -115,13 +43,16 @@ export default function App() {
             <Navigator
               initialRouteName="criterion"
               drawerContent={(props) => (
-                <DrawerContent {...props} callback={setMode} />
+                <LeftMenu {...props} callback={setMode} />
               )}
             >
               <Screen name="home" component={HomeScreen} />
               <Screen name="topic" component={TopicScreen} />
               <Screen name="evaluate" component={EvaluateScreen} />
-              <Screen name="person" component={renderPersonScreen} />
+              <Screen
+                name="person"
+                component={() => <PersonScreen mode={mode} />}
+              />
               <Screen name="criterion" component={CriterionScreen} />
               <Screen name="setting" component={SettingScreen} />
             </Navigator>
