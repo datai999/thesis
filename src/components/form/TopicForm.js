@@ -74,7 +74,7 @@ const FormLayout = ({ header }) => {
         <Layout style={styles.row}>
           <Layout style={styles.left}>
             <MySelect {...propStore.select("topic.educationMethod")} />
-            <MySelect {...propStore.select("topic.semester")} />
+            <MyInput {...propStore.select("topic.semester")} />
             <MyMultiSelect {...propStore.select("topic.major")} />
             <MyAutocompleteTag
               {...propStore.inputSearch("topicAssign.guideTeacher", TeacherApi)}

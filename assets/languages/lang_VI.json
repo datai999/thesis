@@ -132,8 +132,6 @@
     "teacher": "Màn hình giảng viên",
     "topic": "Màn hình đề tài"
   },
-  "semester": "Học kỳ",
-  "semesterSelect": "Chọn học kỳ",
   "student": {
     "code": "Mã số sinh viên",
     "code_type": "Nhập mã số sinh viên",
@@ -195,7 +193,7 @@
     "name_ph_vi": "Nhập tên đề tài",
     "semester": {
       "label": "Học kỳ",
-      "placeholder": "Chọn học kỳ"
+      "placeholder": "Nhập học kỳ"
     },
     "task_main_ph_en": "Nhập nhiệm vụ chính bằng tiếng anh",
     "task_main_ph_vi": "Nhập nhiệm vụ chính bằng tiếng việt",

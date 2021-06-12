@@ -132,8 +132,6 @@
     "teacher": "Teacher screen",
     "topic": "Topic screen"
   },
-  "semester": "Semester",
-  "semesterSelect": "Select semester",
   "student": {
     "code": "Student code",
     "code_type": "Type student code",
@@ -201,7 +199,7 @@
     "name_ph_vi": "Type topic name in Vietnamese",
     "semester": {
       "label": "Semester",
-      "placeholder": "Select semester"
+      "placeholder": "Type semester"
     },
     "task_main_ph_en": "Type main task",
     "task_main_ph_vi": "Type main task in Vietnamese",
