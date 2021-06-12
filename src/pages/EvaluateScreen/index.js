@@ -49,7 +49,7 @@ const EvaluateTarget = ({ topicAssign }) => {
   );
 };
 
-const EvaluateScreen = () => {
+const EvaluateScreen = ({ navigation }) => {
   const [topicAssign, setTopicAssign] = React.useState();
 
   const fetchTopicAssign = async () => {
@@ -63,8 +63,8 @@ const EvaluateScreen = () => {
   };
 
   React.useEffect(() => {
-    fetchTopicAssign();
-  }, []);
+    return navigation.addListener("focus", fetchTopicAssign);
+  }, [navigation]);
 
   return (
     <Layout style={styles.container}>

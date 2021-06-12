@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { Layout } from "@ui-kitten/components";
 import { TableData } from "components/screen/TableData";
 import TopBar from "components/screen/TopBar";
@@ -18,6 +19,7 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
   const [data, setData] = React.useState([]);
   const [page, setPage] = React.useState(defaultPage);
   const [sort, setSort] = React.useState(sortDefault);
+  const navigation = useNavigation();
 
   const fetchData = async (nextPage) => {
     try {
@@ -36,8 +38,10 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
   };
 
   React.useEffect(() => {
-    fetchData(page);
-  }, []);
+    return navigation.addListener("focus", () => {
+      fetchData(page);
+    });
+  }, [navigation]);
 
   return (
     <Layout>
