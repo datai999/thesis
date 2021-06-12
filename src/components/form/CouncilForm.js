@@ -1,157 +1,91 @@
 import { Layout, List, Text } from "@ui-kitten/components";
 import TeacherApi from "api/person/TeacherApi";
 import CouncilApi from "api/topic/CouncilApi";
-import { TeacherForm } from "components/form";
 import { MyAutocomplete, MyInput } from "components/Input";
-import MyModal from "components/Modal";
-import { DatePickerInputKitten, TimePickerInput } from "components/Picker";
-import { MySelect } from "components/Select";
+import { DatePicker, MySelect } from "components/Select";
 import Props from "data/Props";
 import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { getRenderText, toLocalDate, toLocalTime } from "utils";
+import { createProps } from "utils";
 import i18n from "utils/i18n";
 
 let form = {};
 
-const CouncilForm = {
-  body: (header = "council.create", data) => {
-    if (data != null) form = _.cloneDeep(data);
-    else form = {};
-    return <CouncilLayout header={header} data={data} />;
-  },
-  submit: (formSubmit = form) => CouncilApi.create(formSubmit),
+const defaultForm = () => {
+  return {
+    role: Props.councilRole.arrValue,
+    teacher: Array(Props.councilRole.arrValue.length).fill(null),
+  };
 };
-const CouncilLayout = ({ header, ...props }) => {
-  const [teacherCreateVisible, setTeacherCreateVisible] = React.useState(false);
 
-  const setDefaultForm = () => {
-    let arrRoleValue = Props.councilRole.arrValue;
-    form = {
-      reserveDate: toLocalDate(new Date()),
-      startTime: toLocalTime(new Date()),
-      endTime: toLocalTime(new Date()),
-      role: arrRoleValue,
-      teacher: Array(arrRoleValue.length).fill(null),
-    };
-  };
+const CouncilForm = {
+  create: i18n.t("council.create"),
+  update: i18n.t("council.update"),
+  body: (data) => {
+    let header = "council.create";
+    if (data != null) {
+      form = _.cloneDeep(data);
+      header = "council.update";
+    } else form = defaultForm();
+    return <FormLayout header={header} />;
+  },
+  submit: () => CouncilApi.create(form),
+};
 
-  React.useEffect(() => {
-    if (props.data == null || Object.keys(props.data).length === 0)
-      setDefaultForm();
-  }, []);
+const FormLayout = ({ header }) => {
+  const propStore = createProps(form);
 
-  const modalTeacherCreateProps = {
-    ...TeacherForm,
-    visible: teacherCreateVisible,
-    cancel: () => setTeacherCreateVisible(false),
-  };
-
-  const setValue = (path, value) => {
-    _.set(form, path, value);
-  };
-
-  const inputProps = (field, path = field) => {
-    return {
-      ...Props[field],
-      value: form[field],
-      callBack: (value) => setValue(path, value),
-    };
-  };
-  const selectProps = (field) => {
-    return {
-      field,
-      value: form[field],
-      callBack: (value) => setValue(field, value),
-      ...Props[field],
-    };
-  };
-  const pickerInputProps = (field) => {
-    let selectedDate = new Date();
-    if (field == "reserveDate") {
-      if (form[field] && form[field] != "undefine")
-        selectedDate = new Date(form[field]);
-    } else {
-      if (form[field] && form[field] != "undefine") {
-        if (form.reserveDate && form.reserveDate != "undefine") {
-          selectedDate = new Date(form["reserveDate"] + "T" + form[field]);
-        } else {
-          selectedDate = new Date("1999-05-28T" + form[field]);
-        }
-      }
+  const inputSearch = propStore.inputSearch("council.teacher", TeacherApi);
+  const councilTeacherProps = Props.councilRole.arrValue.map(
+    (councilRole, index) => {
+      return {
+        ...inputSearch,
+        label: councilRole.value[i18n.language],
+        value: form.teacher?.[index]?.name,
+        callBack: (value) =>
+          propStore.set(inputSearch.api + "[" + index + "]", value),
+      };
     }
-
-    return {
-      pickerProps: {
-        popperPlacement: "top-start",
-        selected: selectedDate,
-      },
-      inputProps: {
-        ...Props[field],
-      },
-      callBack: (value) => {
-        let formatValue =
-          field == "reserveDate" ? toLocalDate(value) : toLocalTime(value);
-        setValue(field, formatValue);
-      },
-    };
-  };
-  const autocompleteProps = (field, path) => {
-    return {
-      ...inputProps(field, path),
-      refreshDataOnChangeText: (value) => searchPerson("teacher", value),
-    };
-  };
-  const searchPerson = async (type, value) => {
-    try {
-      return type == "teacher"
-        ? await TeacherApi.search(value)
-        : await StudentApi.search(value);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  );
 
   return (
     <Layout style={styles.container}>
-      <MyModal {...modalTeacherCreateProps} />
-
       <Text style={styles.headerText}>{i18n.t(header)}</Text>
       <Layout style={styles.row}>
         <Layout style={styles.left}>
-          <MySelect {...selectProps("subjectDepartment")} />
-          <MyInput {...inputProps("reserveRoom")} />
+          <MySelect {...propStore.select("council.subjectDepartment")} />
+          <MyInput {...propStore.input("council.reserveRoom")} />
         </Layout>
         <Layout style={styles.right}>
-          <DatePickerInputKitten {...pickerInputProps("reserveDate")} />
+          <DatePicker {...propStore.input("council.reserveDate")} />
           <Layout style={styles.row}>
             <Layout style={styles.left}>
-              <TimePickerInput {...pickerInputProps("startTime")} />
+              <MySelect
+                {...propStore.select("council.startTime")}
+                value={form.startTime ? form.startTime.slice(0, 5) : null}
+              />
             </Layout>
             <Layout style={styles.right}>
-              <TimePickerInput {...pickerInputProps("endTime")} />
+              <MySelect
+                {...propStore.select("council.endTime")}
+                value={form.endTime ? form.endTime.slice(0, 5) : null}
+              />
             </Layout>
           </Layout>
         </Layout>
       </Layout>
 
       <List
-        data={Props["councilRole"].arrValue}
-        renderItem={({ index, item }) => {
+        data={councilTeacherProps}
+        renderItem={({ item }) => {
           return (
             <Layout>
               <MyAutocomplete
-                {...autocompleteProps(
-                  "councilTeacher",
-                  "teacher" + "[" + index + "]"
-                )}
-                label={item.value[i18n.language]}
-                value={getRenderText(form.teacher?.[index])}
+                {...item}
                 onBlur={(submitValue) => {
                   if (submitValue == "") {
-                    setValue("teacherId" + "[" + index + "]", null);
-                    setValue("teacher" + "[" + index + "]", null);
+                    item.callBack(null);
                   }
                 }}
               />

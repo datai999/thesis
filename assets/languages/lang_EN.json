@@ -1,24 +1,65 @@
 {
   "council": {
     "create": "Create council",
-    "reserveDate": "Reserve date",
-    "reserveRoom": "Reserve room",
-    "reserveRoom_type": "Type reserve room",
-    "role": "",
-    "role_type": "Select role",
-    "teacher": "",
-    "teacher_type": "Type name of teacher",
+    "reserveDate": {
+      "label": "Reserve date",
+      "placeholder": "Select date"
+    },
+    "reserveRoom": {
+      "label": "Reserve room",
+      "placeholder": "Type reserve room"
+    },
     "update": "Update council"
+  },
+  "criterion": {
+    "create": "Create criterion",
+    "description": {
+      "label": "Description",
+      "placeholder": "Type description"
+    },
+    "existed": "Existence criteria",
+    "name": {
+      "label": "Criterion name",
+      "placeholder": "Type criterion name"
+    },
+    "selected": "Selected criteria",
+    "update": "Update criterion"
+  },
+  "criterionTemplate": {
+    "allTemplate": "All template",
+    "applyThesis": "Apply for thesis",
+    "applyTopic": "Apply for topic",
+    "create": "Create criterion template",
+    "criterion": {
+      "label": "Criterions",
+      "placeholder": "Type criterion"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Type description"
+    },
+    "name": {
+      "label": "Criterion template name",
+      "placeholder": "Type criterion template name"
+    },
+    "scoreMethod": {
+      "label": "Score method",
+      "placeholder": "Select score method"
+    },
+    "thesisTemplate": "Thesis template",
+    "topicTemplate": "Topic template",
+    "update": "Update criterion template"
   },
   "description": "Description",
   "description_ph_en": "Type description",
   "description_ph_vi": "Type description in Vietnamese",
   "educationMethod": "Education method",
   "educationMethodSelect": "Select education method",
-  "mainTask": "Main task",
+  "topicTask": "Topic task",
   "major": "Major",
   "majorSelect": "Select major",
   "origin": {
+    "cancel": "Cancel",
     "create": "Create",
     "degree": "Degree",
     "email": "Email",
@@ -29,12 +70,15 @@
     "new": "NEW",
     "page": "Page",
     "record": "Record",
+    "submit": "Submit",
     "topic": "Topic",
     "total": "Total",
     "update": "Update",
     "version": "Version"
   },
   "page": {
+    "criterion": "Criterion",
+    "evaluate": "Evaluate",
     "home": "Home",
     "person": {
       "get": "Person",
@@ -78,8 +122,16 @@
       "placeholder": "Select subject department"
     }
   },
-  "semester": "Semester",
-  "semesterSelect": "Select semester",
+  "screen": {
+    "criterion": "Criterion screen",
+    "evaluate": "Evaluate screen",
+    "home": "Home screen",
+    "person": "Person screen",
+    "setting": "Setting screen",
+    "student": "Student screen",
+    "teacher": "Teacher screen",
+    "topic": "Topic screen"
+  },
   "student": {
     "code": "Student code",
     "code_type": "Type student code",
@@ -108,8 +160,14 @@
   },
   "thesisTask": "Thesis task",
   "time": {
-    "end": "End time",
-    "start": "Start time"
+    "end": {
+      "label": "End time",
+      "placeholder": "Select end time"
+    },
+    "start": {
+      "label": "Start time",
+      "placeholder": "Select start time"
+    }
   },
   "topic": {
     "create": "Create topic",
@@ -121,9 +179,9 @@
       "label": "Education method",
       "placeholder": "Select education method"
     },
-    "mainTask": {
-      "label": "Main task",
-      "placeholder": "Type main task"
+    "topicTask": {
+      "label": "Topic task",
+      "placeholder": "Type topic task"
     },
     "major": {
       "label": "Major",
@@ -137,15 +195,11 @@
       "label": "Min student",
       "placeholder": "Select min student"
     },
-    "topicName": {
-      "label": "Topic name",
-      "placeholder": "Type topic name"
-    },
     "name_ph_en": "Type topic name",
     "name_ph_vi": "Type topic name in Vietnamese",
     "semester": {
       "label": "Semester",
-      "placeholder": "Select semester"
+      "placeholder": "Type semester"
     },
     "task_main_ph_en": "Type main task",
     "task_main_ph_vi": "Type main task in Vietnamese",
@@ -155,9 +209,13 @@
       "label": "Thesis task",
       "placeholder": "Type thesis task"
     },
-    "topicCode": {
+    "code": {
       "label": "Topic code",
       "placeholder": "Type topic code"
+    },
+    "name": {
+      "label": "Topic name",
+      "placeholder": "Type topic name"
     },
     "update": "Update topic"
   }

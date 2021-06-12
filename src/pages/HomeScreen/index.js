@@ -1,8 +1,13 @@
-import React, { Component } from "react";
+import { Layout } from "@ui-kitten/components";
+import React from "react";
 import { Text } from "react-native";
 
-export default class HomeScreen extends Component {
-  render() {
-    return <Text style={{ textAlign: "center" }}>HomeScreen</Text>;
-  }
-}
+const HomeScreen = () => {
+  return (
+    <Layout>
+      <Text>Home screen</Text>
+    </Layout>
+  );
+};
+
+export default HomeScreen;

@@ -4,16 +4,17 @@ import OverTable from "components/screen/OverTable";
 import React from "react";
 
 const arrLink = [
-  "topic.topicCode",
+  "topic.code",
   "topic.semester",
   "topic.major",
   "topic.educationMethod",
-  "topic.topicName",
+  "topic.name",
   "topicAssign.guideTeacher",
   "topicAssign.executeStudent",
 ];
 
 const overTableProps = {
+  title: "screen.topic",
   links: arrLink,
   form: TopicForm,
   api: TopicAssignApi,

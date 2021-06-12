@@ -8,7 +8,7 @@ import { getRenderText } from "utils";
 import i18n from "utils/i18n";
 
 const headerData = {
-  topicCode: {
+  code: {
     label: "topic.code",
   },
   semester: {
@@ -20,7 +20,7 @@ const headerData = {
   educationMethod: {
     label: "educationMethod",
   },
-  topicName: {
+  name: {
     label: "topic.name",
   },
   guideTeacher: {

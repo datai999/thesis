@@ -1,7 +1,7 @@
 import styles from "./styles";
 const setting = {
-  topicCode: {
-    title: "topicCode",
+  code: {
+    title: "code",
     hide: false,
     style: [styles.column, styles.code],
   },
@@ -20,10 +20,10 @@ const setting = {
     hide: false,
     style: [styles.column, styles.educationMethod],
   },
-  topicName: {
-    title: "topicName",
+  name: {
+    title: "name",
     hide: false,
-    style: [styles.column, styles.topicName],
+    style: [styles.column, styles.name],
   },
   guideTeacher: {
     title: "guideTeacher",

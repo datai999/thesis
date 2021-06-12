@@ -62,11 +62,10 @@ export const createProps = (form) => {
       };
     },
     select: (path) => {
-      const linkResult = getLinkProps(path);
-      const apiPath = linkResult.api ?? path;
+      const inputProp = inputProps(path);
       return {
-        ...inputProps(path),
-        ...Props[apiPath.split(".").pop()],
+        ...Props[inputProp.api.split(".").pop()],
+        ...inputProp,
       };
     },
   };
@@ -83,32 +82,19 @@ export const getLinkProps = (paths) => {
 
     let linkProps = _.get(link, path);
 
-    if (linkProps == null || linkProps.api == null) {
-      linkProps = {
-        ...linkProps,
-        api: path,
-      };
-    }
-
-    if (linkProps.link != null) {
-      let linkRefProps = _.get(link, linkProps.link);
-      linkProps = {
-        ...linkRefProps,
-        ...linkProps,
-        api:
-          path.slice(path.indexOf(".") + 1, path.lastIndexOf(".") + 1) +
-          linkRefProps.api,
-      };
-    }
+    let apiValue = path;
+    if (linkProps != null && linkProps.api == null)
+      apiValue = path.split(".").pop();
 
     linkProps = {
+      api: apiValue,
       ...linkProps,
-      label: linkProps.label
-        ? i18n.t(linkProps.label)
-        : i18n.t(linkProps.api + ".label"),
-      placeholder: linkProps.placeholder
-        ? i18n.t(linkProps.placeholder)
-        : i18n.t(linkProps.api + ".placeholder"),
+      label: linkProps?.label
+        ? i18n.t(linkProps?.label)
+        : i18n.t(path + ".label"),
+      placeholder: linkProps?.placeholder
+        ? i18n.t(linkProps?.placeholder)
+        : i18n.t(path + ".placeholder"),
     };
 
     if (lang) {
@@ -120,6 +106,7 @@ export const getLinkProps = (paths) => {
         placeholder: linkProps.placeholder
           ? linkProps.placeholder + tail
           : null,
+        api: linkProps.api + "." + lastPath,
       };
     }
     return linkProps;

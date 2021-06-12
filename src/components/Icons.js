@@ -1,5 +1,5 @@
+import { Avatar, Icon } from "@ui-kitten/components";
 import React from "react";
-import { Icon } from "@ui-kitten/components";
 
 export const HomeIcon = (props) => <Icon {...props} name="home-outline" />;
 
@@ -38,3 +38,17 @@ export const ArrowDownIcon = (props) => (
 );
 
 export const CloseIcon = (props) => <Icon {...props} name="close-outline" />;
+
+export const CheckMarkSquare = (props) => (
+  <Icon {...props} name="checkmark-square-outline" />
+);
+
+export const PeopleIcon = (props) => <Icon {...props} name="people-outline" />;
+
+export const PantoneIcon = (props) => (
+  <Icon {...props} name="pantone-outline" />
+);
+
+export const EditIcon = (props) => <Icon {...props} name="edit-outline" />;
+
+export const AvatarIcon = () => <Avatar source={require("assets/icon.png")} />;

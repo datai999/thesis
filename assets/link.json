@@ -1,57 +1,119 @@
 {
+  "council": {
+    "endTime": {
+      "arrValue": [
+        "07:00",
+        "07:30",
+        "08:00",
+        "08:30",
+        "09:00",
+        "09:30",
+        "10:00",
+        "10:30",
+        "11:00",
+        "11:30",
+        "12:00",
+        "12:30",
+        "13:00",
+        "13:30",
+        "14:00",
+        "14:30",
+        "15:00",
+        "15:30",
+        "16:00",
+        "16:30",
+        "17:00",
+        "17:30",
+        "18:00",
+        "18:30",
+        "19:00",
+        "19:30",
+        "20:00",
+        "20:30"
+      ],
+      "label": "time.end.label",
+      "placeholder": "time.end.placeholder"
+    },
+    "reserveDate": {},
+    "reserveRoom": {},
+    "startTime": {
+      "arrValue": [
+        "07:00",
+        "07:30",
+        "08:00",
+        "08:30",
+        "09:00",
+        "09:30",
+        "10:00",
+        "10:30",
+        "11:00",
+        "11:30",
+        "12:00",
+        "12:30",
+        "13:00",
+        "13:30",
+        "14:00",
+        "14:30",
+        "15:00",
+        "15:30",
+        "16:00",
+        "16:30",
+        "17:00",
+        "17:30",
+        "18:00",
+        "18:30",
+        "19:00",
+        "19:30",
+        "20:00",
+        "20:30"
+      ],
+      "label": "time.start.label",
+      "placeholder": "time.start.placeholder"
+    },
+    "subjectDepartment": {
+      "label": "person.subjectDepartment.label",
+      "placeholder": "person.subjectDepartment.placeholder"
+    },
+    "teacher": {
+      "placeholder": "person.name.placeholder"
+    }
+  },
+  "criterion": {
+    "description": {
+      "multiline": true,
+      "numberOfLines": 5
+    },
+    "name": {}
+  },
+  "criterionTemplate": {
+    "criterion": {},
+    "description": {
+      "multiline": true,
+      "numberOfLines": 5
+    },
+    "name": {},
+    "scoreMethod": {}
+  },
   "person": {
-    "code": {
-      "api": "code",
-      "label": "person.code.label",
-      "placeholder": "person.code.placeholder"
-    },
-    "degree": {
-      "api": "degree",
-      "label": "person.degree.label",
-      "placeholder": "person.degree.placeholder"
-    },
-    "educationMethod": {
-      "api": "educationMethod",
-      "label": "person.educationMethod.label",
-      "placeholder": "person.educationMethod.placeholder"
-    },
+    "code": {},
+    "degree": {},
+    "educationMethod": {},
     "email": {
-      "api": "email",
       "label": "Email",
       "placeholder": "HCMUT email"
     },
-    "gender": {
-      "api": "gender",
-      "label": "person.gender.label",
-      "placeholder": "person.gender.placeholder"
-    },
-    "major": {
-      "api": "major",
-      "label": "person.major.label",
-      "placeholder": "person.major.placeholder"
-    },
-    "name": {
-      "api": "name",
-      "label": "person.name.label",
-      "placeholder": "person.name.placeholder"
-    },
-    "phone": {
-      "api": "phone",
-      "label": "person.phone.label",
-      "placeholder": "person.phone.placeholder"
-    },
-    "subjectDepartment": {
-      "api": "subjectDepartment",
-      "label": "person.subjectDepartment.label",
-      "placeholder": "person.subjectDepartment.placeholder"
-    }
+    "gender": {},
+    "major": {},
+    "name": {},
+    "phone": {},
+    "subjectDepartment": {}
   },
   "topic": {
     "description": {
       "multiline": true,
       "numberOfLines": 5
     },
-    "mainTask": {
+    "topicTask": {
       "multiline": true,
       "numberOfLines": 5
     },

@@ -16,6 +16,8 @@ import i18n from "utils/i18n";
 let form = {};
 
 const TopicForm = {
+  create: i18n.t("topic.create"),
+  update: i18n.t("topic.update"),
   body: (data) => {
     let header = "topic.create";
     if (data != null) {
@@ -37,15 +39,11 @@ const FormLayout = ({ header }) => {
     ...CouncilForm,
     visible: councilVisible,
     cancel: () => setCouncilVisible(false),
-    body: () =>
-      CouncilForm.body(
-        form?.council == null ? "council.create" : "council.update",
-        form.council
-      ),
+    body: () => CouncilForm.body(form.council),
     submit: async () => {
       try {
         let response = await CouncilForm.submit();
-        form["council"] = response;
+        form.council = response;
         return response;
       } catch (error) {
         console.log(error);
@@ -57,12 +55,7 @@ const FormLayout = ({ header }) => {
     <Layout style={{ flex: 1 }}>
       <MyModal {...modalCouncilProps} />
 
-      <Layout
-        style={{
-          flexDirection: "row",
-          marginBottom: 15,
-        }}
-      >
+      <Layout style={{ flexDirection: "row" }}>
         <IconButton
           icon="translate"
           onPress={() => setMultiLang(multiLang + 1)}
@@ -73,15 +66,15 @@ const FormLayout = ({ header }) => {
         style={{ maxHeight: "100%" }}
         contentContainerStyle={{ paddingHorizontal: 24 }}
       >
-        <MyInput {...propStore.inputLang("topic.topicName")} />
+        <MyInput {...propStore.inputLang("topic.name")} />
         {multiLang > 0 && (
-          <MyInput {...propStore.inputToggleLang("topic.topicName")} />
+          <MyInput {...propStore.inputToggleLang("topic.name")} />
         )}
 
         <Layout style={styles.row}>
           <Layout style={styles.left}>
             <MySelect {...propStore.select("topic.educationMethod")} />
-            <MySelect {...propStore.select("topic.semester")} />
+            <MyInput {...propStore.select("topic.semester")} />
             <MyMultiSelect {...propStore.select("topic.major")} />
             <MyAutocompleteTag
               {...propStore.inputSearch("topicAssign.guideTeacher", TeacherApi)}
@@ -94,7 +87,7 @@ const FormLayout = ({ header }) => {
             />
           </Layout>
           <Layout style={styles.right}>
-            <MyInput {...propStore.input("topic.topicCode")} />
+            <MyInput {...propStore.input("topic.code")} />
             <MySelect {...propStore.select("topic.minStudentTake")} />
             <MySelect {...propStore.select("topic.maxStudentTake")} />
             <MyAutocompleteTag
@@ -118,9 +111,9 @@ const FormLayout = ({ header }) => {
           </Layout>
         </Layout>
 
-        <MyInput {...propStore.inputLang("topic.mainTask")} />
+        <MyInput {...propStore.inputLang("topic.topicTask")} />
         {multiLang > 0 && (
-          <MyInput {...propStore.inputToggleLang("topic.mainTask")} />
+          <MyInput {...propStore.inputToggleLang("topic.topicTask")} />
         )}
         <MyInput {...propStore.inputLang("topic.thesisTask")} />
         {multiLang > 0 && (

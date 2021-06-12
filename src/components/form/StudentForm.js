@@ -11,6 +11,8 @@ import i18n from "utils/i18n";
 let form = {};
 
 const StudentForm = {
+  create: i18n.t("student.create"),
+  update: i18n.t("student.update"),
   body: (data) => {
     let header = "student.create";
     if (data != null) {

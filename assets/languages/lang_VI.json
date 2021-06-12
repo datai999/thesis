@@ -1,40 +1,84 @@
 {
   "council": {
-    "create": "Tạo hội đồng",
-    "reserveDate": "Đặt ngày",
-    "reserveRoom": "Đặt phòng",
-    "reserveRoom_type": "Nhập phòng",
-    "role": "",
-    "role_type": "Chọn vai trò",
-    "teacher": "",
-    "teacher_type": "Nhập tên của giảng viên",
+    "create": "Thêm hội đồng",
+    "reserveDate": {
+      "label": "Ngày hẹn sẵn",
+      "placeholder": "Chọn ngày"
+    },
+    "reserveRoom": {
+      "label": "Phòng đặt sẵn",
+      "placeholder": "Nhập phòng"
+    },
     "update": "Cập nhật hội đồng"
+  },
+  "criterion": {
+    "create": "Thêm tiêu chí",
+    "description": {
+      "label": "Mô tả",
+      "placeholder": "Nhập mô tả"
+    },
+    "existed": "Tiêu chí tham khảo",
+    "name": {
+      "label": "Tên tiêu chí",
+      "placeholder": "Nhập tên tiêu chí"
+    },
+    "selected": "Tiêu chí đã chọn",
+    "update": "Cập nhật tiêu chí"
+  },
+  "criterionTemplate": {
+    "allTemplate": "Tất cả mẫu tiêu chí",
+    "applyThesis": "Áp dụng cho luận văn",
+    "applyTopic": "Áp dụng cho đề tài",
+    "create": "Thêm mẫu tiêu chí",
+    "criterion": {
+      "label": "Các tiêu chí",
+      "placeholder": "Nhập tiêu chí"
+    },
+    "description": {
+      "label": "Mô tả",
+      "placeholder": "Nhập mô tả"
+    },
+    "name": {
+      "label": "Tên mẫu tiêu chí",
+      "placeholder": "Nhập tên mẫu tiêu chí"
+    },
+    "scoreMethod": {
+      "label": "Phương pháp chấm điểm",
+      "placeholder": "Chọn phương pháp chấm điểm"
+    },
+    "thesisTemplate": "Mẫu tiêu chí cho luận văn",
+    "topicTemplate": "Mẫu tiêu chí cho đề tài",
+    "update": "Cập nhật mẫu tiêu chí"
   },
   "description": "Mô tả",
   "description_ph_en": "Nhập mô tả bằng tiếng anh",
   "description_ph_vi": "Nhập mô tả",
   "educationMethod": "Phương thức đào tạo",
   "educationMethodSelect": "Chọn phương thức đào tạo",
-  "mainTask": "Nhiệm vụ chính",
+  "topicTask": "Nhiệm vụ giai đoạn đề cương",
   "major": "Chuyên ngành",
   "majorSelect": "Chọn chuyên nghành",
   "origin": {
-    "create": "Tạo",
+    "cancel": "Hủy bỏ",
+    "create": "Thêm",
     "degree": "Học vị",
     "email": "Email",
     "filter&Search": "Lọc và Tìm kiếm",
     "inEn": " bằng tiếng Anh",
     "inVi": " bằng tiếng Việt",
     "language": "Ngôn ngữ",
-    "new": "Tạo mới",
+    "new": "Thêm",
     "page": "Trang",
     "record": "Số bản ghi",
+    "submit": "Xác nhận",
     "topic": "Đề tài",
     "total": "Tổng trang",
     "update": "Cập nhật",
     "version": "Phiên bản"
   },
   "page": {
+    "criterion": "Tiêu chí",
+    "evaluate": "Đánh giá",
     "home": "Trang chủ",
     "person": {
       "get": "Con người",
@@ -78,8 +122,16 @@
       "placeholder": "Chọn phòng ban"
     }
   },
-  "semester": "Học kỳ",
-  "semesterSelect": "Chọn học kỳ",
+  "screen": {
+    "criterion": "Màn hình tiêu chí",
+    "evaluate": "Màn hình đánh giá",
+    "home": "Màn hình chính",
+    "person": "Màn hình nhân sự",
+    "setting": "Màn hình cài đặt",
+    "student": "Màn hình sinh viên",
+    "teacher": "Màn hình giảng viên",
+    "topic": "Màn hình đề tài"
+  },
   "student": {
     "code": "Mã số sinh viên",
     "code_type": "Nhập mã số sinh viên",
@@ -112,7 +164,7 @@
     "start": "Thời gian bắt đầu"
   },
   "topic": {
-    "create": "Tạo mới đề tài",
+    "create": "Thêm đề tài",
     "description": {
       "label": "Mô tả đề tài",
       "placeholder": "Nhập mô tả đề tài"
@@ -121,9 +173,9 @@
       "label": "Phương thức đào tạo",
       "placeholder": "Chọn phương thức đào tạo"
     },
-    "mainTask": {
-      "label": "Nhiệm vụ chính",
-      "placeholder": "Nhập nhiệm vụ chính"
+    "topicTask": {
+      "label": "Nhiệm vụ giai đoạn đề cương",
+      "placeholder": "Nhập nhiệm vụ giai đoạn đề cương"
     },
     "major": {
       "label": "Chuyên ngành",
@@ -137,15 +189,11 @@
       "label": "Số sinh viên tối thiểu",
       "placeholder": "Chọn số sinh viên"
     },
-    "topicName": {
-      "label": "Tên đề tài",
-      "placeholder": "Nhập tên đề tài"
-    },
     "name_ph_en": "Nhập tên đề tài bằng tiếng anh",
     "name_ph_vi": "Nhập tên đề tài",
     "semester": {
       "label": "Học kỳ",
-      "placeholder": "Chọn học kỳ"
+      "placeholder": "Nhập học kỳ"
     },
     "task_main_ph_en": "Nhập nhiệm vụ chính bằng tiếng anh",
     "task_main_ph_vi": "Nhập nhiệm vụ chính bằng tiếng việt",
@@ -155,9 +203,13 @@
       "label": "Nhiệm vụ giai đoạn luận văn",
       "placeholder": "Nhập nhiệm vụ giai đoạn luận văn"
     },
-    "topicCode": {
+    "code": {
       "label": "Mã đề tài",
       "placeholder": "Nhập mã đề tài"
+    },
+    "name": {
+      "label": "Tên đề tài",
+      "placeholder": "Nhập tên đề tài"
     },
     "update": "Cập nhật đề tài"
   }

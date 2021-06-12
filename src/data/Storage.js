@@ -1,7 +1,7 @@
 const Storage = {
   topic: new Array(3).fill({
-    topicCode: "123",
-    topicName: "Name of topic",
+    code: "123",
+    name: "Name of topic",
     guideTeacher: "Nguyen Thi Ai",
 
     semester: "202",
@@ -12,7 +12,7 @@ const Storage = {
 
     description: "description",
 
-    mainTask: "To do something",
+    topicTask: "To do something",
     thesisTask: "Todo something when thesis",
     node: "note",
 
