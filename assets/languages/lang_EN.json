@@ -55,7 +55,7 @@
   "description_ph_vi": "Type description in Vietnamese",
   "educationMethod": "Education method",
   "educationMethodSelect": "Select education method",
-  "mainTask": "Main task",
+  "topicTask": "Topic task",
   "major": "Major",
   "majorSelect": "Select major",
   "origin": {
@@ -181,9 +181,9 @@
       "label": "Education method",
       "placeholder": "Select education method"
     },
-    "mainTask": {
-      "label": "Main task",
-      "placeholder": "Type main task"
+    "topicTask": {
+      "label": "Topic task",
+      "placeholder": "Type topic task"
     },
     "major": {
       "label": "Major",

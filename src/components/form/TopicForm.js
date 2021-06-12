@@ -111,9 +111,9 @@ const FormLayout = ({ header }) => {
           </Layout>
         </Layout>
 
-        <MyInput {...propStore.inputLang("topic.mainTask")} />
+        <MyInput {...propStore.inputLang("topic.topicTask")} />
         {multiLang > 0 && (
-          <MyInput {...propStore.inputToggleLang("topic.mainTask")} />
+          <MyInput {...propStore.inputToggleLang("topic.topicTask")} />
         )}
         <MyInput {...propStore.inputLang("topic.thesisTask")} />
         {multiLang > 0 && (

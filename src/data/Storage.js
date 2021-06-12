@@ -12,7 +12,7 @@ const Storage = {
 
     description: "description",
 
-    mainTask: "To do something",
+    topicTask: "To do something",
     thesisTask: "Todo something when thesis",
     node: "note",
 
