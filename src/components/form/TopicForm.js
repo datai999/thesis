@@ -66,9 +66,9 @@ const FormLayout = ({ header }) => {
         style={{ maxHeight: "100%" }}
         contentContainerStyle={{ paddingHorizontal: 24 }}
       >
-        <MyInput {...propStore.inputLang("topic.topicName")} />
+        <MyInput {...propStore.inputLang("topic.name")} />
         {multiLang > 0 && (
-          <MyInput {...propStore.inputToggleLang("topic.topicName")} />
+          <MyInput {...propStore.inputToggleLang("topic.name")} />
         )}
 
         <Layout style={styles.row}>

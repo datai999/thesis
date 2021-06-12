@@ -20,7 +20,7 @@ const headerData = {
   educationMethod: {
     label: "educationMethod",
   },
-  topicName: {
+  name: {
     label: "topic.name",
   },
   guideTeacher: {

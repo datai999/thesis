@@ -8,7 +8,7 @@ const arrLink = [
   "topic.semester",
   "topic.major",
   "topic.educationMethod",
-  "topic.topicName",
+  "topic.name",
   "topicAssign.guideTeacher",
   "topicAssign.executeStudent",
 ];

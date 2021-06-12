@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     width: 110,
     textAlign: "center",
   },
-  topicName: {
+  name: {
     width: 300,
   },
   guideTeacher: {

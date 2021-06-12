@@ -1,10 +1,10 @@
 import {
-  Drawer,
-  DrawerGroup,
-  DrawerItem,
-  IndexPath,
-  Layout,
-  Text
+    Drawer,
+    DrawerGroup,
+    DrawerItem,
+    IndexPath,
+    Layout,
+    Text
 } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import { AvatarIcon } from "components/Icons";
@@ -32,7 +32,7 @@ const EvaluateTarget = ({ topicAssign }) => {
                 <Text category="s1">{getRenderText(topic.topic.semester)}</Text>
               );
             }}
-            title={topic.topic?.topicName?.[i18n.language]}
+            title={topic.topic?.name?.[i18n.language]}
           >
             {topic.executeStudent?.map((student) => {
               return (

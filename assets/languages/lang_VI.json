@@ -207,7 +207,7 @@
       "label": "Mã đề tài",
       "placeholder": "Nhập mã đề tài"
     },
-    "topicName": {
+    "name": {
       "label": "Tên đề tài",
       "placeholder": "Nhập tên đề tài"
     },

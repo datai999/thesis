@@ -213,7 +213,7 @@
       "label": "Topic code",
       "placeholder": "Type topic code"
     },
-    "topicName": {
+    "name": {
       "label": "Topic name",
       "placeholder": "Type topic name"
     },
