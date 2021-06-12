@@ -4,7 +4,7 @@ import {
   DrawerGroup,
   DrawerItem,
   Layout,
-  Text,
+  Text
 } from "@ui-kitten/components";
 import {
   BookOpenIcon,
@@ -12,7 +12,7 @@ import {
   HomeIcon,
   PantoneIcon,
   PeopleIcon,
-  SettingIcon,
+  SettingIcon
 } from "components/Icons";
 import * as React from "react";
 import { StyleSheet } from "react-native";
@@ -74,7 +74,7 @@ const LeftMenu = ({ navigation, state, callback }) => {
       <Layout>
         <Divider />
         <Text style={styles.versionText}>
-          {i18n.t("origin.version")}: 6.06.02
+          {i18n.t("origin.version")}: 6.21.13
         </Text>
       </Layout>
     </Layout>
