@@ -41,7 +41,7 @@ export default function App() {
         <SafeAreaProvider>
           <NavigationContainer>
             <Navigator
-              initialRouteName="criterion"
+              initialRouteName="evaluate"
               drawerContent={(props) => (
                 <LeftMenu {...props} callback={setMode} />
               )}

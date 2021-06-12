@@ -3,13 +3,15 @@ import {
   DrawerGroup,
   DrawerItem,
   IndexPath,
-  Layout
+  Layout,
+  Text
 } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import { AvatarIcon } from "components/Icons";
 import TopNav from "components/screen/TopNav";
 import React from "react";
-import { ScrollView, StyleSheet, Text } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
+import { getRenderText } from "utils";
 import i18n from "utils/i18n";
 import { user } from "utils/user";
 
@@ -25,6 +27,11 @@ const EvaluateTarget = ({ topicAssign }) => {
         return (
           <DrawerGroup
             key={topic.id}
+            accessoryLeft={(props) => {
+              return (
+                <Text category="s1">{getRenderText(topic.topic.semester)}</Text>
+              );
+            }}
             title={topic.topic?.topicName?.[i18n.language]}
           >
             {topic.executeStudent?.map((student) => {
