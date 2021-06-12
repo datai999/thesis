@@ -4,7 +4,7 @@ import OverTable from "components/screen/OverTable";
 import React from "react";
 
 const arrLink = [
-  "topic.topicCode",
+  "topic.code",
   "topic.semester",
   "topic.major",
   "topic.educationMethod",

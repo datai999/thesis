@@ -1,7 +1,7 @@
 import styles from "./styles";
 const setting = {
-  topicCode: {
-    title: "topicCode",
+  code: {
+    title: "code",
     hide: false,
     style: [styles.column, styles.code],
   },

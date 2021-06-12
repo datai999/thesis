@@ -87,7 +87,7 @@ const FormLayout = ({ header }) => {
             />
           </Layout>
           <Layout style={styles.right}>
-            <MyInput {...propStore.input("topic.topicCode")} />
+            <MyInput {...propStore.input("topic.code")} />
             <MySelect {...propStore.select("topic.minStudentTake")} />
             <MySelect {...propStore.select("topic.maxStudentTake")} />
             <MyAutocompleteTag

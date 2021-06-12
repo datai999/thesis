@@ -209,7 +209,7 @@
       "label": "Thesis task",
       "placeholder": "Type thesis task"
     },
-    "topicCode": {
+    "code": {
       "label": "Topic code",
       "placeholder": "Type topic code"
     },
