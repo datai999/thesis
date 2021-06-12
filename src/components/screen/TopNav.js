@@ -28,7 +28,7 @@ const TopNav = ({ title }) => {
       title={i18n.t(title)}
       alignment="center"
       accessoryLeft={renderMenuAction}
-      accessoryRight={renderSettingsAction}
+      // accessoryRight={renderSettingsAction}
     />
   );
 };
