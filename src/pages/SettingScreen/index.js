@@ -1,4 +1,5 @@
 import { Layout, Toggle } from "@ui-kitten/components";
+import AxiosClient from "api/AxiosClient";
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 import i18n from "utils/i18n";
@@ -13,9 +14,10 @@ const SettingScreen = () => {
         <Toggle
           checked={english}
           onChange={(nextCheck) => {
-            i18n
-              .changeLanguage(nextCheck ? "en" : "vi")
-              .then(() => setEnglish(nextCheck));
+            i18n.changeLanguage(nextCheck ? "en" : "vi").then(() => {
+              AxiosClient.defaults.headers.common.lang = i18n.language;
+              setEnglish(nextCheck);
+            });
           }}
         >
           {english ? "EN" : "VI"}
