@@ -32,6 +32,10 @@ const fetch = () => {
 export default function App() {
   const [mode, setMode] = React.useState();
 
+  function renderPersonScreen() {
+    return <PersonScreen mode={mode} />;
+  }
+
   React.useEffect(() => {
     fetch();
   }, []);
@@ -53,11 +57,7 @@ export default function App() {
               <Screen name="home" component={HomeScreen} />
               <Screen name="topic" component={TopicScreen} />
               <Screen name="evaluate" component={EvaluateScreen} />
-              <Screen
-                name="person"
-                // warning Looks like you're passing an inline function for 'component'
-                component={() => <PersonScreen mode={mode} />}
-              />
+              <Screen name="person" component={renderPersonScreen} />
               <Screen name="criterion" component={CriterionScreen} />
               <Screen name="setting" component={SettingScreen} />
             </Navigator>
