@@ -55,6 +55,7 @@ export default function App() {
               <Screen name="evaluate" component={EvaluateScreen} />
               <Screen
                 name="person"
+                // warning Looks like you're passing an inline function for 'component'
                 component={() => <PersonScreen mode={mode} />}
               />
               <Screen name="criterion" component={CriterionScreen} />
