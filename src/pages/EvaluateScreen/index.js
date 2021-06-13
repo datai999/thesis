@@ -28,7 +28,12 @@ const EvaluateTarget = ({ topicAssign }) => {
             key={topic.id}
             accessoryLeft={(props) => {
               return (
-                <Text category="s1">{getRenderText(topic.topic.semester)}</Text>
+                <Text category="s1">
+                  {getRenderText(topic.topic.semester)
+                    .toString()
+                    .substring(0, 3)
+                    .padEnd(3, "0")}
+                </Text>
               );
             }}
             title={topic.topic?.name?.[i18n.language]}
