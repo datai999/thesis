@@ -2,7 +2,7 @@ import axios from "axios";
 import i18n from "utils/i18n";
 
 const config = {
-  baseURL: "http://192.168.15.112:8080/api",
+  baseURL: "https://datai-thesis.herokuapp.com/api",
   headers: {
     "content-type": "application/json",
     Lang: i18n.language,
