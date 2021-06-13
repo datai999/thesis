@@ -1,26 +1,23 @@
-import { useNavigation } from "@react-navigation/native";
 import { TopNavigation, TopNavigationAction } from "@ui-kitten/components";
 import { MenuIcon, SettingIcon } from "components/Icons";
 import React from "react";
 import i18n from "utils/i18n";
+import { navHolder } from "utils/nav";
 
 const renderMenuAction = () => {
-  const navigation = useNavigation();
   return (
     <TopNavigationAction
       icon={MenuIcon}
-      onPress={() => navigation.toggleDrawer()}
+      onPress={() => navHolder.toggleDrawer()}
     />
   );
 };
 
 const renderSettingsAction = () => {
-  const navigation = useNavigation();
-
   return (
     <TopNavigationAction
       icon={SettingIcon}
-      onPress={() => navigation.navigate("setting")}
+      onPress={() => navHolder.navigate("setting")}
     />
   );
 };
@@ -28,10 +25,11 @@ const renderSettingsAction = () => {
 const TopNav = ({ title }) => {
   return (
     <TopNavigation
+      style={{ backgroundColor: "#3366FF" }}
       title={i18n.t(title)}
       alignment="center"
       accessoryLeft={renderMenuAction}
-      accessoryRight={renderSettingsAction}
+      // accessoryRight={renderSettingsAction}
     />
   );
 };

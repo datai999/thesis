@@ -5,9 +5,11 @@ import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import { ConstApi } from "api/br";
 import LeftMenu from "components/LeftMenu";
+import TopNav from "components/screen/TopNav";
 import Props from "data/Props";
 import * as React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import NavHolder from "utils/nav";
 import CriterionScreen from "./src//pages/CriterionScreen";
 import EvaluateScreen from "./src//pages/EvaluateScreen";
 import HomeScreen from "./src/pages/HomeScreen";
@@ -30,6 +32,10 @@ const fetch = () => {
 export default function App() {
   const [mode, setMode] = React.useState();
 
+  function renderPersonScreen() {
+    return <PersonScreen mode={mode} />;
+  }
+
   React.useEffect(() => {
     fetch();
   }, []);
@@ -40,19 +46,18 @@ export default function App() {
       <ApplicationProvider {...eva} theme={eva.light}>
         <SafeAreaProvider>
           <NavigationContainer>
+            <TopNav />
             <Navigator
-              initialRouteName="evaluate"
-              drawerContent={(props) => (
-                <LeftMenu {...props} callback={setMode} />
-              )}
+              initialRouteName="topic"
+              drawerContent={(props) => {
+                NavHolder.setNav(props.navigation);
+                return <LeftMenu {...props} callback={setMode} />;
+              }}
             >
               <Screen name="home" component={HomeScreen} />
               <Screen name="topic" component={TopicScreen} />
               <Screen name="evaluate" component={EvaluateScreen} />
-              <Screen
-                name="person"
-                component={() => <PersonScreen mode={mode} />}
-              />
+              <Screen name="person" component={renderPersonScreen} />
               <Screen name="criterion" component={CriterionScreen} />
               <Screen name="setting" component={SettingScreen} />
             </Navigator>

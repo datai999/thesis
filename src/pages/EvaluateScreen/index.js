@@ -1,17 +1,17 @@
 import {
-    Drawer,
-    DrawerGroup,
-    DrawerItem,
-    IndexPath,
-    Layout,
-    Text
+  Drawer,
+  DrawerGroup,
+  DrawerItem,
+  IndexPath,
+  Layout,
+  Text
 } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import { AvatarIcon } from "components/Icons";
-import TopNav from "components/screen/TopNav";
+import { MyInput } from "components/Input";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
-import { getRenderText } from "utils";
+import { createProps, getRenderText } from "utils";
 import i18n from "utils/i18n";
 import { user } from "utils/user";
 
@@ -29,7 +29,12 @@ const EvaluateTarget = ({ topicAssign }) => {
             key={topic.id}
             accessoryLeft={(props) => {
               return (
-                <Text category="s1">{getRenderText(topic.topic.semester)}</Text>
+                <Text category="s1">
+                  {getRenderText(topic.topic.semester)
+                    .toString()
+                    .substring(0, 3)
+                    .padEnd(3, "0")}
+                </Text>
               );
             }}
             title={topic.topic?.name?.[i18n.language]}
@@ -50,13 +55,16 @@ const EvaluateTarget = ({ topicAssign }) => {
   );
 };
 
-const EvaluateScreen = () => {
+let topicAssignStore = [];
+
+const EvaluateScreen = ({ navigation }) => {
   const [topicAssign, setTopicAssign] = React.useState();
 
   const fetchTopicAssign = async () => {
     try {
       TopicAssignApi.searchByTeacherCode(user.code).then((result) => {
         setTopicAssign(result);
+        topicAssignStore = result;
       });
     } catch (error) {
       console.log(error);
@@ -64,16 +72,44 @@ const EvaluateScreen = () => {
   };
 
   React.useEffect(() => {
-    fetchTopicAssign();
-  }, []);
+    return navigation.addListener("focus", fetchTopicAssign);
+  }, [navigation]);
+
+  const topicAssignSearchProps = {
+    ...createProps().input("topic.name"),
+    callBack: (value) => {
+      if (value == null || value == "undefined" || value == "") {
+        setTopicAssign(topicAssignStore);
+      } else {
+        setTopicAssign(
+          topicAssignStore.filter((item) => {
+            return item.topic.name[i18n.language]?.includes(value);
+          })
+        );
+      }
+    },
+    label: null,
+    size: "small",
+    style: { margin: 5 },
+  };
 
   return (
     <Layout style={styles.container}>
-      <TopNav title={"screen.evaluate"} />
       <Layout style={styles.row}>
         <Layout style={styles.left}>
-          <ScrollView>
-            <EvaluateTarget topicAssign={topicAssign} />
+          <MyInput {...topicAssignSearchProps} />
+          <Layout style={styles.row}>
+            <Text category="label" style={{ marginLeft: 5 }}>
+              {i18n.t("topic.semester.label")}
+            </Text>
+            <Text category="label" style={{ marginLeft: 10 }}>
+              {i18n.t("topic.name.label")}
+            </Text>
+          </Layout>
+          <ScrollView style={styles.left}>
+            <Layout style={{ backgroundColor: "red" }}>
+              <EvaluateTarget topicAssign={topicAssign} />
+            </Layout>
           </ScrollView>
         </Layout>
 
@@ -92,7 +128,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   row: {
-    flex: 1,
     flexDirection: "row",
   },
   left: {

@@ -195,8 +195,6 @@
       "label": "Min student",
       "placeholder": "Select min student"
     },
-    "name_ph_en": "Type topic name",
-    "name_ph_vi": "Type topic name in Vietnamese",
     "semester": {
       "label": "Semester",
       "placeholder": "Type semester"
