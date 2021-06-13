@@ -55,6 +55,8 @@ const EvaluateTarget = ({ topicAssign }) => {
   );
 };
 
+let topicAssignStore = [];
+
 const EvaluateScreen = ({ navigation }) => {
   const [topicAssign, setTopicAssign] = React.useState();
 
@@ -62,6 +64,7 @@ const EvaluateScreen = ({ navigation }) => {
     try {
       TopicAssignApi.searchByTeacherCode(user.code).then((result) => {
         setTopicAssign(result);
+        topicAssignStore = result;
       });
     } catch (error) {
       console.log(error);
@@ -74,10 +77,17 @@ const EvaluateScreen = ({ navigation }) => {
 
   const topicAssignSearchProps = {
     ...createProps().input("topic.name"),
-    callBack: (value) =>
-      TopicAssignApi.searchByTopic(value).then((response) =>
-        setTopicAssign(response)
-      ),
+    callBack: (value) => {
+      if (value == null || value == "undefined" || value == "") {
+        setTopicAssign(topicAssignStore);
+      } else {
+        setTopicAssign(
+          topicAssignStore.filter((item) => {
+            return item.topic.name[i18n.language]?.includes(value);
+          })
+        );
+      }
+    },
     label: null,
     size: "small",
     style: { margin: 5 },
