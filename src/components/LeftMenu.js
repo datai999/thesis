@@ -74,7 +74,7 @@ const LeftMenu = ({ navigation, state, callback }) => {
       <Layout>
         <Divider />
         <Text style={styles.versionText}>
-          {i18n.t("origin.version")}: 6.21.13
+          {i18n.t("origin.version")}: 6.13.23
         </Text>
       </Layout>
     </Layout>
