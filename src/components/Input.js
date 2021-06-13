@@ -47,8 +47,8 @@ const MyAutocomplete = ({ callBack, ...props }) => {
 
   return (
     <Autocomplete
-      {...props}
       style={{ marginVertical: 5 }}
+      {...props}
       label={i18n.t(props.label)}
       placeholder={i18n.t(props.placeholder)}
       value={getRenderText(value)}
