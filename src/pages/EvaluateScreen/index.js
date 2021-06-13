@@ -75,8 +75,18 @@ const EvaluateScreen = ({ navigation }) => {
     <Layout style={styles.container}>
       <Layout style={styles.row}>
         <Layout style={styles.left}>
-          <ScrollView>
-            <EvaluateTarget topicAssign={topicAssign} />
+          <Layout style={styles.row}>
+            <Text category="label" style={{ marginLeft: 5 }}>
+              {i18n.t("topic.semester.label")}
+            </Text>
+            <Text category="label" style={{ marginLeft: 10 }}>
+              {i18n.t("topic.name.label")}
+            </Text>
+          </Layout>
+          <ScrollView style={styles.left}>
+            <Layout style={{ backgroundColor: "red" }}>
+              <EvaluateTarget topicAssign={topicAssign} />
+            </Layout>
           </ScrollView>
         </Layout>
 
@@ -95,11 +105,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   row: {
-    flex: 1,
     flexDirection: "row",
   },
   left: {
     flex: 1,
+    backgroundColor: "red",
   },
   right: {
     flex: 5,

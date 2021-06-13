@@ -189,8 +189,6 @@
       "label": "Số sinh viên tối thiểu",
       "placeholder": "Chọn số sinh viên"
     },
-    "name_ph_en": "Nhập tên đề tài bằng tiếng anh",
-    "name_ph_vi": "Nhập tên đề tài",
     "semester": {
       "label": "Học kỳ",
       "placeholder": "Nhập học kỳ"
