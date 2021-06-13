@@ -25,8 +25,8 @@ const MyInput = ({ callBack, ...props }) => {
         if (props.onBlur) return props.onBlur(currentValue);
         return null;
       }}
-      {...props}
       style={{ marginVertical: 5 }}
+      {...props}
       label={i18n.t(props.label)}
       value={getRenderText(currentValue)}
       placeholder={i18n.t(props.placeholder)}
