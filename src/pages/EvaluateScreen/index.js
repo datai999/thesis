@@ -8,9 +8,10 @@ import {
 } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import { AvatarIcon } from "components/Icons";
+import { MyInput } from "components/input";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
-import { getRenderText } from "utils";
+import { createProps, getRenderText } from "utils";
 import i18n from "utils/i18n";
 import { user } from "utils/user";
 
@@ -71,10 +72,22 @@ const EvaluateScreen = ({ navigation }) => {
     return navigation.addListener("focus", fetchTopicAssign);
   }, [navigation]);
 
+  const topicAssignSearchProps = {
+    ...createProps().input("topic.name"),
+    callBack: (value) =>
+      TopicAssignApi.searchByTopic(value).then((response) =>
+        setTopicAssign(response)
+      ),
+    label: null,
+    size: "small",
+    style: { margin: 5 },
+  };
+
   return (
     <Layout style={styles.container}>
       <Layout style={styles.row}>
         <Layout style={styles.left}>
+          <MyInput {...topicAssignSearchProps} />
           <Layout style={styles.row}>
             <Text category="label" style={{ marginLeft: 5 }}>
               {i18n.t("topic.semester.label")}
@@ -109,7 +122,6 @@ const styles = StyleSheet.create({
   },
   left: {
     flex: 1,
-    backgroundColor: "red",
   },
   right: {
     flex: 5,
