@@ -4,4 +4,10 @@ const local = {
   version: "6.15.02",
 };
 
-export default local;
+const staging = {
+  ...local,
+  domain: "https://datai999.github.io/thesis/",
+  baseURL: "https://datai-thesis.herokuapp.com/api",
+};
+
+export default staging;
