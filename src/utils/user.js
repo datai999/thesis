@@ -43,11 +43,14 @@ function loginWithEmailLink(email) {
       .auth()
       .signInWithEmailLink(email, window.location.href)
       .then((result) => {
+        console.log("sign in result");
+        console.log(result);
         window.localStorage.removeItem("emailForSignIn");
         navToHome(email);
       })
       .catch((error) => {
         // TODO throw login error
+        console.log("signInWithEmailLink error");
         alert("signInWithEmailLink error" + error);
       });
   } else {
@@ -65,11 +68,14 @@ function logout() {
     .auth()
     .signOut()
     .then(() => {
+      console.log("sign out sussecs");
       userStorage.isLogin = false;
       loginListeners.forEach((listener) => listener(false));
       navHolder.navigate("home");
     })
     .catch((error) => {
+      console.log("sign out error");
+      console.log(error);
       alert("sign out error" + error);
     });
 }
