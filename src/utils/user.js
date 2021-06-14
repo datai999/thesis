@@ -64,9 +64,20 @@ function notifyLogin() {
 }
 
 function logout() {
-  userStorage.isLogin = false;
-  loginListeners.forEach((listener) => listener(false));
-  navHolder.navigate("home");
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      console.log("sign out sussecs");
+      userStorage.isLogin = false;
+      loginListeners.forEach((listener) => listener(false));
+      navHolder.navigate("home");
+    })
+    .catch((error) => {
+      console.log("sign out error");
+      console.log(error);
+      alert("sign out error" + error);
+    });
 }
 
 export let user = {
