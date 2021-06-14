@@ -22,7 +22,7 @@ const renderSettingsAction = () => {
   );
 };
 
-const TopNav = ({ title }) => {
+const TopNav = ({ title = "origin.appName" }) => {
   return (
     <TopNavigation
       style={{ backgroundColor: "#3366FF" }}

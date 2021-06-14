@@ -48,7 +48,7 @@ export default function App() {
           <NavigationContainer>
             <TopNav />
             <Navigator
-              initialRouteName="topic"
+              initialRouteName="home"
               drawerContent={(props) => {
                 NavHolder.setNav(props.navigation);
                 return <LeftMenu {...props} callback={setMode} />;
