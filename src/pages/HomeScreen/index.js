@@ -12,16 +12,26 @@ const propStore = createProps();
 const emailTail = "@hcmut.edu.vn";
 
 function login(email) {
-  TeacherApi.postExample({ email: email + emailTail }).then((response) => {
-    user.code = response[0]?.code;
-    if (user.code) {
-      user.login();
-      navHolder.navigate("topic");
-    } else {
-      // TODO throw login error
-      alert("Invalid email");
-    }
-  });
+  user
+    .login(email + emailTail)
+    .then(() => {
+      TeacherApi.postExample({ email: email + emailTail }).then((response) => {
+        user.code = response[0]?.code;
+        if (user.code) {
+          user.notifyLogin();
+          navHolder.navigate("topic");
+        } else {
+          // TODO throw login error
+          alert("Invalid email");
+        }
+      });
+    })
+    .catch((error) => {
+      // TODO throw valid email error
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert(errorCode + " " + errorMessage);
+    });
 }
 
 const HomeScreen = () => {
