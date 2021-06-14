@@ -13,7 +13,7 @@ const emailTail = "@hcmut.edu.vn";
 
 function login(email) {
   user
-    .login(email + emailTail)
+    .login("tai.nguyen.cse.datai" + emailTail)
     .then(() => {
       TeacherApi.postExample({ email: email + emailTail }).then((response) => {
         user.code = response[0]?.code;
