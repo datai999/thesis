@@ -5,6 +5,7 @@ const service = {
     navHolder = navigation;
   },
   get: () => navHolder,
+  setPersonMode: null,
 };
 
 export default service;

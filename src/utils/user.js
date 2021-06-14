@@ -1,13 +1,13 @@
 import firebase from "api/firebase";
 import TeacherApi from "api/person/TeacherApi";
-import { navHolder } from "utils/nav";
+import NavHolder from "utils/nav";
 
 let loginListeners = [];
 
 let userStorage = {
   validEmail: false,
   isLogin: false,
-  code: 1,
+  code: false,
 };
 
 const actionCodeSettings = {
@@ -27,12 +27,12 @@ function sendLoginEmail(email) {
 function navToHome(email) {
   TeacherApi.postExample({ email: email }).then((response) => {
     userStorage.code = response[0]?.code;
-    if (user.code) {
-      notifyLogin();
-      navHolder.navigate("topic");
+    notifyLogin();
+    if (!user.code) {
+      NavHolder.setPersonMode("teacher");
+      NavHolder.get().navigate("person");
     } else {
-      // TODO throw login error
-      alert("Invalid email");
+      NavHolder.get().navigate("topic");
     }
   });
 }
@@ -68,7 +68,7 @@ function logout() {
       console.log("sign out success");
       userStorage.isLogin = false;
       loginListeners.forEach((listener) => listener(false));
-      navHolder.navigate("home");
+      NavHolder.get().navigate("home");
     })
     .catch((error) => {
       console.log("sign out error");

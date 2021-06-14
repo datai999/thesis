@@ -37,6 +37,7 @@ export default function App() {
   }
 
   React.useEffect(() => {
+    NavHolder.setPersonMode = setMode;
     fetch();
   }, []);
 
