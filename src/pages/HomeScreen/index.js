@@ -1,12 +1,27 @@
 import { Button, Layout, Text } from "@ui-kitten/components";
+import TeacherApi from "api/person/TeacherApi";
 import { MyInput } from "components/Input";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { createProps } from "utils";
 import i18n from "utils/i18n";
+import { navHolder } from "utils/nav";
+import { user } from "utils/user";
 
 const propStore = createProps();
 const emailTail = "@hcmut.edu.vn";
+
+function login(email) {
+  TeacherApi.postExample({ email: email + emailTail }).then((response) => {
+    user.code = response[0]?.code;
+    if (user.code) {
+      navHolder.navigate("topic");
+    } else {
+      // TODO throw login error
+      alert("Invalid email");
+    }
+  });
+}
 
 const HomeScreen = () => {
   const [email, setEmail] = React.useState("");
@@ -18,14 +33,10 @@ const HomeScreen = () => {
     callBack: (nextValue) => setEmail(nextValue),
   };
 
-  function login() {
-    console.log(email + emailTail);
-  }
-
   return (
     <Layout style={styles.container}>
       <MyInput {...emailProps} />
-      <Button onPress={login}>{i18n.t("origin.login")}</Button>
+      <Button onPress={() => login(email)}>{i18n.t("origin.login")}</Button>
     </Layout>
   );
 };

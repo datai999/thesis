@@ -1,3 +1,3 @@
 export let user = {
-  code: 123,
+  code: 1,
 };
