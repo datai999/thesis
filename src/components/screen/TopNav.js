@@ -11,6 +11,13 @@ import { navHolder } from "utils/nav";
 import { user } from "utils/user";
 
 const renderMenuAction = () => {
+  const [login, setLogin] = React.useState(user.isLogin);
+
+  React.useEffect(() => {
+    user.loginListeners.push(setLogin);
+  }, []);
+
+  if (!login) return null;
   return (
     <TopNavigationAction
       icon={MenuIcon}
