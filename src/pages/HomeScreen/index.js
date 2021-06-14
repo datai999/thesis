@@ -15,6 +15,7 @@ function login(email) {
   TeacherApi.postExample({ email: email + emailTail }).then((response) => {
     user.code = response[0]?.code;
     if (user.code) {
+      user.login();
       navHolder.navigate("topic");
     } else {
       // TODO throw login error

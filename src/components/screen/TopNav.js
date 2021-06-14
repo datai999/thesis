@@ -1,8 +1,9 @@
 import { TopNavigation, TopNavigationAction } from "@ui-kitten/components";
-import { MenuIcon, SettingIcon } from "components/Icons";
+import { AvatarIcon, MenuIcon } from "components/Icons";
 import React from "react";
 import i18n from "utils/i18n";
 import { navHolder } from "utils/nav";
+import { user } from "utils/user";
 
 const renderMenuAction = () => {
   return (
@@ -13,11 +14,18 @@ const renderMenuAction = () => {
   );
 };
 
-const renderSettingsAction = () => {
+const renderPersonAction = () => {
+  const [login, setLogin] = React.useState(false);
+
+  React.useEffect(() => {
+    user.loginListeners.push(setLogin);
+  }, []);
+
+  if (!login) return null;
   return (
     <TopNavigationAction
-      icon={SettingIcon}
-      onPress={() => navHolder.navigate("setting")}
+      icon={AvatarIcon}
+      onPress={() => navHolder.navigate("home")}
     />
   );
 };
@@ -29,7 +37,7 @@ const TopNav = ({ title = "origin.appName" }) => {
       title={i18n.t(title)}
       alignment="center"
       accessoryLeft={renderMenuAction}
-      // accessoryRight={renderSettingsAction}
+      accessoryRight={renderPersonAction}
     />
   );
 };
