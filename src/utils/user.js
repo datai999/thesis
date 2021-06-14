@@ -51,6 +51,7 @@ function loginWithEmailLink(email) {
       .catch((error) => {
         // TODO throw login error
         console.log("signInWithEmailLink error");
+        console.log(error);
         alert("signInWithEmailLink error" + error);
       });
   } else {
@@ -68,7 +69,7 @@ function logout() {
     .auth()
     .signOut()
     .then(() => {
-      console.log("sign out sussecs");
+      console.log("sign out success");
       userStorage.isLogin = false;
       loginListeners.forEach((listener) => listener(false));
       navHolder.navigate("home");
