@@ -1,4 +1,5 @@
 import { Button, Layout, Text } from "@ui-kitten/components";
+import firebase from "api/firebase";
 import { MyInput } from "components/Input";
 import React from "react";
 import { StyleSheet } from "react-native";
@@ -19,8 +20,19 @@ const HomeScreen = () => {
   const [email, setEmail] = React.useState(
     getHeadMail(window.localStorage.getItem("emailForSignIn"))
   );
+  const [confirmEmail, setConfirmEmail] = React.useState(false);
 
-  React.useEffect(() => user.loginWithEmailLink(email + emailTail), []);
+  React.useEffect(() => {
+    if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+      if (window.localStorage.getItem("emailForSignIn") != email + emailTail) {
+        setConfirmEmail(true);
+        return;
+      }
+      user.loginWithEmailLink(email + emailTail);
+    } else {
+      window.localStorage.removeItem("emailForSignIn");
+    }
+  }, []);
 
   const emailProps = {
     ...propStore.input("login.email"),
@@ -30,12 +42,23 @@ const HomeScreen = () => {
     callBack: (nextValue) => setEmail(nextValue),
   };
 
+  function loginBtnPress() {
+    if (confirmEmail) {
+      user.loginWithEmailLink(email + emailTail);
+    } else {
+      user.sendLoginEmail(email + emailTail);
+    }
+  }
+
   return (
     <Layout style={styles.container}>
+      {confirmEmail && (
+        <Text style={{ margin: 15 }} category="h6">
+          {i18n.t("login.emailConfirm")}
+        </Text>
+      )}
       <MyInput {...emailProps} />
-      <Button onPress={() => user.sendLoginEmail(email + emailTail)}>
-        {i18n.t("origin.login")}
-      </Button>
+      <Button onPress={loginBtnPress}>{i18n.t("origin.login")}</Button>
     </Layout>
   );
 };

@@ -59,7 +59,8 @@
     "email": {
       "label": "HCMUT mail",
       "placeholder": "Type HCMUT mail"
-    }
+    },
+    "emailConfirm": "Please confirm your email"
   },
   "major": "Major",
   "majorSelect": "Select major",

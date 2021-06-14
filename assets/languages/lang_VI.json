@@ -59,7 +59,8 @@
     "email": {
       "label": "HCMUT mail",
       "placeholder": "Nhập HCMUT mail"
-    }
+    },
+    "emailConfirm": "Xác nhận lại email"
   },
   "major": "Chuyên ngành",
   "majorSelect": "Chọn chuyên nghành",

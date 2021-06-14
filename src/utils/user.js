@@ -38,25 +38,21 @@ function navToHome(email) {
 }
 
 function loginWithEmailLink(email) {
-  if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
-    firebase
-      .auth()
-      .signInWithEmailLink(email, window.location.href)
-      .then((result) => {
-        console.log("sign in result");
-        console.log(result);
-        window.localStorage.removeItem("emailForSignIn");
-        navToHome(email);
-      })
-      .catch((error) => {
-        // TODO throw login error
-        console.log("signInWithEmailLink error");
-        console.log(error);
-        alert("signInWithEmailLink error" + error);
-      });
-  } else {
-    window.localStorage.removeItem("emailForSignIn");
-  }
+  firebase
+    .auth()
+    .signInWithEmailLink(email, window.location.href)
+    .then((result) => {
+      console.log("sign in result");
+      console.log(result);
+      window.localStorage.removeItem("emailForSignIn");
+      navToHome(email);
+    })
+    .catch((error) => {
+      // TODO throw login error
+      console.log("signInWithEmailLink error");
+      console.log(error);
+      alert("signInWithEmailLink error" + error);
+    });
 }
 
 function notifyLogin() {
