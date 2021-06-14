@@ -1,6 +1,8 @@
 import { Avatar, Icon } from "@ui-kitten/components";
 import React from "react";
 
+export const AvatarIcon = () => <Avatar source={require("assets/icon.png")} />;
+
 export const HomeIcon = (props) => <Icon {...props} name="home-outline" />;
 
 export const BookOpenIcon = (props) => (
@@ -51,4 +53,6 @@ export const PantoneIcon = (props) => (
 
 export const EditIcon = (props) => <Icon {...props} name="edit-outline" />;
 
-export const AvatarIcon = () => <Avatar source={require("assets/icon.png")} />;
+export const ExternalLinkIcon = (props) => (
+  <Icon {...props} name="external-link-outline" />
+);
