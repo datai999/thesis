@@ -20,7 +20,7 @@ const renderMenuAction = () => {
 };
 
 const renderPersonAction = () => {
-  const [login, setLogin] = React.useState(false);
+  const [login, setLogin] = React.useState(user.isLogin);
   const [visible, setVisible] = React.useState(false);
 
   React.useEffect(() => {
@@ -40,7 +40,15 @@ const renderPersonAction = () => {
       anchor={renderPersonAvt}
       onBackdropPress={() => setVisible(false)}
     >
-      <Button size="small" appearance="ghost" accessoryRight={ExternalLinkIcon}>
+      <Button
+        size="small"
+        appearance="ghost"
+        accessoryRight={ExternalLinkIcon}
+        onPress={() => {
+          setVisible(false);
+          user.logout();
+        }}
+      >
         {i18n.t("origin.logout")}
       </Button>
     </Popover>

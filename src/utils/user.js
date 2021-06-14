@@ -1,3 +1,5 @@
+import { navHolder } from "utils/nav";
+
 let loginListeners = [];
 
 let userStorage = {
@@ -10,8 +12,15 @@ function login() {
   loginListeners.forEach((listener) => listener(true));
 }
 
+function logout() {
+  userStorage.isLogin = false;
+  loginListeners.forEach((listener) => listener(false));
+  navHolder.navigate("home");
+}
+
 export let user = {
   ...userStorage,
   loginListeners: loginListeners,
   login: login,
+  logout: logout,
 };
