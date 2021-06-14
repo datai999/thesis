@@ -3,6 +3,7 @@ import firebase from "api/firebase";
 import { MyInput } from "components/Input";
 import React from "react";
 import { StyleSheet } from "react-native";
+import env from "src/env";
 import { createProps } from "utils";
 import i18n from "utils/i18n";
 import { user } from "utils/user";
@@ -59,6 +60,9 @@ const HomeScreen = () => {
       )}
       <MyInput {...emailProps} />
       <Button onPress={loginBtnPress}>{i18n.t("origin.login")}</Button>
+      <Text style={styles.versionText}>
+        {i18n.t("origin.version")}: {env.version}
+      </Text>
     </Layout>
   );
 };
@@ -72,6 +76,11 @@ const styles = StyleSheet.create({
   },
   email: {
     margin: 15,
+  },
+  versionText: {
+    position: "absolute",
+    left: 0,
+    bottom: 0,
   },
 });
 

@@ -1,5 +1,6 @@
 import firebase from "api/firebase";
 import TeacherApi from "api/person/TeacherApi";
+import env from "src/env";
 import NavHolder from "utils/nav";
 
 let loginListeners = [];
@@ -11,7 +12,7 @@ let userStorage = {
 };
 
 const actionCodeSettings = {
-  url: "http://localhost:19006/",
+  url: env.domain,
   handleCodeInApp: true,
 };
 
