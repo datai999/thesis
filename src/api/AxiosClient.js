@@ -1,8 +1,9 @@
 import axios from "axios";
+import env from "src/env";
 import i18n from "utils/i18n";
 
 const config = {
-  baseURL: "https://datai-thesis.herokuapp.com/api",
+  baseURL: env.baseURL,
   headers: {
     "content-type": "application/json",
     Lang: i18n.language,

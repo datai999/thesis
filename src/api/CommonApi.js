@@ -2,6 +2,12 @@ import AxiosClient from "./AxiosClient";
 
 const CommonApi = (baseURL = "") => {
   return {
+    get: (url, config) => {
+      return AxiosClient.get(baseURL + url, config);
+    },
+    post: (url, data, config) => {
+      return AxiosClient.post(baseURL + url, data, config);
+    },
     getAll: () => {
       return AxiosClient.get(baseURL);
     },
@@ -11,11 +17,8 @@ const CommonApi = (baseURL = "") => {
     create: (data) => {
       return AxiosClient.post(baseURL, data);
     },
-    get: (url, config) => {
-      return AxiosClient.get(baseURL + url, config);
-    },
-    post: (url, data, config) => {
-      return AxiosClient.post(baseURL + url, data, config);
+    postExample: (example) => {
+      return AxiosClient.post(baseURL + "/example", example);
     },
   };
 };

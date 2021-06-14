@@ -55,10 +55,17 @@
   "description_ph_vi": "Type description in Vietnamese",
   "educationMethod": "Education method",
   "educationMethodSelect": "Select education method",
-  "topicTask": "Topic task",
+  "login": {
+    "email": {
+      "label": "HCMUT mail",
+      "placeholder": "Type HCMUT mail"
+    },
+    "emailConfirm": "Please confirm your email"
+  },
   "major": "Major",
   "majorSelect": "Select major",
   "origin": {
+    "appName": "Thesis evaluation system",
     "cancel": "Cancel",
     "create": "Create",
     "degree": "Degree",
@@ -67,6 +74,8 @@
     "inEn": " in English",
     "inVi": " in Vietnamese",
     "language": "Language",
+    "login": "Login",
+    "logout": "Logout",
     "new": "NEW",
     "page": "Page",
     "record": "Record",
@@ -170,6 +179,10 @@
     }
   },
   "topic": {
+    "code": {
+      "label": "Topic code",
+      "placeholder": "Type topic code"
+    },
     "create": "Create topic",
     "description": {
       "label": "Description",
@@ -178,10 +191,6 @@
     "educationMethod": {
       "label": "Education method",
       "placeholder": "Select education method"
-    },
-    "topicTask": {
-      "label": "Topic task",
-      "placeholder": "Type topic task"
     },
     "major": {
       "label": "Major",
@@ -195,6 +204,10 @@
       "label": "Min student",
       "placeholder": "Select min student"
     },
+    "name": {
+      "label": "Topic name",
+      "placeholder": "Type topic name"
+    },
     "semester": {
       "label": "Semester",
       "placeholder": "Type semester"
@@ -207,14 +220,11 @@
       "label": "Thesis task",
       "placeholder": "Type thesis task"
     },
-    "code": {
-      "label": "Topic code",
-      "placeholder": "Type topic code"
-    },
-    "name": {
-      "label": "Topic name",
-      "placeholder": "Type topic name"
+    "topicTask": {
+      "label": "Topic task",
+      "placeholder": "Type topic task"
     },
     "update": "Update topic"
-  }
+  },
+  "topicTask": "Topic task"
 }

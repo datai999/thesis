@@ -55,10 +55,17 @@
   "description_ph_vi": "Nhập mô tả",
   "educationMethod": "Phương thức đào tạo",
   "educationMethodSelect": "Chọn phương thức đào tạo",
-  "topicTask": "Nhiệm vụ giai đoạn đề cương",
+  "login": {
+    "email": {
+      "label": "HCMUT mail",
+      "placeholder": "Nhập HCMUT mail"
+    },
+    "emailConfirm": "Xác nhận lại email"
+  },
   "major": "Chuyên ngành",
   "majorSelect": "Chọn chuyên nghành",
   "origin": {
+    "appName": "Hệ thống đánh giá luận văn",
     "cancel": "Hủy bỏ",
     "create": "Thêm",
     "degree": "Học vị",
@@ -67,6 +74,8 @@
     "inEn": " bằng tiếng Anh",
     "inVi": " bằng tiếng Việt",
     "language": "Ngôn ngữ",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
     "new": "Thêm",
     "page": "Trang",
     "record": "Số bản ghi",
@@ -164,6 +173,10 @@
     "start": "Thời gian bắt đầu"
   },
   "topic": {
+    "code": {
+      "label": "Mã đề tài",
+      "placeholder": "Nhập mã đề tài"
+    },
     "create": "Thêm đề tài",
     "description": {
       "label": "Mô tả đề tài",
@@ -172,10 +185,6 @@
     "educationMethod": {
       "label": "Phương thức đào tạo",
       "placeholder": "Chọn phương thức đào tạo"
-    },
-    "topicTask": {
-      "label": "Nhiệm vụ giai đoạn đề cương",
-      "placeholder": "Nhập nhiệm vụ giai đoạn đề cương"
     },
     "major": {
       "label": "Chuyên ngành",
@@ -189,6 +198,10 @@
       "label": "Số sinh viên tối thiểu",
       "placeholder": "Chọn số sinh viên"
     },
+    "name": {
+      "label": "Tên đề tài",
+      "placeholder": "Nhập tên đề tài"
+    },
     "semester": {
       "label": "Học kỳ",
       "placeholder": "Nhập học kỳ"
@@ -201,14 +214,11 @@
       "label": "Nhiệm vụ giai đoạn luận văn",
       "placeholder": "Nhập nhiệm vụ giai đoạn luận văn"
     },
-    "code": {
-      "label": "Mã đề tài",
-      "placeholder": "Nhập mã đề tài"
-    },
-    "name": {
-      "label": "Tên đề tài",
-      "placeholder": "Nhập tên đề tài"
+    "topicTask": {
+      "label": "Nhiệm vụ giai đoạn đề cương",
+      "placeholder": "Nhập nhiệm vụ giai đoạn đề cương"
     },
     "update": "Cập nhật đề tài"
-  }
+  },
+  "topicTask": "Nhiệm vụ giai đoạn đề cương"
 }

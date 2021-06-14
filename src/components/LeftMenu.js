@@ -16,6 +16,7 @@ import {
 } from "components/Icons";
 import * as React from "react";
 import { StyleSheet } from "react-native";
+import env from "src/env";
 import i18n from "utils/i18n";
 
 const LeftMenu = ({ navigation, state, callback }) => {
@@ -74,7 +75,7 @@ const LeftMenu = ({ navigation, state, callback }) => {
       <Layout>
         <Divider />
         <Text style={styles.versionText}>
-          {i18n.t("origin.version")}: 6.14.01
+          {i18n.t("origin.version")}: {env.version}
         </Text>
       </Layout>
     </Layout>
