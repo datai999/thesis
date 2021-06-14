@@ -1,4 +1,5 @@
 import firebase from "api/firebase";
+import TeacherApi from "api/person/TeacherApi";
 import { navHolder } from "utils/nav";
 
 let loginListeners = [];
@@ -14,9 +15,48 @@ const actionCodeSettings = {
   handleCodeInApp: true,
 };
 
-const login = (email) => {
-  return firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings);
-};
+function sendLoginEmail(email) {
+  return firebase
+    .auth()
+    .sendSignInLinkToEmail(email, actionCodeSettings)
+    .then(() => {
+      window.localStorage.setItem("emailForSignIn", email);
+    });
+}
+
+function navToHome(email) {
+  TeacherApi.postExample({ email: email }).then((response) => {
+    userStorage.code = response[0]?.code;
+    if (user.code) {
+      notifyLogin();
+      navHolder.navigate("topic");
+    } else {
+      // TODO throw login error
+      alert("Invalid email");
+    }
+  });
+}
+
+function loginWithEmailLink(email) {
+  if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+    firebase
+      .auth()
+      .signInWithEmailLink(email, window.location.href)
+      .then((result) => {
+        console.log("sign in result");
+        console.log(result);
+        window.localStorage.removeItem("emailForSignIn");
+        navToHome(email);
+      })
+      .catch((error) => {
+        // TODO throw login error
+        console.log("signInWithEmailLink error");
+        alert("signInWithEmailLink error" + error);
+      });
+  } else {
+    window.localStorage.removeItem("emailForSignIn");
+  }
+}
 
 function notifyLogin() {
   userStorage.isLogin = true;
@@ -32,7 +72,7 @@ function logout() {
 export let user = {
   ...userStorage,
   loginListeners: loginListeners,
-  login: login,
+  sendLoginEmail: sendLoginEmail,
+  loginWithEmailLink: loginWithEmailLink,
   logout: logout,
-  notifyLogin: notifyLogin,
 };
