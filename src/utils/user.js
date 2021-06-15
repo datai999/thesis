@@ -57,6 +57,38 @@ function loginWithEmailLink(email) {
     });
 }
 
+function createUserWithEmailPassword(email, password) {
+  return firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      userStorage.user = userCredential.user;
+      console.log("createUserWithEmailPassword");
+      console.log(userStorage.user);
+    })
+    .catch((error) => {
+      console.log("loginWithEmailPassword");
+      console.log(error);
+      alert(error.message);
+    });
+}
+
+function loginWithEmailPassword(email, password) {
+  return firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      userStorage.user = userCredential.user;
+      console.log("loginWithEmailPassword");
+      console.log(userStorage.user);
+    })
+    .catch((error) => {
+      console.log("loginWithEmailPassword");
+      console.log(error);
+      alert(error.message);
+    });
+}
+
 function notifyLogin() {
   userStorage.isLogin = true;
   loginListeners.forEach((listener) => listener(true));
@@ -84,5 +116,7 @@ export let user = {
   loginListeners: loginListeners,
   sendLoginEmail: sendLoginEmail,
   loginWithEmailLink: loginWithEmailLink,
+  createUserWithEmailPassword: createUserWithEmailPassword,
+  loginWithEmailPassword: loginWithEmailPassword,
   logout: logout,
 };

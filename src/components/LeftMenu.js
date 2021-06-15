@@ -16,10 +16,16 @@ import {
 import * as React from "react";
 import { StyleSheet } from "react-native";
 import env from "src/env";
+import { langHolder } from "utils";
 import i18n from "utils/i18n";
 
 const LeftMenu = ({ navigation, state, callback }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(null);
+  const [lang, setLang] = React.useState(i18n.languages);
+
+  React.useEffect(() => {
+    langHolder.listeners.push(setLang);
+  }, [lang]);
 
   return (
     <Layout style={styles.container}>

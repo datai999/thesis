@@ -60,3 +60,7 @@ export const ExternalLinkIcon = (props) => (
 export const DownLoadIcon = (props) => (
   <Icon {...props} name="download-outline" />
 );
+
+export const EyeIcon = (props) => <Icon {...props} name="eye" />;
+
+export const EyeOffIcon = (props) => <Icon {...props} name="eye-off" />;
