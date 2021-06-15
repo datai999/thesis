@@ -12,6 +12,8 @@ const staging = {
   ...local,
   domain: "https://datai999.github.io/thesis/",
   baseURL: "https://datai-thesis.herokuapp.com/api",
+  isLogin: false,
+  initialRouteName: "home",
 };
 
 export default staging;
