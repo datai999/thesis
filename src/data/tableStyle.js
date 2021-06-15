@@ -29,7 +29,26 @@ export default StyleSheet.create({
   guideTeacher: {
     ...commonStyle,
   },
+  email: {
+    ...commonStyle,
+  },
   executeStudent: {
     ...commonStyle,
+  },
+  gender: {
+    ...commonStyle,
+    maxWidth: 70,
+  },
+  phone: {
+    ...commonStyle,
+    maxWidth: 100,
+  },
+  degree: {
+    ...commonStyle,
+    maxWidth: 70,
+  },
+  subjectDepartment: {
+    ...commonStyle,
+    maxWidth: 150,
   },
 });
