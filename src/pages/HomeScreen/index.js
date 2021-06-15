@@ -4,7 +4,7 @@ import firebase from "api/firebase";
 import { DownLoadIcon } from "components/Icons";
 import { MyInput } from "components/Input";
 import React from "react";
-import { Platform, StyleSheet } from "react-native";
+import { ImageBackground, Platform, StyleSheet } from "react-native";
 import env from "src/env";
 import { createProps, emailTail, getHeadMail, langHolder } from "utils";
 import i18n from "utils/i18n";
@@ -66,34 +66,41 @@ const HomeScreen = () => {
   }
 
   return (
-    <Layout style={styles.container}>
-      {emailSend.length > emailTail.length && (
-        <Text category="s1">{i18n.t("login.emailCheck") + emailSend}</Text>
-      )}
-      {confirmEmail && (
-        <Text style={{ margin: 15 }} category="h6">
-          {i18n.t("login.emailConfirm")}
+    <ImageBackground
+      source={require("assets/img/cse2d.png")}
+      style={styles.image}
+      imageStyle={styles.imageStyle}
+    >
+      <Layout style={styles.container}>
+        {emailSend.length > emailTail.length && (
+          <Text category="s1">{i18n.t("login.emailCheck") + emailSend}</Text>
+        )}
+        {confirmEmail && (
+          <Text style={{ margin: 15 }} category="h6">
+            {i18n.t("login.emailConfirm")}
+          </Text>
+        )}
+        <MyInput {...emailProps} />
+        <MyInput {...passwordProps} />
+        <Button onPress={loginBtnPress}>{i18n.t("login.login")}</Button>
+        <Text style={styles.versionText}>
+          {i18n.t("origin.version")}: {env.version}
         </Text>
-      )}
-      <MyInput {...emailProps} />
-      <MyInput {...passwordProps} />
-      <Button onPress={loginBtnPress}>{i18n.t("login.login")}</Button>
-      <Text style={styles.versionText}>
-        {i18n.t("origin.version")}: {env.version}
-      </Text>
 
-      {Platform.OS == "web" && (
-        <Button
-          size="tiny"
-          appearance="outline"
-          accessoryLeft={DownLoadIcon}
-          onPress={() => window.open(env.androidLinkDown, "_blank")}
-          style={{ marginTop: 30 }}
-        >
-          {i18n.t("origin.androidApp")}
-        </Button>
-      )}
-    </Layout>
+        {Platform.OS == "web" && (
+          <Button
+            size="small"
+            appearance="outline"
+            status="control"
+            accessoryLeft={DownLoadIcon}
+            onPress={() => window.open(env.androidLinkDown, "_blank")}
+            style={{ marginTop: 30 }}
+          >
+            {i18n.t("origin.androidApp")}
+          </Button>
+        )}
+      </Layout>
+    </ImageBackground>
   );
 };
 
@@ -102,7 +109,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: 200,
+    paddingBottom: 150,
+    backgroundColor: "transparent",
   },
   email: { margin: 10, width: 320 },
   password: { margin: 10, width: 320 },
@@ -110,6 +118,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 0,
     bottom: 0,
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
+  imageStyle: {
+    opacity: 0.8,
   },
 });
 
