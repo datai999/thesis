@@ -17,7 +17,6 @@ const HomeScreen = () => {
   const [confirmEmail, setConfirmEmail] = React.useState(false);
   const [emailSend, setEmailSend] = React.useState("");
   const [lang, setLang] = React.useState(i18n.languages);
-  const [secureTextEntry, setSecureTextEntry] = React.useState(true);
   const [password, setPassword] = React.useState("");
 
   React.useEffect(() => {
@@ -51,12 +50,13 @@ const HomeScreen = () => {
   const passwordProps = {
     ...propStore.input("login.password"),
     value: password,
-    secureTextEntry: { secureTextEntry },
+    secureTextEntry: true,
     style: styles.password,
     callBack: (nextValue) => setPassword(nextValue),
   };
 
   function loginBtnPress() {
+    user.loginWithEmailPassword(email + emailTail, password);
     if (confirmEmail) {
       user.loginWithEmailLink(email + emailTail);
     } else {
