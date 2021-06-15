@@ -7,9 +7,9 @@ const local = {
   baseURL: "http://192.168.15.112:8080/api",
   androidLinkDown:
     "https://drive.google.com/file/d/1Z6N8NdVO6vm0BNkRfPGr-GveHMTS9TLu",
-  version: "6.15.23",
+  version: "6.16.00",
   isLogin: isLogin,
-  initialRouteName: isLogin ? "person" : "home",
+  initialRouteName: isLogin ? "topic" : "home",
 };
 
 const staging = {
