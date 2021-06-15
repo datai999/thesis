@@ -4,6 +4,8 @@ import { TableData } from "components/screen/TableData";
 import TopBar from "components/screen/TopBar";
 import React from "react";
 import { StyleSheet } from "react-native";
+import { langHolder } from "utils";
+import i18n from "utils/i18n";
 
 const defaultPage = {
   number: 0,
@@ -19,7 +21,12 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
   const [data, setData] = React.useState([]);
   const [page, setPage] = React.useState(defaultPage);
   const [sort, setSort] = React.useState(sortDefault);
+  const [lang, setLang] = React.useState(i18n.languages);
   const navigation = useNavigation();
+
+  React.useEffect(() => {
+    langHolder.listeners.push(setLang);
+  }, [lang]);
 
   const fetchData = async (nextPage) => {
     try {

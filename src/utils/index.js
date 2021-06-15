@@ -1,6 +1,9 @@
 import dateFormat from "dateformat";
 import i18n from "utils/i18n";
+import { langHolder } from "./holder";
 import { createProps, getLinkProps } from "./link";
+
+export { createProps, getLinkProps, langHolder };
 
 export function getRenderText(obj) {
   if (obj == null) return "";
@@ -33,8 +36,6 @@ export function toLocalDate(date) {
 export function toLocalTime(date) {
   return dateFormat(dateToLocal(date), "HH:MM");
 }
-
-export { createProps, getLinkProps };
 
 export const emailTail = "@hcmut.edu.vn";
 

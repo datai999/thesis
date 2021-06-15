@@ -1,11 +1,16 @@
 import {
   Button,
+  Layout,
   Popover,
+  Text,
+  Toggle,
   TopNavigation,
   TopNavigationAction
 } from "@ui-kitten/components";
+import AxiosClient from "api/AxiosClient";
 import { AvatarIcon, ExternalLinkIcon, MenuIcon } from "components/Icons";
 import React from "react";
+import { langHolder } from "utils";
 import i18n from "utils/i18n";
 import { navHolder } from "utils/nav";
 import { user } from "utils/user";
@@ -62,14 +67,45 @@ const renderPersonAction = () => {
   );
 };
 
-const TopNav = ({ title = "origin.appName" }) => {
+const renderRightAction = () => {
+  const [lang, setLang] = React.useState(i18n.languages);
+
+  React.useEffect(() => {
+    langHolder.notify(lang);
+  }, [lang]);
+
+  return (
+    <Layout style={{ flexDirection: "row", backgroundColor: "transparent" }}>
+      <Text style={{ margin: 10 }}>English</Text>
+      <Toggle
+        status="control"
+        checked={lang == "en"}
+        onChange={(nextCheck) => {
+          i18n.changeLanguage(nextCheck ? "en" : "vi").then(() => {
+            AxiosClient.defaults.headers.Lang = i18n.language;
+            setLang(nextCheck ? "en" : "vi");
+          });
+        }}
+      ></Toggle>
+      {renderPersonAction()}
+    </Layout>
+  );
+};
+
+const TopNav = () => {
+  const [lang, setLang] = React.useState(i18n.languages);
+
+  React.useEffect(() => {
+    langHolder.listeners.push(setLang);
+  }, [lang]);
+
   return (
     <TopNavigation
       style={{ backgroundColor: "#3366FF" }}
-      title={i18n.t(title)}
+      title={i18n.t("origin.appName")}
       alignment="center"
       accessoryLeft={renderMenuAction}
-      accessoryRight={renderPersonAction}
+      accessoryRight={renderRightAction}
     />
   );
 };
