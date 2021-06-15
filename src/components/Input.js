@@ -15,6 +15,10 @@ import i18n from "utils/i18n";
 const MyInput = ({ callBack, ...props }) => {
   const [currentValue, setCurrentValue] = React.useState(props.value || "");
 
+  React.useEffect(() => {
+    setCurrentValue(props.value);
+  }, [props.value]);
+
   return (
     <Input
       onChangeText={(nextValue) => {

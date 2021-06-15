@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Button, Layout, Text } from "@ui-kitten/components";
 import firebase from "api/firebase";
 import { MyInput } from "components/Input";
@@ -18,22 +19,25 @@ function getHeadMail(fullMail) {
 }
 
 const HomeScreen = () => {
-  const [email, setEmail] = React.useState(
-    getHeadMail(window.localStorage.getItem("emailForSignIn"))
-  );
+  const [email, setEmail] = React.useState();
   const [confirmEmail, setConfirmEmail] = React.useState(false);
   const [emailSend, setEmailSend] = React.useState("");
 
   React.useEffect(() => {
-    if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
-      if (window.localStorage.getItem("emailForSignIn") != email + emailTail) {
-        setConfirmEmail(true);
-        return;
+    const login = async () => {
+      let emailForSignIn = await AsyncStorage.getItem("emailForSignIn");
+      setEmail(getHeadMail(emailForSignIn));
+      if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+        if (emailForSignIn.length <= emailTail.length) {
+          setConfirmEmail(true);
+          return;
+        }
+        user.loginWithEmailLink(emailForSignIn);
+      } else {
+        AsyncStorage.removeItem("emailForSignIn");
       }
-      user.loginWithEmailLink(email + emailTail);
-    } else {
-      window.localStorage.removeItem("emailForSignIn");
-    }
+    };
+    login();
   }, []);
 
   const emailProps = {
