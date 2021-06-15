@@ -1,4 +1,6 @@
-const isLogin = true;
+import { Platform } from "react-native";
+
+let isLogin = Platform.OS == "android" ? true : false;
 
 const local = {
   domain: "http://localhost:19006/",
