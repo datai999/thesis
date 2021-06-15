@@ -11,8 +11,8 @@ import i18n from "utils/i18n";
 let form = {};
 
 const CriterionForm = {
-  create: "criterion.create",
-  update: "criterion.update",
+  create: i18n.t("criterion.create"),
+  update: i18n.t("criterion.update"),
   body: (data) => {
     let header = CriterionForm.create;
     if (data != null) {
@@ -35,7 +35,7 @@ const FormLayout = ({ header }) => {
           icon="translate"
           onPress={() => setMultiLang(multiLang + 1)}
         />
-        <Text style={styles.headerText}>{i18n.t(header)}</Text>
+        <Text style={styles.headerText}>{header}</Text>
       </Layout>
 
       <MyInput {...propStore.inputLang("criterion.name")} />

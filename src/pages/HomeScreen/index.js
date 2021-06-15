@@ -6,11 +6,18 @@ import { MyInput } from "components/Input";
 import React from "react";
 import { Platform, StyleSheet } from "react-native";
 import env from "src/env";
-import { createProps, emailTail, getHeadMail } from "utils";
+import { createProps } from "utils";
 import i18n from "utils/i18n";
 import { user } from "utils/user";
 
 const propStore = createProps();
+const emailTail = "@hcmut.edu.vn";
+
+function getHeadMail(fullMail) {
+  if (!fullMail) return "";
+  let mailLength = fullMail.length;
+  return fullMail.substring(0, mailLength - emailTail.length);
+}
 
 const HomeScreen = () => {
   const [email, setEmail] = React.useState();
@@ -35,9 +42,10 @@ const HomeScreen = () => {
   }, []);
 
   const emailProps = {
-    ...propStore.inputMail("login.email"),
+    ...propStore.input("login.email"),
     value: email,
     style: styles.email,
+    accessoryRight: () => <Text>{emailTail}</Text>,
     callBack: (nextValue) => setEmail(nextValue),
   };
 

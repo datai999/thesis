@@ -14,8 +14,8 @@ import i18n from "utils/i18n";
 let form = {};
 
 const CriterionTemplateForm = {
-  create: "criterionTemplate.create",
-  update: "criterionTemplate.update",
+  create: i18n.t("criterionTemplate.create"),
+  update: i18n.t("criterionTemplate.update"),
   body: (data) => {
     let header = CriterionTemplateForm.create;
     if (data != null) {

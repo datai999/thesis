@@ -6,8 +6,7 @@ import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import { ConstApi } from "api/br";
 import LeftMenu from "components/LeftMenu";
 import TopNav from "components/screen/TopNav";
-import constData from "data/constData";
-import _ from "lodash";
+import Props from "data/Props";
 import * as React from "react";
 import { StatusBar } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -25,7 +24,9 @@ const { Navigator, Screen } = createDrawerNavigator();
 const fetch = () => {
   ConstApi.getTypes().then((response) => {
     Object.keys(response).forEach((e) => {
-      _.set(constData, e + ".arrValue", response[e]);
+      if (Props[e]) {
+        Props[e].arrValue = response[e];
+      }
     });
   });
 };
