@@ -2,6 +2,7 @@ import { Button, Layout } from "@ui-kitten/components";
 import { EditIcon, PlusIcon } from "components/Icons";
 import MyModal from "components/Modal";
 import React from "react";
+import i18n from "utils/i18n";
 
 export const CreateBtn = ({ form, data, callBack, props }) => {
   const [createFormVisible, setCreateFormVisible] = React.useState(false);
@@ -34,7 +35,7 @@ export const CreateBtn = ({ form, data, callBack, props }) => {
         onPress={() => setCreateFormVisible(true)}
         {...props}
       >
-        {data ? form.update : form.create}
+        {i18n.t(data ? form.update : form.create)}
       </Button>
     </Layout>
   );

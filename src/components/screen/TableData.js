@@ -1,6 +1,7 @@
 import { IndexPath, Layout, Select, Text } from "@ui-kitten/components";
 import MyModal from "components/Modal";
 import { selectItems } from "components/Select";
+import tableStyle from "data/tableStyle";
 import _ from "lodash";
 import React from "react";
 import { DataTable, List } from "react-native-paper";
@@ -12,12 +13,15 @@ export const TableHeader = ({ links }) => {
 
   return (
     <DataTable.Header>
-      <DataTable.Title>
+      <DataTable.Title style={tableStyle.no}>
         <Text category="s1">No</Text>
       </DataTable.Title>
       {linkProps.map((linkProp) => {
         return (
-          <DataTable.Title key={linkProp.api}>
+          <DataTable.Title
+            style={tableStyle[linkProp.api.split(".").pop()]}
+            key={linkProp.api}
+          >
             <Text category="s1">{i18n.t(linkProp.label)}</Text>
           </DataTable.Title>
         );
@@ -54,13 +58,17 @@ export const TableContent = ({ links, data = [], rowCallBack }) => {
   return data.map((row, index) => {
     return (
       <DataTable.Row key={row.id}>
-        <DataTable.Cell onPress={() => rowCallBack(row)}>
+        <DataTable.Cell style={tableStyle.no} onPress={() => rowCallBack(row)}>
           {renderCell(index + 1)}
         </DataTable.Cell>
         {linkProps.map((linkProp) => {
           let fieldValue = _.get(row, linkProp.api);
           return (
-            <DataTable.Cell key={linkProp.api} onPress={() => rowCallBack(row)}>
+            <DataTable.Cell
+              style={tableStyle[linkProp.api.split(".").pop()]}
+              key={linkProp.api}
+              onPress={() => rowCallBack(row)}
+            >
               {renderCell(fieldValue)}
             </DataTable.Cell>
           );

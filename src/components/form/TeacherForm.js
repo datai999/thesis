@@ -11,8 +11,8 @@ import i18n from "utils/i18n";
 let form = {};
 
 const TeacherForm = {
-  create: i18n.t("teacher.create"),
-  update: i18n.t("teacher.update"),
+  create: "teacher.create",
+  update: "teacher.update",
   body: (data) => {
     let header = "teacher.create";
     if (data != null) {
@@ -34,7 +34,7 @@ const TeacherLayout = ({ header }) => {
         <Layout style={styles.left}>
           <MyInput {...propStore.input("person.name")} />
           <MySelect {...propStore.select("person.gender")} />
-          <MyInput {...propStore.input("person.email")} />
+          <MyInput {...propStore.inputMail("person.email", 90)} />
           <MyInput {...propStore.input("person.phone")} />
         </Layout>
         <Layout style={styles.right}>
