@@ -9,6 +9,7 @@ import TopNav from "components/screen/TopNav";
 import Props from "data/Props";
 import * as React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import env from "src/env";
 import NavHolder from "utils/nav";
 import CriterionScreen from "./src//pages/CriterionScreen";
 import EvaluateScreen from "./src//pages/EvaluateScreen";
@@ -49,7 +50,7 @@ export default function App() {
           <NavigationContainer>
             <TopNav />
             <Navigator
-              initialRouteName="home"
+              initialRouteName={env.initialRouteName}
               drawerContent={(props) => {
                 NavHolder.setNav(props.navigation);
                 return <LeftMenu {...props} callback={setMode} />;
