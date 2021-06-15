@@ -1,9 +1,13 @@
 import {
   Button,
+  Layout,
   Popover,
+  Text,
+  Toggle,
   TopNavigation,
   TopNavigationAction
 } from "@ui-kitten/components";
+import AxiosClient from "api/AxiosClient";
 import { AvatarIcon, ExternalLinkIcon, MenuIcon } from "components/Icons";
 import React from "react";
 import i18n from "utils/i18n";
@@ -62,14 +66,35 @@ const renderPersonAction = () => {
   );
 };
 
-const TopNav = ({ title = "origin.appName" }) => {
+const renderRightAction = () => {
+  const [english, setEnglish] = React.useState(i18n.languages == "en");
+
+  return (
+    <Layout style={{ flexDirection: "row", backgroundColor: "transparent" }}>
+      <Text style={{ margin: 10 }}>English</Text>
+      <Toggle
+        status="control"
+        checked={english}
+        onChange={(nextCheck) => {
+          i18n.changeLanguage(nextCheck ? "en" : "vi").then(() => {
+            AxiosClient.defaults.headers.Lang = i18n.language;
+            setEnglish(nextCheck);
+          });
+        }}
+      ></Toggle>
+      {renderPersonAction()}
+    </Layout>
+  );
+};
+
+const TopNav = () => {
   return (
     <TopNavigation
       style={{ backgroundColor: "#3366FF" }}
-      title={i18n.t(title)}
+      title={i18n.t("origin.appName")}
       alignment="center"
       accessoryLeft={renderMenuAction}
-      accessoryRight={renderPersonAction}
+      accessoryRight={renderRightAction}
     />
   );
 };
