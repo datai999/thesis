@@ -1,6 +1,7 @@
 import { IndexPath, Layout, Select, Text } from "@ui-kitten/components";
 import MyModal from "components/Modal";
 import { selectItems } from "components/Select";
+import constStyle from "data/constStyle";
 import _ from "lodash";
 import React from "react";
 import { DataTable, List } from "react-native-paper";
@@ -12,7 +13,7 @@ export const TableHeader = ({ links }) => {
 
   return (
     <DataTable.Header>
-      <DataTable.Title style={{ maxWidth: 30 }}>
+      <DataTable.Title style={constStyle.tableNo}>
         <Text category="s1">No</Text>
       </DataTable.Title>
       {linkProps.map((linkProp) => {
@@ -55,7 +56,7 @@ export const TableContent = ({ links, data = [], rowCallBack }) => {
     return (
       <DataTable.Row key={row.id}>
         <DataTable.Cell
-          style={{ maxWidth: 30 }}
+          style={constStyle.tableNo}
           onPress={() => rowCallBack(row)}
         >
           {renderCell(index + 1)}
