@@ -17,7 +17,6 @@ import CriterionScreen from "./src//pages/CriterionScreen";
 import EvaluateScreen from "./src//pages/EvaluateScreen";
 import HomeScreen from "./src/pages/HomeScreen";
 import PersonScreen from "./src/pages/PersonScreen";
-import SettingScreen from "./src/pages/SettingScreen";
 import TopicScreen from "./src/pages/TopicScreen";
 
 const { Navigator, Screen } = createDrawerNavigator();
@@ -62,7 +61,7 @@ export default function App() {
               <Screen name="evaluate" component={EvaluateScreen} />
               <Screen name="person" component={renderPersonScreen} />
               <Screen name="criterion" component={CriterionScreen} />
-              <Screen name="setting" component={SettingScreen} />
+              {/* <Screen name="setting" component={SettingScreen} /> */}
             </Navigator>
           </NavigationContainer>
         </SafeAreaProvider>

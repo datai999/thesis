@@ -11,8 +11,7 @@ import {
   CheckMarkSquare,
   HomeIcon,
   PantoneIcon,
-  PeopleIcon,
-  SettingIcon
+  PeopleIcon
 } from "components/Icons";
 import * as React from "react";
 import { StyleSheet } from "react-native";
@@ -67,10 +66,10 @@ const LeftMenu = ({ navigation, state, callback }) => {
           title={i18n.t("screen.criterion")}
           accessoryLeft={PantoneIcon}
         />
-        <DrawerItem
+        {/* <DrawerItem
           title={i18n.t("screen.setting")}
           accessoryLeft={SettingIcon}
-        />
+        /> */}
       </Drawer>
       <Layout>
         <Divider />

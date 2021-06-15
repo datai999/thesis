@@ -10,6 +10,7 @@ import {
 import AxiosClient from "api/AxiosClient";
 import { AvatarIcon, ExternalLinkIcon, MenuIcon } from "components/Icons";
 import React from "react";
+import { langHolder } from "utils";
 import i18n from "utils/i18n";
 import { navHolder } from "utils/nav";
 import { user } from "utils/user";
@@ -67,18 +68,22 @@ const renderPersonAction = () => {
 };
 
 const renderRightAction = () => {
-  const [english, setEnglish] = React.useState(i18n.languages == "en");
+  const [lang, setLang] = React.useState(i18n.languages);
+
+  React.useEffect(() => {
+    langHolder.notify(lang);
+  }, [lang]);
 
   return (
     <Layout style={{ flexDirection: "row", backgroundColor: "transparent" }}>
       <Text style={{ margin: 10 }}>English</Text>
       <Toggle
         status="control"
-        checked={english}
+        checked={lang == "en"}
         onChange={(nextCheck) => {
           i18n.changeLanguage(nextCheck ? "en" : "vi").then(() => {
             AxiosClient.defaults.headers.Lang = i18n.language;
-            setEnglish(nextCheck);
+            setLang(nextCheck ? "en" : "vi");
           });
         }}
       ></Toggle>
@@ -88,6 +93,12 @@ const renderRightAction = () => {
 };
 
 const TopNav = () => {
+  const [lang, setLang] = React.useState(i18n.languages);
+
+  React.useEffect(() => {
+    langHolder.listeners.push(setLang);
+  }, [lang]);
+
   return (
     <TopNavigation
       style={{ backgroundColor: "#3366FF" }}
