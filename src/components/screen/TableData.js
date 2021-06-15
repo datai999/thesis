@@ -12,7 +12,7 @@ export const TableHeader = ({ links }) => {
 
   return (
     <DataTable.Header>
-      <DataTable.Title>
+      <DataTable.Title style={{ maxWidth: 30 }}>
         <Text category="s1">No</Text>
       </DataTable.Title>
       {linkProps.map((linkProp) => {
@@ -54,7 +54,10 @@ export const TableContent = ({ links, data = [], rowCallBack }) => {
   return data.map((row, index) => {
     return (
       <DataTable.Row key={row.id}>
-        <DataTable.Cell onPress={() => rowCallBack(row)}>
+        <DataTable.Cell
+          style={{ maxWidth: 30 }}
+          onPress={() => rowCallBack(row)}
+        >
           {renderCell(index + 1)}
         </DataTable.Cell>
         {linkProps.map((linkProp) => {
