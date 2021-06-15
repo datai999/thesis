@@ -1,9 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Button, Layout, Text } from "@ui-kitten/components";
 import firebase from "api/firebase";
+import { DownLoadIcon } from "components/Icons";
 import { MyInput } from "components/Input";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import env from "src/env";
 import { createProps } from "utils";
 import i18n from "utils/i18n";
@@ -72,6 +73,18 @@ const HomeScreen = () => {
       <Text style={styles.versionText}>
         {i18n.t("origin.version")}: {env.version}
       </Text>
+
+      {Platform.OS == "web" && (
+        <Button
+          size="tiny"
+          appearance="outline"
+          accessoryLeft={DownLoadIcon}
+          onPress={() => window.open(env.androidLinkDown, "_blank")}
+          style={{ marginTop: 30 }}
+        >
+          {i18n.t("origin.androidApp")}
+        </Button>
+      )}
     </Layout>
   );
 };

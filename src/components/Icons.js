@@ -56,3 +56,7 @@ export const EditIcon = (props) => <Icon {...props} name="edit-outline" />;
 export const ExternalLinkIcon = (props) => (
   <Icon {...props} name="external-link-outline" />
 );
+
+export const DownLoadIcon = (props) => (
+  <Icon {...props} name="download-outline" />
+);

@@ -67,6 +67,7 @@
   "major": "Major",
   "majorSelect": "Select major",
   "origin": {
+    "androidApp": "Android app",
     "appName": "Thesis evaluation system",
     "cancel": "Cancel",
     "create": "Create",
