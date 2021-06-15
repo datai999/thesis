@@ -6,13 +6,12 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
 import { createProps } from "utils";
-import i18n from "utils/i18n";
 
 let form = {};
 
 const CriterionForm = {
-  create: i18n.t("criterion.create"),
-  update: i18n.t("criterion.update"),
+  create: "criterion.create",
+  update: "criterion.update",
   body: (data) => {
     let header = CriterionForm.create;
     if (data != null) {

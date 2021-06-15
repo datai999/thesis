@@ -20,8 +20,8 @@ const defaultForm = () => {
 };
 
 const CouncilForm = {
-  create: i18n.t("council.create"),
-  update: i18n.t("council.update"),
+  create: "council.create",
+  update: "council.update",
   body: (data) => {
     let header = "council.create";
     if (data != null) {
