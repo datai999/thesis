@@ -184,6 +184,9 @@
       "placeholder": "Select start time"
     }
   },
+  "toast": {
+    "default": "Default message"
+  },
   "topic": {
     "code": {
       "label": "Topic code",

@@ -1,9 +1,9 @@
 import dateFormat from "dateformat";
 import i18n from "utils/i18n";
-import { langHolder } from "./holder";
+import { langHolder, toastHolder } from "./holder";
 import { createProps, getLinkProps } from "./link";
 
-export { createProps, getLinkProps, langHolder };
+export { createProps, getLinkProps, langHolder, toastHolder };
 
 export function getRenderText(obj) {
   if (obj == null) return "";

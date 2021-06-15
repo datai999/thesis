@@ -1,16 +1,18 @@
 import {
   Button,
+  Divider,
   Layout,
   Popover,
   Text,
   Toggle,
+  Tooltip,
   TopNavigation,
   TopNavigationAction
 } from "@ui-kitten/components";
 import AxiosClient from "api/AxiosClient";
 import { AvatarIcon, ExternalLinkIcon, MenuIcon } from "components/Icons";
 import React from "react";
-import { langHolder } from "utils";
+import { langHolder, toastHolder } from "utils";
 import i18n from "utils/i18n";
 import { navHolder } from "utils/nav";
 import { user } from "utils/user";
@@ -110,4 +112,35 @@ const TopNav = () => {
   );
 };
 
-export default TopNav;
+const ToolTopNav = () => {
+  const [visible, setVisible] = React.useState(false);
+  const [log, setLog] = React.useState({ type: "info", message: "" });
+
+  React.useEffect(() => {
+    toastHolder.listeners.push(setLog);
+  }, []);
+
+  React.useEffect(() => {
+    if (log.message?.length > 0) {
+      console.log(log);
+      setVisible(true);
+    }
+  }, [log]);
+
+  const renderAnchor = () => <Divider />;
+
+  return (
+    <Layout>
+      {TopNav()}
+      <Tooltip
+        anchor={renderAnchor}
+        visible={visible}
+        onBackdropPress={() => setVisible(false)}
+      >
+        {log.message}
+      </Tooltip>
+    </Layout>
+  );
+};
+
+export default ToolTopNav;

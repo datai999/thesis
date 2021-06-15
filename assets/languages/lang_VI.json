@@ -178,6 +178,9 @@
     "end": "Thời gian kết thúc",
     "start": "Thời gian bắt đầu"
   },
+  "toast": {
+    "default": "Thông báo mặc định"
+  },
   "topic": {
     "code": {
       "label": "Mã đề tài",
