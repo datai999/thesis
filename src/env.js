@@ -1,4 +1,4 @@
-const isLogin = false;
+const isLogin = true;
 
 const local = {
   domain: "http://localhost:19006/",
@@ -7,7 +7,5 @@ const local = {
   isLogin: isLogin,
   initialRouteName: isLogin ? "topic" : "home",
 };
-
-console.log(local);
 
 export default local;
