@@ -67,6 +67,7 @@
   "major": "Chuyên ngành",
   "majorSelect": "Chọn chuyên nghành",
   "origin": {
+    "androidApp": "Android app",
     "appName": "Hệ thống đánh giá luận văn",
     "cancel": "Hủy bỏ",
     "create": "Thêm",
