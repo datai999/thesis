@@ -22,6 +22,7 @@ const HomeScreen = () => {
     getHeadMail(window.localStorage.getItem("emailForSignIn"))
   );
   const [confirmEmail, setConfirmEmail] = React.useState(false);
+  const [emailSend, setEmailSend] = React.useState("");
 
   React.useEffect(() => {
     if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
@@ -48,18 +49,22 @@ const HomeScreen = () => {
       user.loginWithEmailLink(email + emailTail);
     } else {
       user.sendLoginEmail(email + emailTail);
+      setEmailSend(email + emailTail);
     }
   }
 
   return (
     <Layout style={styles.container}>
+      {emailSend.length > emailTail.length && (
+        <Text category="s1">{i18n.t("login.emailCheck") + emailSend}</Text>
+      )}
       {confirmEmail && (
         <Text style={{ margin: 15 }} category="h6">
           {i18n.t("login.emailConfirm")}
         </Text>
       )}
       <MyInput {...emailProps} />
-      <Button onPress={loginBtnPress}>{i18n.t("origin.login")}</Button>
+      <Button onPress={loginBtnPress}>{i18n.t("login.login")}</Button>
       <Text style={styles.versionText}>
         {i18n.t("origin.version")}: {env.version}
       </Text>

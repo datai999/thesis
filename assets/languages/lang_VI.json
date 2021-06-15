@@ -60,7 +60,9 @@
       "label": "HCMUT mail",
       "placeholder": "Nhập HCMUT mail"
     },
-    "emailConfirm": "Xác nhận lại email"
+    "emailCheck": "Vui lòng kiểm tra email ",
+    "emailConfirm": "Xác nhận lại email",
+    "login": "Đăng nhập"
   },
   "major": "Chuyên ngành",
   "majorSelect": "Chọn chuyên nghành",
@@ -74,7 +76,6 @@
     "inEn": " bằng tiếng Anh",
     "inVi": " bằng tiếng Việt",
     "language": "Ngôn ngữ",
-    "login": "Đăng nhập",
     "logout": "Đăng xuất",
     "new": "Thêm",
     "page": "Trang",

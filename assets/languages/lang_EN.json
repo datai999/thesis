@@ -60,7 +60,9 @@
       "label": "HCMUT mail",
       "placeholder": "Type HCMUT mail"
     },
-    "emailConfirm": "Please confirm your email"
+    "emailCheck": "Please check email: ",
+    "emailConfirm": "Please confirm your email",
+    "login": "Login"
   },
   "major": "Major",
   "majorSelect": "Select major",
@@ -74,7 +76,6 @@
     "inEn": " in English",
     "inVi": " in Vietnamese",
     "language": "Language",
-    "login": "Login",
     "logout": "Logout",
     "new": "NEW",
     "page": "Page",
