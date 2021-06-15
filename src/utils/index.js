@@ -36,3 +36,10 @@ export function toLocalTime(date) {
 
 export { createProps, getLinkProps };
 
+export const emailTail = "@hcmut.edu.vn";
+
+export function getHeadMail(fullMail) {
+  if (!fullMail) return "";
+  let mailLength = fullMail.length;
+  return fullMail.substring(0, mailLength - emailTail.length);
+}

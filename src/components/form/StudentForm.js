@@ -34,7 +34,7 @@ const FormLayout = ({ header }) => {
         <Layout style={styles.left}>
           <MyInput {...propStore.input("person.name")} />
           <MySelect {...propStore.select("person.gender")} />
-          <MyInput {...propStore.input("person.email")} />
+          <MyInput {...propStore.inputMail("person.email", 50)} />
           <MyInput {...propStore.input("person.phone")} />
         </Layout>
         <Layout style={styles.right}>

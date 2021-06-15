@@ -1,6 +1,9 @@
+import { Text } from "@ui-kitten/components";
 import link from "assets/link";
 import constData from "data/constData";
 import _ from "lodash";
+import React from "react";
+import { emailTail, getHeadMail } from "utils";
 import i18n from "utils/i18n";
 
 export const createProps = (form) => {
@@ -26,6 +29,17 @@ export const createProps = (form) => {
       return {
         ...inputProps(path),
         refreshDataOnChangeText: (value) => api.search(value),
+      };
+    },
+    inputMail: (path, marginRight) => {
+      const inputProp = inputProps(path);
+      return {
+        ...inputProp,
+        value: getHeadMail(inputProp.value),
+        callBack: (value) => inputProp.callBack(value + emailTail),
+        accessoryRight: () => (
+          <Text style={{ marginRight: marginRight }}>{emailTail}</Text>
+        ),
       };
     },
     select: (path) => {
