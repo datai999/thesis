@@ -2,7 +2,7 @@ import { Button, Layout, Text } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
 import TopicAssignApi from "api/topic/TopicAssignApi";
-import { CouncilForm } from "components/form";
+import CouncilForm from "components/form/CouncilForm";
 import { MyAutocompleteTag, MyInput } from "components/Input";
 import MyModal from "components/Modal";
 import { MyMultiSelect, MySelect } from "components/Select";

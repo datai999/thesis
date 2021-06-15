@@ -13,6 +13,7 @@
   "dependencies": {
     "@eva-design/eva": "^2.0.0",
     "@expo/webpack-config": "^0.12.65",
+    "@react-native-async-storage/async-storage": "^1.13.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/drawer": "^5.12.5",
     "@react-navigation/native": "^5.9.4",
@@ -21,7 +22,6 @@
     "axios": "^0.21.1",
     "dateformat": "^4.5.1",
     "expo": "41.0.1",
-    "expo-status-bar": "~1.0.3",
     "firebase": "8.2.3",
     "gh-pages": "^3.1.0",
     "i18next": "^20.2.2",

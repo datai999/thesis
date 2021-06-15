@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import firebase from "api/firebase";
 import TeacherApi from "api/person/TeacherApi";
 import env from "src/env";
@@ -21,7 +22,7 @@ function sendLoginEmail(email) {
     .auth()
     .sendSignInLinkToEmail(email, actionCodeSettings)
     .then(() => {
-      window.localStorage.setItem("emailForSignIn", email);
+      AsyncStorage.setItem("emailForSignIn", email);
     });
 }
 
@@ -45,7 +46,7 @@ function loginWithEmailLink(email) {
     .then((result) => {
       console.log("sign in result");
       console.log(result);
-      window.localStorage.removeItem("emailForSignIn");
+      AsyncStorage.removeItem("emailForSignIn");
       navToHome(email);
     })
     .catch((error) => {
