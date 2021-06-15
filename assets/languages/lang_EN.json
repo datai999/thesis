@@ -62,7 +62,11 @@
     },
     "emailCheck": "Please check email: ",
     "emailConfirm": "Please confirm your email",
-    "login": "Login"
+    "login": "Login",
+    "password": {
+      "label": "Password",
+      "placeholder": "Type password"
+    }
   },
   "major": "Major",
   "majorSelect": "Select major",

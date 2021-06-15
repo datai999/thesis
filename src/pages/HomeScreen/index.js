@@ -17,6 +17,8 @@ const HomeScreen = () => {
   const [confirmEmail, setConfirmEmail] = React.useState(false);
   const [emailSend, setEmailSend] = React.useState("");
   const [lang, setLang] = React.useState(i18n.languages);
+  const [secureTextEntry, setSecureTextEntry] = React.useState(true);
+  const [password, setPassword] = React.useState("");
 
   React.useEffect(() => {
     langHolder.listeners.push(setLang);
@@ -40,10 +42,18 @@ const HomeScreen = () => {
   }, []);
 
   const emailProps = {
-    ...propStore.inputMail("login.email"),
+    ...propStore.inputMail("login.email", -120),
     value: email,
     style: styles.email,
     callBack: (nextValue) => setEmail(nextValue),
+  };
+
+  const passwordProps = {
+    ...propStore.input("login.password"),
+    value: password,
+    secureTextEntry: { secureTextEntry },
+    style: styles.password,
+    callBack: (nextValue) => setPassword(nextValue),
   };
 
   function loginBtnPress() {
@@ -66,6 +76,7 @@ const HomeScreen = () => {
         </Text>
       )}
       <MyInput {...emailProps} />
+      <MyInput {...passwordProps} />
       <Button onPress={loginBtnPress}>{i18n.t("login.login")}</Button>
       <Text style={styles.versionText}>
         {i18n.t("origin.version")}: {env.version}
@@ -93,9 +104,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingBottom: 200,
   },
-  email: {
-    margin: 15,
-  },
+  email: { margin: 10, width: 320 },
+  password: { margin: 10, width: 320 },
   versionText: {
     position: "absolute",
     left: 0,

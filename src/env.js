@@ -23,4 +23,4 @@ const localStaging = {
   baseURL: "https://datai-thesis.herokuapp.com/api",
 };
 
-export default staging;
+export default localStaging;

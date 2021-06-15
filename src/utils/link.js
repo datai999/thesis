@@ -38,7 +38,9 @@ export const createProps = (form) => {
         value: getHeadMail(inputProp.value),
         callBack: (value) => inputProp.callBack(value + emailTail),
         accessoryRight: () => (
-          <Text style={{ marginRight: marginRight }}>{emailTail}</Text>
+          <Text style={{ marginRight: marginRight }} category="s1">
+            {emailTail}
+          </Text>
         ),
       };
     },

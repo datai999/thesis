@@ -62,7 +62,11 @@
     },
     "emailCheck": "Vui lòng kiểm tra email ",
     "emailConfirm": "Xác nhận lại email",
-    "login": "Đăng nhập"
+    "login": "Đăng nhập",
+    "password": {
+      "label": "Mật khẩu",
+      "placeholder": "Nhập mật khẩu"
+    }
   },
   "major": "Chuyên ngành",
   "majorSelect": "Chọn chuyên nghành",
