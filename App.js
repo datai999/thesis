@@ -8,6 +8,7 @@ import LeftMenu from "components/LeftMenu";
 import TopNav from "components/screen/TopNav";
 import Props from "data/Props";
 import * as React from "react";
+import { StatusBar } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import env from "src/env";
 import NavHolder from "utils/nav";
@@ -47,6 +48,7 @@ export default function App() {
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
         <SafeAreaProvider>
+          <StatusBar />
           <NavigationContainer>
             <TopNav />
             <Navigator
