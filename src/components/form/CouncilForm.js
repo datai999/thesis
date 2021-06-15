@@ -3,7 +3,7 @@ import TeacherApi from "api/person/TeacherApi";
 import CouncilApi from "api/topic/CouncilApi";
 import { MyAutocomplete, MyInput } from "components/Input";
 import { DatePicker, MySelect } from "components/Select";
-import Props from "data/Props";
+import constData from "data/constData";
 import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
@@ -14,8 +14,8 @@ let form = {};
 
 const defaultForm = () => {
   return {
-    role: Props.councilRole.arrValue,
-    teacher: Array(Props.councilRole.arrValue.length).fill(null),
+    role: constData.councilRole.arrValue,
+    teacher: Array(constData.councilRole.arrValue.length).fill(null),
   };
 };
 
@@ -37,7 +37,7 @@ const FormLayout = ({ header }) => {
   const propStore = createProps(form);
 
   const inputSearch = propStore.inputSearch("council.teacher", TeacherApi);
-  const councilTeacherProps = Props.councilRole.arrValue.map(
+  const councilTeacherProps = constData.councilRole.arrValue.map(
     (councilRole, index) => {
       return {
         ...inputSearch,

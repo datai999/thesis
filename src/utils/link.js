@@ -1,5 +1,5 @@
 import link from "assets/link";
-import Props from "data/Props";
+import constData from "data/constData";
 import _ from "lodash";
 import i18n from "utils/i18n";
 
@@ -31,7 +31,7 @@ export const createProps = (form) => {
     select: (path) => {
       const inputProp = inputProps(path);
       return {
-        ...Props[inputProp.api.split(".").pop()],
+        ...constData[inputProp.api.split(".").pop()],
         ...inputProp,
       };
     },
