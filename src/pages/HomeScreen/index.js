@@ -6,7 +6,7 @@ import { MyInput } from "components/Input";
 import React from "react";
 import { Platform, StyleSheet } from "react-native";
 import env from "src/env";
-import { createProps, emailTail, getHeadMail } from "utils";
+import { createProps, emailTail, getHeadMail, langHolder } from "utils";
 import i18n from "utils/i18n";
 import { user } from "utils/user";
 
@@ -16,6 +16,11 @@ const HomeScreen = () => {
   const [email, setEmail] = React.useState();
   const [confirmEmail, setConfirmEmail] = React.useState(false);
   const [emailSend, setEmailSend] = React.useState("");
+  const [lang, setLang] = React.useState(i18n.languages);
+
+  React.useEffect(() => {
+    langHolder.listeners.push(setLang);
+  }, [lang]);
 
   React.useEffect(() => {
     const login = async () => {
