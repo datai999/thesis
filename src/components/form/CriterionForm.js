@@ -6,6 +6,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
 import { createProps } from "utils";
+import i18n from "utils/i18n";
 
 let form = {};
 
@@ -34,7 +35,7 @@ const FormLayout = ({ header }) => {
           icon="translate"
           onPress={() => setMultiLang(multiLang + 1)}
         />
-        <Text style={styles.headerText}>{header}</Text>
+        <Text style={styles.headerText}>{i18n.t(header)}</Text>
       </Layout>
 
       <MyInput {...propStore.inputLang("criterion.name")} />
