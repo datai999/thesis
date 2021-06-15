@@ -7,7 +7,7 @@ let loginListeners = [];
 
 let userStorage = {
   validEmail: false,
-  isLogin: false,
+  isLogin: env.isLogin,
   code: false,
 };
 
