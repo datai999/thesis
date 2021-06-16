@@ -3,7 +3,7 @@ import { Button, Text } from "@ui-kitten/components";
 import { DownLoadIcon, GoogleIcon } from "components/icons";
 import React from "react";
 import { ImageBackground, Platform, StyleSheet } from "react-native";
-import { env, i18n, langHolder, navService, user } from "utils";
+import { env, i18n, langHolder, navService, userService } from "utils";
 
 const Screen = () => {
   const [lang, setLang] = React.useState(i18n.languages);
@@ -22,7 +22,7 @@ const Screen = () => {
   }, [lang]);
 
   function loginBtnPress() {
-    user.signInWithPopup();
+    userService.signInWithPopup();
   }
 
   return (
