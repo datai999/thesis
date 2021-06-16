@@ -137,7 +137,9 @@ const ToolTopNav = () => {
 
   React.useEffect(() => {
     if (log.msg?.length > 0) {
-      console.log(log);
+      if (log.type == "warning" || log.type == "error") {
+        console.log(log);
+      }
       setVisible(true);
       timerRef.current = setTimeout(animationEnd, 2500);
     }
