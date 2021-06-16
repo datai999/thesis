@@ -18,5 +18,5 @@ export const toastHolder = {
   info: (message, over) => toastHolder.notify("info", message, over),
   success: (message, over) => toastHolder.notify("success", message, over),
   waring: (message, over) => toastHolder.notify("waring", message, over),
-  error: (message, over) => toastHolder.notify("error", message, over),
+  error: (message, over) => toastHolder.notify("danger", message, over),
 };

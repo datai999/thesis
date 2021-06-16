@@ -10,7 +10,15 @@ import {
   TopNavigationAction
 } from "@ui-kitten/components";
 import AxiosClient from "api/AxiosClient";
-import { AvatarIcon, ExternalLinkIcon, MenuIcon } from "components/Icons";
+import {
+  AlertTriangleIcon,
+  AvatarIcon,
+  CheckMarkCircle2,
+  CloseCircleIcon,
+  ExternalLinkIcon,
+  InfoIcon,
+  MenuIcon
+} from "components/Icons";
 import React from "react";
 import { langHolder, toastHolder } from "utils";
 import i18n from "utils/i18n";
@@ -129,6 +137,29 @@ const ToolTopNav = () => {
 
   const renderAnchor = () => <Divider />;
 
+  const renderIcon = () => {
+    let icon = InfoIcon;
+    switch (log.type) {
+      case "success":
+        icon = CheckMarkCircle2;
+        break;
+      case "waring":
+        icon = AlertTriangleIcon;
+        break;
+      case "danger":
+        icon = CloseCircleIcon;
+        break;
+    }
+    return (
+      <Button
+        status={log.type}
+        appearance="ghost"
+        accessoryLeft={icon}
+        style={{ marginVertical: -25, marginLeft: -30, marginRight: -20 }}
+      ></Button>
+    );
+  };
+
   return (
     <Layout>
       {TopNav()}
@@ -136,8 +167,10 @@ const ToolTopNav = () => {
         anchor={renderAnchor}
         visible={visible}
         onBackdropPress={() => setVisible(false)}
+        accessoryLeft={renderIcon}
+        style={{ backgroundColor: "white" }}
       >
-        {log.message}
+        <Text status={log.type}>{log.message}</Text>
       </Tooltip>
     </Layout>
   );

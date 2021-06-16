@@ -64,3 +64,17 @@ export const DownLoadIcon = (props) => (
 export const EyeIcon = (props) => <Icon {...props} name="eye" />;
 
 export const EyeOffIcon = (props) => <Icon {...props} name="eye-off" />;
+
+export const CloseCircleIcon = (props) => (
+  <Icon {...props} name="close-circle-outline" />
+);
+
+export const InfoIcon = (props) => <Icon {...props} name="info-outline" />;
+
+export const AlertTriangleIcon = (props) => (
+  <Icon {...props} name="alert-triangle-outline" />
+);
+
+export const CheckMarkCircle2 = (props) => (
+  <Icon {...props} name="checkmark-circle-2-outline" />
+);
