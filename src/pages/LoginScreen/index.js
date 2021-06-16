@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Button, Text } from "@ui-kitten/components";
-import { DownLoadIcon, GoogleIcon } from "components/Icons";
+import { DownLoadIcon, GoogleIcon } from "components/icons";
 import React from "react";
 import { ImageBackground, Platform, StyleSheet } from "react-native";
 import { env, i18n, langHolder, navService, user } from "utils";

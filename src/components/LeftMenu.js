@@ -12,7 +12,7 @@ import {
   HomeIcon,
   PantoneIcon,
   PeopleIcon
-} from "components/Icons";
+} from "components/icons";
 import * as React from "react";
 import { StyleSheet } from "react-native";
 import env from "src/env";

@@ -17,7 +17,7 @@ import {
   ExternalLinkIcon,
   InfoIcon,
   MenuIcon
-} from "components/Icons";
+} from "components/icons";
 import { localStorage } from "data";
 import React from "react";
 import { StyleSheet } from "react-native";

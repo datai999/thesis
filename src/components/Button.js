@@ -1,5 +1,5 @@
 import { Button, Layout } from "@ui-kitten/components";
-import { EditIcon, PlusIcon } from "components/Icons";
+import { EditIcon, PlusIcon } from "components/icons";
 import MyModal from "components/Modal";
 import React from "react";
 import i18n from "utils/i18n";
