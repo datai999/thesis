@@ -137,7 +137,7 @@ const ToolTopNav = () => {
 
   React.useEffect(() => {
     if (log.msg?.length > 0) {
-      if (log.type == "warning" || log.type == "error") {
+      if (log.type != "info" && log.type != "success") {
         console.log(log);
       }
       setVisible(true);
