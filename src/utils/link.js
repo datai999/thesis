@@ -3,8 +3,15 @@ import link from "assets/link";
 import constData from "data/constData";
 import _ from "lodash";
 import React from "react";
-import { emailTail, getHeadMail } from "utils";
 import i18n from "utils/i18n";
+
+export const emailTail = "@hcmut.edu.vn";
+
+export function getHeadMail(fullMail) {
+  if (!fullMail) return "";
+  let mailLength = fullMail.length;
+  return fullMail.substring(0, mailLength - emailTail.length);
+}
 
 export const createProps = (form) => {
   const setValue = (path, value) => _.set(form, path, value);
