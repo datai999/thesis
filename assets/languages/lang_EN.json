@@ -67,7 +67,8 @@
       "label": "Password",
       "placeholder": "Type password"
     },
-    "register": "Register"
+    "register": "Register",
+    "signInWithGoogle": "Sign in with google"
   },
   "major": "Major",
   "majorSelect": "Select major",
@@ -77,6 +78,7 @@
     "cancel": "Cancel",
     "create": "Create",
     "degree": "Degree",
+    "downAndroidApp": "Download android app",
     "email": "Email",
     "filter&Search": "Filter and Search",
     "inEn": " in English",
@@ -191,7 +193,8 @@
       "invalid": "The email address is badly formatted"
     },
     "password": {
-      "invalid": "The password is invalid"
+      "invalid": "The password is invalid",
+      "weak": "The password must be 6 characters long or more"
     }
   },
   "topic": {

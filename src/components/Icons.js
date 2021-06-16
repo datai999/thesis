@@ -78,3 +78,5 @@ export const AlertTriangleIcon = (props) => (
 export const CheckMarkCircle2 = (props) => (
   <Icon {...props} name="checkmark-circle-2-outline" />
 );
+
+export const GoogleIcon = (props) => <Icon {...props} name="google-outline" />;

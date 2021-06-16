@@ -67,7 +67,8 @@
       "label": "Mật khẩu",
       "placeholder": "Nhập mật khẩu"
     },
-    "register": "Đăng ký"
+    "register": "Đăng ký",
+    "signInWithGoogle": "Đăng nhập bằng google"
   },
   "major": "Chuyên ngành",
   "majorSelect": "Chọn chuyên nghành",
@@ -77,6 +78,7 @@
     "cancel": "Hủy bỏ",
     "create": "Thêm",
     "degree": "Học vị",
+    "downAndroidApp": "Tải ứng dụng android",
     "email": "Email",
     "filter&Search": "Lọc và Tìm kiếm",
     "inEn": " bằng tiếng Anh",
@@ -185,7 +187,8 @@
       "invalid": "Email không hợp lệ"
     },
     "password": {
-      "invalid": "Mật khẩu không hợp lệ"
+      "invalid": "Mật khẩu không hợp lệ",
+      "weak": "Mật khẩu chứa ít nhất 6 ký tự"
     }
   },
   "topic": {

@@ -19,4 +19,19 @@ export const toastHolder = {
   success: (msg, another) => toastHolder.notify("success", msg, another),
   waring: (msg, another) => toastHolder.notify("waring", msg, another),
   error: (msg, another) => toastHolder.notify("danger", msg, another),
+  errorCode: (code, error) => {
+    switch (code) {
+      case "auth/invalid-email":
+        toastHolder.error("toast.email.invalid", error);
+        break;
+      case "auth/wrong-password":
+        toastHolder.error("toast.password.invalid", error);
+        break;
+      case "auth/weak-password":
+        toastHolder.error("toast.password.weak", error);
+        break;
+      default:
+        toastHolder.error(error.message, error);
+    }
+  },
 };
