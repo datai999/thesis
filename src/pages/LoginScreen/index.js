@@ -21,7 +21,7 @@ const Screen = () => {
   const emailProps = {
     ...propStore.inputMail("login.email", -120),
     value: email,
-    style: styles.email,
+    style: styles.input,
     callBack: (nextValue) => setEmail(nextValue),
   };
 
@@ -29,7 +29,7 @@ const Screen = () => {
     ...propStore.input("login.password"),
     value: password,
     secureTextEntry: true,
-    style: styles.password,
+    style: styles.input,
     callBack: (nextValue) => setPassword(nextValue),
   };
 
@@ -44,12 +44,18 @@ const Screen = () => {
       imageStyle={styles.imageStyle}
     >
       <Layout style={styles.container}>
-        <MyInput {...emailProps} />
-        <MyInput {...passwordProps} />
-        <Button onPress={loginBtnPress}>{i18n.t("login.login")}</Button>
-        <Text style={styles.versionText}>
-          {i18n.t("origin.version")}: {env.version}
-        </Text>
+        <Layout style={styles.form}>
+          <MyInput {...emailProps} />
+          <MyInput {...passwordProps} />
+          <Layout style={styles.row}>
+            <Button style={styles.btn} onPress={loginBtnPress}>
+              {i18n.t("login.register")}
+            </Button>
+            <Button style={styles.btn} onPress={loginBtnPress}>
+              {i18n.t("login.login")}
+            </Button>
+          </Layout>
+        </Layout>
 
         {Platform.OS == "web" && (
           <Button
@@ -58,26 +64,44 @@ const Screen = () => {
             status="control"
             accessoryLeft={DownLoadIcon}
             onPress={() => window.open(env.androidLinkDown, "_blank")}
-            style={{ marginTop: 30 }}
+            style={styles.androidBtn}
           >
             {i18n.t("origin.androidApp")}
           </Button>
         )}
       </Layout>
+
+      <Text style={styles.versionText}>
+        {i18n.t("origin.version")}: {env.version}
+      </Text>
     </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    backgroundColor: "transparent",
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: 150,
-    backgroundColor: "transparent",
   },
-  email: { margin: 10, width: 320 },
-  password: { margin: 10, width: 320 },
+  form: {
+    backgroundColor: "transparent",
+    width: 320,
+    marginBottom: "16%",
+  },
+  input: { marginVertical: 5 },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    backgroundColor: "transparent",
+    marginTop: 20,
+  },
+  btn: {
+    width: 130,
+  },
+  androidBtn: {
+    marginBottom: "30%",
+  },
   versionText: {
     position: "absolute",
     left: 0,
@@ -87,6 +111,7 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center",
+    alignItems: "center",
   },
   imageStyle: {
     opacity: 0.8,
