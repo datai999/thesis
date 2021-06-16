@@ -112,6 +112,7 @@ function logout() {
     .then(() => {
       AsyncStorage.removeItem("email");
       AsyncStorage.removeItem("isLogin");
+      AsyncStorage.removeItem("screen");
       loginListeners.forEach((listener) => listener(false));
       NavHolder.get().navigate("login");
       toastHolder.info("toast.login.success");

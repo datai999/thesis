@@ -7,6 +7,7 @@ import { ConstApi } from "api/br";
 import LeftMenu from "components/LeftMenu";
 import TopNav from "components/screen/TopNav";
 import constData from "data/constData";
+import { getLocalStorage } from "data/localStorage";
 import _ from "lodash";
 import * as React from "react";
 import { StatusBar } from "react-native";
@@ -41,6 +42,7 @@ export default function App() {
   React.useEffect(() => {
     NavHolder.setPersonMode = setMode;
     navService.setPersonMode = setMode;
+    getLocalStorage();
     fetch();
   }, []);
 
