@@ -1,44 +1,22 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Button, Layout, Text } from "@ui-kitten/components";
-import firebase from "api/firebase";
 import { DownLoadIcon } from "components/Icons";
 import { MyInput } from "components/Input";
 import React from "react";
 import { ImageBackground, Platform, StyleSheet } from "react-native";
-import env from "src/env";
-import { createProps, emailTail, getHeadMail, langHolder } from "utils";
-import i18n from "utils/i18n";
-import { user } from "utils/user";
+import { createProps, emailTail, env, i18n, langHolder, user } from "utils";
 
 const propStore = createProps();
 
-const HomeScreen = () => {
-  const [email, setEmail] = React.useState();
-  const [confirmEmail, setConfirmEmail] = React.useState(false);
-  const [emailSend, setEmailSend] = React.useState("");
+const Screen = () => {
   const [lang, setLang] = React.useState(i18n.languages);
+  const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   React.useEffect(() => {
     langHolder.listeners.push(setLang);
   }, [lang]);
 
-  React.useEffect(() => {
-    const login = async () => {
-      let emailForSignIn = await AsyncStorage.getItem("emailForSignIn");
-      setEmail(getHeadMail(emailForSignIn));
-      if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
-        if (emailForSignIn.length <= emailTail.length) {
-          setConfirmEmail(true);
-          return;
-        }
-        user.loginWithEmailLink(emailForSignIn);
-      } else {
-        AsyncStorage.removeItem("emailForSignIn");
-      }
-    };
-    login();
-  }, []);
+  React.useEffect(() => {}, []);
 
   const emailProps = {
     ...propStore.inputMail("login.email", -120),
@@ -66,14 +44,6 @@ const HomeScreen = () => {
       imageStyle={styles.imageStyle}
     >
       <Layout style={styles.container}>
-        {emailSend.length > emailTail.length && (
-          <Text category="s1">{i18n.t("login.emailCheck") + emailSend}</Text>
-        )}
-        {confirmEmail && (
-          <Text style={{ margin: 15 }} category="h6">
-            {i18n.t("login.emailConfirm")}
-          </Text>
-        )}
         <MyInput {...emailProps} />
         <MyInput {...passwordProps} />
         <Button onPress={loginBtnPress}>{i18n.t("login.login")}</Button>
@@ -123,4 +93,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default Screen;

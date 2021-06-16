@@ -1,17 +1,26 @@
 import {
   Button,
-  Divider,
   Layout,
+  Modal,
   Popover,
   Text,
   Toggle,
-  Tooltip,
   TopNavigation,
   TopNavigationAction
 } from "@ui-kitten/components";
 import AxiosClient from "api/AxiosClient";
-import { AvatarIcon, ExternalLinkIcon, MenuIcon } from "components/Icons";
+import {
+  AlertTriangleIcon,
+  AvatarIcon,
+  CheckMarkCircle2,
+  CloseCircleIcon,
+  ExternalLinkIcon,
+  InfoIcon,
+  MenuIcon
+} from "components/Icons";
 import React from "react";
+import { StyleSheet } from "react-native";
+import * as Animatable from "react-native-animatable";
 import { langHolder, toastHolder } from "utils";
 import i18n from "utils/i18n";
 import { navHolder } from "utils/nav";
@@ -114,33 +123,70 @@ const TopNav = () => {
 
 const ToolTopNav = () => {
   const [visible, setVisible] = React.useState(false);
-  const [log, setLog] = React.useState({ type: "info", message: "" });
+  const [log, setLog] = React.useState({ type: "info", msg: "" });
+  const animationRef = React.useRef();
+  const timerRef = React.useRef(null);
+
+  const animationEnd = (time = 500) =>
+    animationRef.current?.zoomOut(time).then(() => setVisible(false));
 
   React.useEffect(() => {
     toastHolder.listeners.push(setLog);
   }, []);
 
   React.useEffect(() => {
-    if (log.message?.length > 0) {
+    if (log.msg?.length > 0) {
       console.log(log);
       setVisible(true);
+      timerRef.current = setTimeout(animationEnd, 2500);
     }
   }, [log]);
 
-  const renderAnchor = () => <Divider />;
+  function renderIcon(props) {
+    switch (log.type) {
+      case "info":
+        return <InfoIcon {...props} />;
+      case "success":
+        return <CheckMarkCircle2 {...props} />;
+      case "waring":
+        return <AlertTriangleIcon {...props} />;
+      case "danger":
+        return <CloseCircleIcon {...props} />;
+    }
+  }
 
   return (
     <Layout>
       {TopNav()}
-      <Tooltip
-        anchor={renderAnchor}
+      <Modal
         visible={visible}
-        onBackdropPress={() => setVisible(false)}
+        style={styles.toastModal}
+        onBackdropPress={() => {
+          clearTimeout(timerRef.current);
+          animationEnd(100);
+        }}
       >
-        {log.message}
-      </Tooltip>
+        <Animatable.View animation="fadeInDownBig" ref={animationRef}>
+          <Button
+            status={log.type}
+            appearance="ghost"
+            accessoryLeft={renderIcon}
+            style={{ marginVertical: -25, marginLeft: -30, marginRight: -20 }}
+          >
+            {i18n.t(log.msg)}
+          </Button>
+        </Animatable.View>
+      </Modal>
     </Layout>
   );
 };
+
+const styles = StyleSheet.create({
+  toastModal: {
+    flexDirection: "row",
+    position: "absolute",
+    top: "10%",
+  },
+});
 
 export default ToolTopNav;

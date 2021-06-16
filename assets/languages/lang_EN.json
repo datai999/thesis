@@ -185,7 +185,13 @@
     }
   },
   "toast": {
-    "default": "Default message"
+    "default": "Default message",
+    "email": {
+      "invalid": "The email address is badly formatted"
+    },
+    "password": {
+      "invalid": "The password is invalid"
+    }
   },
   "topic": {
     "code": {
