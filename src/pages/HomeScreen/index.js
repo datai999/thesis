@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Button, Layout, Text } from "@ui-kitten/components";
 import firebase from "api/firebase";
-import { DownLoadIcon } from "components/Icons";
+import { DownLoadIcon } from "components/icons";
 import { MyInput } from "components/Input";
 import React from "react";
 import { ImageBackground, Platform, StyleSheet } from "react-native";

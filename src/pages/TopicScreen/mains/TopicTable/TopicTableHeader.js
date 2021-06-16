@@ -6,9 +6,9 @@ import {
   List,
   MenuItem,
   Modal,
-  Text,
+  Text
 } from "@ui-kitten/components";
-import { SettingIcon } from "components/Icons";
+import { SettingIcon } from "components/icons";
 import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";

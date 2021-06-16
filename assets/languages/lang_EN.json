@@ -190,7 +190,8 @@
   "toast": {
     "default": "Default message",
     "email": {
-      "invalid": "The email address is badly formatted"
+      "invalid": "The email address is badly formatted",
+      "notHcmut": " is not @hcmut.edu.vn"
     },
     "password": {
       "invalid": "The password is invalid",

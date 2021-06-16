@@ -6,7 +6,7 @@ import {
   List,
   SelectItem
 } from "@ui-kitten/components";
-import { CloseIcon } from "components/Icons";
+import { CloseIcon } from "components/icons";
 import _ from "lodash";
 import React from "react";
 import { getRenderText } from "utils";

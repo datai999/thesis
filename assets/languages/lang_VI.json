@@ -184,7 +184,8 @@
   "toast": {
     "default": "Thông báo mặc định",
     "email": {
-      "invalid": "Email không hợp lệ"
+      "invalid": "Email không hợp lệ",
+      "notHcmut": " không khớp với @hcmut.edu.vn"
     },
     "password": {
       "invalid": "Mật khẩu không hợp lệ",

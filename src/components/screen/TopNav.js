@@ -17,7 +17,8 @@ import {
   ExternalLinkIcon,
   InfoIcon,
   MenuIcon
-} from "components/Icons";
+} from "components/icons";
+import { localStorage } from "data";
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
@@ -27,10 +28,11 @@ import { navHolder } from "utils/nav";
 import { user } from "utils/user";
 
 const renderMenuAction = () => {
-  const [login, setLogin] = React.useState(user.isLogin);
+  const [login, setLogin] = React.useState();
 
   React.useEffect(() => {
     user.loginListeners.push(setLogin);
+    localStorage.getIsLogin.then((response) => setLogin(response));
   }, []);
 
   if (!login) return null;
@@ -43,11 +45,12 @@ const renderMenuAction = () => {
 };
 
 const renderPersonAction = () => {
-  const [login, setLogin] = React.useState(user.isLogin);
+  const [login, setLogin] = React.useState();
   const [visible, setVisible] = React.useState(false);
 
   React.useEffect(() => {
     user.loginListeners.push(setLogin);
+    localStorage.getIsLogin.then((response) => setLogin(response));
   }, []);
 
   const renderPersonAvt = () => {
@@ -148,7 +151,7 @@ const ToolTopNav = () => {
         return <InfoIcon {...props} />;
       case "success":
         return <CheckMarkCircle2 {...props} />;
-      case "waring":
+      case "warning":
         return <AlertTriangleIcon {...props} />;
       case "danger":
         return <CloseCircleIcon {...props} />;

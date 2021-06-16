@@ -1,11 +1,20 @@
 import dateFormat from "dateformat";
 import env from "src/env";
 import { user } from "utils/user";
-import { langHolder, toastHolder } from "./holder";
 import i18n from "./i18n";
 import { createProps, getLinkProps } from "./link";
+import { langHolder, navService, toastHolder } from "./service";
 
-export { createProps, getLinkProps, langHolder, toastHolder, i18n, user, env };
+export {
+  createProps,
+  getLinkProps,
+  langHolder,
+  toastHolder,
+  i18n,
+  user,
+  env,
+  navService,
+};
 
 export function getRenderText(obj) {
   if (obj == null) return "";

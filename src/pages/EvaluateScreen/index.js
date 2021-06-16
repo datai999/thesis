@@ -7,7 +7,7 @@ import {
   Text
 } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
-import { AvatarIcon } from "components/Icons";
+import { AvatarIcon } from "components/icons";
 import { MyInput } from "components/Input";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";

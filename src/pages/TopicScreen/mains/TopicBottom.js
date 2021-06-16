@@ -3,9 +3,9 @@ import {
   IndexPath,
   Select,
   SelectItem,
-  Text,
+  Text
 } from "@ui-kitten/components";
-import { ArrowBackIcon, ArrowForwardIcon } from "components/Icons";
+import { ArrowBackIcon, ArrowForwardIcon } from "components/icons";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import i18n from "utils/i18n";
