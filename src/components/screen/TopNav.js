@@ -123,21 +123,22 @@ const TopNav = () => {
 
 const ToolTopNav = () => {
   const [visible, setVisible] = React.useState(false);
-  const [log, setLog] = React.useState({ type: "info", message: "" });
+  const [log, setLog] = React.useState({ type: "info", msg: "" });
   const animationRef = React.useRef();
+  const timerRef = React.useRef(null);
 
-  const animationEnd = () =>
-    animationRef.current.zoomOut(500).then(() => setVisible(false));
+  const animationEnd = (time = 500) =>
+    animationRef.current?.zoomOut(time).then(() => setVisible(false));
 
   React.useEffect(() => {
     toastHolder.listeners.push(setLog);
   }, []);
 
   React.useEffect(() => {
-    if (log.message?.length > 0) {
+    if (log.msg?.length > 0) {
       console.log(log);
       setVisible(true);
-      setTimeout(animationEnd, 1500);
+      timerRef.current = setTimeout(animationEnd, 2500);
     }
   }, [log]);
 
@@ -157,7 +158,14 @@ const ToolTopNav = () => {
   return (
     <Layout>
       {TopNav()}
-      <Modal visible={visible} style={styles.toastModal}>
+      <Modal
+        visible={visible}
+        style={styles.toastModal}
+        onBackdropPress={() => {
+          clearTimeout(timerRef.current);
+          animationEnd(100);
+        }}
+      >
         <Animatable.View animation="fadeInDownBig" ref={animationRef}>
           <Button
             status={log.type}
@@ -165,7 +173,7 @@ const ToolTopNav = () => {
             accessoryLeft={renderIcon}
             style={{ marginVertical: -25, marginLeft: -30, marginRight: -20 }}
           >
-            {i18n.t(log.message)}
+            {i18n.t(log.msg)}
           </Button>
         </Animatable.View>
       </Modal>

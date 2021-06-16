@@ -84,9 +84,16 @@ function loginWithEmailPassword(email, password) {
       navToHome(email);
     })
     .catch((error) => {
-      if (error.code == "auth/invalid-email")
-        toastHolder.error("toast.email.invalid", error);
-      else toastHolder.error(error.message, error);
+      switch (error.code) {
+        case "auth/invalid-email":
+          toastHolder.error("toast.email.invalid", error);
+          break;
+        case "auth/wrong-password":
+          toastHolder.error("toast.password.invalid", error);
+          break;
+        default:
+          toastHolder.error(error.message, error);
+      }
     });
 }
 

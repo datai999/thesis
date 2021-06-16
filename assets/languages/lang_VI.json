@@ -182,6 +182,9 @@
     "default": "Thông báo mặc định",
     "email": {
       "invalid": "Email không hợp lệ"
+    },
+    "password": {
+      "invalid": "Mật khẩu không hợp lệ"
     }
   },
   "topic": {

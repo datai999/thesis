@@ -9,14 +9,14 @@ export const langHolder = {
 
 export const toastHolder = {
   listeners: [],
-  notify: (type, message = "toast.default", another) =>
+  notify: (type, msg = "toast.default", another) =>
     notifyListener(toastHolder.listeners, {
       ...another,
       type: type,
-      message: message,
+      msg: msg,
     }),
-  info: (message, over) => toastHolder.notify("info", message, over),
-  success: (message, over) => toastHolder.notify("success", message, over),
-  waring: (message, over) => toastHolder.notify("waring", message, over),
-  error: (message, over) => toastHolder.notify("danger", message, over),
+  info: (msg, another) => toastHolder.notify("info", msg, another),
+  success: (msg, another) => toastHolder.notify("success", msg, another),
+  waring: (msg, another) => toastHolder.notify("waring", msg, another),
+  error: (msg, another) => toastHolder.notify("danger", msg, another),
 };
