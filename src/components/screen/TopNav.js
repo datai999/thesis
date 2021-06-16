@@ -22,15 +22,14 @@ import { localStorage } from "data";
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { langHolder, navService, toastHolder } from "utils";
+import { langHolder, navService, toastHolder, userService } from "utils";
 import i18n from "utils/i18n";
-import { user } from "utils/user";
 
 const renderMenuAction = () => {
   const [login, setLogin] = React.useState();
 
   React.useEffect(() => {
-    user.loginListeners.push(setLogin);
+    userService.loginListeners.push(setLogin);
     localStorage.getIsLogin.then((response) => setLogin(response));
   }, []);
 
@@ -48,7 +47,7 @@ const renderPersonAction = () => {
   const [visible, setVisible] = React.useState(false);
 
   React.useEffect(() => {
-    user.loginListeners.push(setLogin);
+    userService.loginListeners.push(setLogin);
     localStorage.getIsLogin.then((response) => setLogin(response));
   }, []);
 
@@ -71,7 +70,7 @@ const renderPersonAction = () => {
         accessoryRight={ExternalLinkIcon}
         onPress={() => {
           setVisible(false);
-          user.logout();
+          userService.logout();
         }}
       >
         {i18n.t("origin.logout")}

@@ -8,7 +8,7 @@ import { ImageBackground, Platform, StyleSheet } from "react-native";
 import env from "src/env";
 import { createProps, emailTail, getHeadMail, langHolder } from "utils";
 import i18n from "utils/i18n";
-import { user } from "utils/user";
+import { userService } from "utils";
 
 const propStore = createProps();
 
@@ -32,7 +32,7 @@ const HomeScreen = () => {
           setConfirmEmail(true);
           return;
         }
-        user.loginWithEmailLink(emailForSignIn);
+        userService.loginWithEmailLink(emailForSignIn);
       } else {
         AsyncStorage.removeItem("emailForSignIn");
       }
@@ -56,7 +56,7 @@ const HomeScreen = () => {
   };
 
   function loginBtnPress() {
-    user.loginWithEmailPassword(email + emailTail, password);
+    userService.loginWithEmailPassword(email + emailTail, password);
   }
 
   return (

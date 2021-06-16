@@ -7,7 +7,6 @@ import { emailTail, i18n, navService, toastHolder } from "utils";
 let loginListeners = [];
 
 let userStorage = {
-  validEmail: false,
   isLogin: env.isLogin,
   code: false,
 };
@@ -63,10 +62,9 @@ function logout() {
     });
 }
 
-export let user = {
+export default {
   ...userStorage,
   loginListeners: loginListeners,
   signInWithPopup: signInWithPopup,
   logout: logout,
-  navToHome: navToHome,
 };
