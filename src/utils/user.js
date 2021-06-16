@@ -90,6 +90,8 @@ function signInWithPopup() {
     .then((result) => {
       userStorage.loginResult = result;
       userStorage.isLogin = true;
+      AsyncStorage.setItem("email", result.user.email);
+      AsyncStorage.setItem("isLogin", true);
       navToHome(result.user.email);
     })
     .catch((error) => {
@@ -109,15 +111,14 @@ function logout() {
     .auth()
     .signOut()
     .then(() => {
-      console.log("sign out success");
-      userStorage.isLogin = false;
+      AsyncStorage.removeItem("email");
+      AsyncStorage.removeItem("isLogin");
       loginListeners.forEach((listener) => listener(false));
-      NavHolder.get().navigate("home");
+      NavHolder.get().navigate("login");
+      toastHolder.info("toast.login.success");
     })
     .catch((error) => {
-      console.log("sign out error");
-      console.log(error);
-      alert("sign out error" + error);
+      toastHolder.errorCode(error.code, error);
     });
 }
 
@@ -130,4 +131,5 @@ export let user = {
   loginWithEmailPassword: loginWithEmailPassword,
   signInWithPopup: signInWithPopup,
   logout: logout,
+  navToHome: navToHome,
 };

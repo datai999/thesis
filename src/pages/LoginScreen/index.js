@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Button, Text } from "@ui-kitten/components";
 import { DownLoadIcon, GoogleIcon } from "components/Icons";
 import React from "react";
@@ -6,6 +7,17 @@ import { env, i18n, langHolder, user } from "utils";
 
 const Screen = () => {
   const [lang, setLang] = React.useState(i18n.languages);
+
+  React.useEffect(() => {
+    let isLogin = false;
+    let email = "";
+    const signIn = async () => {
+      isLogin = await AsyncStorage.getItem("isLogin");
+      email = await AsyncStorage.getItem("email");
+      if (isLogin) user.navToHome(email);
+    };
+    signIn();
+  }, []);
 
   React.useEffect(() => {
     langHolder.listeners.push(setLang);
