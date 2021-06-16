@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import firebase from "api/firebase";
+import firebase, { provider } from "api/firebase";
 import TeacherApi from "api/person/TeacherApi";
 import env from "src/env";
 import NavHolder from "utils/nav";
@@ -67,11 +67,7 @@ function createUserWithEmailPassword(email, password) {
       console.log("createUserWithEmailPassword");
       console.log(userStorage.user);
     })
-    .catch((error) => {
-      console.log("createUserWithEmailPassword");
-      console.log(error);
-      alert(error.message);
-    });
+    .catch((error) => toastHolder.errorCode(error.code, error));
 }
 
 function loginWithEmailPassword(email, password) {
@@ -83,17 +79,22 @@ function loginWithEmailPassword(email, password) {
       userStorage.isLogin = true;
       navToHome(email);
     })
+    .catch((error) => toastHolder.errorCode(error.code, error));
+}
+
+function signInWithPopup() {
+  return firebase
+    .auth()
+    .signInWithPopup(provider)
+    .then((result) => {
+      userStorage.loginResult = result;
+      userStorage.isLogin = true;
+      navToHome(result.user.email);
+    })
     .catch((error) => {
-      switch (error.code) {
-        case "auth/invalid-email":
-          toastHolder.error("toast.email.invalid", error);
-          break;
-        case "auth/wrong-password":
-          toastHolder.error("toast.password.invalid", error);
-          break;
-        default:
-          toastHolder.error(error.message, error);
-      }
+      console.log("signInWithPopup");
+      console.log(error);
+      toastHolder.errorCode(error.code, error);
     });
 }
 
@@ -126,5 +127,6 @@ export let user = {
   loginWithEmailLink: loginWithEmailLink,
   createUserWithEmailPassword: createUserWithEmailPassword,
   loginWithEmailPassword: loginWithEmailPassword,
+  signInWithPopup: signInWithPopup,
   logout: logout,
 };
