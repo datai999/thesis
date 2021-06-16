@@ -3,12 +3,10 @@ import firebase, { provider } from "api/firebase";
 import TeacherApi from "api/person/TeacherApi";
 import env from "src/env";
 import { emailTail, i18n, navService, toastHolder } from "utils";
-import NavHolder from "utils/nav";
 
 let loginListeners = [];
 
 let userStorage = {
-  validEmail: false,
   isLogin: env.isLogin,
   code: false,
 };
@@ -56,7 +54,7 @@ function logout() {
       AsyncStorage.removeItem("isLogin");
       AsyncStorage.removeItem("screen");
       loginListeners.forEach((listener) => listener(false));
-      NavHolder.get().navigate("login");
+      navService.navigate("login");
       toastHolder.info("toast.login.success");
     })
     .catch((error) => {
@@ -64,10 +62,9 @@ function logout() {
     });
 }
 
-export let user = {
+export default {
   ...userStorage,
   loginListeners: loginListeners,
   signInWithPopup: signInWithPopup,
   logout: logout,
-  navToHome: navToHome,
 };

@@ -14,7 +14,6 @@ import { StatusBar } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import env from "src/env";
 import { navService } from "utils";
-import NavHolder from "utils/nav";
 import EvaluateScreen from "./src//pages/EvaluateScreen";
 import LoginScreen from "./src//pages/LoginScreen";
 import CriterionScreen from "./src/pages/CriterionScreen";
@@ -40,7 +39,6 @@ export default function App() {
   }
 
   React.useEffect(() => {
-    NavHolder.setPersonMode = setMode;
     navService.setPersonMode = setMode;
     getLocalStorage();
     fetch();
@@ -58,7 +56,6 @@ export default function App() {
               initialRouteName={env.initialRouteName}
               drawerContent={(props) => {
                 navService.nav = props.navigation;
-                NavHolder.setNav(props.navigation);
                 return <LeftMenu {...props} callback={setMode} />;
               }}
             >

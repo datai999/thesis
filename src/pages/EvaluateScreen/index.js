@@ -11,9 +11,8 @@ import { AvatarIcon } from "components/icons";
 import { MyInput } from "components/Input";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
-import { createProps, getRenderText } from "utils";
+import { createProps, getRenderText, userService } from "utils";
 import i18n from "utils/i18n";
-import { user } from "utils/user";
 
 const EvaluateTarget = ({ topicAssign }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(0));
@@ -62,7 +61,7 @@ const EvaluateScreen = ({ navigation }) => {
 
   const fetchTopicAssign = async () => {
     try {
-      TopicAssignApi.searchByTeacherCode(user.code).then((result) => {
+      TopicAssignApi.searchByTeacherCode(userService.code).then((result) => {
         setTopicAssign(result);
         topicAssignStore = result;
       });

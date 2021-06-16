@@ -1,9 +1,8 @@
 import dateFormat from "dateformat";
 import env from "src/env";
-import { user } from "utils/user";
 import i18n from "./i18n";
 import { createProps, getLinkProps } from "./link";
-import { langHolder, navService, toastHolder } from "./service";
+import { langHolder, navService, toastHolder, userService } from "./service";
 
 export {
   createProps,
@@ -11,9 +10,9 @@ export {
   langHolder,
   toastHolder,
   i18n,
-  user,
   env,
   navService,
+  userService,
 };
 
 export function getRenderText(obj) {

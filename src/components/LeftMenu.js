@@ -38,7 +38,6 @@ const LeftMenu = ({ navigation, state, callback }) => {
           navigation.navigate(state.routeNames[index.row]);
         }}
         onSelect={(index) => {
-          if (index.row == 0 && !index.section) return;
           if (index.row == 3 && !index.section) return;
           setSelectedIndex(index);
 
