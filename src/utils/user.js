@@ -87,11 +87,15 @@ function signInWithPopup() {
     .auth()
     .signInWithPopup(provider)
     .then((result) => {
-      let credential = result.credential;
-      let user = result.user;
-      console.log(result);
+      userStorage.loginResult = result;
+      userStorage.isLogin = true;
+      navToHome(result.user.email);
     })
-    .catch((error) => toastHolder.errorCode(error.code, error));
+    .catch((error) => {
+      console.log("signInWithPopup");
+      console.log(error);
+      toastHolder.errorCode(error.code, error);
+    });
 }
 
 function notifyLogin() {
