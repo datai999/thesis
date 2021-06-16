@@ -1,22 +1,22 @@
 import {
-  Button,
-  Layout,
-  Modal,
-  Popover,
-  Text,
-  Toggle,
-  TopNavigation,
-  TopNavigationAction
+    Button,
+    Layout,
+    Modal,
+    Popover,
+    Text,
+    Toggle,
+    TopNavigation,
+    TopNavigationAction
 } from "@ui-kitten/components";
 import AxiosClient from "api/AxiosClient";
 import {
-  AlertTriangleIcon,
-  AvatarIcon,
-  CheckMarkCircle2,
-  CloseCircleIcon,
-  ExternalLinkIcon,
-  InfoIcon,
-  MenuIcon
+    AlertTriangleIcon,
+    AvatarIcon,
+    CheckMarkCircle2,
+    CloseCircleIcon,
+    ExternalLinkIcon,
+    InfoIcon,
+    MenuIcon
 } from "components/Icons";
 import React from "react";
 import { StyleSheet } from "react-native";
@@ -148,7 +148,7 @@ const ToolTopNav = () => {
         return <InfoIcon {...props} />;
       case "success":
         return <CheckMarkCircle2 {...props} />;
-      case "waring":
+      case "warning":
         return <AlertTriangleIcon {...props} />;
       case "danger":
         return <CloseCircleIcon {...props} />;

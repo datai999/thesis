@@ -17,7 +17,7 @@ export const toastHolder = {
     }),
   info: (msg, another) => toastHolder.notify("info", msg, another),
   success: (msg, another) => toastHolder.notify("success", msg, another),
-  waring: (msg, another) => toastHolder.notify("waring", msg, another),
+  warning: (msg, another) => toastHolder.notify("warning", msg, another),
   error: (msg, another) => toastHolder.notify("danger", msg, another),
   errorCode: (code, error) => {
     switch (code) {
