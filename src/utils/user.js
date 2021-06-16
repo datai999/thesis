@@ -67,10 +67,6 @@ function logout() {
 export let user = {
   ...userStorage,
   loginListeners: loginListeners,
-  sendLoginEmail: sendLoginEmail,
-  loginWithEmailLink: loginWithEmailLink,
-  createUserWithEmailPassword: createUserWithEmailPassword,
-  loginWithEmailPassword: loginWithEmailPassword,
   signInWithPopup: signInWithPopup,
   logout: logout,
   navToHome: navToHome,
