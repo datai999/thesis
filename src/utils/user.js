@@ -2,9 +2,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import firebase, { provider } from "api/firebase";
 import TeacherApi from "api/person/TeacherApi";
 import env from "src/env";
-import { emailTail, i18n } from "utils";
+import { emailTail, i18n, navService, toastHolder } from "utils";
 import NavHolder from "utils/nav";
-import { toastHolder } from "./holder";
 
 let loginListeners = [];
 
@@ -34,10 +33,12 @@ function navToHome(email) {
     return;
   }
 
+  console.log("her");
+
   TeacherApi.postExample({ email: email }).then((response) => {
     userStorage.code = response[0]?.code;
     notifyLogin();
-    NavHolder.get().navigate("topic");
+    navService.navigate("topic");
   });
 }
 
@@ -95,8 +96,6 @@ function signInWithPopup() {
       navToHome(result.user.email);
     })
     .catch((error) => {
-      console.log("signInWithPopup");
-      console.log(error);
       toastHolder.errorCode(error.code, error);
     });
 }

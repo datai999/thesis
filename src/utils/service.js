@@ -1,3 +1,5 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 function notifyListener(arr, value) {
   arr.forEach((listener) => listener(value));
 }
@@ -33,5 +35,14 @@ export const toastHolder = {
       default:
         toastHolder.error(error.message, error);
     }
+  },
+};
+
+export let navService = {
+  nav: null,
+  serPersonMode: null,
+  navigate: (screen) => {
+    navService.nav.navigate(screen);
+    AsyncStorage.setItem("screen", screen);
   },
 };
