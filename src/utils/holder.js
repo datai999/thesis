@@ -9,7 +9,7 @@ export const langHolder = {
 
 export const toastHolder = {
   listeners: [],
-  notify: (type, message, another) =>
+  notify: (type, message = "toast.default", another) =>
     notifyListener(toastHolder.listeners, {
       ...another,
       type: type,

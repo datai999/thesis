@@ -179,7 +179,10 @@
     "start": "Thời gian bắt đầu"
   },
   "toast": {
-    "default": "Thông báo mặc định"
+    "default": "Thông báo mặc định",
+    "email": {
+      "invalid": "Email không hợp lệ"
+    }
   },
   "topic": {
     "code": {

@@ -170,7 +170,7 @@ const ToolTopNav = () => {
         accessoryLeft={renderIcon}
         style={{ backgroundColor: "white" }}
       >
-        <Text status={log.type}>{log.message}</Text>
+        <Text status={log.type}>{i18n.t(log.message)}</Text>
       </Tooltip>
     </Layout>
   );

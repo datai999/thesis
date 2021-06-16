@@ -3,6 +3,7 @@ import firebase from "api/firebase";
 import TeacherApi from "api/person/TeacherApi";
 import env from "src/env";
 import NavHolder from "utils/nav";
+import { toastHolder } from "./holder";
 
 let loginListeners = [];
 
@@ -67,7 +68,7 @@ function createUserWithEmailPassword(email, password) {
       console.log(userStorage.user);
     })
     .catch((error) => {
-      console.log("loginWithEmailPassword");
+      console.log("createUserWithEmailPassword");
       console.log(error);
       alert(error.message);
     });
@@ -78,14 +79,14 @@ function loginWithEmailPassword(email, password) {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      userStorage.user = userCredential.user;
+      userStorage.credential = userCredential.user;
       userStorage.isLogin = true;
       navToHome(email);
     })
     .catch((error) => {
-      console.log("loginWithEmailPassword");
-      console.log(error);
-      alert(error.message);
+      if (error.code == "auth/invalid-email")
+        toastHolder.error("toast.email.invalid", error);
+      else toastHolder.error(error.message, error);
     });
 }
 
