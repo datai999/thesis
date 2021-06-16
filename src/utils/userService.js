@@ -2,7 +2,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import firebase, { provider } from "api/firebase";
 import TeacherApi from "api/person/TeacherApi";
 import env from "src/env";
-import { emailTail, i18n, navService, toastHolder } from "utils";
+import i18n from "./i18n";
+import { navService, toastHolder } from "./service";
+
+const emailTail = "@hcmut.edu.vn";
 
 let loginListeners = [];
 

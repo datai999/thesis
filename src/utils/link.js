@@ -3,7 +3,7 @@ import link from "assets/link";
 import constData from "data/constData";
 import _ from "lodash";
 import React from "react";
-import i18n from "utils/i18n";
+import i18n from "./i18n";
 
 export const emailTail = "@hcmut.edu.vn";
 
