@@ -79,8 +79,8 @@ function loginWithEmailPassword(email, password) {
     .signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       userStorage.user = userCredential.user;
-      console.log("loginWithEmailPassword");
-      console.log(userStorage.user);
+      userStorage.isLogin = true;
+      navToHome(email);
     })
     .catch((error) => {
       console.log("loginWithEmailPassword");

@@ -9,7 +9,7 @@ const local = {
     "https://drive.google.com/file/d/1Z6N8NdVO6vm0BNkRfPGr-GveHMTS9TLu",
   version: "6.16.03",
   isLogin: isLogin,
-  initialRouteName: isLogin ? "topic" : "home",
+  initialRouteName: isLogin ? "topic" : "login",
 };
 
 const staging = {

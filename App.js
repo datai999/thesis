@@ -13,8 +13,8 @@ import { StatusBar } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import env from "src/env";
 import NavHolder from "utils/nav";
-import CriterionScreen from "./src//pages/CriterionScreen";
 import EvaluateScreen from "./src//pages/EvaluateScreen";
+import LoginScreen from "./src//pages/LoginScreen";
 import HomeScreen from "./src/pages/HomeScreen";
 import PersonScreen from "./src/pages/PersonScreen";
 import TopicScreen from "./src/pages/TopicScreen";
@@ -60,8 +60,8 @@ export default function App() {
               <Screen name="topic" component={TopicScreen} />
               <Screen name="evaluate" component={EvaluateScreen} />
               <Screen name="person" component={renderPersonScreen} />
-              <Screen name="criterion" component={CriterionScreen} />
               {/* <Screen name="setting" component={SettingScreen} /> */}
+              <Screen name="login" component={LoginScreen} />
             </Navigator>
           </NavigationContainer>
         </SafeAreaProvider>
