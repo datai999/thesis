@@ -22,9 +22,8 @@ import { localStorage } from "data";
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { langHolder, toastHolder } from "utils";
+import { langHolder, navService, toastHolder } from "utils";
 import i18n from "utils/i18n";
-import { navHolder } from "utils/nav";
 import { user } from "utils/user";
 
 const renderMenuAction = () => {
@@ -39,7 +38,7 @@ const renderMenuAction = () => {
   return (
     <TopNavigationAction
       icon={MenuIcon}
-      onPress={() => navHolder.toggleDrawer()}
+      onPress={() => navService.nav.toggleDrawer()}
     />
   );
 };

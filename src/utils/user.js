@@ -3,7 +3,6 @@ import firebase, { provider } from "api/firebase";
 import TeacherApi from "api/person/TeacherApi";
 import env from "src/env";
 import { emailTail, i18n, navService, toastHolder } from "utils";
-import NavHolder from "utils/nav";
 
 let loginListeners = [];
 
@@ -56,7 +55,7 @@ function logout() {
       AsyncStorage.removeItem("isLogin");
       AsyncStorage.removeItem("screen");
       loginListeners.forEach((listener) => listener(false));
-      NavHolder.get().navigate("login");
+      navService.navigate("login");
       toastHolder.info("toast.login.success");
     })
     .catch((error) => {
