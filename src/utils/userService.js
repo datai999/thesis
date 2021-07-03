@@ -18,6 +18,7 @@ function navToHome(email) {
     setWhenLogin(email, response[0]?.code);
     notifyLogin();
     navService.navigate("topic");
+    toastHolder.info("toast.login.success");
   });
 }
 
@@ -45,7 +46,7 @@ function logout() {
       removeWhenLogout();
       loginListeners.forEach((listener) => listener(false));
       navService.navigate("login");
-      toastHolder.info("toast.login.success");
+      toastHolder.info("toast.logout.success");
     })
     .catch((error) => {
       toastHolder.errorCode(error.code, error);

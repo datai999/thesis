@@ -193,6 +193,12 @@
       "invalid": "The email address is badly formatted",
       "notHcmut": " is not @hcmut.edu.vn"
     },
+    "login": {
+      "success": "Login success"
+    },
+    "logout": {
+      "success": "Login success"
+    },
     "password": {
       "invalid": "The password is invalid",
       "weak": "The password must be 6 characters long or more"
