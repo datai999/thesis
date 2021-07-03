@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 
-const commonStyle = { justifyContent: "center" };
+const commonStyle = {
+  justifyContent: "center",
+  flex: 1,
+};
 
 export default StyleSheet.create({
   no: {

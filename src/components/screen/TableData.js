@@ -1,4 +1,4 @@
-import { IndexPath, Layout, Select, Text } from "@ui-kitten/components";
+import { Button, IndexPath, Layout, Select, Text } from "@ui-kitten/components";
 import MyModal from "components/Modal";
 import { selectItems } from "components/Select";
 import tableStyle from "data/tableStyle";
@@ -10,6 +10,24 @@ import i18n from "utils/i18n";
 
 export const TableHeader = ({ links }) => {
   const linkProps = getLinkProps(links);
+  const [sortField, setSortField] = React.useState();
+  const [descending, setDescending] = React.useState(null);
+
+  function getSortDirection(propsApi) {
+    if (propsApi == sortField) {
+      return descending ? "descending" : "ascending";
+    }
+    return null;
+  }
+
+  function setSort(propsApi) {
+    if (propsApi != sortField) {
+      setDescending(true);
+    } else {
+      setDescending(!descending);
+    }
+    setSortField(propsApi);
+  }
 
   return (
     <DataTable.Header>
@@ -18,12 +36,19 @@ export const TableHeader = ({ links }) => {
       </DataTable.Title>
       {linkProps.map((linkProp) => {
         return (
-          <DataTable.Title
-            style={tableStyle[linkProp.api.split(".").pop()]}
+          <Button
             key={linkProp.api}
+            appearance={linkProp.api != sortField ? "ghost" : "filled"}
+            status="basic"
+            style={tableStyle[linkProp.api.split(".").pop()]}
           >
-            <Text category="s1">{i18n.t(linkProp.label)}</Text>
-          </DataTable.Title>
+            <DataTable.Title
+              sortDirection={getSortDirection(linkProp.api)}
+              onPress={() => setSort(linkProp.api)}
+            >
+              <Text category="s1">{i18n.t(linkProp.label)}</Text>
+            </DataTable.Title>
+          </Button>
         );
       })}
     </DataTable.Header>
