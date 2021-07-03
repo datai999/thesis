@@ -28,8 +28,8 @@ const TopicScreen = () => {
       };
       return TopicAssignApi.getPaging(pageParam);
     },
-    filter: (param) => {
-      return TopicAssignApi.getPaging(param);
+    search: (param) => {
+      return TopicAssignApi.search(param);
     },
   };
 

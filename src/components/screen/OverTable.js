@@ -4,7 +4,7 @@ import { TableData } from "components/screen/TableData";
 import TopBar from "components/screen/TopBar";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { langHolder } from "utils";
+import { langHolder, toastService } from "utils";
 import i18n from "utils/i18n";
 
 const defaultPage = {
@@ -13,7 +13,7 @@ const defaultPage = {
 };
 
 const sortDefault = {
-  sort: "createdAt",
+  field: "createdAt",
   descend: true,
 };
 
@@ -27,10 +27,6 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
     sort: sortDefault,
   });
   const navigation = useNavigation();
-
-  React.useEffect(() => {
-    langHolder.listeners.push(setLang);
-  }, [lang]);
 
   const fetchData = async (nextPage) => {
     try {
@@ -48,15 +44,10 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
     }
   };
 
-  React.useEffect(() => {
-    return navigation.addListener("focus", () => {
-      fetchData(page);
-    });
-  }, [navigation]);
-
-  React.useEffect(() => {
-    const fetchDataCombine = (param) => {
-      api.filter(param).then((response) => {
+  const fetchSearchData = (param) => {
+    api
+      .search(param)
+      .then((response) => {
         setData(response.content);
         let newDataSearch = {
           sort: {
@@ -70,10 +61,22 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
           },
         };
         setDataSearch(newDataSearch);
-      });
-    };
-    if (api.filter) fetchDataCombine(dataSearch);
-  }, [dataSearch]);
+      })
+      .catch((err) => toastService.error("toast.search.error", err));
+  };
+
+  React.useEffect(() => {
+    langHolder.listeners.push(setLang);
+  }, []);
+
+  React.useEffect(() => {
+    navigation.addListener("focus", () => {
+      if (api.search) fetchSearchData(dataSearch);
+      else {
+        fetchData(page);
+      }
+    });
+  }, [navigation, dataSearch]);
 
   return (
     <Layout>

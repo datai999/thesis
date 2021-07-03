@@ -20,6 +20,9 @@ const CommonApi = (baseURL = "") => {
     postExample: (example) => {
       return AxiosClient.post(baseURL + "/example", example);
     },
+    search: (searchRequest) => {
+      return AxiosClient.post(baseURL + "/search", searchRequest);
+    },
   };
 };
 

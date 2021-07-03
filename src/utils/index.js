@@ -2,7 +2,12 @@ import dateFormat from "dateformat";
 import env from "src/env";
 import i18n from "./i18n";
 import { createProps, emailTail, getHeadMail, getLinkProps } from "./link";
-import { langHolder, navService, toastHolder } from "./service";
+import {
+  langHolder,
+  navService,
+  toastHolder,
+  toastHolder as toastService,
+} from "./service";
 import userService from "./userService";
 
 export {
@@ -10,6 +15,7 @@ export {
   getLinkProps,
   langHolder,
   toastHolder,
+  toastService,
   i18n,
   env,
   navService,

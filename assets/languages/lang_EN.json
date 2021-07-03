@@ -203,6 +203,9 @@
     "password": {
       "invalid": "The password is invalid",
       "weak": "The password must be 6 characters long or more"
+    },
+    "search": {
+      "error": "Search error"
     }
   },
   "topic": {
