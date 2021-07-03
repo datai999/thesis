@@ -46,7 +46,7 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
 
   const fetchSearchData = (param) => {
     api
-      .search(param)
+      .pagingSearch(param)
       .then((response) => {
         setData(response.content);
         let newDataSearch = {
@@ -71,10 +71,7 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
 
   React.useEffect(() => {
     navigation.addListener("focus", () => {
-      if (api.search) fetchSearchData(dataSearch);
-      else {
-        fetchData(page);
-      }
+      fetchSearchData(dataSearch);
     });
   }, [navigation, dataSearch]);
 
