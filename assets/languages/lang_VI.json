@@ -187,6 +187,7 @@
       "invalid": "Email không hợp lệ",
       "notHcmut": " không khớp với @hcmut.edu.vn"
     },
+    "fail": "Thực thi không thành công",
     "login": {
       "success": "Đăng nhập thành công"
     },

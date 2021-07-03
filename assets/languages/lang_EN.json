@@ -193,6 +193,7 @@
       "invalid": "The email address is badly formatted",
       "notHcmut": " is not @hcmut.edu.vn"
     },
+    "fail": "Execute fail",
     "login": {
       "success": "Login success"
     },
