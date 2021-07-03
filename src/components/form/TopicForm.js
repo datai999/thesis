@@ -26,11 +26,13 @@ const TopicForm = {
     } else form = {};
     return <FormLayout header={header} />;
   },
-  submit: () =>
-    TopicAssignApi.create(form).catch((err) =>
+  submit: () => {
+    form.semester = form.topic.semester;
+    return TopicAssignApi.create(form).catch((err) =>
       // TODO update message
       toastHolder.error("toast.fail", err)
-    ),
+    );
+  },
 };
 
 const FormLayout = ({ header }) => {
