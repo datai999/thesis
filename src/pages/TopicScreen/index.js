@@ -28,6 +28,9 @@ const TopicScreen = () => {
       };
       return TopicAssignApi.getPaging(pageParam);
     },
+    filter: (param) => {
+      return TopicAssignApi.getPaging(param);
+    },
   };
 
   const overTopBarProps = {

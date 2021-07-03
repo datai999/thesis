@@ -22,6 +22,10 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
   const [page, setPage] = React.useState(defaultPage);
   const [sort, setSort] = React.useState(sortDefault);
   const [lang, setLang] = React.useState(i18n.languages);
+  const [dataSearch, setDataSearch] = React.useState({
+    page: defaultPage,
+    sort: sortDefault,
+  });
   const navigation = useNavigation();
 
   React.useEffect(() => {
@@ -50,6 +54,27 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
     });
   }, [navigation]);
 
+  React.useEffect(() => {
+    const fetchDataCombine = (param) => {
+      api.filter(param).then((response) => {
+        setData(response.content);
+        let newDataSearch = {
+          sort: {
+            ...param.sort,
+          },
+          page: {
+            number: response.number,
+            size: response.size,
+            totalPages: response.totalPages,
+            totalElements: response.totalElements,
+          },
+        };
+        setDataSearch(newDataSearch);
+      });
+    };
+    if (api.filter) fetchDataCombine(dataSearch);
+  }, [dataSearch]);
+
   return (
     <Layout>
       <Layout style={styles.container}>
@@ -72,6 +97,8 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
           page={page}
           pageCallBack={fetchData}
           topContent={topContent}
+          propsCallback={dataSearch}
+          callback={setDataSearch}
         />
       </Layout>
     </Layout>

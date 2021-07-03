@@ -8,10 +8,14 @@ import { DataTable, List } from "react-native-paper";
 import { getLinkProps, getRenderText } from "utils";
 import i18n from "utils/i18n";
 
-export const TableHeader = ({ links }) => {
-  const linkProps = getLinkProps(links);
+export const TableHeader = ({ links, propCallback, callback }) => {
   const [sortField, setSortField] = React.useState();
   const [descending, setDescending] = React.useState(null);
+
+  React.useEffect(() => {
+    propCallback.sort = { field: sortField, descend: descending };
+    callback(propCallback);
+  }, [sortField, descending]);
 
   function getSortDirection(propsApi) {
     if (propsApi == sortField) {
@@ -34,7 +38,7 @@ export const TableHeader = ({ links }) => {
       <DataTable.Title style={tableStyle.no}>
         <Text category="s1">No</Text>
       </DataTable.Title>
-      {linkProps.map((linkProp) => {
+      {getLinkProps(links).map((linkProp) => {
         return (
           <Button
             key={linkProp.api}
@@ -165,6 +169,8 @@ export const TableData = ({
   page,
   pageCallBack,
   topContent,
+  propCallback = {},
+  callback,
 }) => {
   const [updateFormVisible, setUpdateFormVisible] = React.useState(false);
   const [currentRow, setCurrenRow] = React.useState(null);
@@ -194,7 +200,11 @@ export const TableData = ({
   return (
     <DataTable>
       <MyModal {...modalUpdateFormProps} />
-      <TableHeader links={links} />
+      <TableHeader
+        links={links}
+        propCallback={propCallback}
+        callback={callback}
+      />
       {topContent && topContent({ links, rowCallBack })}
       <TableContent links={links} data={data} rowCallBack={rowCallBack} />
       <TableBottom page={page} pageCallBack={pageCallBack} />
