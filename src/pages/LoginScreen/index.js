@@ -10,7 +10,7 @@ const Screen = () => {
 
   React.useEffect(() => {
     const signIn = async () => {
-      const isLogin = await AsyncStorage.getItem("isLogin");
+      const isLogin = await AsyncStorage.getItem("login");
       const screen = await AsyncStorage.getItem("screen");
       if (isLogin) navService.navigate(screen);
     };

@@ -1,18 +1,12 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import firebase, { provider } from "api/firebase";
 import TeacherApi from "api/person/TeacherApi";
-import env from "src/env";
+import { removeWhenLogout, setWhenLogin } from "data/localStorage";
 import i18n from "./i18n";
 import { navService, toastHolder } from "./service";
 
 const emailTail = "@hcmut.edu.vn";
 
 let loginListeners = [];
-
-let userStorage = {
-  isLogin: env.isLogin,
-  code: false,
-};
 
 function navToHome(email) {
   if (email.substring(email.indexOf("@")) != emailTail) {
@@ -21,14 +15,13 @@ function navToHome(email) {
   }
 
   TeacherApi.postExample({ email: email }).then((response) => {
-    userStorage.code = response[0]?.code;
+    setWhenLogin(email, response[0]?.code);
     notifyLogin();
     navService.navigate("topic");
   });
 }
 
 function notifyLogin() {
-  userStorage.isLogin = true;
   loginListeners.forEach((listener) => listener(true));
 }
 
@@ -37,10 +30,6 @@ function signInWithPopup() {
     .auth()
     .signInWithPopup(provider)
     .then((result) => {
-      userStorage.loginResult = result;
-      userStorage.isLogin = true;
-      AsyncStorage.setItem("email", result.user.email);
-      AsyncStorage.setItem("isLogin", true);
       navToHome(result.user.email);
     })
     .catch((error) => {
@@ -53,9 +42,7 @@ function logout() {
     .auth()
     .signOut()
     .then(() => {
-      AsyncStorage.removeItem("email");
-      AsyncStorage.removeItem("isLogin");
-      AsyncStorage.removeItem("screen");
+      removeWhenLogout();
       loginListeners.forEach((listener) => listener(false));
       navService.navigate("login");
       toastHolder.info("toast.login.success");
@@ -66,7 +53,6 @@ function logout() {
 }
 
 export default {
-  ...userStorage,
   loginListeners: loginListeners,
   signInWithPopup: signInWithPopup,
   logout: logout,
