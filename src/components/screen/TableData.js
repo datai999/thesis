@@ -182,7 +182,7 @@ export const TableBottom = ({ propCallback, callback }) => {
           {i18n.t("origin.page")}: {page.number + 1} / {page.totalPages}
         </Text>
         <Text>
-          {i18n.t("origin.total")}: {page.totalElements}
+          {i18n.t("origin.totalRecord")}: {page.totalElements}
         </Text>
       </Layout>
       <DataTable.Pagination
