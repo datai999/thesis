@@ -23,6 +23,7 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
   const [dataSearch, setDataSearch] = React.useState({
     page: defaultPage,
     sort: sortDefault,
+    filter: {},
   });
   const navigation = useNavigation();
 
@@ -32,9 +33,7 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
       .then((response) => {
         setData(response.content);
         let newDataSearch = {
-          sort: {
-            ...param.sort,
-          },
+          ...param,
           page: {
             number: response.number,
             size: response.size,

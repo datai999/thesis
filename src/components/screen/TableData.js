@@ -1,9 +1,11 @@
 import { Button, IndexPath, Layout, Select, Text } from "@ui-kitten/components";
+import { MyInput } from "components/Input";
 import MyModal from "components/Modal";
 import { selectItems } from "components/Select";
 import tableStyle from "data/tableStyle";
 import _ from "lodash";
 import React from "react";
+import { StyleSheet } from "react-native";
 import { DataTable, List } from "react-native-paper";
 import { getLinkProps, getRenderText } from "utils";
 import i18n from "utils/i18n";
@@ -79,6 +81,48 @@ export function renderCell(fieldValue) {
   return renderValue;
 }
 
+export const TableFilter = ({ links, propCallback, callback }) => {
+  const inputStyle = StyleSheet.create({
+    input: {
+      marginHorizontal: 1,
+    },
+  });
+
+  const filter = (field, value) => {
+    let nextPropCallback = {
+      ...propCallback,
+    };
+    if (value == null || value == "undefined" || value == "") {
+      delete nextPropCallback.filter[field];
+    } else {
+      nextPropCallback.filter[field] = value;
+    }
+
+    callback(nextPropCallback);
+  };
+
+  const inputProps = (linkProp) => {
+    return {
+      placeholder: linkProp.placeholder,
+      key: linkProp.api,
+      size: "small",
+      style: [tableStyle[linkProp.api.split(".").pop()], inputStyle.input],
+      callBack: (nextValue) => filter(linkProp.api, nextValue),
+    };
+  };
+
+  return (
+    <DataTable.Header>
+      <DataTable.Title style={tableStyle.no}>
+        <Text category="s1">{i18n.t("origin.filter")}</Text>
+      </DataTable.Title>
+      {getLinkProps(links).map((linkProp) => {
+        return <MyInput {...inputProps(linkProp)} />;
+      })}
+    </DataTable.Header>
+  );
+};
+
 export const TableContent = ({ links, data = [], rowCallBack }) => {
   const linkProps = getLinkProps(links);
 
@@ -110,8 +154,6 @@ export const TableContent = ({ links, data = [], rowCallBack }) => {
 export const TableBottom = ({ propCallback, callback }) => {
   const [selectedSize, setSelectedSize] = React.useState(new IndexPath(0));
   const page = propCallback.page;
-
-  console.log(propCallback);
 
   const sizeRank = [5, 10, 20, 30, 50, 100];
 
@@ -210,6 +252,11 @@ export const TableData = ({
         callback={callback}
       />
       {topContent && topContent({ links, rowCallBack })}
+      <TableFilter
+        links={links}
+        propCallback={propCallback}
+        callback={callback}
+      />
       <TableContent links={links} data={data} rowCallBack={rowCallBack} />
       <TableBottom propCallback={propCallback} callback={callback} />
     </DataTable>
