@@ -4,14 +4,14 @@ import {
   DrawerGroup,
   DrawerItem,
   Layout,
-  Text
+  Text,
 } from "@ui-kitten/components";
 import {
   BookOpenIcon,
   CheckMarkSquare,
   HomeIcon,
   PantoneIcon,
-  PeopleIcon
+  PeopleIcon,
 } from "components/icons";
 import * as React from "react";
 import { StyleSheet } from "react-native";
@@ -31,12 +31,6 @@ const LeftMenu = ({ navigation, state, callback }) => {
     <Layout style={styles.container}>
       <Drawer
         selectedIndex={selectedIndex}
-        onSelect={(index) => {
-          if (index.row == 3) {
-            return;
-          }
-          navigation.navigate(state.routeNames[index.row]);
-        }}
         onSelect={(index) => {
           if (index.row == 3 && !index.section) return;
           setSelectedIndex(index);
