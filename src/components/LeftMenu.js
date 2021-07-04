@@ -55,10 +55,12 @@ const LeftMenu = ({ navigation, state, callback }) => {
           <DrawerItem
             title={i18n.t("screen.teacher")}
             accessoryLeft={PeopleIcon}
+            style={{ marginLeft: 15 }}
           />
           <DrawerItem
             title={i18n.t("screen.student")}
             accessoryLeft={PeopleIcon}
+            style={{ marginLeft: 15 }}
           />
         </DrawerGroup>
         <DrawerItem
