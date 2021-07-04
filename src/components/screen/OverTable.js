@@ -67,9 +67,7 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
             overTopBar={overTopBar}
             addNewRecord={(newRecord) => {
               if (newRecord == "undefined" || newRecord == null) return;
-              let newData = _.cloneDeep(data);
-              newData.unshift(newRecord);
-              setData(newData);
+              fetchSearchData(dataSearch);
             }}
           />
         </Layout>
