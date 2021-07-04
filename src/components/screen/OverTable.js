@@ -19,30 +19,12 @@ const sortDefault = {
 
 const OverTable = ({ links, form, api, overTopBar, topContent }) => {
   const [data, setData] = React.useState([]);
-  const [page, setPage] = React.useState(defaultPage);
-  const [sort, setSort] = React.useState(sortDefault);
   const [lang, setLang] = React.useState(i18n.languages);
   const [dataSearch, setDataSearch] = React.useState({
     page: defaultPage,
     sort: sortDefault,
   });
   const navigation = useNavigation();
-
-  const fetchData = async (nextPage) => {
-    try {
-      const response = await api.getPaging({ ...nextPage, ...sort });
-      setData(response.content);
-      let newPage = {
-        number: response.number,
-        size: response.size,
-        totalPages: response.totalPages,
-        totalElements: response.totalElements,
-      };
-      setPage(newPage);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const fetchSearchData = (param) => {
     api
@@ -67,13 +49,14 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
 
   React.useEffect(() => {
     langHolder.listeners.push(setLang);
-  }, []);
-
-  React.useEffect(() => {
     navigation.addListener("focus", () => {
       fetchSearchData(dataSearch);
     });
-  }, [navigation, dataSearch]);
+  }, []);
+
+  React.useEffect(() => {
+    fetchSearchData(dataSearch);
+  }, [navigation]);
 
   return (
     <Layout>
@@ -94,11 +77,9 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
           links={links}
           updateForm={form}
           data={data}
-          page={page}
-          pageCallBack={fetchData}
           topContent={topContent}
-          propsCallback={dataSearch}
-          callback={setDataSearch}
+          propCallback={dataSearch}
+          callback={fetchSearchData}
         />
       </Layout>
     </Layout>

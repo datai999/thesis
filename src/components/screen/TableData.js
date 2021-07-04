@@ -107,17 +107,23 @@ export const TableContent = ({ links, data = [], rowCallBack }) => {
   });
 };
 
-export const TableBottom = ({ page, pageCallBack }) => {
+export const TableBottom = ({ propCallback, callback }) => {
   const [selectedSize, setSelectedSize] = React.useState(new IndexPath(0));
+  const page = propCallback.page;
+
+  console.log(propCallback);
 
   const sizeRank = [5, 10, 20, 30, 50, 100];
 
   const fetchPage = (newNumber, newSize) => {
     let nextPage = {
-      number: newNumber,
-      size: newSize,
+      ...propCallback,
+      page: {
+        number: newNumber,
+        size: newSize,
+      },
     };
-    pageCallBack(nextPage);
+    callback(nextPage);
   };
 
   return (
@@ -166,8 +172,6 @@ export const TableData = ({
   links,
   updateForm,
   data,
-  page,
-  pageCallBack,
   topContent,
   propCallback = {},
   callback,
@@ -207,7 +211,7 @@ export const TableData = ({
       />
       {topContent && topContent({ links, rowCallBack })}
       <TableContent links={links} data={data} rowCallBack={rowCallBack} />
-      <TableBottom page={page} pageCallBack={pageCallBack} />
+      <TableBottom propCallback={propCallback} callback={callback} />
     </DataTable>
   );
 };
