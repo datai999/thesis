@@ -2,18 +2,28 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 let localStorage = {};
 
-const storageKey = ["isLogin", "email", "screen"];
+const storageKey = ["login", "email", "code", "screen"];
 
 export function getLocalStorage() {
-  localStorage = storageKey.map((key) => {
-    localStorage["get" + key.charAt(0).toUpperCase() + key.slice(1)] =
-      AsyncStorage.getItem(key);
-  });
   storageKey.map((key) => {
     AsyncStorage.getItem(key).then((value) => {
       localStorage[key] = value;
     });
   });
+}
+
+export function setWhenLogin(email, code) {
+  AsyncStorage.setItem("login", true);
+  AsyncStorage.setItem("email", email);
+  AsyncStorage.setItem("code", code);
+  AsyncStorage.setItem("screen", "topic");
+}
+
+export function removeWhenLogout() {
+  AsyncStorage.removeItem("login");
+  AsyncStorage.removeItem("email");
+  AsyncStorage.removeItem("code");
+  AsyncStorage.removeItem("screen");
 }
 
 export default localStorage;

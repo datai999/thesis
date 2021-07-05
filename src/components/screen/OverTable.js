@@ -4,7 +4,7 @@ import { TableData } from "components/screen/TableData";
 import TopBar from "components/screen/TopBar";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { langHolder } from "utils";
+import { langHolder, toastService } from "utils";
 import i18n from "utils/i18n";
 
 const defaultPage = {
@@ -13,41 +13,49 @@ const defaultPage = {
 };
 
 const sortDefault = {
-  sort: "createdAt",
+  field: "createdAt",
   descend: true,
 };
 
 const OverTable = ({ links, form, api, overTopBar, topContent }) => {
   const [data, setData] = React.useState([]);
-  const [page, setPage] = React.useState(defaultPage);
-  const [sort, setSort] = React.useState(sortDefault);
   const [lang, setLang] = React.useState(i18n.languages);
+  const [filterVisible, setFilterVisible] = React.useState(false);
+  const [dataSearch, setDataSearch] = React.useState({
+    page: defaultPage,
+    sort: sortDefault,
+    filter: {},
+  });
   const navigation = useNavigation();
 
-  React.useEffect(() => {
-    langHolder.listeners.push(setLang);
-  }, [lang]);
-
-  const fetchData = async (nextPage) => {
-    try {
-      const response = await api.getPaging({ ...nextPage, ...sort });
-      setData(response.content);
-      let newPage = {
-        number: response.number,
-        size: response.size,
-        totalPages: response.totalPages,
-        totalElements: response.totalElements,
-      };
-      setPage(newPage);
-    } catch (error) {
-      console.log(error);
-    }
+  const fetchSearchData = (param) => {
+    api
+      .pagingSearch(param)
+      .then((response) => {
+        setData(response.content);
+        let newDataSearch = {
+          ...param,
+          page: {
+            number: response.number,
+            size: response.size,
+            totalPages: response.totalPages,
+            totalElements: response.totalElements,
+          },
+        };
+        setDataSearch(newDataSearch);
+      })
+      .catch((err) => toastService.error("toast.search.error", err));
   };
 
   React.useEffect(() => {
-    return navigation.addListener("focus", () => {
-      fetchData(page);
+    langHolder.listeners.push(setLang);
+    navigation.addListener("focus", () => {
+      fetchSearchData(dataSearch);
     });
+  }, []);
+
+  React.useEffect(() => {
+    fetchSearchData(dataSearch);
   }, [navigation]);
 
   return (
@@ -57,10 +65,11 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
           <TopBar
             form={form}
             overTopBar={overTopBar}
+            filterVisible={filterVisible}
+            setFilterVisible={setFilterVisible}
             addNewRecord={(newRecord) => {
-              let newData = _.cloneDeep(data);
-              newData.unshift(newRecord);
-              setData(newData);
+              if (newRecord == "undefined" || newRecord == null) return;
+              fetchSearchData(dataSearch);
             }}
           />
         </Layout>
@@ -68,9 +77,10 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
           links={links}
           updateForm={form}
           data={data}
-          page={page}
-          pageCallBack={fetchData}
           topContent={topContent}
+          filterVisible={filterVisible}
+          propCallback={dataSearch}
+          callback={fetchSearchData}
         />
       </Layout>
     </Layout>

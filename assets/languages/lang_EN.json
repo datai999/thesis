@@ -80,6 +80,7 @@
     "degree": "Degree",
     "downAndroidApp": "Download android app",
     "email": "Email",
+    "filter": "Filter",
     "filter&Search": "Filter and Search",
     "inEn": " in English",
     "inVi": " in Vietnamese",
@@ -90,7 +91,7 @@
     "record": "Record",
     "submit": "Submit",
     "topic": "Topic",
-    "total": "Total",
+    "totalRecord": "Total record",
     "update": "Update",
     "version": "Version"
   },
@@ -193,9 +194,19 @@
       "invalid": "The email address is badly formatted",
       "notHcmut": " is not @hcmut.edu.vn"
     },
+    "fail": "Execute fail",
+    "login": {
+      "success": "Login success"
+    },
+    "logout": {
+      "success": "Login success"
+    },
     "password": {
       "invalid": "The password is invalid",
       "weak": "The password must be 6 characters long or more"
+    },
+    "search": {
+      "error": "Search error"
     }
   },
   "topic": {

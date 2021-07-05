@@ -80,3 +80,5 @@ export const CheckMarkCircle2 = (props) => (
 );
 
 export const GoogleIcon = (props) => <Icon {...props} name="google-outline" />;
+
+export const FunnelIcon = (props) => <Icon {...props} name="funnel-outline" />;

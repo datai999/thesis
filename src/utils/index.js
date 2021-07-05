@@ -1,18 +1,27 @@
 import dateFormat from "dateformat";
 import env from "src/env";
 import i18n from "./i18n";
-import { createProps, getLinkProps } from "./link";
-import { langHolder, navService, toastHolder, userService } from "./service";
+import { createProps, emailTail, getHeadMail, getLinkProps } from "./link";
+import {
+  langHolder,
+  navService,
+  toastHolder,
+  toastHolder as toastService,
+} from "./service";
+import userService from "./userService";
 
 export {
   createProps,
   getLinkProps,
   langHolder,
   toastHolder,
+  toastService,
   i18n,
   env,
   navService,
   userService,
+  emailTail,
+  getHeadMail,
 };
 
 export function getRenderText(obj) {
@@ -45,12 +54,4 @@ export function toLocalDate(date) {
 
 export function toLocalTime(date) {
   return dateFormat(dateToLocal(date), "HH:MM");
-}
-
-export const emailTail = "@hcmut.edu.vn";
-
-export function getHeadMail(fullMail) {
-  if (!fullMail) return "";
-  let mailLength = fullMail.length;
-  return fullMail.substring(0, mailLength - emailTail.length);
 }

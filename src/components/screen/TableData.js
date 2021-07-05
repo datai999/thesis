@@ -1,29 +1,60 @@
-import { IndexPath, Layout, Select, Text } from "@ui-kitten/components";
+import { Button, IndexPath, Layout, Select, Text } from "@ui-kitten/components";
+import { MyInput } from "components/Input";
 import MyModal from "components/Modal";
 import { selectItems } from "components/Select";
 import tableStyle from "data/tableStyle";
 import _ from "lodash";
 import React from "react";
+import { StyleSheet } from "react-native";
 import { DataTable, List } from "react-native-paper";
 import { getLinkProps, getRenderText } from "utils";
 import i18n from "utils/i18n";
 
-export const TableHeader = ({ links }) => {
-  const linkProps = getLinkProps(links);
+export const TableHeader = ({ links, propCallback, callback }) => {
+  const [sortField, setSortField] = React.useState();
+  const [descending, setDescending] = React.useState(null);
+
+  React.useEffect(() => {
+    propCallback.sort = { field: sortField, descend: descending };
+    callback(propCallback);
+  }, [sortField, descending]);
+
+  function getSortDirection(propsApi) {
+    if (propsApi == sortField) {
+      return descending ? "descending" : "ascending";
+    }
+    return null;
+  }
+
+  function setSort(propsApi) {
+    if (propsApi != sortField) {
+      setDescending(true);
+    } else {
+      setDescending(!descending);
+    }
+    setSortField(propsApi);
+  }
 
   return (
     <DataTable.Header>
       <DataTable.Title style={tableStyle.no}>
         <Text category="s1">No</Text>
       </DataTable.Title>
-      {linkProps.map((linkProp) => {
+      {getLinkProps(links).map((linkProp) => {
         return (
-          <DataTable.Title
-            style={tableStyle[linkProp.api.split(".").pop()]}
+          <Button
             key={linkProp.api}
+            appearance={linkProp.api != sortField ? "ghost" : "filled"}
+            status="basic"
+            style={tableStyle[linkProp.api.split(".").pop()]}
           >
-            <Text category="s1">{i18n.t(linkProp.label)}</Text>
-          </DataTable.Title>
+            <DataTable.Title
+              sortDirection={getSortDirection(linkProp.api)}
+              onPress={() => setSort(linkProp.api)}
+            >
+              <Text category="s1">{i18n.t(linkProp.label)}</Text>
+            </DataTable.Title>
+          </Button>
         );
       })}
     </DataTable.Header>
@@ -49,6 +80,48 @@ export function renderCell(fieldValue) {
   }
   return renderValue;
 }
+
+export const TableFilter = ({ links, propCallback, callback }) => {
+  const inputStyle = StyleSheet.create({
+    input: {
+      marginHorizontal: 1,
+    },
+  });
+
+  const filter = (field, value) => {
+    let nextPropCallback = {
+      ...propCallback,
+    };
+    if (value == null || value == "undefined" || value == "") {
+      delete nextPropCallback.filter[field];
+    } else {
+      nextPropCallback.filter[field] = value;
+    }
+
+    callback(nextPropCallback);
+  };
+
+  const inputProps = (linkProp) => {
+    return {
+      placeholder: linkProp.placeholder,
+      key: linkProp.api,
+      size: "small",
+      style: [tableStyle[linkProp.api.split(".").pop()], inputStyle.input],
+      callBack: (nextValue) => filter(linkProp.api, nextValue),
+    };
+  };
+
+  return (
+    <DataTable.Header>
+      <DataTable.Title style={tableStyle.no}>
+        <Text category="s1">{i18n.t("origin.filter")}</Text>
+      </DataTable.Title>
+      {getLinkProps(links).map((linkProp) => {
+        return <MyInput {...inputProps(linkProp)} />;
+      })}
+    </DataTable.Header>
+  );
+};
 
 export const TableContent = ({ links, data = [], rowCallBack }) => {
   const linkProps = getLinkProps(links);
@@ -78,17 +151,21 @@ export const TableContent = ({ links, data = [], rowCallBack }) => {
   });
 };
 
-export const TableBottom = ({ page, pageCallBack }) => {
+export const TableBottom = ({ propCallback, callback }) => {
   const [selectedSize, setSelectedSize] = React.useState(new IndexPath(0));
+  const page = propCallback.page;
 
   const sizeRank = [5, 10, 20, 30, 50, 100];
 
   const fetchPage = (newNumber, newSize) => {
     let nextPage = {
-      number: newNumber,
-      size: newSize,
+      ...propCallback,
+      page: {
+        number: newNumber,
+        size: newSize,
+      },
     };
-    pageCallBack(nextPage);
+    callback(nextPage);
   };
 
   return (
@@ -105,7 +182,7 @@ export const TableBottom = ({ page, pageCallBack }) => {
           {i18n.t("origin.page")}: {page.number + 1} / {page.totalPages}
         </Text>
         <Text>
-          {i18n.t("origin.total")}: {page.totalElements}
+          {i18n.t("origin.totalRecord")}: {page.totalElements}
         </Text>
       </Layout>
       <DataTable.Pagination
@@ -137,9 +214,10 @@ export const TableData = ({
   links,
   updateForm,
   data,
-  page,
-  pageCallBack,
   topContent,
+  filterVisible = false,
+  propCallback = {},
+  callback,
 }) => {
   const [updateFormVisible, setUpdateFormVisible] = React.useState(false);
   const [currentRow, setCurrenRow] = React.useState(null);
@@ -169,10 +247,21 @@ export const TableData = ({
   return (
     <DataTable>
       <MyModal {...modalUpdateFormProps} />
-      <TableHeader links={links} />
+      <TableHeader
+        links={links}
+        propCallback={propCallback}
+        callback={callback}
+      />
       {topContent && topContent({ links, rowCallBack })}
+      {filterVisible && (
+        <TableFilter
+          links={links}
+          propCallback={propCallback}
+          callback={callback}
+        />
+      )}
       <TableContent links={links} data={data} rowCallBack={rowCallBack} />
-      <TableBottom page={page} pageCallBack={pageCallBack} />
+      <TableBottom propCallback={propCallback} callback={callback} />
     </DataTable>
   );
 };

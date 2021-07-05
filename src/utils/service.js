@@ -1,7 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import userService from "utils/userService";
-
-export { userService };
 
 function notifyListener(arr, value) {
   arr.forEach((listener) => listener(value));

@@ -4,14 +4,15 @@ import {
   DrawerItem,
   IndexPath,
   Layout,
-  Text
+  Text,
 } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import { AvatarIcon } from "components/icons";
 import { MyInput } from "components/Input";
+import { localStorage } from "data";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
-import { createProps, getRenderText, userService } from "utils";
+import { createProps, getRenderText } from "utils";
 import i18n from "utils/i18n";
 
 const EvaluateTarget = ({ topicAssign }) => {
@@ -61,7 +62,7 @@ const EvaluateScreen = ({ navigation }) => {
 
   const fetchTopicAssign = async () => {
     try {
-      TopicAssignApi.searchByTeacherCode(userService.code).then((result) => {
+      TopicAssignApi.searchByTeacherCode(localStorage.code).then((result) => {
         setTopicAssign(result);
         topicAssignStore = result;
       });

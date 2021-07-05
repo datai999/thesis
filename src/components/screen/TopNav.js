@@ -6,7 +6,7 @@ import {
   Text,
   Toggle,
   TopNavigation,
-  TopNavigationAction
+  TopNavigationAction,
 } from "@ui-kitten/components";
 import AxiosClient from "api/AxiosClient";
 import {
@@ -16,7 +16,7 @@ import {
   CloseCircleIcon,
   ExternalLinkIcon,
   InfoIcon,
-  MenuIcon
+  MenuIcon,
 } from "components/icons";
 import { localStorage } from "data";
 import React from "react";
@@ -30,7 +30,7 @@ const renderMenuAction = () => {
 
   React.useEffect(() => {
     userService.loginListeners.push(setLogin);
-    localStorage.getIsLogin.then((response) => setLogin(response));
+    setLogin(localStorage.login);
   }, []);
 
   if (!login) return null;
@@ -48,7 +48,7 @@ const renderPersonAction = () => {
 
   React.useEffect(() => {
     userService.loginListeners.push(setLogin);
-    localStorage.getIsLogin.then((response) => setLogin(response));
+    setLogin(localStorage.login);
   }, []);
 
   const renderPersonAvt = () => {
@@ -137,7 +137,7 @@ const ToolTopNav = () => {
 
   React.useEffect(() => {
     if (log.msg?.length > 0) {
-      if (log.type == "warning" || log.type == "error") {
+      if (log.type != "info" && log.type != "success") {
         console.log(log);
       }
       setVisible(true);

@@ -10,7 +10,7 @@ import _ from "lodash";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
-import { createProps } from "utils";
+import { createProps, toastHolder } from "utils";
 import i18n from "utils/i18n";
 
 let form = {};
@@ -26,7 +26,13 @@ const TopicForm = {
     } else form = {};
     return <FormLayout header={header} />;
   },
-  submit: () => TopicAssignApi.create(form),
+  submit: () => {
+    form.semester = form.topic.semester;
+    return TopicAssignApi.create(form).catch((err) =>
+      // TODO update message
+      toastHolder.error("toast.fail", err)
+    );
+  },
 };
 
 const FormLayout = ({ header }) => {
