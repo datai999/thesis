@@ -215,6 +215,7 @@ export const TableData = ({
   updateForm,
   data,
   topContent,
+  filterVisible = false,
   propCallback = {},
   callback,
 }) => {
@@ -252,11 +253,13 @@ export const TableData = ({
         callback={callback}
       />
       {topContent && topContent({ links, rowCallBack })}
-      <TableFilter
-        links={links}
-        propCallback={propCallback}
-        callback={callback}
-      />
+      {filterVisible && (
+        <TableFilter
+          links={links}
+          propCallback={propCallback}
+          callback={callback}
+        />
+      )}
       <TableContent links={links} data={data} rowCallBack={rowCallBack} />
       <TableBottom propCallback={propCallback} callback={callback} />
     </DataTable>

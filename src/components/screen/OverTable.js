@@ -20,6 +20,7 @@ const sortDefault = {
 const OverTable = ({ links, form, api, overTopBar, topContent }) => {
   const [data, setData] = React.useState([]);
   const [lang, setLang] = React.useState(i18n.languages);
+  const [filterVisible, setFilterVisible] = React.useState(false);
   const [dataSearch, setDataSearch] = React.useState({
     page: defaultPage,
     sort: sortDefault,
@@ -64,6 +65,8 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
           <TopBar
             form={form}
             overTopBar={overTopBar}
+            filterVisible={filterVisible}
+            setFilterVisible={setFilterVisible}
             addNewRecord={(newRecord) => {
               if (newRecord == "undefined" || newRecord == null) return;
               fetchSearchData(dataSearch);
@@ -75,6 +78,7 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
           updateForm={form}
           data={data}
           topContent={topContent}
+          filterVisible={filterVisible}
           propCallback={dataSearch}
           callback={fetchSearchData}
         />
