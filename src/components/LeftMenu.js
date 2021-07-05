@@ -32,8 +32,9 @@ const LeftMenu = ({ navigation, state, callback }) => {
       <Drawer
         selectedIndex={selectedIndex}
         onSelect={(index) => {
-          if (index.row == 3 && !index.section) return;
           setSelectedIndex(index);
+
+          if (index.row == 3 && !index.section) return;
 
           if (index.section == 3) {
             callback(index.row == 0 ? "teacher" : "student");
