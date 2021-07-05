@@ -59,30 +59,28 @@ const OverTable = ({ links, form, api, overTopBar, topContent }) => {
   }, [navigation]);
 
   return (
-    <Layout>
-      <Layout style={styles.container}>
-        <Layout style={styles.topBar}>
-          <TopBar
-            form={form}
-            overTopBar={overTopBar}
-            filterVisible={filterVisible}
-            setFilterVisible={setFilterVisible}
-            addNewRecord={(newRecord) => {
-              if (newRecord == "undefined" || newRecord == null) return;
-              fetchSearchData(dataSearch);
-            }}
-          />
-        </Layout>
-        <TableData
-          links={links}
-          updateForm={form}
-          data={data}
-          topContent={topContent}
+    <Layout style={styles.container}>
+      <Layout style={styles.topBar}>
+        <TopBar
+          form={form}
+          overTopBar={overTopBar}
           filterVisible={filterVisible}
-          propCallback={dataSearch}
-          callback={fetchSearchData}
+          setFilterVisible={setFilterVisible}
+          addNewRecord={(newRecord) => {
+            if (newRecord == "undefined" || newRecord == null) return;
+            fetchSearchData(dataSearch);
+          }}
         />
       </Layout>
+      <TableData
+        links={links}
+        updateForm={form}
+        data={data}
+        topContent={topContent}
+        filterVisible={filterVisible}
+        propCallback={dataSearch}
+        callback={fetchSearchData}
+      />
     </Layout>
   );
 };

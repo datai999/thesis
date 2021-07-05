@@ -20,6 +20,7 @@ import CriterionScreen from "./src/pages/CriterionScreen";
 import HomeScreen from "./src/pages/HomeScreen";
 import PersonScreen from "./src/pages/PersonScreen";
 import TopicScreen from "./src/pages/TopicScreen";
+import { default as theme } from "./theme.json";
 
 const { Navigator, Screen } = createDrawerNavigator();
 
@@ -47,7 +48,7 @@ export default function App() {
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.light}>
+      <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
         <SafeAreaProvider>
           <StatusBar />
           <NavigationContainer>

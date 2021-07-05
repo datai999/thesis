@@ -7,6 +7,7 @@ import {
   Toggle,
   TopNavigation,
   TopNavigationAction,
+  useTheme,
 } from "@ui-kitten/components";
 import AxiosClient from "api/AxiosClient";
 import {
@@ -113,7 +114,7 @@ const TopNav = () => {
 
   return (
     <TopNavigation
-      style={{ backgroundColor: "#3366FF" }}
+      style={{ backgroundColor: useTheme()["color-primary-default"] }}
       title={i18n.t("origin.appName")}
       alignment="center"
       accessoryLeft={renderMenuAction}
