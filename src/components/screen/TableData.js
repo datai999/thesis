@@ -15,7 +15,8 @@ export const TableHeader = ({ links, propCallback, callback }) => {
   const [descending, setDescending] = React.useState(null);
 
   React.useEffect(() => {
-    propCallback.sort = { field: sortField, descend: descending };
+    if (descending == null) propCallback.sort = {};
+    else propCallback.sort = { field: sortField, descend: descending };
     callback(propCallback);
   }, [sortField, descending]);
 
@@ -30,7 +31,11 @@ export const TableHeader = ({ links, propCallback, callback }) => {
     if (propsApi != sortField) {
       setDescending(true);
     } else {
-      setDescending(!descending);
+      if (!descending) {
+        setDescending(null);
+        setSortField(null);
+        return;
+      } else setDescending(false);
     }
     setSortField(propsApi);
   }
