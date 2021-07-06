@@ -111,6 +111,7 @@ export const TableFilter = ({ links, propCallback, callback }) => {
       placeholder: linkProp.placeholder,
       key: linkProp.api,
       size: "small",
+      value: propCallback.filter[linkProp.api],
       style: [tableStyle[linkProp.api.split(".").pop()], inputStyle.input],
       callBack: (nextValue) => filter(linkProp.api, nextValue),
     };

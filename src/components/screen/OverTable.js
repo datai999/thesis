@@ -17,14 +17,24 @@ const sortDefault = {
   descend: true,
 };
 
-const OverTable = ({ links, form, api, overTopBar, topContent }) => {
+const OverTable = ({
+  links,
+  form,
+  api,
+  overTopBar,
+  topContent,
+  defaultProps = {},
+}) => {
   const [data, setData] = React.useState([]);
   const [lang, setLang] = React.useState(i18n.languages);
-  const [filterVisible, setFilterVisible] = React.useState(false);
+  const [filterVisible, setFilterVisible] = React.useState(
+    defaultProps?.filterVisible ?? false
+  );
   const [dataSearch, setDataSearch] = React.useState({
     page: defaultPage,
     sort: sortDefault,
     filter: {},
+    ...defaultProps.dataSearch,
   });
   const navigation = useNavigation();
 

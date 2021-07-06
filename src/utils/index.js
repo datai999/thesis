@@ -55,3 +55,11 @@ export function toLocalDate(date) {
 export function toLocalTime(date) {
   return dateFormat(dateToLocal(date), "HH:MM");
 }
+
+export const currentSemester = () => {
+  let currentYear = new Date().getFullYear().toString().substr(-2);
+  let currentMonth = new Date().getMonth();
+  if (currentMonth >= 8) return currentYear + "1";
+  if (currentMonth < 4) return currentYear + "2";
+  return currentYear + "3";
+};
