@@ -53,13 +53,21 @@ export const TableHeader = ({ links, propCallback, callback }) => {
             key={linkProp.api}
             appearance={linkProp.api != sortField ? "ghost" : "filled"}
             status="basic"
-            style={tableStyle[linkProp.api.split(".").pop()]}
+            style={[
+              tableStyle[linkProp.api.split(".").pop()],
+              {
+                marginHorizontal: 1,
+                paddingHorizontal: 0,
+              },
+            ]}
           >
             <DataTable.Title
               sortDirection={getSortDirection(linkProp.api)}
               onPress={() => setSort(linkProp.api)}
             >
-              <Text category="s1">{i18n.t(linkProp.label)}</Text>
+              <Text category="s1" style={{ fontSize: 13 }}>
+                {i18n.t(linkProp.label)}
+              </Text>
             </DataTable.Title>
           </Button>
         );
