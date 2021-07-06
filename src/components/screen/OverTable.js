@@ -12,11 +12,6 @@ const defaultPage = {
   size: 5,
 };
 
-const sortDefault = {
-  field: "createdAt",
-  descend: true,
-};
-
 const OverTable = ({
   links,
   form,
@@ -32,7 +27,7 @@ const OverTable = ({
   );
   const [dataSearch, setDataSearch] = React.useState({
     page: defaultPage,
-    sort: sortDefault,
+    sort: {},
     filter: {},
     ...defaultProps.dataSearch,
   });

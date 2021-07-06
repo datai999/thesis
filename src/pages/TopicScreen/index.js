@@ -21,14 +21,11 @@ const overTableProps = {
   defaultProps: {
     filterVisible: true,
     dataSearch: {
-      filter: {
-        "topic.semester": currentSemester(),
-      },
+      sort: { field: "topic.semester", descend: true },
+      filter: { "topic.semester": currentSemester() },
     },
   },
 };
-
-console.log(overTableProps);
 
 const TopicScreen = () => {
   return <OverTable {...overTableProps} />;

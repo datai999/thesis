@@ -11,8 +11,10 @@ import { getLinkProps, getRenderText } from "utils";
 import i18n from "utils/i18n";
 
 export const TableHeader = ({ links, propCallback, callback }) => {
-  const [sortField, setSortField] = React.useState();
-  const [descending, setDescending] = React.useState(null);
+  const [sortField, setSortField] = React.useState(propCallback.sort?.field);
+  const [descending, setDescending] = React.useState(
+    propCallback.sort?.descend
+  );
 
   React.useEffect(() => {
     if (descending == null) propCallback.sort = {};
