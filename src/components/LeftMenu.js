@@ -16,10 +16,9 @@ import {
 import * as React from "react";
 import { StyleSheet } from "react-native";
 import env from "src/env";
-import { langHolder } from "utils";
-import i18n from "utils/i18n";
+import { i18n, langHolder } from "utils";
 
-const LeftMenu = ({ navigation, state, callback }) => {
+const LeftMenu = ({ navigation, state, ...props }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(null);
   const [lang, setLang] = React.useState(i18n.languages);
 
@@ -33,13 +32,6 @@ const LeftMenu = ({ navigation, state, callback }) => {
         selectedIndex={selectedIndex}
         onSelect={(index) => {
           setSelectedIndex(index);
-
-          if (index.row == 3 && !index.section) return;
-
-          if (index.section == 3) {
-            callback(index.row == 0 ? "teacher" : "student");
-          }
-
           navigation.navigate(state.routeNames[index.section ?? index.row]);
         }}
       >

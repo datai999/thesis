@@ -27,37 +27,37 @@ const nameScreenMap = {
 const Route = () => {
   const renderDrawer = ({ ...stackProps }) => {
     return (
-      <Drawer.Navigator
-        drawerContent={(props) => {
-          navService.drawerNav = props.navigation;
-          return <LeftMenu {...props} />;
+      <Stack.Navigator
+        screenOptions={{
+          header: (props) => {
+            navService.stackNav = props.navigation;
+            return <TopNav {...props} />;
+          },
         }}
       >
-        <Drawer.Screen
+        <Stack.Screen
           name={stackProps.route.name}
           component={nameScreenMap[stackProps.route.name]}
         />
-      </Drawer.Navigator>
+      </Stack.Navigator>
     );
   };
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
+      <Drawer.Navigator
         initialRouteName="login"
-        screenOptions={{
-          header: (props) => {
-            navService.nav = props.navigation;
-            return <TopNav {...props} />;
-          },
+        drawerContent={(props) => {
+          navService.nav = props.navigation;
+          return <LeftMenu {...props} />;
         }}
       >
-        <Stack.Screen name="login" component={LoginScreen} />
-        <Stack.Screen name="home" component={renderDrawer} />
-        <Stack.Screen name="topic" component={renderDrawer} />
-        <Stack.Screen name="evaluate" component={renderDrawer} />
-        <Stack.Screen name="criterion" component={renderDrawer} />
-      </Stack.Navigator>
+        <Drawer.Screen name="home" component={renderDrawer} />
+        <Drawer.Screen name="topic" component={renderDrawer} />
+        <Drawer.Screen name="evaluate" component={renderDrawer} />
+        <Drawer.Screen name="criterion" component={renderDrawer} />
+        <Drawer.Screen name="login" component={LoginScreen} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };

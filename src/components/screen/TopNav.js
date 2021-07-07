@@ -38,7 +38,7 @@ const renderMenuAction = () => {
   return (
     <TopNavigationAction
       icon={MenuIcon}
-      onPress={() => navService.drawerNav.toggleDrawer()}
+      onPress={() => navService.nav.toggleDrawer()}
     />
   );
 };
