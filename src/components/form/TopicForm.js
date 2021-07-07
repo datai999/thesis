@@ -10,7 +10,7 @@ import _ from "lodash";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
-import { createProps, toastHolder } from "utils";
+import { createProps, toastHolder, currentSemester } from "utils";
 import i18n from "utils/i18n";
 
 let form = {};
@@ -23,7 +23,7 @@ const TopicForm = {
     if (data != null) {
       form = _.cloneDeep(data);
       header = "topic.update";
-    } else form = {};
+    } else form = { topic: { semester: currentSemester() } };
     return <FormLayout header={header} />;
   },
   submit: () => {
