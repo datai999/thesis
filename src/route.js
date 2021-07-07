@@ -17,30 +17,50 @@ import {
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-const nameScreenMap = {
-  login: LoginScreen,
-  home: HomeScreen,
-  topic: TopicScreen,
-  evaluate: EvaluateScreen,
-  person: PersonScreen,
-  criterion: CriterionScreen,
-};
+const arrRoute = [
+  {
+    name: "home",
+    component: [{ name: "home", component: HomeScreen }],
+  },
+  {
+    name: "topic",
+    component: [{ name: "topic", component: TopicScreen }],
+  },
+  {
+    name: "evaluate",
+    component: [{ name: "evaluate", component: EvaluateScreen }],
+  },
+  {
+    name: "person",
+    component: [{ name: "person", component: PersonScreen }],
+  },
+  {
+    name: "criterion",
+    component: [{ name: "criterion", component: CriterionScreen }],
+  },
+];
+
+const objectRoute = arrRoute.reduce((result, item) => {
+  result[item.name] = item.component;
+  return result;
+}, {});
 
 const Route = () => {
-  const renderDrawer = ({ ...stackProps }) => {
+  const renderSubMenu = ({ ...drawerProps }) => {
     return (
       <Stack.Navigator
         screenOptions={{
           header: (props) => {
-            navService.stackNav = props.navigation;
+            navService.stack = { ...props };
             return <TopNav {...props} />;
           },
         }}
       >
-        <Stack.Screen
-          name={stackProps.route.name}
-          component={nameScreenMap[stackProps.route.name]}
-        />
+        {objectRoute[drawerProps.route.name].map((e) => {
+          return (
+            <Stack.Screen key={e.name} name={e.name} component={e.component} />
+          );
+        })}
       </Stack.Navigator>
     );
   };
@@ -51,14 +71,14 @@ const Route = () => {
         initialRouteName="login"
         drawerContent={(props) => {
           navService.nav = props.navigation;
-          return <LeftMenu {...props} />;
+          return <LeftMenu {...props} route={arrRoute} />;
         }}
       >
-        <Drawer.Screen name="home" component={renderDrawer} />
-        <Drawer.Screen name="topic" component={renderDrawer} />
-        <Drawer.Screen name="evaluate" component={renderDrawer} />
-        <Drawer.Screen name="person" component={renderDrawer} />
-        <Drawer.Screen name="criterion" component={renderDrawer} />
+        <Drawer.Screen name="home" component={renderSubMenu} />
+        <Drawer.Screen name="topic" component={renderSubMenu} />
+        <Drawer.Screen name="evaluate" component={renderSubMenu} />
+        <Drawer.Screen name="person" component={renderSubMenu} />
+        <Drawer.Screen name="criterion" component={renderSubMenu} />
         <Drawer.Screen name="login" component={LoginScreen} />
       </Drawer.Navigator>
     </NavigationContainer>

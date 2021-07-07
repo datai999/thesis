@@ -18,7 +18,7 @@ import { StyleSheet } from "react-native";
 import env from "src/env";
 import { i18n, langHolder } from "utils";
 
-const LeftMenu = ({ navigation, state, ...props }) => {
+const LeftMenu = ({ navigation, state, route }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(null);
   const [lang, setLang] = React.useState(i18n.languages);
 
@@ -42,7 +42,7 @@ const LeftMenu = ({ navigation, state, ...props }) => {
             });
           }
 
-          navigation.navigate(state.routeNames[index.section ?? index.row]);
+          navigation.navigate(route[index.section ?? index.row].name);
         }}
       >
         <DrawerItem title={i18n.t("screen.home")} accessoryLeft={HomeIcon} />
