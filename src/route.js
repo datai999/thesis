@@ -2,6 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import TopNav from "components/screen/TopNav";
 import * as React from "react";
+import { navService } from "utils";
 import EvaluateScreen from ".//pages/EvaluateScreen";
 import CriterionScreen from "./pages/CriterionScreen";
 import HomeScreen from "./pages/HomeScreen";
@@ -14,7 +15,13 @@ const Route = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        screenOptions={{ header: (props) => <TopNav {...props} /> }}
+        initialRouteName="login"
+        screenOptions={{
+          header: (props) => {
+            navService.nav = props.navigation;
+            return <TopNav {...props} />;
+          },
+        }}
       >
         <Stack.Screen name="login" component={LoginScreen} />
         <Stack.Screen name="home" component={HomeScreen} />
