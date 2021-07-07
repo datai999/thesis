@@ -10,6 +10,7 @@ import {
   EvaluateScreen,
   HomeScreen,
   LoginScreen,
+  PersonScreen,
   TopicScreen,
 } from "./pages";
 
@@ -21,6 +22,7 @@ const nameScreenMap = {
   home: HomeScreen,
   topic: TopicScreen,
   evaluate: EvaluateScreen,
+  person: PersonScreen,
   criterion: CriterionScreen,
 };
 
@@ -55,6 +57,7 @@ const Route = () => {
         <Drawer.Screen name="home" component={renderDrawer} />
         <Drawer.Screen name="topic" component={renderDrawer} />
         <Drawer.Screen name="evaluate" component={renderDrawer} />
+        <Drawer.Screen name="person" component={renderDrawer} />
         <Drawer.Screen name="criterion" component={renderDrawer} />
         <Drawer.Screen name="login" component={LoginScreen} />
       </Drawer.Navigator>

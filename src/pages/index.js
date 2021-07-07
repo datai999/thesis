@@ -2,6 +2,7 @@ import CriterionScreen from "./CriterionScreen";
 import EvaluateScreen from "./EvaluateScreen";
 import HomeScreen from "./HomeScreen";
 import LoginScreen from "./LoginScreen";
+import PersonScreen from "./PersonScreen";
 import TopicScreen from "./TopicScreen";
 
 export {
@@ -10,4 +11,5 @@ export {
   HomeScreen,
   LoginScreen,
   TopicScreen,
+  PersonScreen,
 };
