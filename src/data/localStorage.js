@@ -1,6 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-let localStorage = {};
+let localStorage = {
+  getLocalStorage: getLocalStorage,
+  setWhenLogin: setWhenLogin,
+};
 
 const storageKey = ["login", "email", "code", "screen"];
 
