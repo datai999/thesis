@@ -4,6 +4,7 @@ import i18n from "./i18n";
 import { createProps, emailTail, getHeadMail, getLinkProps } from "./link";
 import {
   langHolder,
+  languageService,
   navService,
   toastHolder,
   toastHolder as toastService,
@@ -15,6 +16,7 @@ export {
   getLinkProps,
   langHolder,
   toastHolder,
+  languageService,
   toastService,
   i18n,
   env,

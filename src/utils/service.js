@@ -4,10 +4,12 @@ function notifyListener(arr, value) {
   arr.forEach((listener) => listener(value));
 }
 
-export const langHolder = {
+export const languageService = {
   listeners: [],
-  notify: (lang) => notifyListener(langHolder.listeners, lang),
+  notify: (language) => notifyListener(languageService.listeners, language),
 };
+
+export const langHolder = languageService;
 
 export const toastHolder = {
   listeners: [],
