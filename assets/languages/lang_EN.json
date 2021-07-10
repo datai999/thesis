@@ -92,6 +92,9 @@
     "record": "Record",
     "submit": "Submit",
     "topic": "Topic",
+    "topicAssign": "Topic assign",
+    "topicDescription": "Topic description",
+    "topicInfo": "Topic information",
     "totalRecord": "Total record",
     "update": "Update",
     "version": "Version"
