@@ -1,62 +1,74 @@
-import { Layout } from "@ui-kitten/components";
+import { Button, Layout } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import { MyInput } from "components/Input";
 import { MyMultiSelect, MySelect } from "components/Select";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
-import { createProps, currentSemester, toastHolder } from "utils";
+import {
+  createProps,
+  currentSemester,
+  i18n,
+  languageService,
+  toastHolder,
+} from "utils";
 
 let form = { topic: { semester: currentSemester() } };
 
-const TopicForm = () => {
-  return {
-    create: "topic.create",
-    update: "topic.update",
-    submit: () => {
-      form.semester = form.topic.semester;
-      return TopicAssignApi.create(form).catch((err) =>
-        // TODO update message
-        toastHolder.error("toast.fail", err)
-      );
-    },
-  };
+const submit = () => {
+  form.semester = form.topic.semester;
+  return TopicAssignApi.create(form).catch((err) =>
+    // TODO update message
+    toastHolder.error("toast.fail", err)
+  );
 };
 
 const FormLayout = () => {
+  const [language, setLanguage] = React.useState(i18n.languages);
   const [multiLang, setMultiLang] = React.useState(0);
 
   const propStore = createProps(form);
 
+  React.useEffect(() => {
+    languageService.listen(setLanguage);
+  }, [language]);
+
   return (
-    <Layout style={{ flex: 1, maxHeight: "70%", backgroundColor: "blue" }}>
+    <Layout style={styles.container}>
       <Layout style={{ flexDirection: "row" }}>
-        <IconButton
-          icon="translate"
+        <Button
+          size="tiny"
+          status="primary"
+          style={{ margin: 5 }}
           onPress={() => setMultiLang(multiLang + 1)}
-        />
+          accessoryRight={() => (
+            <IconButton
+              icon="translate"
+              color="white"
+              size={13}
+              style={{ margin: 0 }}
+              onPress={() => setMultiLang(multiLang + 1)}
+            />
+          )}
+        >
+          {i18n.t("origin.multiLanguage")}
+        </Button>
       </Layout>
+
       <ScrollView
-        style={{ maxHeight: "70%", backgroundColor: "red" }}
-        contentContainerStyle={{ paddingHorizontal: "20%" }}
+        style={{ maxHeigh: "50%" }}
+        contentContainerStyle={{ marginHorizontal: 24, marginVertical: 15 }}
       >
         <MyInput {...propStore.inputLang("topic.name")} />
         {multiLang > 0 && (
           <MyInput {...propStore.inputToggleLang("topic.name")} />
         )}
-
-        <Layout style={styles.row}>
-          <Layout style={styles.left}>
-            <MySelect {...propStore.select("topic.educationMethod")} />
-            <MyInput {...propStore.select("topic.semester")} />
-            <MyMultiSelect {...propStore.select("topic.major")} />
-          </Layout>
-          <Layout style={styles.right}>
-            <MyInput {...propStore.input("topic.code")} />
-            <MySelect {...propStore.select("topic.minStudentTake")} />
-            <MySelect {...propStore.select("topic.maxStudentTake")} />
-          </Layout>
-        </Layout>
+        <MySelect {...propStore.select("topic.educationMethod")} />
+        <MyInput {...propStore.select("topic.semester")} />
+        <MyMultiSelect {...propStore.select("topic.major")} />
+        <MyInput {...propStore.input("topic.code")} />
+        <MySelect {...propStore.select("topic.minStudentTake")} />
+        <MySelect {...propStore.select("topic.maxStudentTake")} />
 
         <MyInput {...propStore.inputLang("topic.description")} />
         {multiLang > 0 && (
@@ -71,32 +83,21 @@ const FormLayout = () => {
           <MyInput {...propStore.inputToggleLang("topic.thesisTask")} />
         )}
       </ScrollView>
+      <Button onPress={submit}>{i18n.t("origin.submit")}</Button>
     </Layout>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    margin: 10,
+    flex: 1,
+  },
   row: {
-    flex: 1,
     flexDirection: "row",
-    justifyContent: "space-around",
   },
-  left: {
-    flex: 1,
-    marginRight: 10,
-  },
-  right: {
-    flex: 1,
-    marginLeft: 10,
-  },
-  headerText: {
-    margin: 5,
-    marginLeft: "25%",
-    fontWeight: "bold",
-    textAlign: "center",
-    fontSize: 30,
-  },
-  description: {},
+  left: { flex: 1 },
+  right: { flex: 1 },
   tagList: {
     flexDirection: "row",
   },
