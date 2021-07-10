@@ -1,6 +1,7 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { useTheme } from "@ui-kitten/components";
 import LeftMenu from "components/LeftMenu";
 import TopNav from "components/screen/TopNav";
 import * as React from "react";
@@ -76,6 +77,10 @@ const Route = () => {
         drawerContent={(props) => {
           navService.nav = props.navigation;
           return <LeftMenu {...props} route={arrRoute} />;
+        }}
+        sceneContainerStyle={{
+          paddingTop: 1,
+          backgroundColor: useTheme()["color-primary-default"],
         }}
       >
         <Drawer.Screen name="home" component={renderSubMenu} />
