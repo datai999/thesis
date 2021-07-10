@@ -64,6 +64,7 @@ const FormLayout = () => {
       </Layout>
 
       <ScrollView
+        showsVerticalScrollIndicator={dimensions.width <= 1000}
         style={styles.scroll}
         contentContainerStyle={[
           styles.scrollContent,
