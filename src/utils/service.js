@@ -7,6 +7,7 @@ function notifyListener(arr, value) {
 export const languageService = {
   listeners: [],
   notify: (language) => notifyListener(languageService.listeners, language),
+  listen: (action) => languageService.listeners.push(action),
 };
 
 export const langHolder = languageService;
