@@ -11,6 +11,7 @@ import {
   HomeScreen,
   LoginScreen,
   PersonScreen,
+  TopicCreateScreen,
   TopicScreen,
 } from "./pages";
 
@@ -24,7 +25,10 @@ const arrRoute = [
   },
   {
     name: "topic",
-    component: [{ name: "topic", component: TopicScreen }],
+    component: [
+      { name: "topicCreate", component: TopicCreateScreen },
+      { name: "topic", component: TopicScreen },
+    ],
   },
   {
     name: "evaluate",
