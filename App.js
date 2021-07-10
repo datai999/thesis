@@ -8,7 +8,7 @@ import _ from "lodash";
 import * as React from "react";
 import { StatusBar } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import Route from "./src/Route";
+import Route from "src/route";
 import { default as theme } from "./theme.json";
 
 const fetch = () => {
