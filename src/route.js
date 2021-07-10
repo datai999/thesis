@@ -5,6 +5,7 @@ import { useTheme } from "@ui-kitten/components";
 import LeftMenu from "components/LeftMenu";
 import TopNav from "components/screen/TopNav";
 import * as React from "react";
+import { ImageBackground } from "react-native";
 import { navService } from "utils";
 import {
   CriterionScreen,
@@ -51,25 +52,6 @@ const objectRoute = arrRoute.reduce((result, item) => {
 }, {});
 
 const Route = () => {
-  const renderSubMenu = ({ ...drawerProps }) => {
-    return (
-      <Stack.Navigator
-        screenOptions={{
-          header: (props) => {
-            navService.stack = { ...props };
-            return <TopNav {...props} />;
-          },
-        }}
-      >
-        {objectRoute[drawerProps.route.name].map((e) => {
-          return (
-            <Stack.Screen key={e.name} name={e.name} component={e.component} />
-          );
-        })}
-      </Stack.Navigator>
-    );
-  };
-
   return (
     <NavigationContainer>
       <Drawer.Navigator
@@ -91,6 +73,41 @@ const Route = () => {
         <Drawer.Screen name="login" component={LoginScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
+  );
+};
+
+const renderSubMenu = ({ ...drawerProps }) => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        header: (props) => {
+          navService.stack = { ...props };
+          return <TopNav {...props} />;
+        },
+      }}
+    >
+      {objectRoute[drawerProps.route.name].map((e) => {
+        return (
+          <Stack.Screen
+            key={e.name}
+            name={e.name}
+            component={(params) => wrapComponent(e.component, params)}
+          />
+        );
+      })}
+    </Stack.Navigator>
+  );
+};
+
+const wrapComponent = (component, params) => {
+  return (
+    <ImageBackground
+      source={require("assets/img/cse2d.png")}
+      style={{ flex: 1 }}
+      imageStyle={{ opacity: 1 }}
+    >
+      {component(params)}
+    </ImageBackground>
   );
 };
 
