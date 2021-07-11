@@ -29,8 +29,8 @@ const arrRoute = [
   {
     name: "topic",
     component: [
-      { name: "topicCreate", component: TopicCreateScreen },
       { name: "topic", component: TopicScreen },
+      { name: "topicCreate", component: TopicCreateScreen },
     ],
   },
   {
