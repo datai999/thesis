@@ -14,6 +14,7 @@ const defaultPage = {
 
 const OverTable = ({
   links,
+  fields,
   form,
   api,
   overTopBar,
@@ -67,6 +68,7 @@ const OverTable = ({
     <Layout style={styles.container}>
       <Layout style={styles.topBar}>
         <TopBar
+          fields={fields}
           form={form}
           overTopBar={overTopBar}
           filterVisible={filterVisible}
@@ -78,7 +80,7 @@ const OverTable = ({
         />
       </Layout>
       <TableData
-        links={links}
+        links={fields ? fields.map((field) => field.link) : links}
         updateForm={form}
         data={data}
         topContent={topContent}

@@ -4,18 +4,39 @@ import OverTable from "components/screen/OverTable";
 import React from "react";
 // import { currentSemester } from "utils";
 
-const arrLink = [
-  "topic.code",
-  "topic.semester",
-  "topic.major",
-  "topic.educationMethod",
-  "topic.name",
-  "topicAssign.guideTeacher",
-  "topicAssign.executeStudent",
+const arrField = [
+  {
+    link: "topic.code",
+    visible: true,
+  },
+  {
+    link: "topic.semester",
+    visible: false,
+  },
+  {
+    link: "topic.major",
+    visible: false,
+  },
+  {
+    link: "topic.educationMethod",
+    visible: false,
+  },
+  {
+    link: "topic.name",
+    visible: true,
+  },
+  {
+    link: "topicAssign.guideTeacher",
+    visible: false,
+  },
+  {
+    link: "topicAssign.executeStudent",
+    visible: false,
+  },
 ];
 
 const overTableProps = {
-  links: arrLink,
+  fields: arrField,
   form: TopicForm,
   api: TopicAssignApi,
   defaultProps: {
