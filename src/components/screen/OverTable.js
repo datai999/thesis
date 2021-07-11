@@ -9,7 +9,7 @@ import i18n from "utils/i18n";
 
 const defaultPage = {
   number: 0,
-  size: 5,
+  size: 10,
 };
 
 const OverTable = ({
@@ -93,6 +93,8 @@ const OverTable = ({
 const styles = StyleSheet.create({
   container: {
     margin: 10,
+    maxHeight: "95%",
+    flex: 1,
   },
   topBar: {
     flexDirection: "row",

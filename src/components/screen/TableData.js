@@ -5,7 +5,7 @@ import { selectItems } from "components/Select";
 import tableStyle from "data/tableStyle";
 import _ from "lodash";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { DataTable, List } from "react-native-paper";
 import { getLinkProps, getRenderText } from "utils";
 import i18n from "utils/i18n";
@@ -171,7 +171,7 @@ export const TableBottom = ({ propCallback, callback }) => {
   const [selectedSize, setSelectedSize] = React.useState(new IndexPath(0));
   const page = propCallback.page;
 
-  const sizeRank = [5, 10, 20, 30, 50, 100];
+  const sizeRank = [10, 20, 30, 50, 100];
 
   const fetchPage = (newNumber, newSize) => {
     let nextPage = {
@@ -261,7 +261,7 @@ export const TableData = ({
   };
 
   return (
-    <DataTable>
+    <DataTable style={{ flex: 1, margin: 5 }}>
       <MyModal {...modalUpdateFormProps} />
       <TableHeader
         links={links}
@@ -276,7 +276,9 @@ export const TableData = ({
           callback={callback}
         />
       )}
-      <TableContent links={links} data={data} rowCallBack={rowCallBack} />
+      <ScrollView>
+        <TableContent links={links} data={data} rowCallBack={rowCallBack} />
+      </ScrollView>
       <TableBottom propCallback={propCallback} callback={callback} />
     </DataTable>
   );
