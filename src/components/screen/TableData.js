@@ -1,12 +1,11 @@
 import { IndexPath, Layout, Select, Text } from "@ui-kitten/components";
-import { MyInput } from "components/Input";
 import MyModal from "components/Modal";
 import { selectItems } from "components/Select";
-import TableHeader from "components/table/header";
+import { TableFilter, TableHeader } from "components/table";
 import tableStyle from "data/tableStyle";
 import _ from "lodash";
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView } from "react-native";
 import { DataTable, List } from "react-native-paper";
 import { getLinkProps, getRenderText } from "utils";
 import i18n from "utils/i18n";
@@ -60,14 +59,7 @@ export const TableData = ({
       <MyModal {...modalUpdateFormProps} />
       <TableHeader {...commonProps} />
       {topContent && topContent({ links, rowCallBack })}
-      {filterVisible && (
-        <TableFilter
-          links={links}
-          propCallback={propCallback}
-          callback={callback}
-          fields={fields}
-        />
-      )}
+      {filterVisible && <TableFilter {...commonProps} />}
       <ScrollView>
         <TableContent links={links} data={data} rowCallBack={rowCallBack} />
       </ScrollView>
@@ -95,49 +87,6 @@ export function renderCell(fieldValue) {
   }
   return renderValue;
 }
-
-export const TableFilter = ({ links, propCallback, callback }) => {
-  const inputStyle = StyleSheet.create({
-    input: {
-      marginHorizontal: 1,
-    },
-  });
-
-  const filter = (field, value) => {
-    let nextPropCallback = {
-      ...propCallback,
-    };
-    if (value == null || value == "undefined" || value == "") {
-      delete nextPropCallback.filter[field];
-    } else {
-      nextPropCallback.filter[field] = value;
-    }
-
-    callback(nextPropCallback);
-  };
-
-  const inputProps = (linkProp) => {
-    return {
-      placeholder: linkProp.placeholder,
-      key: linkProp.api,
-      size: "small",
-      value: propCallback.filter[linkProp.api],
-      style: [tableStyle[linkProp.api.split(".").pop()], inputStyle.input],
-      callBack: (nextValue) => filter(linkProp.api, nextValue),
-    };
-  };
-
-  return (
-    <DataTable.Header>
-      <DataTable.Title style={tableStyle.no}>
-        <Text category="s1">{i18n.t("origin.filter")}</Text>
-      </DataTable.Title>
-      {getLinkProps(links).map((linkProp) => {
-        return <MyInput {...inputProps(linkProp)} />;
-      })}
-    </DataTable.Header>
-  );
-};
 
 export const TableContent = ({ links, data = [], rowCallBack }) => {
   const linkProps = getLinkProps(links);

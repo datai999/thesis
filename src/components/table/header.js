@@ -2,8 +2,7 @@ import { Button, Text } from "@ui-kitten/components";
 import tableStyle from "data/tableStyle";
 import React from "react";
 import { DataTable } from "react-native-paper";
-import { getLinkProps } from "utils";
-import i18n from "utils/i18n";
+import { getLinkProps, i18n } from "utils";
 
 export default ({ links, propCallback, callback, ...props }) => {
   const [sortField, setSortField] = React.useState(propCallback.sort?.field);
