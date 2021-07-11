@@ -79,6 +79,9 @@
     "create": "Thêm",
     "degree": "Học vị",
     "downAndroidApp": "Tải ứng dụng android",
+    "edit": {
+      "layout": "Chỉnh sửa giao diện"
+    },
     "email": "Email",
     "filter": "Lọc",
     "filter&Search": "Lọc và Tìm kiếm",

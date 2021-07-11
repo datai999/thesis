@@ -1,7 +1,8 @@
-import { Button, Layout } from "@ui-kitten/components";
+import { Button } from "@ui-kitten/components";
 import { CreateBtn } from "components/Button";
-import { FunnelIcon } from "components/icons";
+import { BrushIcon, FunnelIcon } from "components/icons";
 import React from "react";
+import { ScrollView } from "react-native";
 import { i18n } from "utils";
 
 const TopBar = ({
@@ -11,13 +12,22 @@ const TopBar = ({
   setFilterVisible,
   overTopBar,
 }) => {
+  const commonBtnProps = {
+    style: { margin: 5 },
+    status: "primary",
+    size: "small",
+  };
+
   return (
-    <Layout style={{ flexDirection: "row" }}>
+    <ScrollView
+      horizontal={true}
+      style={{ maxWidth: "100%" }}
+      showsHorizontalScrollIndicator={true}
+      contentContainerStyle={[{ flexDirection: "row" }]}
+    >
       <CreateBtn form={form} callBack={addNewRecord} />
       <Button
-        style={{ margin: 5 }}
-        status="primary"
-        size="small"
+        {...commonBtnProps}
         accessoryRight={FunnelIcon}
         onPress={() => setFilterVisible(!filterVisible)}
       >
@@ -25,7 +35,15 @@ const TopBar = ({
       </Button>
 
       {overTopBar && overTopBar()}
-    </Layout>
+
+      <Button
+        {...commonBtnProps}
+        accessoryRight={BrushIcon}
+        onPress={() => console.log("edit.layout")}
+      >
+        {i18n.t("origin.edit.layout")}
+      </Button>
+    </ScrollView>
   );
 };
 

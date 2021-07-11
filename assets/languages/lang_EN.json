@@ -79,6 +79,9 @@
     "create": "Create",
     "degree": "Degree",
     "downAndroidApp": "Download android app",
+    "edit": {
+      "layout": "Edit layout"
+    },
     "email": "Email",
     "filter": "Filter",
     "filter&Search": "Filter and Search",
