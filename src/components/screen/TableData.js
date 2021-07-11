@@ -10,6 +10,69 @@ import { DataTable, List } from "react-native-paper";
 import { getLinkProps, getRenderText } from "utils";
 import i18n from "utils/i18n";
 
+export const TableData = ({
+  oldLinks,
+  fields,
+  updateForm,
+  data,
+  topContent,
+  filterVisible = false,
+  propCallback = {},
+  callback,
+}) => {
+  const [updateFormVisible, setUpdateFormVisible] = React.useState(false);
+  const [currentRow, setCurrenRow] = React.useState(null);
+
+  const links = fields ? fields.map((field) => field.link) : oldLinks;
+
+  const modalUpdateFormProps = {
+    ...updateForm,
+    visible: updateFormVisible,
+    cancel: () => setUpdateFormVisible(false),
+    body: () => updateForm.body(currentRow),
+    submit: async () => {
+      try {
+        let response = await updateForm.submit();
+        let index = data.map((x) => x.id).indexOf(response.id);
+        data[index] = response;
+        return response;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  };
+
+  const rowCallBack = (row) => {
+    setCurrenRow(row);
+    setUpdateFormVisible(true);
+  };
+
+  return (
+    <DataTable style={{ flex: 1, margin: 5 }}>
+      <MyModal {...modalUpdateFormProps} />
+      <TableHeader
+        links={links}
+        propCallback={propCallback}
+        callback={callback}
+        fields={fields}
+      />
+      {topContent && topContent({ links, rowCallBack })}
+      {filterVisible && (
+        <TableFilter
+          links={links}
+          propCallback={propCallback}
+          callback={callback}
+          fields={fields}
+        />
+      )}
+      <ScrollView>
+        <TableContent links={links} data={data} rowCallBack={rowCallBack} />
+      </ScrollView>
+      <TableBottom propCallback={propCallback} callback={callback} />
+    </DataTable>
+  );
+};
+
 export const TableHeader = ({ links, propCallback, callback }) => {
   const [sortField, setSortField] = React.useState(propCallback.sort?.field);
   const [descending, setDescending] = React.useState(
@@ -223,63 +286,5 @@ export const TableBottom = ({ propCallback, callback }) => {
         </Select>
       </Layout>
     </Layout>
-  );
-};
-
-export const TableData = ({
-  links,
-  updateForm,
-  data,
-  topContent,
-  filterVisible = false,
-  propCallback = {},
-  callback,
-}) => {
-  const [updateFormVisible, setUpdateFormVisible] = React.useState(false);
-  const [currentRow, setCurrenRow] = React.useState(null);
-
-  const modalUpdateFormProps = {
-    ...updateForm,
-    visible: updateFormVisible,
-    cancel: () => setUpdateFormVisible(false),
-    body: () => updateForm.body(currentRow),
-    submit: async () => {
-      try {
-        let response = await updateForm.submit();
-        let index = data.map((x) => x.id).indexOf(response.id);
-        data[index] = response;
-        return response;
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  };
-
-  const rowCallBack = (row) => {
-    setCurrenRow(row);
-    setUpdateFormVisible(true);
-  };
-
-  return (
-    <DataTable style={{ flex: 1, margin: 5 }}>
-      <MyModal {...modalUpdateFormProps} />
-      <TableHeader
-        links={links}
-        propCallback={propCallback}
-        callback={callback}
-      />
-      {topContent && topContent({ links, rowCallBack })}
-      {filterVisible && (
-        <TableFilter
-          links={links}
-          propCallback={propCallback}
-          callback={callback}
-        />
-      )}
-      <ScrollView>
-        <TableContent links={links} data={data} rowCallBack={rowCallBack} />
-      </ScrollView>
-      <TableBottom propCallback={propCallback} callback={callback} />
-    </DataTable>
   );
 };

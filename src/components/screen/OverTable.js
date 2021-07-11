@@ -80,7 +80,8 @@ const OverTable = ({
         />
       </Layout>
       <TableData
-        links={fields ? fields.map((field) => field.link) : links}
+        oldLinks={links}
+        fields={fields}
         updateForm={form}
         data={data}
         topContent={topContent}

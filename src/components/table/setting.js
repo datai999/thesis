@@ -19,7 +19,7 @@ export default ({ ...props }) => {
 
   return (
     <Modal
-      visible={true ?? props.visible}
+      visible={props.visible}
       backdropStyle={styles.backdrop}
       onBackdropPress={settingAnimationEnd}
     >
