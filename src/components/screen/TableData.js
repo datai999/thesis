@@ -208,7 +208,7 @@ export const TableBottom = ({ propCallback, callback }) => {
           fetchPage(nextPage, sizeRank[selectedSize.row]);
         }}
       />
-      <Layout>
+      <Layout style={{ minWidth: 90 }}>
         <Text>{i18n.t("origin.record")}</Text>
         <Select
           size="small"
