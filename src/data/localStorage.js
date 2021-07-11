@@ -16,7 +16,7 @@ export function getLocalStorage() {
 }
 
 export function setWhenLogin(email, code) {
-  AsyncStorage.setItem("login", true);
+  AsyncStorage.setItem("login", "true");
   AsyncStorage.setItem("email", email);
   AsyncStorage.setItem("code", code);
   AsyncStorage.setItem("screen", "topic");
