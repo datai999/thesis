@@ -4,7 +4,7 @@ import CriterionTemplateApi from "api/score/CriterionTemplateApi";
 import { CreateBtn } from "components/Button";
 import { CriterionForm, CriterionTemplateForm } from "components/form";
 import OverTable from "components/screen/OverTable";
-import { TableContent } from "components/screen/TableData";
+import { TableContent } from "components/table";
 import React from "react";
 import { StyleSheet } from "react-native";
 import i18n from "utils/i18n";
