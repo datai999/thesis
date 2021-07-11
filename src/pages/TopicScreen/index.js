@@ -2,7 +2,7 @@ import TopicAssignApi from "api/topic/TopicAssignApi";
 import { TopicForm } from "components/form";
 import OverTable from "components/screen/OverTable";
 import React from "react";
-import { currentSemester } from "utils";
+// import { currentSemester } from "utils";
 
 const arrLink = [
   "topic.code",
@@ -22,7 +22,8 @@ const overTableProps = {
     filterVisible: true,
     dataSearch: {
       sort: { field: "topic.semester", descend: true },
-      filter: { "topic.semester": currentSemester() },
+      // FIXME default filter
+      // filter: { "topic.semester": currentSemester() },
     },
   },
 };
