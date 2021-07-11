@@ -26,6 +26,24 @@ import * as Animatable from "react-native-animatable";
 import { langHolder, navService, toastHolder, userService } from "utils";
 import i18n from "utils/i18n";
 
+const TopNav = () => {
+  const [lang, setLang] = React.useState(i18n.languages);
+
+  React.useEffect(() => {
+    langHolder.listeners.push(setLang);
+  }, [lang]);
+
+  return (
+    <TopNavigation
+      style={{ backgroundColor: useTheme()["color-primary-default"] }}
+      title={i18n.t("origin.appName")}
+      alignment="center"
+      accessoryLeft={renderMenuAction}
+      accessoryRight={renderRightAction}
+    />
+  );
+};
+
 const renderMenuAction = () => {
   const [login, setLogin] = React.useState();
 
@@ -43,7 +61,7 @@ const renderMenuAction = () => {
   );
 };
 
-const renderPersonAction = () => {
+const renderRightAction = () => {
   const [login, setLogin] = React.useState();
   const [visible, setVisible] = React.useState(false);
 
@@ -58,29 +76,35 @@ const renderPersonAction = () => {
     );
   };
 
-  if (!login) return null;
   return (
-    <Popover
-      visible={visible}
-      anchor={renderPersonAvt}
-      onBackdropPress={() => setVisible(false)}
-    >
-      <Button
-        size="small"
-        appearance="ghost"
-        accessoryRight={ExternalLinkIcon}
-        onPress={() => {
-          setVisible(false);
-          userService.logout();
-        }}
-      >
-        {i18n.t("origin.logout")}
-      </Button>
-    </Popover>
+    <Layout style={{ flexDirection: "row", backgroundColor: "transparent" }}>
+      {login && (
+        <Popover
+          visible={visible}
+          anchor={renderPersonAvt}
+          onBackdropPress={() => setVisible(false)}
+        >
+          <Layout>
+            {/* {renderSwitchLanguage()} */}
+            <Button
+              size="small"
+              appearance="ghost"
+              accessoryRight={ExternalLinkIcon}
+              onPress={() => {
+                setVisible(false);
+                userService.logout();
+              }}
+            >
+              {i18n.t("origin.logout")}
+            </Button>
+          </Layout>
+        </Popover>
+      )}
+    </Layout>
   );
 };
 
-const renderRightAction = () => {
+const renderSwitchLanguage = () => {
   const [lang, setLang] = React.useState(i18n.languages);
 
   React.useEffect(() => {
@@ -89,7 +113,7 @@ const renderRightAction = () => {
 
   return (
     <Layout style={{ flexDirection: "row", backgroundColor: "transparent" }}>
-      <Text style={{ margin: 10 }}>English</Text>
+      <Text style={{ marginVertical: 10, marginRight: "1%" }}>English</Text>
       <Toggle
         status="control"
         checked={lang == "en"}
@@ -100,26 +124,7 @@ const renderRightAction = () => {
           });
         }}
       ></Toggle>
-      {renderPersonAction()}
     </Layout>
-  );
-};
-
-const TopNav = () => {
-  const [lang, setLang] = React.useState(i18n.languages);
-
-  React.useEffect(() => {
-    langHolder.listeners.push(setLang);
-  }, [lang]);
-
-  return (
-    <TopNavigation
-      style={{ backgroundColor: useTheme()["color-primary-default"] }}
-      title={i18n.t("origin.appName")}
-      alignment="center"
-      accessoryLeft={renderMenuAction}
-      accessoryRight={renderRightAction}
-    />
   );
 };
 
