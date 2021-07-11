@@ -89,18 +89,16 @@ const renderSubMenu = ({ ...drawerProps }) => {
     >
       {objectRoute[drawerProps.route.name].map((e) => {
         return (
-          <Stack.Screen
-            key={e.name}
-            name={e.name}
-            component={(params) => wrapComponent(e.component, params)}
-          />
+          <Stack.Screen key={e.name} name={e.name}>
+            {(props) => <WrapComponent component={e.component} {...props} />}
+          </Stack.Screen>
         );
       })}
     </Stack.Navigator>
   );
 };
 
-const wrapComponent = (component, params) => {
+const WrapComponent = ({ component, ...props }) => {
   React.useEffect(() => {
     Dimensions.addEventListener("change", (e) => {
       dimensionService.notify(e.window);
@@ -114,7 +112,7 @@ const wrapComponent = (component, params) => {
       style={{ flex: 1 }}
       imageStyle={{ opacity: 1 }}
     >
-      {component(params)}
+      {component(props)}
     </ImageBackground>
   );
 };
