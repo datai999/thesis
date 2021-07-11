@@ -4,6 +4,24 @@ function notifyListener(arr, value) {
   arr.forEach((listener) => listener(value));
 }
 
+const createHolderService = () => {
+  let listeners = [];
+  let stateStack = [];
+
+  return {
+    listeners: listeners,
+    stateStack: stateStack,
+    getState: () => stateStack[stateStack.length - 1],
+    notify: (nextState) => {
+      stateStack.push(nextState);
+      listeners.forEach((action) => action(nextState));
+    },
+    subscribe: (action) => listeners.push(action),
+  };
+};
+
+export const dimensionService = createHolderService();
+
 export const languageService = {
   listeners: [],
   notify: (language) => notifyListener(languageService.listeners, language),

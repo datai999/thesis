@@ -5,8 +5,9 @@ import { useTheme } from "@ui-kitten/components";
 import LeftMenu from "components/LeftMenu";
 import TopNav from "components/screen/TopNav";
 import * as React from "react";
-import { ImageBackground } from "react-native";
+import { Dimensions, ImageBackground } from "react-native";
 import { navService } from "utils";
+import { dimensionService } from "utils/service";
 import {
   CriterionScreen,
   EvaluateScreen,
@@ -100,6 +101,13 @@ const renderSubMenu = ({ ...drawerProps }) => {
 };
 
 const wrapComponent = (component, params) => {
+  React.useEffect(() => {
+    Dimensions.addEventListener("change", (e) => {
+      dimensionService.notify(e.window);
+    });
+    dimensionService.notify(Dimensions.get("window"));
+  }, []);
+
   return (
     <ImageBackground
       source={require("assets/img/cse2d.png")}
