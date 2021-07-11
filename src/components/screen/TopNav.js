@@ -26,6 +26,7 @@ import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { langHolder, navService, toastHolder, userService } from "utils";
 import i18n from "utils/i18n";
+import { dimensionService } from "utils/service";
 
 const TopNav = () => {
   const [lang, setLang] = React.useState(i18n.languages);
@@ -63,12 +64,16 @@ const renderMenuAction = () => {
 };
 
 const renderRightAction = () => {
+  const [dimensions, setDimensions] = React.useState({ width: 300 });
   const [login, setLogin] = React.useState();
   const [visible, setVisible] = React.useState(false);
 
   React.useEffect(() => {
     userService.loginListeners.push(setLogin);
     setLogin(localStorage.login);
+
+    dimensionService.subscribe(setDimensions);
+    setDimensions(dimensionService.getState());
   }, []);
 
   const renderPersonAvt = () => {
@@ -79,16 +84,15 @@ const renderRightAction = () => {
 
   return (
     <Layout style={{ flexDirection: "row", backgroundColor: "transparent" }}>
-      <SwitchLanguage status="control" />
+      {dimensions.width > 600 && <SwitchLanguage status="control" />}
       {login && (
         <Popover
           visible={visible}
           anchor={renderPersonAvt}
           onBackdropPress={() => setVisible(false)}
-          // style={{ backgroundColor: "transparent" }}
         >
           <Layout style={{ backgroundColor: "transparent" }}>
-            <SwitchLanguage />
+            {dimensions.width <= 600 && <SwitchLanguage paddingRight={25} />}
             <Divider />
             <Button
               appearance="ghost"
@@ -107,7 +111,7 @@ const renderRightAction = () => {
   );
 };
 
-const SwitchLanguage = ({ status }) => {
+const SwitchLanguage = ({ status, paddingRight }) => {
   const [lang, setLang] = React.useState(i18n.languages);
 
   React.useEffect(() => {
@@ -120,7 +124,7 @@ const SwitchLanguage = ({ status }) => {
         flexDirection: "row",
         backgroundColor: "transparent",
         padding: 3,
-        paddingRight: 25,
+        paddingRight: paddingRight,
       }}
     >
       <Toggle
