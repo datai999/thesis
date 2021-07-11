@@ -1,7 +1,8 @@
-import { Button, IndexPath, Layout, Select, Text } from "@ui-kitten/components";
+import { IndexPath, Layout, Select, Text } from "@ui-kitten/components";
 import { MyInput } from "components/Input";
 import MyModal from "components/Modal";
 import { selectItems } from "components/Select";
+import TableHeader from "components/table/header";
 import tableStyle from "data/tableStyle";
 import _ from "lodash";
 import React from "react";
@@ -47,15 +48,17 @@ export const TableData = ({
     setUpdateFormVisible(true);
   };
 
+  const commonProps = {
+    links: links,
+    propCallback: propCallback,
+    callback: callback,
+    fields: fields,
+  };
+
   return (
     <DataTable style={{ flex: 1, margin: 5 }}>
       <MyModal {...modalUpdateFormProps} />
-      <TableHeader
-        links={links}
-        propCallback={propCallback}
-        callback={callback}
-        fields={fields}
-      />
+      <TableHeader {...commonProps} />
       {topContent && topContent({ links, rowCallBack })}
       {filterVisible && (
         <TableFilter
@@ -70,72 +73,6 @@ export const TableData = ({
       </ScrollView>
       <TableBottom propCallback={propCallback} callback={callback} />
     </DataTable>
-  );
-};
-
-export const TableHeader = ({ links, propCallback, callback }) => {
-  const [sortField, setSortField] = React.useState(propCallback.sort?.field);
-  const [descending, setDescending] = React.useState(
-    propCallback.sort?.descend
-  );
-
-  React.useEffect(() => {
-    if (descending == null) propCallback.sort = {};
-    else propCallback.sort = { field: sortField, descend: descending };
-    callback(propCallback);
-  }, [sortField, descending]);
-
-  function getSortDirection(propsApi) {
-    if (propsApi == sortField) {
-      return descending ? "descending" : "ascending";
-    }
-    return null;
-  }
-
-  function setSort(propsApi) {
-    if (propsApi != sortField) {
-      setDescending(true);
-    } else {
-      if (!descending) {
-        setDescending(null);
-        setSortField(null);
-        return;
-      } else setDescending(false);
-    }
-    setSortField(propsApi);
-  }
-
-  return (
-    <DataTable.Header>
-      <DataTable.Title style={tableStyle.no}>
-        <Text category="s1">No</Text>
-      </DataTable.Title>
-      {getLinkProps(links).map((linkProp) => {
-        return (
-          <Button
-            key={linkProp.api}
-            appearance={linkProp.api != sortField ? "ghost" : "filled"}
-            status="basic"
-            style={[
-              tableStyle[linkProp.api.split(".").pop()],
-              {
-                marginHorizontal: 1,
-                paddingHorizontal: 0,
-              },
-            ]}
-          >
-            <DataTable.Title
-              sortDirection={getSortDirection(linkProp.api)}
-              onPress={() => setSort(linkProp.api)}
-            >
-              <Text category="s1" style={{ fontSize: 13 }}>
-                {i18n.t(linkProp.label)}
-              </Text>
-            </DataTable.Title>
-          </Button>
-        );
-      })}
-    </DataTable.Header>
   );
 };
 
