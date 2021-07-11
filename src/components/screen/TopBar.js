@@ -1,16 +1,9 @@
-import {
-  Button,
-  CheckBox,
-  Layout,
-  List,
-  Modal,
-  Text,
-} from "@ui-kitten/components";
+import { Button } from "@ui-kitten/components";
 import { CreateBtn } from "components/Button";
 import { BrushIcon, FunnelIcon } from "components/icons";
+import SettingTable from "components/table/setting";
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
-import * as Animatable from "react-native-animatable";
+import { ScrollView } from "react-native";
 import { i18n } from "utils";
 
 const commonBtnProps = {
@@ -27,11 +20,7 @@ const TopBar = ({
   setFilterVisible,
   overTopBar,
 }) => {
-  const [settingVisible, setSettingVisible] = React.useState(false);
-
-  let settingAnimation = null;
-  const settingAnimationEnd = () =>
-    settingAnimation.zoomOut(500).then((endState) => setSettingVisible(false));
+  const [settingTable, setSettingTable] = React.useState(false);
 
   return (
     <ScrollView
@@ -54,135 +43,18 @@ const TopBar = ({
       <Button
         {...commonBtnProps}
         accessoryRight={BrushIcon}
-        onPress={() => setSettingVisible(true)}
+        onPress={() => setSettingTable(true)}
       >
         {i18n.t("origin.edit.layout")}
       </Button>
 
-      <Modal
-        visible={settingVisible}
-        backdropStyle={styles.backdrop}
-        onBackdropPress={settingAnimationEnd}
-      >
-        <Animatable.View
-          animation="zoomIn"
-          ref={(ref) => (settingAnimation = ref)}
-        >
-          <SettingModal props={{ fields, settingAnimationEnd }} />
-        </Animatable.View>
-      </Modal>
+      <SettingTable
+        visible={settingTable}
+        setVisible={setSettingTable}
+        {...fields}
+      />
     </ScrollView>
   );
 };
-
-const SettingModal = ({ props }) => {
-  const [refresh, setRefresh] = React.useState(false);
-  const [newSetting, setNewSetting] = React.useState(_.cloneDeep(props.fields));
-
-  const refreshSettingPopup = () => setRefresh(!refresh);
-
-  return (
-    <Layout>
-      <Text style={styles.settingPopupHeadText}>
-        Topic Column View Settings
-      </Text>
-      <List
-        horizontal={true}
-        data={newSetting}
-        renderItem={({ item }) => (
-          <CheckBox
-            checked={item.visible}
-            onChange={(nextChecked) => {
-              item.visible = !nextChecked;
-              refreshSettingPopup();
-            }}
-          >
-            {item.link}
-          </CheckBox>
-        )}
-      />
-      <SettingPopupBottom
-        props={{ ...props, newSetting, refreshSettingPopup }}
-      />
-    </Layout>
-  );
-};
-
-const SettingPopupBottom = ({ props }) => (
-  <Layout style={styles.settingPopupBot}>
-    <SettingPopupBotBtn
-      props={{
-        text: "Default",
-        onPress: () => {
-          props.setSetting(defaultSetting);
-          props.settingAnimationEnd();
-        },
-      }}
-    />
-    <SettingPopupBotBtn
-      props={{
-        text: "Select all",
-        onPress: () => {
-          Object.values(props.newSetting).forEach(
-            (item) => (item.hide = false)
-          );
-          props.refreshSettingPopup();
-        },
-      }}
-    />
-    <SettingPopupBotBtn
-      props={{
-        text: "Select none",
-        onPress: () => {
-          Object.values(props.newSetting).forEach((item) => (item.hide = true));
-          props.refreshSettingPopup();
-        },
-      }}
-    />
-    <SettingPopupBotBtn
-      props={{
-        text: "Apply",
-        onPress: () => {
-          props.setSetting(props.newSetting);
-          props.settingAnimationEnd();
-        },
-      }}
-    />
-    <SettingPopupBotBtn
-      props={{
-        text: "Cancel",
-        onPress: props.settingAnimationEnd,
-      }}
-    />
-  </Layout>
-);
-
-const SettingPopupBotBtn = ({ props }) => (
-  <Button
-    style={styles.settingPopupBotBtn}
-    size="small"
-    appearance="ghost"
-    onPress={props.onPress}
-  >
-    {props.text}
-  </Button>
-);
-
-const styles = StyleSheet.create({
-  backdrop: {
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  settingPopupHeadText: {
-    margin: 5,
-    fontWeight: "bold",
-  },
-  settingPopupBot: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-  },
-  settingPopupBotBtn: {
-    margin: 5,
-  },
-});
 
 export default TopBar;
