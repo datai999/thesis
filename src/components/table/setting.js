@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
+import { getLinkProps, i18n } from "utils";
 
 export default ({ ...props }) => {
   let settingAnimation = null;
@@ -35,17 +36,19 @@ const SettingModal = ({ props }) => {
   const [refresh, setRefresh] = React.useState(false);
   const [newSetting, setNewSetting] = React.useState(_.cloneDeep(props.fields));
 
+  const links = getLinkProps(props.fields.map((field) => field.link));
+
   const refreshSettingPopup = () => setRefresh(!refresh);
 
   return (
     <Layout>
       <Text style={styles.settingPopupHeadText}>
-        Topic Column View Settings
+        {i18n.t("setting.columnVisible")}
       </Text>
       <List
         horizontal={true}
         data={newSetting}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <CheckBox
             checked={item.visible}
             onChange={(nextChecked) => {
@@ -53,7 +56,7 @@ const SettingModal = ({ props }) => {
               refreshSettingPopup();
             }}
           >
-            {item.link}
+            {links[index].label}
           </CheckBox>
         )}
       />

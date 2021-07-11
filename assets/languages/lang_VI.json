@@ -158,6 +158,9 @@
     "teacher": "Màn hình giảng viên",
     "topic": "Màn hình đề tài"
   },
+  "setting": {
+    "columnVisible": "Cài đặt cột hiển thị"
+  },
   "student": {
     "code": "Mã số sinh viên",
     "code_type": "Nhập mã số sinh viên",

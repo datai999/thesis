@@ -51,7 +51,7 @@ const TopBar = ({
       <SettingTable
         visible={settingTable}
         setVisible={setSettingTable}
-        {...fields}
+        fields={fields}
       />
     </ScrollView>
   );

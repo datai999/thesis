@@ -158,6 +158,9 @@
     "teacher": "Teacher screen",
     "topic": "Topic screen"
   },
+  "setting": {
+    "columnVisible": "Setting column visible"
+  },
   "student": {
     "code": "Student code",
     "code_type": "Type student code",
