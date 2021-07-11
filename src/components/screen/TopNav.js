@@ -1,5 +1,6 @@
 import {
   Button,
+  Divider,
   Layout,
   Modal,
   Popover,
@@ -78,16 +79,18 @@ const renderRightAction = () => {
 
   return (
     <Layout style={{ flexDirection: "row", backgroundColor: "transparent" }}>
+      <SwitchLanguage status="control" />
       {login && (
         <Popover
           visible={visible}
           anchor={renderPersonAvt}
           onBackdropPress={() => setVisible(false)}
+          // style={{ backgroundColor: "transparent" }}
         >
-          <Layout>
-            {/* {renderSwitchLanguage()} */}
+          <Layout style={{ backgroundColor: "transparent" }}>
+            <SwitchLanguage />
+            <Divider />
             <Button
-              size="small"
               appearance="ghost"
               accessoryRight={ExternalLinkIcon}
               onPress={() => {
@@ -104,7 +107,7 @@ const renderRightAction = () => {
   );
 };
 
-const renderSwitchLanguage = () => {
+const SwitchLanguage = ({ status }) => {
   const [lang, setLang] = React.useState(i18n.languages);
 
   React.useEffect(() => {
@@ -112,10 +115,16 @@ const renderSwitchLanguage = () => {
   }, [lang]);
 
   return (
-    <Layout style={{ flexDirection: "row", backgroundColor: "transparent" }}>
-      <Text style={{ marginVertical: 10, marginRight: "1%" }}>English</Text>
+    <Layout
+      style={{
+        flexDirection: "row",
+        backgroundColor: "transparent",
+        padding: 3,
+        paddingRight: 25,
+      }}
+    >
       <Toggle
-        status="control"
+        status={status}
         checked={lang == "en"}
         onChange={(nextCheck) => {
           i18n.changeLanguage(nextCheck ? "en" : "vi").then(() => {
@@ -123,7 +132,9 @@ const renderSwitchLanguage = () => {
             setLang(nextCheck ? "en" : "vi");
           });
         }}
-      ></Toggle>
+      >
+        <Text>English</Text>
+      </Toggle>
     </Layout>
   );
 };
