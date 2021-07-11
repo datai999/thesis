@@ -6,6 +6,7 @@ import {
   Modal,
   Text,
 } from "@ui-kitten/components";
+import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
@@ -18,7 +19,7 @@ export default ({ ...props }) => {
 
   return (
     <Modal
-      visible={props.visible}
+      visible={true ?? props.visible}
       backdropStyle={styles.backdrop}
       onBackdropPress={settingAnimationEnd}
     >
@@ -41,33 +42,32 @@ const SettingModal = ({ props }) => {
   const refreshSettingPopup = () => setRefresh(!refresh);
 
   return (
-    <Layout>
-      <Text style={styles.settingPopupHeadText}>
-        {i18n.t("setting.columnVisible")}
-      </Text>
-      <List
-        horizontal={true}
-        data={newSetting}
-        renderItem={({ item, index }) => (
-          <CheckBox
-            checked={item.visible}
-            onChange={(nextChecked) => {
-              item.visible = !nextChecked;
-              refreshSettingPopup();
-            }}
-          >
-            {links[index].label}
-          </CheckBox>
-        )}
-      />
-      <SettingPopupBottom
-        props={{ ...props, newSetting, refreshSettingPopup }}
-      />
+    <Layout style={{ padding: 5 }}>
+      <Text style={styles.headText}>{i18n.t("setting.columnVisible")}</Text>
+      <Layout style={{ flexDirection: "row" }}>
+        <List
+          horizontal={false}
+          data={newSetting}
+          renderItem={({ item, index }) => (
+            <CheckBox
+              style={{ marginTop: 5 }}
+              checked={item.visible}
+              onChange={(nextChecked) => {
+                item.visible = !nextChecked;
+                refreshSettingPopup();
+              }}
+            >
+              {links[index].label}
+            </CheckBox>
+          )}
+        />
+        <SettingBottom props={{ ...props, newSetting, refreshSettingPopup }} />
+      </Layout>
     </Layout>
   );
 };
 
-const SettingPopupBottom = ({ props }) => (
+const SettingBottom = ({ props }) => (
   <Layout style={styles.settingPopupBot}>
     <SettingPopupBotBtn
       props={{
@@ -131,12 +131,13 @@ const styles = StyleSheet.create({
   backdrop: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
-  settingPopupHeadText: {
-    margin: 5,
+  headText: {
+    flex: 1,
+    textAlign: "center",
+    padding: 2,
     fontWeight: "bold",
   },
   settingPopupBot: {
-    flexDirection: "row",
     justifyContent: "space-evenly",
   },
   settingPopupBotBtn: {
