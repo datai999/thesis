@@ -14,7 +14,7 @@ import {
   LoginScreen,
   PersonScreen,
   TopicCreateScreen,
-  TopicScreen,
+  TopicTableScreen,
 } from "./pages";
 
 const Stack = createStackNavigator();
@@ -29,7 +29,7 @@ const arrRoute = [
     name: "topic",
     component: [
       { name: "topicCreate", component: TopicCreateScreen },
-      { name: "topic", component: TopicScreen },
+      { name: "topicTable", component: TopicTableScreen },
     ],
   },
   {

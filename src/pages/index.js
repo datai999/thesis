@@ -3,15 +3,15 @@ import EvaluateScreen from "./EvaluateScreen";
 import HomeScreen from "./HomeScreen";
 import LoginScreen from "./LoginScreen";
 import PersonScreen from "./PersonScreen";
-import TopicScreen from "./TopicScreen";
-import TopicCreateScreen from "./TopicScreen/topicCreateScreen/index.js";
+import TopicTableScreen from "./topic/topicTableScreen";
+import TopicCreateScreen from "./topic/topicCreateScreen";
 
 export {
   EvaluateScreen,
   CriterionScreen,
   HomeScreen,
   LoginScreen,
-  TopicScreen,
+  TopicTableScreen,
   PersonScreen,
   TopicCreateScreen,
 };
