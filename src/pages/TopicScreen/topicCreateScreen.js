@@ -18,15 +18,18 @@ import {
   toastHolder,
 } from "utils";
 
-let form = { topic: { semester: currentSemester() } };
+let form = {
+  topic: { semester: currentSemester() },
+  semester: currentSemester(),
+};
 
 const submit = () => {
   form.semester = form.topic.semester;
-  return TopicAssignApi.create(form).catch((err) =>
-    // TODO update message
-    toastHolder.error("toast.fail", err)
-  );
+  return TopicAssignApi.create(form).catch((err) => {
+    toastHolder.error(err.response.data.data[0], err);
+  });
 };
+
 const FormLayout = () => {
   const [dimensions, setDimensions] = React.useState(Dimensions.get("window"));
   const [language, setLanguage] = React.useState(i18n.languages);
