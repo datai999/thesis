@@ -10,13 +10,8 @@ import constData from "data/constData";
 import React from "react";
 import { Dimensions, ScrollView, StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
-import {
-  createProps,
-  currentSemester,
-  i18n,
-  languageService,
-  toastHolder,
-} from "utils";
+import { languageService, loadingService, toastService } from "service";
+import { createProps, currentSemester, i18n } from "utils";
 
 let form = {
   topic: { semester: currentSemester() },
@@ -25,9 +20,15 @@ let form = {
 
 const submit = () => {
   form.semester = form.topic.semester;
-  return TopicAssignApi.create(form).catch((err) => {
-    toastHolder.error(err.response.data.data[0], err);
-  });
+  loadingService.start();
+  return TopicAssignApi.create(form)
+    .then((response) => {
+      loadingService.end();
+    })
+    .catch((err) => {
+      toastService.error(err.response.data.data[0], err);
+      loadingService.end();
+    });
 };
 
 const FormLayout = () => {
