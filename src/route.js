@@ -11,7 +11,6 @@ import { dimensionService } from "utils/service";
 import {
   CriterionScreen,
   EvaluateScreen,
-  HomeScreen,
   LoginScreen,
   PersonScreen,
   TopicCreateScreen,
@@ -24,7 +23,7 @@ const Drawer = createDrawerNavigator();
 const arrRoute = [
   {
     name: "home",
-    component: [{ name: "home", component: HomeScreen }],
+    component: [{ name: "home", component: LoginScreen }],
   },
   {
     name: "topic",
