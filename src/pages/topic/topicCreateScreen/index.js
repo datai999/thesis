@@ -1,17 +1,13 @@
-import { Button, Layout, Text, ViewPager } from "@ui-kitten/components";
-import StudentApi from "api/person/StudentApi";
-import TeacherApi from "api/person/TeacherApi";
+import { Button, Layout, ViewPager } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
-import CouncilForm from "components/form/CouncilForm";
-import { MyAutocompleteTag, MyInput } from "components/Input";
-import MyModal from "components/Modal";
-import { MyMultiSelect, MySelect } from "components/Select";
-import constData from "data/constData";
 import React from "react";
 import { Dimensions, ScrollView, StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
 import { languageService, loadingService, toastService } from "service";
 import { createProps, currentSemester, i18n } from "utils";
+import TopicAssign from "./components/topicAssign";
+import TopicDescription from "./components/topicDescription";
+import TopicInfo from "./components/topicInfo";
 
 let form = {
   topic: { semester: currentSemester() },
@@ -35,7 +31,7 @@ export default () => {
   const [dimensions, setDimensions] = React.useState(Dimensions.get("window"));
   const [language, setLanguage] = React.useState(i18n.languages);
   const [multiLang, setMultiLang] = React.useState(0);
-  const [councilVisible, setCouncilVisible] = React.useState(false);
+
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const propStore = createProps(form);
@@ -50,20 +46,10 @@ export default () => {
     languageService.listen(setLanguage);
   }, [language]);
 
-  const modalCouncilProps = {
-    ...CouncilForm,
-    visible: councilVisible,
-    cancel: () => setCouncilVisible(false),
-    body: () => CouncilForm.body(form.council),
-    submit: async () => {
-      try {
-        let response = await CouncilForm.submit();
-        form.council = response;
-        return response;
-      } catch (error) {
-        console.log(error);
-      }
-    },
+  const commonProps = {
+    styles: styles,
+    propStore: propStore,
+    multiLang: multiLang,
   };
 
   return (
@@ -99,76 +85,9 @@ export default () => {
           selectedIndex={selectedIndex}
           onSelect={(index) => setSelectedIndex(index)}
         >
-          <Layout style={styles.group}>
-            <Text style={styles.headerGroup}>{i18n.t("origin.topicInfo")}</Text>
-            <MyInput {...propStore.inputLang("topic.name")} />
-            {multiLang > 0 && (
-              <MyInput {...propStore.inputToggleLang("topic.name")} />
-            )}
-            <MySelect {...propStore.select("topic.educationMethod")} />
-            <MyInput {...propStore.select("topic.semester")} />
-            <MyMultiSelect {...propStore.select("topic.major")} />
-            <MyInput {...propStore.input("topic.code")} />
-            <Layout
-              style={{ justifyContent: "space-evenly", flexDirection: "row" }}
-            >
-              <MySelect {...propStore.select("topic.minStudentTake")} />
-              <MySelect {...propStore.select("topic.maxStudentTake")} />
-            </Layout>
-          </Layout>
-          <Layout style={styles.group}>
-            <Text style={styles.headerGroup}>
-              {i18n.t("origin.topicDescription")}
-            </Text>
-            <MyInput {...propStore.inputLang("topic.description")} />
-            {multiLang > 0 && (
-              <MyInput {...propStore.inputToggleLang("topic.description")} />
-            )}
-            <MyInput {...propStore.inputLang("topic.topicTask")} />
-            {multiLang > 0 && (
-              <MyInput {...propStore.inputToggleLang("topic.topicTask")} />
-            )}
-            <MyInput {...propStore.inputLang("topic.thesisTask")} />
-            {multiLang > 0 && (
-              <MyInput {...propStore.inputToggleLang("topic.thesisTask")} />
-            )}
-          </Layout>
-          <Layout style={styles.group}>
-            <Text style={styles.headerGroup}>
-              {i18n.t("origin.topicAssign")}
-            </Text>
-            <MyInput {...propStore.select("topicAssign.semester")} />
-            <MySelect
-              {...propStore.select("topicAssign.status")}
-              arrValue={constData.topicStatus.arrValue}
-            />
-            <MyAutocompleteTag
-              {...propStore.inputSearch(
-                "topicAssign.executeStudent",
-                StudentApi
-              )}
-            />
-
-            <MyAutocompleteTag
-              {...propStore.inputSearch("topicAssign.guideTeacher", TeacherApi)}
-            />
-            <MyAutocompleteTag
-              {...propStore.inputSearch(
-                "topicAssign.reviewTeacher",
-                TeacherApi
-              )}
-            />
-            <MyModal {...modalCouncilProps} />
-            <Button
-              style={{ marginTop: 22 }}
-              appearance="outline"
-              onPress={() => {
-                setCouncilVisible(true);
-              }}
-            >
-              {i18n.t(form.council ? "council.update" : "council.create")}
-            </Button>
-          </Layout>
+          <TopicInfo {...commonProps} />
+          <TopicDescription {...commonProps} />
+          <TopicAssign {...commonProps} council={form.council} />
         </ViewPager>
       </ScrollView>
       <Button onPress={submit}>{i18n.t("origin.submit")}</Button>
