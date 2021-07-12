@@ -3,10 +3,11 @@ import { Layout } from "@ui-kitten/components";
 import { TableData } from "components/screen/TableData";
 import TopBar from "components/screen/TopBar";
 import localStorage from "data/localStorage";
+import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { langHolder, toastService } from "utils";
-import i18n from "utils/i18n";
+import { i18n, langHolder, toastService } from "utils";
+import { dimensionService } from "utils/service";
 
 const defaultPage = {
   number: 0,
@@ -20,14 +21,15 @@ const OverTable = ({
   api,
   overTopBar,
   topContent,
-  defaultProps = {},
+  defaultProps = { fields: [] },
+  ...props
 }) => {
   const [data, setData] = React.useState([]);
   const [lang, setLang] = React.useState(i18n.languages);
+  const [currentProps, setCurrentProps] = React.useState(defaultProps);
   const [filterVisible, setFilterVisible] = React.useState(
     defaultProps?.filterVisible ?? false
   );
-  const [fields, setFields] = React.useState([]);
   const [dataSearch, setDataSearch] = React.useState({
     page: defaultPage,
     sort: {},
@@ -35,6 +37,15 @@ const OverTable = ({
     ...defaultProps.dataSearch,
   });
   const navigation = useNavigation();
+
+  const setFields = (nextFields) => {
+    let nextProps = _.cloneDeep(currentProps);
+    nextProps.fields = nextFields;
+    nextProps.sort = {};
+    nextProps.filter = {};
+    localStorage.function.setTableVisible(tableName, nextFields);
+    setCurrentProps(nextProps);
+  };
 
   const fetchSearchData = (param) => {
     api
@@ -55,31 +66,39 @@ const OverTable = ({
       .catch((err) => toastService.error("toast.search.error", err));
   };
 
+  const responsive = (dimensions) => {
+    let cloneProps = _.cloneDeep(currentProps);
+    let nextProps = props.responsive(dimensions, cloneProps);
+    setCurrentProps(nextProps);
+  };
+
   React.useEffect(() => {
     langHolder.listeners.push(setLang);
     navigation.addListener("focus", () => {
       fetchSearchData(dataSearch);
     });
 
-    if (!localStorage.table[tableName]?.visible) {
+    if (!localStorage.table || !localStorage.table[tableName]?.visible) {
       localStorage.function.setTableVisible(tableName, defaultProps.fields);
     }
-    setFields(localStorage.table[tableName].visible);
+
+    const actionOrder = async () => {
+      await dimensionService.subscribe(responsive);
+      setFields(localStorage.table[tableName].visible);
+    };
+
+    actionOrder();
   }, []);
 
   React.useEffect(() => {
     fetchSearchData(dataSearch);
   }, [navigation]);
 
-  React.useEffect(() => {
-    localStorage.function.setTableVisible(tableName, fields);
-  }, [fields]);
-
   return (
     <Layout style={styles.container}>
       <Layout style={styles.topBar}>
         <TopBar
-          fields={fields}
+          fields={currentProps.fields}
           setFields={setFields}
           form={form}
           overTopBar={overTopBar}
@@ -93,7 +112,7 @@ const OverTable = ({
       </Layout>
       <TableData
         oldLinks={links}
-        fields={fields}
+        fields={currentProps.fields}
         updateForm={form}
         data={data}
         topContent={topContent}

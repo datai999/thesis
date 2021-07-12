@@ -1,7 +1,9 @@
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import { TopicForm } from "components/form";
 import OverTable from "components/screen/OverTable";
+import localStorage from "data/localStorage";
 import React from "react";
+
 // import { currentSemester } from "utils";
 
 const defaultFields = [
@@ -35,10 +37,17 @@ const defaultFields = [
   },
 ];
 
+const tableName = "topicAssign";
+
+const responsive = (dimensions, currentProps) => {
+  return currentProps;
+};
+
 const overTableProps = {
-  tableName: "topicAssign",
+  tableName: tableName,
   form: TopicForm,
   api: TopicAssignApi,
+  responsive: responsive,
   defaultProps: {
     fields: defaultFields,
     filterVisible: true,
