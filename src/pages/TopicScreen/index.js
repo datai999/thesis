@@ -2,8 +2,11 @@ import TopicAssignApi from "api/topic/TopicAssignApi";
 import { TopicForm } from "components/form";
 import OverTable from "components/screen/OverTable";
 import React from "react";
+import { Dimensions } from "react-native";
 
 // import { currentSemester } from "utils";
+
+const width = Dimensions.get("window").width;
 
 const defaultFields = [
   {
@@ -12,15 +15,15 @@ const defaultFields = [
   },
   {
     link: "topic.semester",
-    visible: false,
+    visible: width > 500,
   },
   {
     link: "topic.major",
-    visible: false,
+    visible: width > 1000,
   },
   {
     link: "topic.educationMethod",
-    visible: false,
+    visible: width > 1200,
   },
   {
     link: "topic.name",
@@ -28,11 +31,11 @@ const defaultFields = [
   },
   {
     link: "topicAssign.guideTeacher",
-    visible: false,
+    visible: width > 1000,
   },
   {
     link: "topicAssign.executeStudent",
-    visible: false,
+    visible: width > 1200,
   },
 ];
 
