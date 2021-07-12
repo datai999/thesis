@@ -6,8 +6,10 @@ import { CriterionForm, CriterionTemplateForm } from "components/form";
 import OverTable from "components/screen/OverTable";
 import { TableContent } from "components/table";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { i18n } from "utils";
+
+const width = Dimensions.get("window").width;
 
 const defaultFields = [
   {
@@ -20,11 +22,11 @@ const defaultFields = [
   },
   {
     link: "criterionTemplate.description",
-    visible: true,
+    visible: width > 1000,
   },
   {
     link: "criterionTemplate.criterion",
-    visible: true,
+    visible: width > 800,
   },
 ];
 
