@@ -45,10 +45,7 @@ export default function App() {
       <ApplicationProvider {...eva} theme={{ ...eva.light, ...CustomTheme }}>
         <SafeAreaProvider>
           <StatusBar />
-          <Modal
-            visible={loading}
-            backdropStyle={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-          >
+          <Modal visible={loading}>
             <Spinner />
           </Modal>
           {!sleep && <Route />}
