@@ -8,7 +8,6 @@ import { DataTable } from "react-native-paper";
 import i18n from "utils/i18n";
 
 export const TableData = ({
-  oldLinks,
   fields,
   updateForm,
   data,
@@ -20,7 +19,7 @@ export const TableData = ({
   const [updateFormVisible, setUpdateFormVisible] = React.useState(false);
   const [currentRow, setCurrenRow] = React.useState(null);
 
-  const links = fields ? fields.map((field) => field.link) : oldLinks;
+  const links = fields.map((field) => field.link);
 
   const modalUpdateFormProps = {
     ...updateForm,

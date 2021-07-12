@@ -16,7 +16,6 @@ const defaultPage = {
 
 const OverTable = ({
   tableName,
-  links,
   form,
   api,
   overTopBar,
@@ -108,7 +107,6 @@ const OverTable = ({
         />
       </Layout>
       <TableData
-        oldLinks={links}
         fields={currentProps.fields}
         updateForm={form}
         data={data}
