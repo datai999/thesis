@@ -9,7 +9,7 @@ import React from "react";
 import { ScrollView } from "react-native";
 import { DataTable } from "react-native-paper";
 
-export const TableData = ({
+export default ({
   fields,
   updateForm,
   data,

@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { Layout } from "@ui-kitten/components";
-import { TableData } from "components/screen/TableData";
-import { TableTopBar } from "components/table";
+import { TableBody, TableTopBar } from "components/table";
 import localStorage from "data/localStorage";
 import _ from "lodash";
 import React from "react";
@@ -106,7 +105,7 @@ const OverTable = ({
           }}
         />
       </Layout>
-      <TableData
+      <TableBody
         fields={currentProps.fields}
         updateForm={form}
         data={data}
