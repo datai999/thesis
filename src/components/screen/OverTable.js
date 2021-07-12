@@ -67,11 +67,7 @@ const OverTable = ({
       .catch((err) => toastService.error("toast.search.error", err));
   };
 
-  const responsiveLayout = (dimensions) => {
-    let cloneProps = _.cloneDeep(currentProps);
-    let nextProps = responsive(dimensions, cloneProps);
-    setCurrentProps(nextProps);
-  };
+  const responsiveLayout = (dimensions) => {};
 
   React.useEffect(() => {
     langHolder.listeners.push(setLang);
