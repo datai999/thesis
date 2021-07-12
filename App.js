@@ -17,10 +17,11 @@ import { loadingService } from "service";
 import Route from "src/route";
 import CustomTheme from "./theme.json";
 
-const fetch = () => {
+const fetch = (setSleep) => {
   loadingService.start();
   ConstApi.getTypes().then((response) => {
     loadingService.end();
+    setSleep(false);
     Object.keys(response).forEach((e) => {
       _.set(constData, e + ".arrValue", response[e]);
     });
@@ -28,13 +29,14 @@ const fetch = () => {
 };
 
 export default function App() {
+  const [sleep, setSleep] = React.useState(true);
   const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
     loadingService.start = () => setLoading(true);
     loadingService.end = () => setLoading(false);
     getLocalStorage();
-    fetch();
+    fetch(setSleep);
   }, []);
 
   return (
@@ -49,7 +51,7 @@ export default function App() {
           >
             <Spinner />
           </Modal>
-          {!loading && <Route />}
+          {!sleep && <Route />}
         </SafeAreaProvider>
       </ApplicationProvider>
     </>
