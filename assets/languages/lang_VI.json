@@ -94,6 +94,10 @@
     "new": "Thêm",
     "page": "Trang",
     "record": "Số bản ghi",
+    "status": {
+      "label": "Trạng thái",
+      "placeholder": "Chọn trạng thái"
+    },
     "submit": "Xác nhận",
     "topic": "Đề tài",
     "topicAssign": "Phân công đề tài",

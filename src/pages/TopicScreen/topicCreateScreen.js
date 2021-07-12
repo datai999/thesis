@@ -2,8 +2,11 @@ import { Button, Layout, Text } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
 import TopicAssignApi from "api/topic/TopicAssignApi";
+import CouncilForm from "components/form/CouncilForm";
 import { MyAutocompleteTag, MyInput } from "components/Input";
+import MyModal from "components/Modal";
 import { MyMultiSelect, MySelect } from "components/Select";
+import constData from "data/constData";
 import React from "react";
 import { Dimensions, ScrollView, StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
@@ -24,11 +27,11 @@ const submit = () => {
     toastHolder.error("toast.fail", err)
   );
 };
-
 const FormLayout = () => {
   const [dimensions, setDimensions] = React.useState(Dimensions.get("window"));
   const [language, setLanguage] = React.useState(i18n.languages);
   const [multiLang, setMultiLang] = React.useState(0);
+  const [councilVisible, setCouncilVisible] = React.useState(false);
 
   const propStore = createProps(form);
 
@@ -41,6 +44,22 @@ const FormLayout = () => {
   React.useEffect(() => {
     languageService.listen(setLanguage);
   }, [language]);
+
+  const modalCouncilProps = {
+    ...CouncilForm,
+    visible: councilVisible,
+    cancel: () => setCouncilVisible(false),
+    body: () => CouncilForm.body(form.council),
+    submit: async () => {
+      try {
+        let response = await CouncilForm.submit();
+        form.council = response;
+        return response;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  };
 
   return (
     <Layout style={styles.container}>
@@ -107,6 +126,11 @@ const FormLayout = () => {
         </Layout>
         <Layout style={styles.group}>
           <Text style={styles.headerGroup}>{i18n.t("origin.topicAssign")}</Text>
+          <MyInput {...propStore.select("topicAssign.semester")} />
+          <MySelect
+            {...propStore.select("topicAssign.status")}
+            arrValue={constData.topicStatus.arrValue}
+          />
           <MyAutocompleteTag
             {...propStore.inputSearch("topicAssign.executeStudent", StudentApi)}
           />
@@ -117,6 +141,19 @@ const FormLayout = () => {
           <MyAutocompleteTag
             {...propStore.inputSearch("topicAssign.reviewTeacher", TeacherApi)}
           />
+          <MyModal {...modalCouncilProps} />
+          <Button
+            style={{ marginTop: 22 }}
+            appearance="outline"
+            onPress={() => {
+              setCouncilVisible(true);
+            }}
+          >
+            {() => {
+              if (form?.council == null) return i18n.t("council.create");
+              return i18n.t("council.update");
+            }}
+          </Button>
         </Layout>
       </ScrollView>
       <Button onPress={submit}>{i18n.t("origin.submit")}</Button>

@@ -94,6 +94,10 @@
     "new": "NEW",
     "page": "Page",
     "record": "Record",
+    "status": {
+      "label": "Status",
+      "placeholder": "Select status"
+    },
     "submit": "Submit",
     "topic": "Topic",
     "topicAssign": "Topic assign",

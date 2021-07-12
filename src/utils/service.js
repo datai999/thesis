@@ -1,5 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+export const loadingService = {
+  start: null,
+  end: null,
+};
+
 function notifyListener(arr, value) {
   arr.forEach((listener) => listener(value));
 }
