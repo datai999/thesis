@@ -153,10 +153,7 @@ export default () => {
               setCouncilVisible(true);
             }}
           >
-            {() => {
-              if (form?.council == null) return i18n.t("council.create");
-              return i18n.t("council.update");
-            }}
+            {i18n.t(form.council ? "council.update" : "council.create")}
           </Button>
         </Layout>
       </ScrollView>
