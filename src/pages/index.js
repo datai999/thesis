@@ -4,7 +4,7 @@ import HomeScreen from "./HomeScreen";
 import LoginScreen from "./LoginScreen";
 import PersonScreen from "./PersonScreen";
 import TopicScreen from "./TopicScreen";
-import TopicCreateScreen from "./TopicScreen/topicCreateScreen";
+import TopicCreateScreen from "./TopicScreen/topicCreateScreen/index.js";
 
 export {
   EvaluateScreen,
