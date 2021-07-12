@@ -31,7 +31,7 @@ const submit = () => {
     });
 };
 
-const FormLayout = () => {
+export default () => {
   const [dimensions, setDimensions] = React.useState(Dimensions.get("window"));
   const [language, setLanguage] = React.useState(i18n.languages);
   const [multiLang, setMultiLang] = React.useState(0);
@@ -195,5 +195,3 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
 });
-
-export default FormLayout;
