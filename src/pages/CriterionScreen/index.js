@@ -7,13 +7,25 @@ import OverTable from "components/screen/OverTable";
 import { TableContent } from "components/table";
 import React from "react";
 import { StyleSheet } from "react-native";
-import i18n from "utils/i18n";
+import { i18n } from "utils";
 
-const arrLink = [
-  "criterionTemplate.name",
-  "criterionTemplate.scoreMethod",
-  "criterionTemplate.description",
-  "criterionTemplate.criterion",
+const defaultFields = [
+  {
+    link: "criterionTemplate.name",
+    visible: true,
+  },
+  {
+    link: "criterionTemplate.scoreMethod",
+    visible: true,
+  },
+  {
+    link: "criterionTemplate.description",
+    visible: true,
+  },
+  {
+    link: "criterionTemplate.criterion",
+    visible: true,
+  },
 ];
 
 const overTopBar = () => {
@@ -50,11 +62,14 @@ function renderTopContent({ ...props }) {
 }
 
 const overTableProps = {
-  links: arrLink,
+  tableName: "criterionTemplate",
   form: CriterionTemplateForm,
   api: CriterionTemplateApi,
   overTopBar: overTopBar,
   topContent: renderTopContent,
+  defaultProps: {
+    fields: defaultFields,
+  },
 };
 
 const CriterionScreen = () => {

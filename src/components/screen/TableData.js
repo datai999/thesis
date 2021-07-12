@@ -55,7 +55,7 @@ export const TableData = ({
     <DataTable style={{ flex: 1, margin: 5 }}>
       <MyModal {...modalUpdateFormProps} />
       <TableHeader {...commonProps} />
-      {topContent && topContent({ links, rowCallBack })}
+      {topContent && topContent({ links, rowCallBack, fields })}
       {filterVisible && <TableFilter {...commonProps} />}
       <ScrollView>
         <TableContent
