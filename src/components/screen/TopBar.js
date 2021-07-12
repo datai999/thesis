@@ -19,6 +19,7 @@ const TopBar = ({
   filterVisible,
   setFilterVisible,
   overTopBar,
+  ...props
 }) => {
   const [settingTable, setSettingTable] = React.useState(false);
 
@@ -52,6 +53,7 @@ const TopBar = ({
         visible={settingTable}
         setVisible={setSettingTable}
         fields={fields}
+        setFields={props.setFields}
       />
     </ScrollView>
   );

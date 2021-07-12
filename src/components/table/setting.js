@@ -45,7 +45,7 @@ const SettingModal = ({ props }) => {
   };
 
   const submit = () => {
-    console.log(newSetting);
+    props.setFields(newSetting);
   };
 
   return (

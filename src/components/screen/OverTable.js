@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Layout } from "@ui-kitten/components";
 import { TableData } from "components/screen/TableData";
 import TopBar from "components/screen/TopBar";
+import localStorage from "data/localStorage";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { langHolder, toastService } from "utils";
@@ -13,8 +14,8 @@ const defaultPage = {
 };
 
 const OverTable = ({
+  tableName,
   links,
-  fields,
   form,
   api,
   overTopBar,
@@ -26,6 +27,7 @@ const OverTable = ({
   const [filterVisible, setFilterVisible] = React.useState(
     defaultProps?.filterVisible ?? false
   );
+  const [fields, setFields] = React.useState([]);
   const [dataSearch, setDataSearch] = React.useState({
     page: defaultPage,
     sort: {},
@@ -58,17 +60,27 @@ const OverTable = ({
     navigation.addListener("focus", () => {
       fetchSearchData(dataSearch);
     });
+
+    if (!localStorage.table[tableName]?.visible) {
+      localStorage.function.setTableVisible(tableName, defaultProps.fields);
+    }
+    setFields(localStorage.table[tableName].visible);
   }, []);
 
   React.useEffect(() => {
     fetchSearchData(dataSearch);
   }, [navigation]);
 
+  React.useEffect(() => {
+    localStorage.function.setTableVisible(tableName, fields);
+  }, [fields]);
+
   return (
     <Layout style={styles.container}>
       <Layout style={styles.topBar}>
         <TopBar
           fields={fields}
+          setFields={setFields}
           form={form}
           overTopBar={overTopBar}
           filterVisible={filterVisible}

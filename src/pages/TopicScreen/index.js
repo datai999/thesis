@@ -4,7 +4,7 @@ import OverTable from "components/screen/OverTable";
 import React from "react";
 // import { currentSemester } from "utils";
 
-const arrField = [
+const defaultFields = [
   {
     link: "topic.code",
     visible: true,
@@ -36,10 +36,11 @@ const arrField = [
 ];
 
 const overTableProps = {
-  fields: arrField,
+  tableName: "topicAssign",
   form: TopicForm,
   api: TopicAssignApi,
   defaultProps: {
+    fields: defaultFields,
     filterVisible: true,
     dataSearch: {
       sort: { field: "topic.semester", descend: true },
