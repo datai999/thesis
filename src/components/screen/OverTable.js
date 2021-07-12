@@ -22,6 +22,7 @@ const OverTable = ({
   overTopBar,
   topContent,
   defaultProps = { fields: [] },
+  responsive = (dimensions, currentProps) => currentProps,
   ...props
 }) => {
   const [data, setData] = React.useState([]);
@@ -66,9 +67,9 @@ const OverTable = ({
       .catch((err) => toastService.error("toast.search.error", err));
   };
 
-  const responsive = (dimensions) => {
+  const responsiveLayout = (dimensions) => {
     let cloneProps = _.cloneDeep(currentProps);
-    let nextProps = props.responsive(dimensions, cloneProps);
+    let nextProps = responsive(dimensions, cloneProps);
     setCurrentProps(nextProps);
   };
 
@@ -83,7 +84,7 @@ const OverTable = ({
     }
 
     const actionOrder = async () => {
-      await dimensionService.subscribe(responsive);
+      await dimensionService.subscribe(responsiveLayout);
       setFields(localStorage.table[tableName].visible);
     };
 
