@@ -1,13 +1,11 @@
 import MyModal from "components/Modal";
-import {
-  TableBottom,
-  TableContent,
-  TableFilter,
-  TableHeader,
-} from "components/table";
 import React from "react";
 import { ScrollView } from "react-native";
 import { DataTable } from "react-native-paper";
+import TableBottom from "./bottom";
+import TableContent from "./content";
+import TableFilter from "./filter";
+import TableHeader from "./header";
 
 export default ({
   fields,
