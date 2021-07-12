@@ -26,7 +26,11 @@ export function setTableVisible(tableName, visible) {
 export function getLocalStorage() {
   storageKey.map((key) => {
     AsyncStorage.getItem(key).then((value) => {
-      localStorage[key] = value;
+      try {
+        localStorage[key] = JSON.parse(value);
+      } catch (e) {
+        localStorage[key] = value;
+      }
     });
   });
 }
