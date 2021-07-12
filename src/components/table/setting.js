@@ -34,12 +34,19 @@ export default ({ ...props }) => {
 };
 
 const SettingModal = ({ props }) => {
-  const [refresh, setRefresh] = React.useState(false);
   const [newSetting, setNewSetting] = React.useState(_.cloneDeep(props.fields));
 
   const links = getLinkProps(props.fields.map((field) => field.link));
 
-  const refreshSettingPopup = () => setRefresh(!refresh);
+  const setField = (index, visible) => {
+    let nextSetting = _.cloneDeep(newSetting);
+    nextSetting[index].visible = visible;
+    setNewSetting(nextSetting);
+  };
+
+  const submit = () => {
+    console.log(newSetting);
+  };
 
   return (
     <Layout style={{ padding: 5 }}>
@@ -50,18 +57,19 @@ const SettingModal = ({ props }) => {
           data={newSetting}
           renderItem={({ item, index }) => (
             <CheckBox
-              style={{ marginTop: 5 }}
+              style={{ marginVertical: 5 }}
               checked={item.visible}
               onChange={(nextChecked) => {
-                item.visible = !nextChecked;
-                refreshSettingPopup();
+                setField(index, nextChecked);
               }}
             >
               {links[index].label}
             </CheckBox>
           )}
         />
-        <SettingBottom props={{ ...props, newSetting, refreshSettingPopup }} />
+        <SettingBottom
+          props={{ ...props, newSetting, setNewSetting, submit }}
+        />
       </Layout>
     </Layout>
   );
@@ -71,45 +79,44 @@ const SettingBottom = ({ props }) => (
   <Layout style={styles.settingPopupBot}>
     <SettingPopupBotBtn
       props={{
-        text: "Default",
+        text: "origin.default",
         onPress: () => {
-          props.setSetting(defaultSetting);
+          props.setNewSetting(props.fields);
+        },
+      }}
+    />
+    <SettingPopupBotBtn
+      props={{
+        text: "select.all",
+        onPress: () => {
+          let nextSetting = _.cloneDeep(props.newSetting);
+          nextSetting.forEach((field) => (field.visible = true));
+          props.setNewSetting(nextSetting);
+        },
+      }}
+    />
+    <SettingPopupBotBtn
+      props={{
+        text: "select.none",
+        onPress: () => {
+          let nextSetting = _.cloneDeep(props.newSetting);
+          nextSetting.forEach((field) => (field.visible = false));
+          props.setNewSetting(nextSetting);
+        },
+      }}
+    />
+    <SettingPopupBotBtn
+      props={{
+        text: "origin.submit",
+        onPress: () => {
+          props.submit();
           props.settingAnimationEnd();
         },
       }}
     />
     <SettingPopupBotBtn
       props={{
-        text: "Select all",
-        onPress: () => {
-          Object.values(props.newSetting).forEach(
-            (item) => (item.hide = false)
-          );
-          props.refreshSettingPopup();
-        },
-      }}
-    />
-    <SettingPopupBotBtn
-      props={{
-        text: "Select none",
-        onPress: () => {
-          Object.values(props.newSetting).forEach((item) => (item.hide = true));
-          props.refreshSettingPopup();
-        },
-      }}
-    />
-    <SettingPopupBotBtn
-      props={{
-        text: "Apply",
-        onPress: () => {
-          props.setSetting(props.newSetting);
-          props.settingAnimationEnd();
-        },
-      }}
-    />
-    <SettingPopupBotBtn
-      props={{
-        text: "Cancel",
+        text: "origin.cancel",
         onPress: props.settingAnimationEnd,
       }}
     />
@@ -120,10 +127,10 @@ const SettingPopupBotBtn = ({ props }) => (
   <Button
     style={styles.settingPopupBotBtn}
     size="small"
-    appearance="ghost"
+    appearance="outline"
     onPress={props.onPress}
   >
-    {props.text}
+    {i18n.t(props.text)}
   </Button>
 );
 

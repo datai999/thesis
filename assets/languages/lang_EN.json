@@ -77,6 +77,7 @@
     "appName": "Thesis evaluation system",
     "cancel": "Cancel",
     "create": "Create",
+    "default": "Default",
     "degree": "Degree",
     "downAndroidApp": "Download android app",
     "edit": {
@@ -157,6 +158,10 @@
     "student": "Student screen",
     "teacher": "Teacher screen",
     "topic": "Topic screen"
+  },
+  "select": {
+    "all": "Select all",
+    "none": "Select none"
   },
   "setting": {
     "columnVisible": "Setting column visible"

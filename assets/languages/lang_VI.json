@@ -77,6 +77,7 @@
     "appName": "Hệ thống đánh giá luận văn",
     "cancel": "Hủy bỏ",
     "create": "Thêm",
+    "default": "Mặc định",
     "degree": "Học vị",
     "downAndroidApp": "Tải ứng dụng android",
     "edit": {
@@ -157,6 +158,10 @@
     "student": "Màn hình sinh viên",
     "teacher": "Màn hình giảng viên",
     "topic": "Màn hình đề tài"
+  },
+  "select": {
+    "all": "Chọn tất cả",
+    "none": "Bỏ chọn tất cả"
   },
   "setting": {
     "columnVisible": "Cài đặt cột hiển thị"
