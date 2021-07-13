@@ -1,9 +1,9 @@
 const local = {
   baseURL: "http://192.168.3.100:8080/api",
   androidLinkDown:
-    "https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40datai28599/thesis-1b99d70512c44b3cb77ea5d649c4b2d9-signed.apk",
-  version: "7.06.01",
-  skipLogin: { email: "tai.nguyen.cse.datai", code: "123" },
+    "https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40datai28599/thesis-ef476fae41fc4b70a5b735ca0109afec-signed.apk",
+  version: "7.14.01",
+  // skipLogin: { email: "tai.nguyen.cse.datai", code: "123" },
 };
 
 const staging = {
@@ -11,4 +11,4 @@ const staging = {
   baseURL: "https://datai-thesis.herokuapp.com/api",
 };
 
-export default local;
+export default staging;
