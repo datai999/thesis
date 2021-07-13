@@ -1,7 +1,7 @@
 import { Button, Layout, ViewPager } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import React from "react";
-import { Dimensions, ScrollView, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
 import { languageService, loadingService, toastService } from "service";
 import { createProps, currentSemester, i18n } from "utils";
@@ -73,23 +73,16 @@ export default () => {
         </Button>
       </Layout>
 
-      <ScrollView
-        showsVerticalScrollIndicator={dimensions.width > 1000}
-        style={styles.scroll}
-        contentContainerStyle={[
-          styles.scrollContent,
-          { flexDirection: dimensions.width > 1000 ? "row" : "column" },
-        ]}
+      <ViewPager
+        selectedIndex={selectedIndex}
+        onSelect={(index) => setSelectedIndex(index)}
+        style={styles.viewPager}
       >
-        <ViewPager
-          selectedIndex={selectedIndex}
-          onSelect={(index) => setSelectedIndex(index)}
-        >
-          <TopicInfo {...commonProps} />
-          <TopicDescription {...commonProps} />
-          <TopicAssign {...commonProps} council={form.council} />
-        </ViewPager>
-      </ScrollView>
+        <TopicInfo {...commonProps} />
+        <TopicDescription {...commonProps} />
+        <TopicAssign {...commonProps} council={form.council} />
+      </ViewPager>
+
       <Button onPress={submit}>{i18n.t("origin.submit")}</Button>
     </Layout>
   );
@@ -102,21 +95,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "transparent",
   },
-  scroll: {
-    minWidth: "90%",
-    maxHeight: "100%",
-    marginVertical: "1%",
+  viewPager: {
+    height: "90%",
     backgroundColor: "transparent",
   },
-  scrollContent: {
-    marginVertical: 15,
-    justifyContent: "space-evenly",
-  },
   group: {
-    minWidth: "30%",
-    maxWidth: "90%",
+    flex: 1,
+    marginVertical: "1%",
+    marginHorizontal: "3%",
     padding: "1%",
-    // backgroundColor: "transparent",
   },
   headerGroup: {
     margin: 5,

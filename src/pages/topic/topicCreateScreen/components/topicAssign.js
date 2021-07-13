@@ -7,6 +7,7 @@ import MyModal from "components/Modal";
 import { MySelect } from "components/Select";
 import constData from "data/constData";
 import React from "react";
+import { ScrollView } from "react-native";
 import { i18n } from "utils";
 
 export default ({ styles, propStore, council }) => {
@@ -32,30 +33,32 @@ export default ({ styles, propStore, council }) => {
     <Layout style={styles.group}>
       <Text style={styles.headerGroup}>{i18n.t("origin.topicAssign")}</Text>
       <MyInput {...propStore.select("topicAssign.semester")} />
-      <MySelect
-        {...propStore.select("topicAssign.status")}
-        arrValue={constData.topicStatus.arrValue}
-      />
-      <MyAutocompleteTag
-        {...propStore.inputSearch("topicAssign.executeStudent", StudentApi)}
-      />
+      <ScrollView showsVerticalScrollIndicator={true}>
+        <MySelect
+          {...propStore.select("topicAssign.status")}
+          arrValue={constData.topicStatus.arrValue}
+        />
+        <MyAutocompleteTag
+          {...propStore.inputSearch("topicAssign.executeStudent", StudentApi)}
+        />
 
-      <MyAutocompleteTag
-        {...propStore.inputSearch("topicAssign.guideTeacher", TeacherApi)}
-      />
-      <MyAutocompleteTag
-        {...propStore.inputSearch("topicAssign.reviewTeacher", TeacherApi)}
-      />
-      <MyModal {...modalCouncilProps} />
-      <Button
-        style={{ marginTop: 22 }}
-        appearance="outline"
-        onPress={() => {
-          setCouncilVisible(true);
-        }}
-      >
-        {i18n.t(council ? "council.update" : "council.create")}
-      </Button>
+        <MyAutocompleteTag
+          {...propStore.inputSearch("topicAssign.guideTeacher", TeacherApi)}
+        />
+        <MyAutocompleteTag
+          {...propStore.inputSearch("topicAssign.reviewTeacher", TeacherApi)}
+        />
+        <MyModal {...modalCouncilProps} />
+        <Button
+          style={{ marginTop: 22 }}
+          appearance="outline"
+          onPress={() => {
+            setCouncilVisible(true);
+          }}
+        >
+          {i18n.t(council ? "council.update" : "council.create")}
+        </Button>
+      </ScrollView>
     </Layout>
   );
 };
