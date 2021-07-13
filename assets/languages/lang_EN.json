@@ -92,7 +92,9 @@
     "logout": "Logout",
     "multiLanguage": "Multi language",
     "new": "NEW",
+    "next": "Next",
     "page": "Page",
+    "previous": "Previous",
     "record": "Record",
     "status": {
       "label": "Status",

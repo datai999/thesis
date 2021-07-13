@@ -109,6 +109,10 @@
     "subjectDepartment": {}
   },
   "topic": {
+    "name": {
+      "multiline": true,
+      "numberOfLines": 3
+    },
     "description": {
       "multiline": true,
       "numberOfLines": 5

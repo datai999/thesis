@@ -1,5 +1,6 @@
 import { Button, Layout, ViewPager } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
+import { ArrowBackIcon, ArrowForwardIcon } from "components/icons";
 import React from "react";
 import { Dimensions, StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
@@ -54,7 +55,7 @@ export default () => {
 
   return (
     <Layout style={styles.container}>
-      <Layout style={{ flexDirection: "row" }}>
+      <Layout style={styles.headerBtn}>
         <Button
           size="tiny"
           status="primary"
@@ -83,7 +84,31 @@ export default () => {
         <TopicAssign {...commonProps} council={form.council} />
       </ViewPager>
 
-      <Button onPress={submit}>{i18n.t("origin.submit")}</Button>
+      <Layout style={styles.bottomBtn}>
+        {selectedIndex < 2 && (
+          <Button
+            status="control"
+            appearance="outline"
+            accessoryRight={ArrowForwardIcon}
+            onPress={() => setSelectedIndex(selectedIndex + 1)}
+          >
+            {dimensions.width > 700 && i18n.t("origin.next")}
+          </Button>
+        )}
+        {selectedIndex == 2 && (
+          <Button onPress={submit}>{i18n.t("origin.submit")}</Button>
+        )}
+        {selectedIndex > 0 && (
+          <Button
+            status="control"
+            appearance="outline"
+            accessoryLeft={ArrowBackIcon}
+            onPress={() => setSelectedIndex(selectedIndex - 1)}
+          >
+            {dimensions.width > 700 && i18n.t("origin.previous")}
+          </Button>
+        )}
+      </Layout>
     </Layout>
   );
 };
@@ -92,18 +117,28 @@ const styles = StyleSheet.create({
   container: {
     marginVertical: "1%",
     maxHeight: "95%",
-    alignItems: "center",
     backgroundColor: "transparent",
+  },
+  headerBtn: {
+    marginHorizontal: "3%",
+    backgroundColor: "transparent",
+    flexDirection: "row",
   },
   viewPager: {
     height: "90%",
     backgroundColor: "transparent",
   },
+  bottomBtn: {
+    marginHorizontal: "3%",
+    backgroundColor: "transparent",
+    flexDirection: "row-reverse",
+    justifyContent: "space-evenly",
+  },
   group: {
     flex: 1,
     marginVertical: "1%",
     marginHorizontal: "3%",
-    padding: "1%",
+    paddingHorizontal: "3%",
   },
   headerGroup: {
     margin: 5,
