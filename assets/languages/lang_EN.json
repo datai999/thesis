@@ -77,8 +77,12 @@
     "appName": "Thesis evaluation system",
     "cancel": "Cancel",
     "create": "Create",
+    "default": "Default",
     "degree": "Degree",
     "downAndroidApp": "Download android app",
+    "edit": {
+      "layout": "Edit layout"
+    },
     "email": "Email",
     "filter": "Filter",
     "filter&Search": "Filter and Search",
@@ -86,11 +90,21 @@
     "inVi": " in Vietnamese",
     "language": "Language",
     "logout": "Logout",
+    "multiLanguage": "Multi language",
     "new": "NEW",
+    "next": "Next",
     "page": "Page",
+    "previous": "Previous",
     "record": "Record",
+    "status": {
+      "label": "Status",
+      "placeholder": "Select status"
+    },
     "submit": "Submit",
     "topic": "Topic",
+    "topicAssign": "Topic assign",
+    "topicDescription": "Topic description",
+    "topicInfo": "Topic information",
     "totalRecord": "Total record",
     "update": "Update",
     "version": "Version"
@@ -150,6 +164,13 @@
     "student": "Student screen",
     "teacher": "Teacher screen",
     "topic": "Topic screen"
+  },
+  "select": {
+    "all": "Select all",
+    "none": "Select none"
+  },
+  "setting": {
+    "columnVisible": "Setting column visible"
   },
   "student": {
     "code": "Student code",

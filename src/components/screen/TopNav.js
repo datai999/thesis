@@ -1,5 +1,6 @@
 import {
   Button,
+  Divider,
   Layout,
   Modal,
   Popover,
@@ -7,6 +8,7 @@ import {
   Toggle,
   TopNavigation,
   TopNavigationAction,
+  useTheme,
 } from "@ui-kitten/components";
 import AxiosClient from "api/AxiosClient";
 import {
@@ -24,6 +26,25 @@ import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { langHolder, navService, toastHolder, userService } from "utils";
 import i18n from "utils/i18n";
+import { dimensionService } from "utils/service";
+
+const TopNav = () => {
+  const [lang, setLang] = React.useState(i18n.languages);
+
+  React.useEffect(() => {
+    langHolder.listeners.push(setLang);
+  }, [lang]);
+
+  return (
+    <TopNavigation
+      style={{ backgroundColor: useTheme()["color-primary-default"] }}
+      title={i18n.t("origin.appName")}
+      alignment="center"
+      accessoryLeft={renderMenuAction}
+      accessoryRight={renderRightAction}
+    />
+  );
+};
 
 const renderMenuAction = () => {
   const [login, setLogin] = React.useState();
@@ -42,13 +63,17 @@ const renderMenuAction = () => {
   );
 };
 
-const renderPersonAction = () => {
+const renderRightAction = () => {
+  const [dimensions, setDimensions] = React.useState({ width: 300 });
   const [login, setLogin] = React.useState();
   const [visible, setVisible] = React.useState(false);
 
   React.useEffect(() => {
     userService.loginListeners.push(setLogin);
     setLogin(localStorage.login);
+
+    dimensionService.subscribe(setDimensions);
+    setDimensions(dimensionService.getState());
   }, []);
 
   const renderPersonAvt = () => {
@@ -57,29 +82,36 @@ const renderPersonAction = () => {
     );
   };
 
-  if (!login) return null;
   return (
-    <Popover
-      visible={visible}
-      anchor={renderPersonAvt}
-      onBackdropPress={() => setVisible(false)}
-    >
-      <Button
-        size="small"
-        appearance="ghost"
-        accessoryRight={ExternalLinkIcon}
-        onPress={() => {
-          setVisible(false);
-          userService.logout();
-        }}
-      >
-        {i18n.t("origin.logout")}
-      </Button>
-    </Popover>
+    <Layout style={{ flexDirection: "row", backgroundColor: "transparent" }}>
+      {dimensions.width > 600 && <SwitchLanguage status="control" />}
+      {login && (
+        <Popover
+          visible={visible}
+          anchor={renderPersonAvt}
+          onBackdropPress={() => setVisible(false)}
+        >
+          <Layout style={{ backgroundColor: "transparent" }}>
+            {dimensions.width <= 600 && <SwitchLanguage paddingRight={25} />}
+            <Divider />
+            <Button
+              appearance="ghost"
+              accessoryRight={ExternalLinkIcon}
+              onPress={() => {
+                setVisible(false);
+                userService.logout();
+              }}
+            >
+              {i18n.t("origin.logout")}
+            </Button>
+          </Layout>
+        </Popover>
+      )}
+    </Layout>
   );
 };
 
-const renderRightAction = () => {
+const SwitchLanguage = ({ status, paddingRight }) => {
   const [lang, setLang] = React.useState(i18n.languages);
 
   React.useEffect(() => {
@@ -87,10 +119,16 @@ const renderRightAction = () => {
   }, [lang]);
 
   return (
-    <Layout style={{ flexDirection: "row", backgroundColor: "transparent" }}>
-      <Text style={{ margin: 10 }}>English</Text>
+    <Layout
+      style={{
+        flexDirection: "row",
+        backgroundColor: "transparent",
+        padding: 3,
+        paddingRight: paddingRight,
+      }}
+    >
       <Toggle
-        status="control"
+        status={status}
         checked={lang == "en"}
         onChange={(nextCheck) => {
           i18n.changeLanguage(nextCheck ? "en" : "vi").then(() => {
@@ -98,27 +136,10 @@ const renderRightAction = () => {
             setLang(nextCheck ? "en" : "vi");
           });
         }}
-      ></Toggle>
-      {renderPersonAction()}
+      >
+        <Text>English</Text>
+      </Toggle>
     </Layout>
-  );
-};
-
-const TopNav = () => {
-  const [lang, setLang] = React.useState(i18n.languages);
-
-  React.useEffect(() => {
-    langHolder.listeners.push(setLang);
-  }, [lang]);
-
-  return (
-    <TopNavigation
-      style={{ backgroundColor: "#3366FF" }}
-      title={i18n.t("origin.appName")}
-      alignment="center"
-      accessoryLeft={renderMenuAction}
-      accessoryRight={renderRightAction}
-    />
   );
 };
 

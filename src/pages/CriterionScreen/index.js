@@ -4,16 +4,30 @@ import CriterionTemplateApi from "api/score/CriterionTemplateApi";
 import { CreateBtn } from "components/Button";
 import { CriterionForm, CriterionTemplateForm } from "components/form";
 import OverTable from "components/screen/OverTable";
-import { TableContent } from "components/screen/TableData";
+import { TableContent } from "components/table";
 import React from "react";
-import { StyleSheet } from "react-native";
-import i18n from "utils/i18n";
+import { Dimensions, StyleSheet } from "react-native";
+import { i18n } from "utils";
 
-const arrLink = [
-  "criterionTemplate.name",
-  "criterionTemplate.scoreMethod",
-  "criterionTemplate.description",
-  "criterionTemplate.criterion",
+const width = Dimensions.get("window").width;
+
+const defaultFields = [
+  {
+    link: "criterionTemplate.name",
+    visible: true,
+  },
+  {
+    link: "criterionTemplate.scoreMethod",
+    visible: true,
+  },
+  {
+    link: "criterionTemplate.description",
+    visible: width > 1000,
+  },
+  {
+    link: "criterionTemplate.criterion",
+    visible: width > 800,
+  },
 ];
 
 const overTopBar = () => {
@@ -50,11 +64,14 @@ function renderTopContent({ ...props }) {
 }
 
 const overTableProps = {
-  links: arrLink,
+  tableName: "criterionTemplate",
   form: CriterionTemplateForm,
   api: CriterionTemplateApi,
   overTopBar: overTopBar,
   topContent: renderTopContent,
+  defaultProps: {
+    fields: defaultFields,
+  },
 };
 
 const CriterionScreen = () => {

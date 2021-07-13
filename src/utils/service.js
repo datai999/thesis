@@ -1,42 +1,70 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+export const loadingService = {
+  start: null,
+  end: null,
+};
+
 function notifyListener(arr, value) {
   arr.forEach((listener) => listener(value));
 }
 
-export const langHolder = {
-  listeners: [],
-  notify: (lang) => notifyListener(langHolder.listeners, lang),
+const createHolderService = () => {
+  let listeners = [];
+  let stateStack = [];
+
+  return {
+    listeners: listeners,
+    stateStack: stateStack,
+    getState: () => stateStack[stateStack.length - 1],
+    notify: (nextState) => {
+      stateStack.push(nextState);
+      listeners.forEach((action) => action(nextState));
+    },
+    subscribe: (action) => listeners.push(action),
+  };
 };
 
-export const toastHolder = {
+export const dimensionService = createHolderService();
+
+export const languageService = {
+  listeners: [],
+  notify: (language) => notifyListener(languageService.listeners, language),
+  listen: (action) => languageService.listeners.push(action),
+};
+
+export const langHolder = languageService;
+
+export const toastService = {
   listeners: [],
   notify: (type, msg = "toast.default", another) =>
-    notifyListener(toastHolder.listeners, {
+    notifyListener(toastService.listeners, {
       ...another,
       type: type,
       msg: msg,
     }),
-  info: (msg, another) => toastHolder.notify("info", msg, another),
-  success: (msg, another) => toastHolder.notify("success", msg, another),
-  warning: (msg, another) => toastHolder.notify("warning", msg, another),
-  error: (msg, another) => toastHolder.notify("danger", msg, another),
+  info: (msg, another) => toastService.notify("info", msg, another),
+  success: (msg, another) => toastService.notify("success", msg, another),
+  warning: (msg, another) => toastService.notify("warning", msg, another),
+  error: (msg, another) => toastService.notify("danger", msg, another),
   errorCode: (code, error) => {
     switch (code) {
       case "auth/invalid-email":
-        toastHolder.error("toast.email.invalid", error);
+        toastService.error("toast.email.invalid", error);
         break;
       case "auth/wrong-password":
-        toastHolder.error("toast.password.invalid", error);
+        toastService.error("toast.password.invalid", error);
         break;
       case "auth/weak-password":
-        toastHolder.error("toast.password.weak", error);
+        toastService.error("toast.password.weak", error);
         break;
       default:
-        toastHolder.error(error.message, error);
+        toastService.error(error.message, error);
     }
   },
 };
+
+export const toastHolder = toastService;
 
 export let navService = {
   nav: null,

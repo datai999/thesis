@@ -1,30 +1,27 @@
 import * as eva from "@eva-design/eva";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { NavigationContainer } from "@react-navigation/native";
-import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
+import {
+  ApplicationProvider,
+  IconRegistry,
+  Modal,
+  Spinner,
+} from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import { ConstApi } from "api/br";
-import LeftMenu from "components/LeftMenu";
-import TopNav from "components/screen/TopNav";
 import constData from "data/constData";
 import { getLocalStorage } from "data/localStorage";
 import _ from "lodash";
 import * as React from "react";
 import { StatusBar } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import env from "src/env";
-import { navService } from "utils";
-import EvaluateScreen from "./src//pages/EvaluateScreen";
-import LoginScreen from "./src//pages/LoginScreen";
-import CriterionScreen from "./src/pages/CriterionScreen";
-import HomeScreen from "./src/pages/HomeScreen";
-import PersonScreen from "./src/pages/PersonScreen";
-import TopicScreen from "./src/pages/TopicScreen";
+import { loadingService } from "service";
+import Route from "src/route";
+import CustomTheme from "./theme.json";
 
-const { Navigator, Screen } = createDrawerNavigator();
-
-const fetch = () => {
+const fetch = (setSleep) => {
+  loadingService.start();
   ConstApi.getTypes().then((response) => {
+    loadingService.end();
+    setSleep(false);
     Object.keys(response).forEach((e) => {
       _.set(constData, e + ".arrValue", response[e]);
     });
@@ -32,42 +29,26 @@ const fetch = () => {
 };
 
 export default function App() {
-  const [mode, setMode] = React.useState();
-
-  function renderPersonScreen() {
-    return <PersonScreen mode={mode} />;
-  }
+  const [sleep, setSleep] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
-    navService.setPersonMode = setMode;
+    loadingService.start = () => setLoading(true);
+    loadingService.end = () => setLoading(false);
     getLocalStorage();
-    fetch();
+    fetch(setSleep);
   }, []);
 
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.light}>
+      <ApplicationProvider {...eva} theme={{ ...eva.light, ...CustomTheme }}>
         <SafeAreaProvider>
           <StatusBar />
-          <NavigationContainer>
-            <TopNav />
-            <Navigator
-              initialRouteName={env.initialRouteName}
-              drawerContent={(props) => {
-                navService.nav = props.navigation;
-                return <LeftMenu {...props} callback={setMode} />;
-              }}
-            >
-              <Screen name="home" component={HomeScreen} />
-              <Screen name="topic" component={TopicScreen} />
-              <Screen name="evaluate" component={EvaluateScreen} />
-              <Screen name="person" component={renderPersonScreen} />
-              <Screen name="criterion" component={CriterionScreen} />
-              {/* <Screen name="setting" component={SettingScreen} /> */}
-              <Screen name="login" component={LoginScreen} />
-            </Navigator>
-          </NavigationContainer>
+          <Modal visible={loading}>
+            <Spinner />
+          </Modal>
+          {!sleep && <Route />}
         </SafeAreaProvider>
       </ApplicationProvider>
     </>

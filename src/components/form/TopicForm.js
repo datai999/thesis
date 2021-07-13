@@ -10,8 +10,8 @@ import _ from "lodash";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
-import { createProps, toastHolder } from "utils";
-import i18n from "utils/i18n";
+import { toastService } from "service";
+import { createProps, currentSemester, i18n } from "utils";
 
 let form = {};
 
@@ -23,14 +23,14 @@ const TopicForm = {
     if (data != null) {
       form = _.cloneDeep(data);
       header = "topic.update";
-    } else form = {};
+    } else form = { topic: { semester: currentSemester() } };
     return <FormLayout header={header} />;
   },
   submit: () => {
     form.semester = form.topic.semester;
     return TopicAssignApi.create(form).catch((err) =>
       // TODO update message
-      toastHolder.error("toast.fail", err)
+      toastService.error("toast.fail", err)
     );
   },
 };
@@ -109,10 +109,7 @@ const FormLayout = ({ header }) => {
                 setCouncilVisible(true);
               }}
             >
-              {() => {
-                if (form?.council == null) return i18n.t("council.create");
-                return i18n.t("council.update");
-              }}
+              {i18n.t(form.council ? "council.update" : "council.create")}
             </Button>
           </Layout>
         </Layout>

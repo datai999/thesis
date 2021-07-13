@@ -16,10 +16,9 @@ import {
 import * as React from "react";
 import { StyleSheet } from "react-native";
 import env from "src/env";
-import { langHolder } from "utils";
-import i18n from "utils/i18n";
+import { i18n, langHolder } from "utils";
 
-const LeftMenu = ({ navigation, state, callback }) => {
+const LeftMenu = ({ navigation, route }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(null);
   const [lang, setLang] = React.useState(i18n.languages);
 
@@ -34,20 +33,41 @@ const LeftMenu = ({ navigation, state, callback }) => {
         onSelect={(index) => {
           setSelectedIndex(index);
 
-          if (index.row == 3 && !index.section) return;
+          if (index.section) {
+            if (index.section == 3) {
+              navigation.navigate(route[index.section].name, {
+                screen: route[index.section].name,
+                params: { mode: index.row == 0 ? "teacher" : "student" },
+              });
+              return;
+            }
 
-          if (index.section == 3) {
-            callback(index.row == 0 ? "teacher" : "student");
+            navigation.navigate(route[index.section].name, {
+              screen: route[index.section].component[index.row].name,
+            });
           }
 
-          navigation.navigate(state.routeNames[index.section ?? index.row]);
+          if (index.row == 3 || route[index.row].component.length > 1) return;
+
+          navigation.navigate(route[index.section ?? index.row].name);
         }}
       >
         <DrawerItem title={i18n.t("screen.home")} accessoryLeft={HomeIcon} />
-        <DrawerItem
+        <DrawerGroup
           title={i18n.t("screen.topic")}
           accessoryLeft={BookOpenIcon}
-        />
+        >
+          <DrawerItem
+            title={i18n.t("screen.topic")}
+            accessoryLeft={BookOpenIcon}
+            style={{ marginLeft: 15 }}
+          />
+          <DrawerItem
+            title={i18n.t("topic.create")}
+            accessoryLeft={BookOpenIcon}
+            style={{ marginLeft: 15 }}
+          />
+        </DrawerGroup>
         <DrawerItem
           title={i18n.t("screen.evaluate")}
           accessoryLeft={CheckMarkSquare}

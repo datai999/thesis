@@ -77,8 +77,12 @@
     "appName": "Hệ thống đánh giá luận văn",
     "cancel": "Hủy bỏ",
     "create": "Thêm",
+    "default": "Mặc định",
     "degree": "Học vị",
     "downAndroidApp": "Tải ứng dụng android",
+    "edit": {
+      "layout": "Chỉnh sửa giao diện"
+    },
     "email": "Email",
     "filter": "Lọc",
     "filter&Search": "Lọc và Tìm kiếm",
@@ -86,11 +90,21 @@
     "inVi": " bằng tiếng Việt",
     "language": "Ngôn ngữ",
     "logout": "Đăng xuất",
+    "multiLanguage": "Đa ngôn ngữ",
     "new": "Thêm",
+    "next": "Tiếp theo",
     "page": "Trang",
+    "previous": "Quay lại",
     "record": "Số bản ghi",
+    "status": {
+      "label": "Trạng thái",
+      "placeholder": "Chọn trạng thái"
+    },
     "submit": "Xác nhận",
     "topic": "Đề tài",
+    "topicAssign": "Phân công đề tài",
+    "topicDescription": "Miêu tả đề tài",
+    "topicInfo": "Thông tin đề tài",
     "totalRecord": "Tổng bản ghi",
     "update": "Cập nhật",
     "version": "Phiên bản"
@@ -150,6 +164,13 @@
     "student": "Màn hình sinh viên",
     "teacher": "Màn hình giảng viên",
     "topic": "Màn hình đề tài"
+  },
+  "select": {
+    "all": "Chọn tất cả",
+    "none": "Bỏ chọn tất cả"
+  },
+  "setting": {
+    "columnVisible": "Cài đặt cột hiển thị"
   },
   "student": {
     "code": "Mã số sinh viên",

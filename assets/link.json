@@ -109,15 +109,19 @@
     "subjectDepartment": {}
   },
   "topic": {
+    "name": {
+      "multiline": true,
+      "numberOfLines": 3
+    },
     "description": {
       "multiline": true,
       "numberOfLines": 5
     },
-    "topicTask": {
+    "thesisTask": {
       "multiline": true,
       "numberOfLines": 5
     },
-    "thesisTask": {
+    "topicTask": {
       "multiline": true,
       "numberOfLines": 5
     }
@@ -134,6 +138,14 @@
     "reviewTeacher": {
       "label": "teacher.review.label",
       "placeholder": "teacher.review.placeholder"
+    },
+    "semester": {
+      "label": "topic.semester.label",
+      "placeholder": "topic.semester.placeholder"
+    },
+    "status": {
+      "label": "origin.status.label",
+      "placeholder": "origin.status.placeholder"
     }
   }
 }

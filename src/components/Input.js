@@ -4,7 +4,7 @@ import {
   Input,
   Layout,
   List,
-  SelectItem
+  SelectItem,
 } from "@ui-kitten/components";
 import { CloseIcon } from "components/icons";
 import _ from "lodash";
@@ -97,12 +97,10 @@ const MyAutocompleteTag = ({ ...props }) => {
         data={data}
         renderItem={({ item }) => (
           <Button
-            status="info"
             size="tiny"
             appearance="outline"
             accessoryRight={() => (
               <Button
-                status="info"
                 size="tiny"
                 appearance="ghost"
                 accessoryRight={CloseIcon}
@@ -123,4 +121,3 @@ const MyAutocompleteTag = ({ ...props }) => {
 };
 
 export { MyInput, MyAutocomplete, MyAutocompleteTag };
-

@@ -2,21 +2,48 @@ import TeacherApi from "api/person/TeacherApi";
 import { TeacherForm } from "components/form";
 import OverTable from "components/screen/OverTable";
 import React from "react";
+import { Dimensions } from "react-native";
 
-const arrLink = [
-  "person.code",
-  "person.name",
-  "person.gender",
-  "person.subjectDepartment",
-  "person.degree",
-  "person.email",
-  "person.phone",
+const width = Dimensions.get("window").width;
+
+const defaultFields = [
+  {
+    link: "person.code",
+    visible: true,
+  },
+  {
+    link: "person.name",
+    visible: true,
+  },
+  {
+    link: "person.gender",
+    visible: width > 800,
+  },
+  {
+    link: "person.subjectDepartment",
+    visible: width > 600,
+  },
+  {
+    link: "person.degree",
+    visible: width > 700,
+  },
+  {
+    link: "person.email",
+    visible: width > 500,
+  },
+  {
+    link: "person.phone",
+    visible: width > 900,
+  },
 ];
 
 const overTableProps = {
-  links: arrLink,
+  tableName: "teacher",
   form: TeacherForm,
   api: TeacherApi,
+  defaultProps: {
+    fields: defaultFields,
+  },
 };
 
 const TeacherScreen = () => {
