@@ -37,33 +37,34 @@ export const languageService = createHolderService();
 const createToastService = () => {
   let holderService = createHolderService();
 
+  const notify = (type, msg = "toast.default", originMsg) =>
+    holderService.setNextState({
+      ...originMsg,
+      type: type,
+      msg: msg,
+    });
+  const notifyError = (msg, originMsg) => notify("danger", msg, originMsg);
+
   return {
     ...holderService,
-    notify: (type, msg = "toast.default", another) =>
-      holderService.setNextState({
-        ...another,
-        type: type,
-        msg: msg,
-      }),
-    info: (msg, another) => toastService.setNextState("info", msg, another),
-    success: (msg, another) =>
-      toastService.setNextState("success", msg, another),
-    warning: (msg, another) =>
-      toastService.setNextState("warning", msg, another),
-    error: (msg, another) => toastService.setNextState("danger", msg, another),
+    notify: notify,
+    info: (msg, originMsg) => notify("info", msg, originMsg),
+    success: (msg, originMsg) => notify("success", msg, originMsg),
+    warning: (msg, originMsg) => notify("warning", msg, originMsg),
+    error: notifyError,
     errorCode: (code, error) => {
       switch (code) {
         case "auth/invalid-email":
-          toastService.error("toast.email.invalid", error);
+          notifyError("toast.email.invalid", error);
           break;
         case "auth/wrong-password":
-          toastService.error("toast.password.invalid", error);
+          notifyError("toast.password.invalid", error);
           break;
         case "auth/weak-password":
-          toastService.error("toast.password.weak", error);
+          notifyError("toast.password.weak", error);
           break;
         default:
-          toastService.error(error.message, error);
+          notifyError(error.message, error);
       }
     },
   };
