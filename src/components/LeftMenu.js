@@ -24,7 +24,7 @@ const LeftMenu = ({ navigation, route }) => {
   const [lang, setLang] = React.useState(i18n.languages);
 
   React.useEffect(() => {
-    languageService.subscribe(setLang);
+    languageService.onNextState(setLang);
   }, [lang]);
 
   return (

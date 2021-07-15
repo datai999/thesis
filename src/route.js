@@ -100,9 +100,9 @@ const renderSubMenu = ({ ...drawerProps }) => {
 const WrapComponent = ({ component, ...props }) => {
   React.useEffect(() => {
     Dimensions.addEventListener("change", (e) => {
-      dimensionService.notify(e.window);
+      dimensionService.setNextState(e.window);
     });
-    dimensionService.notify(Dimensions.get("window"));
+    dimensionService.setNextState(Dimensions.get("window"));
   }, []);
 
   return (

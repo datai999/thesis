@@ -21,12 +21,12 @@ const createHolderService = () => {
   return {
     listeners: listeners,
     stateStack: stateStack,
-    getState: () => stateStack[stateStack.length - 1],
-    notify: (nextState) => {
+    getCurrentState: () => stateStack[stateStack.length - 1],
+    setNextState: (nextState) => {
       stateStack.push(nextState);
       listeners.forEach((action) => action(nextState));
     },
-    subscribe: (action) => listeners.push(action),
+    onNextState: (action) => listeners.push(action),
   };
 };
 
@@ -40,15 +40,17 @@ const createToastService = () => {
   return {
     ...holderService,
     notify: (type, msg = "toast.default", another) =>
-      holderService.notify({
+      holderService.setNextState({
         ...another,
         type: type,
         msg: msg,
       }),
-    info: (msg, another) => toastService.notify("info", msg, another),
-    success: (msg, another) => toastService.notify("success", msg, another),
-    warning: (msg, another) => toastService.notify("warning", msg, another),
-    error: (msg, another) => toastService.notify("danger", msg, another),
+    info: (msg, another) => toastService.setNextState("info", msg, another),
+    success: (msg, another) =>
+      toastService.setNextState("success", msg, another),
+    warning: (msg, another) =>
+      toastService.setNextState("warning", msg, another),
+    error: (msg, another) => toastService.setNextState("danger", msg, another),
     errorCode: (code, error) => {
       switch (code) {
         case "auth/invalid-email":

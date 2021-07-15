@@ -37,7 +37,7 @@ const TopNav = () => {
   const [lang, setLang] = React.useState(i18n.languages);
 
   React.useEffect(() => {
-    languageService.subscribe(setLang);
+    languageService.onNextState(setLang);
   }, [lang]);
 
   return (
@@ -77,8 +77,8 @@ const renderRightAction = () => {
     userService.loginListeners.push(setLogin);
     setLogin(localStorage.login);
 
-    dimensionService.subscribe(setDimensions);
-    setDimensions(dimensionService.getState());
+    dimensionService.onNextState(setDimensions);
+    setDimensions(dimensionService.getCurrentState());
   }, []);
 
   const renderPersonAvt = () => {
@@ -120,7 +120,7 @@ const SwitchLanguage = ({ status, paddingRight }) => {
   const [lang, setLang] = React.useState(i18n.languages);
 
   React.useEffect(() => {
-    languageService.notify(lang);
+    languageService.setNextState(lang);
   }, [lang]);
 
   return (
@@ -158,7 +158,7 @@ const ToolTopNav = () => {
     animationRef.current?.zoomOut(time).then(() => setVisible(false));
 
   React.useEffect(() => {
-    toastService.subscribe(setLog);
+    toastService.onNextState(setLog);
   }, []);
 
   React.useEffect(() => {

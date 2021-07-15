@@ -68,7 +68,7 @@ const OverTable = ({
   const responsiveLayout = (dimensions) => {};
 
   React.useEffect(() => {
-    languageService.subscribe(setLang);
+    languageService.onNextState(setLang);
     navigation.addListener("focus", () => {
       fetchSearchData(dataSearch);
     });
@@ -78,7 +78,7 @@ const OverTable = ({
     }
 
     const actionOrder = async () => {
-      await dimensionService.subscribe(responsiveLayout);
+      await dimensionService.onNextState(responsiveLayout);
       setFields(localStorage.table[tableName].visible);
     };
 

@@ -44,7 +44,7 @@ export default () => {
   }, []);
 
   React.useEffect(() => {
-    languageService.subscribe(setLanguage);
+    languageService.onNextState(setLanguage);
   }, [language]);
 
   const commonProps = {

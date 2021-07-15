@@ -27,7 +27,7 @@ const Screen = () => {
   }, []);
 
   React.useEffect(() => {
-    languageService.subscribe(setLang);
+    languageService.onNextState(setLang);
   }, [lang]);
 
   function loginBtnPress() {
