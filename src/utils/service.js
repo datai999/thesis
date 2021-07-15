@@ -35,36 +35,40 @@ export const languageService = {
 
 export const langHolder = languageService;
 
-export const toastService = {
-  listeners: [],
-  notify: (type, msg = "toast.default", another) =>
-    notifyListener(toastService.listeners, {
-      ...another,
-      type: type,
-      msg: msg,
-    }),
-  info: (msg, another) => toastService.notify("info", msg, another),
-  success: (msg, another) => toastService.notify("success", msg, another),
-  warning: (msg, another) => toastService.notify("warning", msg, another),
-  error: (msg, another) => toastService.notify("danger", msg, another),
-  errorCode: (code, error) => {
-    switch (code) {
-      case "auth/invalid-email":
-        toastService.error("toast.email.invalid", error);
-        break;
-      case "auth/wrong-password":
-        toastService.error("toast.password.invalid", error);
-        break;
-      case "auth/weak-password":
-        toastService.error("toast.password.weak", error);
-        break;
-      default:
-        toastService.error(error.message, error);
-    }
-  },
+const createToastService = () => {
+  let holderService = createHolderService();
+
+  return {
+    ...holderService,
+    notify: (type, msg = "toast.default", another) =>
+      holderService.notify({
+        ...another,
+        type: type,
+        msg: msg,
+      }),
+    info: (msg, another) => toastService.notify("info", msg, another),
+    success: (msg, another) => toastService.notify("success", msg, another),
+    warning: (msg, another) => toastService.notify("warning", msg, another),
+    error: (msg, another) => toastService.notify("danger", msg, another),
+    errorCode: (code, error) => {
+      switch (code) {
+        case "auth/invalid-email":
+          toastService.error("toast.email.invalid", error);
+          break;
+        case "auth/wrong-password":
+          toastService.error("toast.password.invalid", error);
+          break;
+        case "auth/weak-password":
+          toastService.error("toast.password.weak", error);
+          break;
+        default:
+          toastService.error(error.message, error);
+      }
+    },
+  };
 };
 
-export const toastHolder = toastService;
+export const toastService = createToastService();
 
 export let navService = {
   nav: null,

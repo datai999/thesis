@@ -24,15 +24,20 @@ import { localStorage } from "data";
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { langHolder, navService, toastHolder, userService } from "utils";
+import {
+  dimensionService,
+  languageService,
+  navService,
+  toastService,
+} from "service";
 import i18n from "utils/i18n";
-import { dimensionService } from "utils/service";
+import userService from "utils/userService";
 
 const TopNav = () => {
   const [lang, setLang] = React.useState(i18n.languages);
 
   React.useEffect(() => {
-    langHolder.listeners.push(setLang);
+    languageService.listeners.push(setLang);
   }, [lang]);
 
   return (
@@ -115,7 +120,7 @@ const SwitchLanguage = ({ status, paddingRight }) => {
   const [lang, setLang] = React.useState(i18n.languages);
 
   React.useEffect(() => {
-    langHolder.notify(lang);
+    languageService.notify(lang);
   }, [lang]);
 
   return (
@@ -153,7 +158,7 @@ const ToolTopNav = () => {
     animationRef.current?.zoomOut(time).then(() => setVisible(false));
 
   React.useEffect(() => {
-    toastHolder.listeners.push(setLog);
+    toastService.listeners.push(setLog);
   }, []);
 
   React.useEffect(() => {

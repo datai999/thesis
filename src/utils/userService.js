@@ -2,7 +2,7 @@ import firebase, { provider } from "api/firebase";
 import TeacherApi from "api/person/TeacherApi";
 import { removeWhenLogout, setWhenLogin } from "data/localStorage";
 import i18n from "./i18n";
-import { navService, toastHolder } from "./service";
+import { navService, toastService } from "./service";
 
 const emailTail = "@hcmut.edu.vn";
 
@@ -10,7 +10,7 @@ let loginListeners = [];
 
 function navToHome(email) {
   if (email.substring(email.indexOf("@")) != emailTail) {
-    toastHolder.error(email + i18n.t("toast.email.notHcmut"), { email });
+    toastService.error(email + i18n.t("toast.email.notHcmut"), { email });
     return;
   }
 
@@ -18,7 +18,7 @@ function navToHome(email) {
     setWhenLogin(email, response[0]?.code);
     notifyLogin();
     navService.navigate("topic");
-    toastHolder.info("toast.login.success");
+    toastService.info("toast.login.success");
   });
 }
 
@@ -34,7 +34,7 @@ function signInWithPopup() {
       navToHome(result.user.email);
     })
     .catch((error) => {
-      toastHolder.errorCode(error.code, error);
+      toastService.errorCode(error.code, error);
     });
 }
 
@@ -46,10 +46,10 @@ function logout() {
       removeWhenLogout();
       loginListeners.forEach((listener) => listener(false));
       navService.navigate("login");
-      toastHolder.info("toast.logout.success");
+      toastService.info("toast.logout.success");
     })
     .catch((error) => {
-      toastHolder.errorCode(error.code, error);
+      toastService.errorCode(error.code, error);
     });
 }
 
