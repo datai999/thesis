@@ -158,7 +158,7 @@ const ToolTopNav = () => {
     animationRef.current?.zoomOut(time).then(() => setVisible(false));
 
   React.useEffect(() => {
-    toastService.listeners.push(setLog);
+    toastService.subscribe(setLog);
   }, []);
 
   React.useEffect(() => {

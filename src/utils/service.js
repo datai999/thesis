@@ -5,9 +5,14 @@ export const loadingService = {
   end: null,
 };
 
-function notifyListener(arr, value) {
-  arr.forEach((listener) => listener(value));
-}
+export let navService = {
+  nav: null,
+  serPersonMode: null,
+  navigate: (screen) => {
+    navService.nav.navigate(screen);
+    AsyncStorage.setItem("screen", screen);
+  },
+};
 
 const createHolderService = () => {
   let listeners = [];
@@ -63,12 +68,3 @@ const createToastService = () => {
 };
 
 export const toastService = createToastService();
-
-export let navService = {
-  nav: null,
-  serPersonMode: null,
-  navigate: (screen) => {
-    navService.nav.navigate(screen);
-    AsyncStorage.setItem("screen", screen);
-  },
-};
