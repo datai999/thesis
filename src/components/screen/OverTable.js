@@ -5,8 +5,8 @@ import localStorage from "data/localStorage";
 import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { i18n, langHolder, toastService } from "utils";
-import { dimensionService } from "utils/service";
+import { dimensionService, languageService, toastService } from "service";
+import { i18n } from "utils";
 
 const defaultPage = {
   number: 0,
@@ -68,7 +68,7 @@ const OverTable = ({
   const responsiveLayout = (dimensions) => {};
 
   React.useEffect(() => {
-    langHolder.listeners.push(setLang);
+    languageService.subscribe(setLang);
     navigation.addListener("focus", () => {
       fetchSearchData(dataSearch);
     });

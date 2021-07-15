@@ -15,15 +15,16 @@ import {
 } from "components/icons";
 import * as React from "react";
 import { StyleSheet } from "react-native";
+import { languageService } from "service";
 import env from "src/env";
-import { i18n, langHolder } from "utils";
+import i18n from "utils/i18n";
 
 const LeftMenu = ({ navigation, route }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(null);
   const [lang, setLang] = React.useState(i18n.languages);
 
   React.useEffect(() => {
-    langHolder.listeners.push(setLang);
+    languageService.subscribe(setLang);
   }, [lang]);
 
   return (

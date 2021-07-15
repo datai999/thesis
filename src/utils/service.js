@@ -27,13 +27,7 @@ const createHolderService = () => {
 
 export const dimensionService = createHolderService();
 
-export const languageService = {
-  listeners: [],
-  notify: (language) => notifyListener(languageService.listeners, language),
-  listen: (action) => languageService.listeners.push(action),
-};
-
-export const langHolder = languageService;
+export const languageService = createHolderService();
 
 const createToastService = () => {
   let holderService = createHolderService();

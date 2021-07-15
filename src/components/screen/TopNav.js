@@ -37,7 +37,7 @@ const TopNav = () => {
   const [lang, setLang] = React.useState(i18n.languages);
 
   React.useEffect(() => {
-    languageService.listeners.push(setLang);
+    languageService.subscribe(setLang);
   }, [lang]);
 
   return (

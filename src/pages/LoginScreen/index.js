@@ -4,7 +4,8 @@ import { DownLoadIcon, GoogleIcon } from "components/icons";
 import localStorage from "data/localStorage";
 import React from "react";
 import { ImageBackground, Platform, StyleSheet } from "react-native";
-import { env, i18n, langHolder, userService } from "utils";
+import { languageService } from "service";
+import { env, i18n, userService } from "utils";
 
 const Screen = () => {
   const navigation = useNavigation();
@@ -26,7 +27,7 @@ const Screen = () => {
   }, []);
 
   React.useEffect(() => {
-    langHolder.listeners.push(setLang);
+    languageService.subscribe(setLang);
   }, [lang]);
 
   function loginBtnPress() {
