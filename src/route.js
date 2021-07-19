@@ -12,7 +12,8 @@ import {
   CriterionScreen,
   EvaluateScreen,
   LoginScreen,
-  PersonScreen,
+  StudentScreen,
+  TeacherScreen,
   TopicCreateScreen,
   TopicTableScreen,
 } from "./pages";
@@ -38,7 +39,10 @@ const arrRoute = [
   },
   {
     name: "person",
-    component: [{ name: "person", component: PersonScreen }],
+    component: [
+      { name: "teacher", component: TeacherScreen },
+      { name: "student", component: StudentScreen },
+    ],
   },
   {
     name: "criterion",

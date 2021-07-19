@@ -38,8 +38,6 @@ const fields = [
   },
 ];
 
-console.log(assignPropsService(fields, "person."));
-
 const overTableProps = {
   tableName: "teacher",
   form: TeacherForm,

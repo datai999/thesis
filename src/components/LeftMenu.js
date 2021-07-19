@@ -35,15 +35,7 @@ const LeftMenu = ({ navigation, route }) => {
           setSelectedIndex(index);
 
           if (index.section) {
-            if (index.section == 3) {
-              navigation.navigate(route[index.section].name, {
-                screen: route[index.section].name,
-                params: { mode: index.row == 0 ? "teacher" : "student" },
-              });
-              return;
-            }
-
-            navigation.navigate(route[index.section].name, {
+            navigation.navigate(route[index.section].name, { 
               screen: route[index.section].component[index.row].name,
             });
           }
