@@ -4,7 +4,7 @@ import React from "react";
 import { DataTable } from "react-native-paper";
 import { i18n } from "utils";
 
-export default ({ links, propCallback, callback, ...props }) => {
+export default ({ propCallback, callback, ...props }) => {
   const [sortField, setSortField] = React.useState(propCallback.sort?.field);
   const [descending, setDescending] = React.useState(
     propCallback.sort?.descend

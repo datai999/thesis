@@ -59,7 +59,7 @@ const overTableProps = {
   tableName: "topicAssign",
   form: TopicForm,
   api: TopicAssignApi,
-  filterVisible: false,
+  filterVisible: true,
   fields: assignProps(defaultFields),
   dataSearch: {
     sort: { field: "topic.semester", descend: true },

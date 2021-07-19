@@ -4,9 +4,9 @@ import tableStyle from "data/tableStyle";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { DataTable } from "react-native-paper";
-import { getLinkProps, i18n } from "utils";
+import { i18n } from "utils";
 
-export default ({ links, propCallback, callback, ...props }) => {
+export default ({ propCallback, callback, ...props }) => {
   const inputStyle = StyleSheet.create({
     input: {
       marginHorizontal: 1,
@@ -26,14 +26,14 @@ export default ({ links, propCallback, callback, ...props }) => {
     callback(nextPropCallback);
   };
 
-  const inputProps = (linkProp) => {
+  const inputProps = (field) => {
     return {
-      placeholder: linkProp.placeholder,
-      key: linkProp.api,
+      placeholder: field.placeholder,
+      key: field.api,
       size: "small",
-      value: propCallback.filter[linkProp.api],
-      style: [tableStyle[linkProp.api?.split(".").pop()], inputStyle.input],
-      callBack: (nextValue) => filter(linkProp.api, nextValue),
+      value: propCallback.filter[field.api],
+      style: [tableStyle[field.api?.split(".").pop()], inputStyle.input],
+      callBack: (nextValue) => filter(field.api, nextValue),
     };
   };
 
@@ -42,9 +42,9 @@ export default ({ links, propCallback, callback, ...props }) => {
       <DataTable.Title style={tableStyle.no}>
         <Text category="s1">{i18n.t("origin.filter")}</Text>
       </DataTable.Title>
-      {getLinkProps(links).map((linkProp, index) => {
-        if (!props.fields[index].visible) return;
-        return <MyInput {...inputProps(linkProp)} />;
+      {props.fields.map((field) => {
+        if (!field.visible) return;
+        return <MyInput {...inputProps(field)} />;
       })}
     </DataTable.Header>
   );
