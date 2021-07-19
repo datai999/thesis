@@ -3,24 +3,13 @@ import { TopicForm } from "components/form";
 import OverTable from "components/screen/OverTable";
 import React from "react";
 import { Dimensions } from "react-native";
+import { assignPropsService } from "service";
 
 // import { currentSemester } from "utils";
 
 const width = Dimensions.get("window").width;
 
-const assignProps = (propsApi) => {
-  const assignProp = (propApi) => {
-    return {
-      api: propApi.link,
-      label: propApi.link + ".label",
-      placeholder: propApi.link + ".placeholder",
-      ...propApi,
-    };
-  };
-  return Array.from(propsApi, assignProp);
-};
-
-const defaultFields = [
+const fields = [
   {
     link: "topic.code",
     visible: true,
@@ -60,7 +49,7 @@ const overTableProps = {
   form: TopicForm,
   api: TopicAssignApi,
   filterVisible: true,
-  fields: assignProps(defaultFields),
+  fields: assignPropsService(fields),
   dataSearch: {
     sort: { field: "topic.semester", descend: true },
     // FIXME default filter

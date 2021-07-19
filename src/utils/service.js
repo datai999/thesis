@@ -14,6 +14,17 @@ export let navService = {
   },
 };
 
+export const assignPropsService = (fields) => {
+  return fields.map((field) => {
+    return {
+      api: field.link,
+      label: field.link + ".label",
+      placeholder: field.link + ".placeholder",
+      ...field,
+    };
+  });
+};
+
 const createHolderService = () => {
   let listeners = [];
   let stateStack = [];
