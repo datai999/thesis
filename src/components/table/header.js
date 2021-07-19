@@ -42,7 +42,6 @@ export default ({ propCallback, callback, ...props }) => {
         <Text category="s1">No</Text>
       </DataTable.Title>
       {props.fields.map((field) => {
-        if (!field.visible) return;
         return (
           <Button
             key={field.api}

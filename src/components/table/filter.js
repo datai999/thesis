@@ -43,7 +43,6 @@ export default ({ propCallback, callback, ...props }) => {
         <Text category="s1">{i18n.t("origin.filter")}</Text>
       </DataTable.Title>
       {props.fields.map((field) => {
-        if (!field.visible) return;
         return <MyInput {...inputProps(field)} />;
       })}
     </DataTable.Header>

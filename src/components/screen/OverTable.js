@@ -92,7 +92,7 @@ const OverTable = ({
         />
       </Layout>
       <TableBody
-        fields={fields}
+        fields={fields.filter((field) => field.visible)}
         updateForm={form}
         data={data}
         topContent={topContent}

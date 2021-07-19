@@ -2,11 +2,9 @@ import tableStyle from "data/tableStyle";
 import _ from "lodash";
 import React from "react";
 import { DataTable, List } from "react-native-paper";
-import { getLinkProps, getRenderText } from "utils";
+import { getRenderText } from "utils";
 
-export default ({ links, data = [], rowCallBack, ...props }) => {
-  const linkProps = getLinkProps(links);
-
+export default ({ data = [], rowCallBack, ...props }) => {
   if (data == null) return null;
 
   return data.map((row, index) => {
@@ -15,13 +13,12 @@ export default ({ links, data = [], rowCallBack, ...props }) => {
         <DataTable.Cell style={tableStyle.no} onPress={() => rowCallBack(row)}>
           {renderCell(index + 1)}
         </DataTable.Cell>
-        {linkProps.map((linkProp, index) => {
-          if (!props.fields[index].visible) return;
-          let fieldValue = _.get(row, linkProp.api);
+        {props.fields.map((field) => {
+          let fieldValue = _.get(row, field.api);
           return (
             <DataTable.Cell
-              style={tableStyle[linkProp.api.split(".").pop()]}
-              key={linkProp.api}
+              style={tableStyle[field.api.split(".").pop()]}
+              key={field.api}
               onPress={() => rowCallBack(row)}
             >
               {renderCell(fieldValue)}

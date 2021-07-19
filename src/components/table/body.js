@@ -19,8 +19,6 @@ export default ({
   const [updateFormVisible, setUpdateFormVisible] = React.useState(false);
   const [currentRow, setCurrenRow] = React.useState(null);
 
-  const links = fields.map((field) => field.link);
-
   const modalUpdateFormProps = {
     ...updateForm,
     visible: updateFormVisible,
@@ -44,7 +42,6 @@ export default ({
   };
 
   const commonProps = {
-    links: links,
     propCallback: propCallback,
     callback: callback,
     fields: fields,
@@ -54,15 +51,10 @@ export default ({
     <DataTable style={{ flex: 1, margin: 5 }}>
       <MyModal {...modalUpdateFormProps} />
       <TableHeader {...commonProps} />
-      {topContent && topContent({ links, rowCallBack, fields })}
+      {topContent && topContent({ rowCallBack, fields })}
       {filterVisible && <TableFilter {...commonProps} />}
       <ScrollView>
-        <TableContent
-          links={links}
-          fields={fields}
-          data={data}
-          rowCallBack={rowCallBack}
-        />
+        <TableContent fields={fields} data={data} rowCallBack={rowCallBack} />
       </ScrollView>
       <TableBottom propCallback={propCallback} callback={callback} />
     </DataTable>
