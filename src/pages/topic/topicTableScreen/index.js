@@ -11,6 +11,7 @@ const width = Dimensions.get("window").width;
 const assignProps = (propsApi) => {
   const assignProp = (propApi) => {
     return {
+      api: propApi.link,
       label: propApi.link + ".label",
       placeholder: propApi.link + ".placeholder",
       ...propApi,

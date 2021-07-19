@@ -2,7 +2,7 @@ import { Button, Text } from "@ui-kitten/components";
 import tableStyle from "data/tableStyle";
 import React from "react";
 import { DataTable } from "react-native-paper";
-import { getLinkProps, i18n } from "utils";
+import { i18n } from "utils";
 
 export default ({ links, propCallback, callback, ...props }) => {
   const [sortField, setSortField] = React.useState(propCallback.sort?.field);
@@ -41,15 +41,15 @@ export default ({ links, propCallback, callback, ...props }) => {
       <DataTable.Title style={tableStyle.no}>
         <Text category="s1">No</Text>
       </DataTable.Title>
-      {getLinkProps(links).map((linkProp, index) => {
-        if (!props.fields[index].visible) return;
+      {props.fields.map((field) => {
+        if (!field.visible) return;
         return (
           <Button
-            key={linkProp.api}
-            appearance={linkProp.api != sortField ? "ghost" : "filled"}
+            key={field.api}
+            appearance={field.api != sortField ? "ghost" : "filled"}
             status="basic"
             style={[
-              tableStyle[linkProp.api.split(".").pop()],
+              tableStyle[field.api.split(".").pop()],
               {
                 marginHorizontal: 1,
                 paddingHorizontal: 0,
@@ -57,11 +57,11 @@ export default ({ links, propCallback, callback, ...props }) => {
             ]}
           >
             <DataTable.Title
-              sortDirection={getSortDirection(linkProp.api)}
-              onPress={() => setSort(linkProp.api)}
+              sortDirection={getSortDirection(field.api)}
+              onPress={() => setSort(field.api)}
             >
               <Text category="s1" style={{ fontSize: 13 }}>
-                {i18n.t(linkProp.label)}
+                {i18n.t(field.label)}
               </Text>
             </DataTable.Title>
           </Button>
