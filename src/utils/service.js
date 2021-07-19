@@ -14,12 +14,12 @@ export let navService = {
   },
 };
 
-export const assignPropsService = (fields) => {
+export const assignPropsService = (fields, prePath = "") => {
   return fields.map((field) => {
     return {
       api: field.link,
-      label: field.link + ".label",
-      placeholder: field.link + ".placeholder",
+      label: prePath + field.link + ".label",
+      placeholder: prePath + field.link + ".placeholder",
       ...field,
     };
   });

@@ -134,6 +134,10 @@
       "label": "Education method",
       "placeholder": "Select education method"
     },
+    "email": {
+      "label": "Mail",
+      "placeholder": "Type mail"
+    },
     "gender": {
       "label": "Gender",
       "placeholder": "Select gender"

@@ -134,6 +134,10 @@
       "label": "Phương thức đào tạo",
       "placeholder": "Chọn phương thức đào tạo"
     },
+    "email": {
+      "label": "Mail",
+      "placeholder": "Nhập mail"
+    },
     "gender": {
       "label": "Giới tính",
       "placeholder": "Chọn giới tính"
