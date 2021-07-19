@@ -10,7 +10,7 @@ import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { getLinkProps, i18n } from "utils";
+import { i18n } from "utils";
 
 export default ({ ...props }) => {
   let settingAnimation = null;
@@ -35,8 +35,6 @@ export default ({ ...props }) => {
 
 const SettingModal = ({ props }) => {
   const [newSetting, setNewSetting] = React.useState(_.cloneDeep(props.fields));
-
-  const links = getLinkProps(props.fields.map((field) => field.link));
 
   const setField = (index, visible) => {
     let nextSetting = _.cloneDeep(newSetting);
@@ -63,7 +61,7 @@ const SettingModal = ({ props }) => {
                 setField(index, nextChecked);
               }}
             >
-              {links[index].label}
+              {i18n.t(newSetting[index].label)}
             </CheckBox>
           )}
         />

@@ -8,6 +8,17 @@ import { Dimensions } from "react-native";
 
 const width = Dimensions.get("window").width;
 
+const assignProps = (propsApi) => {
+  const assignProp = (propApi) => {
+    return {
+      label: propApi.link + ".label",
+      placeholder: propApi.link + ".placeholder",
+      ...propApi,
+    };
+  };
+  return Array.from(propsApi, assignProp);
+};
+
 const defaultFields = [
   {
     link: "topic.code",
@@ -30,12 +41,16 @@ const defaultFields = [
     visible: true,
   },
   {
-    link: "topicAssign.guideTeacher",
+    link: "guideTeacher",
     visible: width > 1000,
+    label: "teacher.guide.label",
+    placeholder: "teacher.guide.placeholder",
   },
   {
-    link: "topicAssign.executeStudent",
+    link: "executeStudent",
     visible: width > 1200,
+    label: "student.execute.label",
+    placeholder: "student.execute.placeholder",
   },
 ];
 
@@ -43,14 +58,12 @@ const overTableProps = {
   tableName: "topicAssign",
   form: TopicForm,
   api: TopicAssignApi,
-  defaultProps: {
-    fields: defaultFields,
-    filterVisible: true,
-    dataSearch: {
-      sort: { field: "topic.semester", descend: true },
-      // FIXME default filter
-      // filter: { "topic.semester": currentSemester() },
-    },
+  filterVisible: false,
+  fields: assignProps(defaultFields),
+  dataSearch: {
+    sort: { field: "topic.semester", descend: true },
+    // FIXME default filter
+    // filter: { "topic.semester": currentSemester() },
   },
 };
 
