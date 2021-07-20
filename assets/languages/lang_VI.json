@@ -167,7 +167,9 @@
     "setting": "Màn hình cài đặt",
     "student": "Màn hình sinh viên",
     "teacher": "Màn hình giảng viên",
-    "topic": "Màn hình đề tài"
+    "topic": "Màn hình đề tài",
+    "topicCreate": "Tạo đề tài",
+    "topicTable": "Danh sách đề tài"
   },
   "select": {
     "all": "Chọn tất cả",

@@ -2,6 +2,13 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useTheme } from "@ui-kitten/components";
+import {
+  BookOpenIcon,
+  CheckMarkSquare,
+  HomeIcon,
+  PantoneIcon,
+  PeopleIcon,
+} from "components/icons";
 import LeftMenu from "components/LeftMenu";
 import TopNav from "components/screen/TopNav";
 import * as React from "react";
@@ -24,10 +31,12 @@ const Drawer = createDrawerNavigator();
 const arrRoute = [
   {
     name: "home",
+    icon: HomeIcon,
     component: [{ name: "home", component: LoginScreen }],
   },
   {
     name: "topic",
+    icon: BookOpenIcon,
     component: [
       { name: "topicTable", component: TopicTableScreen },
       { name: "topicCreate", component: TopicCreateScreen },
@@ -35,10 +44,12 @@ const arrRoute = [
   },
   {
     name: "evaluate",
+    icon: CheckMarkSquare,
     component: [{ name: "evaluate", component: EvaluateScreen }],
   },
   {
     name: "person",
+    icon: PeopleIcon,
     component: [
       { name: "teacher", component: TeacherScreen },
       { name: "student", component: StudentScreen },
@@ -46,6 +57,7 @@ const arrRoute = [
   },
   {
     name: "criterion",
+    icon: PantoneIcon,
     component: [{ name: "criterion", component: CriterionScreen }],
   },
 ];

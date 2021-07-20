@@ -167,7 +167,9 @@
     "setting": "Setting screen",
     "student": "Student screen",
     "teacher": "Teacher screen",
-    "topic": "Topic screen"
+    "topic": "Topic screen",
+    "topicCreate": "Topic create",
+    "topicTable": "Topic table"
   },
   "select": {
     "all": "Select all",
