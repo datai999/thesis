@@ -4,8 +4,7 @@ import OverTable from "components/screen/OverTable";
 import React from "react";
 import { Dimensions } from "react-native";
 import { assignPropsService } from "service";
-
-// import { currentSemester } from "utils";
+import { currentSemester } from "utils";
 
 const width = Dimensions.get("window").width;
 
@@ -52,8 +51,7 @@ const overTableProps = {
   fields: assignPropsService(fields),
   dataSearch: {
     sort: { field: "topic.semester", descend: true },
-    // FIXME default filter
-    // filter: { "topic.semester": currentSemester() },
+    filter: { "topic.semester": currentSemester() },
   },
 };
 

@@ -234,6 +234,11 @@
     },
     "search": {
       "error": "Search error"
+    },
+    "topic": {
+      "create": {
+        "success": "Create topic success"
+      }
     }
   },
   "topic": {

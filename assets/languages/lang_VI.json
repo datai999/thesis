@@ -228,6 +228,11 @@
     },
     "search": {
       "error": "Tìm kiếm thất bại"
+    },
+    "topic": {
+      "create": {
+        "success": "Tạo đề tài thành công"
+      }
     }
   },
   "topic": {

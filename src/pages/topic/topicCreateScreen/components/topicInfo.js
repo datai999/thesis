@@ -14,10 +14,10 @@ export default ({ styles, propStore, multiLang }) => {
         {multiLang > 0 && (
           <MyInput {...propStore.inputToggleLang("topic.name")} />
         )}
+        <MyInput {...propStore.input("topic.code")} />
         <MySelect {...propStore.select("topic.educationMethod")} />
         <MyInput {...propStore.select("topic.semester")} />
         <MyMultiSelect {...propStore.select("topic.major")} />
-        <MyInput {...propStore.input("topic.code")} />
         <Layout
           style={{ justifyContent: "space-evenly", flexDirection: "row" }}
         >

@@ -1,19 +1,27 @@
 import { Button, Layout, ViewPager } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import { ArrowBackIcon, ArrowForwardIcon } from "components/icons";
+import _ from "lodash";
 import React from "react";
 import { Dimensions, StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
-import { languageService, loadingService, toastService } from "service";
+import {
+  languageService,
+  loadingService,
+  navService,
+  toastService,
+} from "service";
 import { createProps, currentSemester, i18n } from "utils";
 import TopicAssign from "./components/topicAssign";
 import TopicDescription from "./components/topicDescription";
 import TopicInfo from "./components/topicInfo";
 
-let form = {
+const defaultForm = {
   topic: { semester: currentSemester() },
   semester: currentSemester(),
 };
+
+let form = _.cloneDeep(defaultForm);
 
 const submit = () => {
   form.semester = form.topic.semester;
@@ -21,6 +29,9 @@ const submit = () => {
   return TopicAssignApi.create(form)
     .then((response) => {
       loadingService.end();
+      form = _.cloneDeep(defaultForm);
+      toastService.success("toast.topic.create.success");
+      navService.nav.navigate("topic", { screen: "topicTable" });
     })
     .catch((err) => {
       toastService.error(err.response.data.data[0], err);
