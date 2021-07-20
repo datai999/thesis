@@ -120,8 +120,16 @@ const screenToSelected = (screen) => {
 
 const DrawerMenu = ({ navigation, route }) => {
   const [selected, setSelected] = React.useState(route.map(screenToSelected));
-  const [subSelected, setSubSelected] = React.useState(null);
   const [currentScreen, setCurrenScreen] = React.useState();
+  const [subSelected, setSubSelected] = React.useState();
+
+  React.useEffect(() => {
+    setCurrenScreen(1);
+    setSubSelected(0);
+    let nextData = _.cloneDeep(selected);
+    nextData[1].active = true;
+    setSelected(nextData);
+  }, []);
 
   const groupPress = (groupIndex) => {
     let nextData = _.cloneDeep(selected);
@@ -151,7 +159,7 @@ const DrawerMenu = ({ navigation, route }) => {
         {i18n.t("origin.version")}: {env.version}
       </Text>
       {route.map((screen, groupIndex) => (
-        <Layout>
+        <Layout key={groupIndex}>
           <Divider />
           <Button
             {...commonProps}
@@ -173,6 +181,7 @@ const DrawerMenu = ({ navigation, route }) => {
             screen.component.length > 1 &&
             screen.component.map((subScreen, subIndex) => (
               <Button
+                key={subIndex}
                 {...commonProps}
                 appearance={
                   currentScreen == groupIndex && subIndex == subSelected
