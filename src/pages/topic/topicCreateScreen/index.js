@@ -43,7 +43,6 @@ export default () => {
   const [dimensions, setDimensions] = React.useState(Dimensions.get("window"));
   const [language, setLanguage] = React.useState(i18n.languages);
   const [multiLang, setMultiLang] = React.useState(0);
-
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const propStore = createProps(form);
@@ -87,7 +86,9 @@ export default () => {
 
       <ViewPager
         selectedIndex={selectedIndex}
-        onSelect={(index) => setSelectedIndex(index)}
+        onSelect={(index) => {
+          if (index) setSelectedIndex(index);
+        }}
         style={styles.viewPager}
       >
         <TopicInfo {...commonProps} />
