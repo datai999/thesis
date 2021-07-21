@@ -12,12 +12,11 @@ import {
   toastService,
 } from "service";
 import { createProps, currentSemester, i18n } from "utils";
-import TopicAssign from "./components/topicAssign";
 import TopicDescription from "./components/topicDescription";
 import TopicInfo from "./components/topicInfo";
 
 const defaultForm = {
-  topic: { semester: currentSemester() },
+  topic: { semester: currentSemester(), minStudentTake: 1, maxStudentTake: 3 },
   semester: currentSemester(),
 };
 
@@ -93,11 +92,10 @@ export default () => {
       >
         <TopicInfo {...commonProps} />
         <TopicDescription {...commonProps} />
-        <TopicAssign {...commonProps} council={form.council} />
       </ViewPager>
 
       <Layout style={styles.bottomBtn}>
-        {selectedIndex < 2 && (
+        {selectedIndex < 1 && (
           <Button
             status="control"
             appearance="outline"
@@ -107,7 +105,7 @@ export default () => {
             {dimensions.width > 700 && i18n.t("origin.next")}
           </Button>
         )}
-        {selectedIndex == 2 && (
+        {selectedIndex == 1 && (
           <Button onPress={submit}>{i18n.t("origin.submit")}</Button>
         )}
         {selectedIndex > 0 && (
