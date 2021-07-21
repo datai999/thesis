@@ -1,4 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import propsService from "./propsService";
+
+export { propsService };
 
 export const loadingService = {
   start: null,
