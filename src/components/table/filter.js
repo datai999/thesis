@@ -1,10 +1,8 @@
-import { Text } from "@ui-kitten/components";
 import { MyInput } from "components/Input";
 import tableStyle from "data/tableStyle";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { DataTable } from "react-native-paper";
-import { i18n } from "utils";
 
 export default ({ propCallback, callback, ...props }) => {
   const inputStyle = StyleSheet.create({
@@ -39,9 +37,6 @@ export default ({ propCallback, callback, ...props }) => {
 
   return (
     <DataTable.Header>
-      <DataTable.Title style={tableStyle.no}>
-        <Text category="s1">{i18n.t("origin.filter")}</Text>
-      </DataTable.Title>
       {props.fields.map((field) => {
         return <MyInput {...inputProps(field)} />;
       })}

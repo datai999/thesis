@@ -38,9 +38,6 @@ export default ({ propCallback, callback, ...props }) => {
 
   return (
     <DataTable.Header>
-      <DataTable.Title style={tableStyle.no}>
-        <Text category="s1">No</Text>
-      </DataTable.Title>
       {props.fields.map((field) => {
         return (
           <Button

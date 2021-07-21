@@ -55,6 +55,10 @@
   "description_ph_vi": "Nhập mô tả",
   "educationMethod": "Phương thức đào tạo",
   "educationMethodSelect": "Chọn phương thức đào tạo",
+  "id": {
+    "label": "Id",
+    "placeholder": "Nhập id"
+  },
   "login": {
     "email": {
       "label": "HCMUT mail",

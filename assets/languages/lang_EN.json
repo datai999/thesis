@@ -55,6 +55,10 @@
   "description_ph_vi": "Type description in Vietnamese",
   "educationMethod": "Education method",
   "educationMethodSelect": "Select education method",
+  "id": {
+    "label": "Id",
+    "placeholder": "Type id"
+  },
   "login": {
     "email": {
       "label": "HCMUT mail",

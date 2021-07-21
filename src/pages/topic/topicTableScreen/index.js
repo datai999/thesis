@@ -10,6 +10,10 @@ const width = Dimensions.get("window").width;
 
 const fields = [
   {
+    link: "id",
+    visible: true,
+  },
+  {
     link: "topic.code",
     visible: true,
   },

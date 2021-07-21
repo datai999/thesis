@@ -10,9 +10,6 @@ export default ({ data = [], rowCallBack, ...props }) => {
   return data.map((row, index) => {
     return (
       <DataTable.Row key={row.id}>
-        <DataTable.Cell style={tableStyle.no} onPress={() => rowCallBack(row)}>
-          {renderCell(index + 1)}
-        </DataTable.Cell>
         {props.fields.map((field) => {
           let fieldValue = _.get(row, field.api);
           return (
