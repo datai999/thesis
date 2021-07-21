@@ -13,8 +13,7 @@ import LeftMenu from "components/LeftMenu";
 import TopNav from "components/screen/TopNav";
 import * as React from "react";
 import { Dimensions, ImageBackground } from "react-native";
-import { navService } from "utils";
-import { dimensionService } from "utils/service";
+import { dimensionService, navService } from "service";
 import {
   CriterionScreen,
   EvaluateScreen,

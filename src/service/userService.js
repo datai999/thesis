@@ -1,8 +1,8 @@
 import firebase, { provider } from "api/firebase";
 import TeacherApi from "api/person/TeacherApi";
 import { removeWhenLogout, setWhenLogin } from "data/localStorage";
-import i18n from "./i18n";
-import { navService, toastService } from "./service";
+import i18n from "utils/i18n";
+import { navService, toastService } from "./index";
 
 const emailTail = "@hcmut.edu.vn";
 

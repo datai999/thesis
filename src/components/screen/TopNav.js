@@ -8,7 +8,7 @@ import {
   Toggle,
   TopNavigation,
   TopNavigationAction,
-  useTheme,
+  useTheme
 } from "@ui-kitten/components";
 import AxiosClient from "api/AxiosClient";
 import {
@@ -18,7 +18,7 @@ import {
   CloseCircleIcon,
   ExternalLinkIcon,
   InfoIcon,
-  MenuIcon,
+  MenuIcon
 } from "components/icons";
 import { localStorage } from "data";
 import React from "react";
@@ -28,10 +28,10 @@ import {
   dimensionService,
   languageService,
   navService,
-  toastService,
+  toastService
 } from "service";
+import userService from "service/userService";
 import i18n from "utils/i18n";
-import userService from "utils/userService";
 
 const TopNav = () => {
   const [lang, setLang] = React.useState(i18n.languages);

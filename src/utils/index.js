@@ -2,19 +2,8 @@ import dateFormat from "dateformat";
 import env from "src/env";
 import i18n from "./i18n";
 import { createProps, emailTail, getHeadMail, getLinkProps } from "./link";
-import { navService } from "./service";
-import userService from "./userService";
 
-export {
-  createProps,
-  getLinkProps,
-  i18n,
-  env,
-  navService,
-  userService,
-  emailTail,
-  getHeadMail,
-};
+export { createProps, getLinkProps, i18n, env, emailTail, getHeadMail };
 
 export function getRenderText(obj) {
   if (obj == null) return "";

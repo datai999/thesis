@@ -5,7 +5,8 @@ import localStorage from "data/localStorage";
 import React from "react";
 import { ImageBackground, Platform, StyleSheet } from "react-native";
 import { languageService } from "service";
-import { env, i18n, userService } from "utils";
+import userService from "service/userService";
+import { env, i18n } from "utils";
 
 const Screen = () => {
   const navigation = useNavigation();
