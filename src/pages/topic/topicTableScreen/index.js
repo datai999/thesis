@@ -54,7 +54,7 @@ const overTableProps = {
   filterVisible: true,
   fields: assignPropsService(fields),
   dataSearch: {
-    sort: { field: "topic.semester", descend: true },
+    sort: { field: "id", descend: false },
     filter: { "topic.semester": currentSemester() },
   },
 };
