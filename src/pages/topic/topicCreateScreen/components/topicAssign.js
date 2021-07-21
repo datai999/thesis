@@ -39,11 +39,10 @@ export default ({ styles, propStore, council }) => {
           arrValue={constData.topicStatus.arrValue}
         />
         <MyAutocompleteTag
-          {...propStore.inputSearch("topicAssign.executeStudent", StudentApi)}
-        />
-
-        <MyAutocompleteTag
           {...propStore.inputSearch("topicAssign.guideTeacher", TeacherApi)}
+        />
+        <MyAutocompleteTag
+          {...propStore.inputSearch("topicAssign.executeStudent", StudentApi)}
         />
         <MyAutocompleteTag
           {...propStore.inputSearch("topicAssign.reviewTeacher", TeacherApi)}
