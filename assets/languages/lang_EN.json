@@ -172,6 +172,7 @@
     "student": "Student screen",
     "teacher": "Teacher screen",
     "topic": "Topic screen",
+    "topicAssign": "Topic assign",
     "topicCreate": "Topic create",
     "topicTable": "Topic table"
   },

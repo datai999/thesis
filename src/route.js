@@ -21,6 +21,7 @@ import {
   LoginScreen,
   StudentScreen,
   TeacherScreen,
+  TopicAssignScreen,
   TopicCreateScreen,
   TopicTableScreen,
 } from "./pages";
@@ -38,6 +39,7 @@ const arrRoute = [
     name: "topic",
     icon: BookOpenIcon,
     component: [
+      { name: "topicAssign", component: TopicAssignScreen },
       { name: "topicTable", component: TopicTableScreen },
       { name: "topicCreate", component: TopicCreateScreen },
     ],

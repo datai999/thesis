@@ -172,6 +172,7 @@
     "student": "Màn hình sinh viên",
     "teacher": "Màn hình giảng viên",
     "topic": "Màn hình đề tài",
+    "topicAssign": "Phân công đề tài",
     "topicCreate": "Tạo đề tài",
     "topicTable": "Danh sách đề tài"
   },
