@@ -7,24 +7,27 @@ import { getRenderText } from "utils";
 export default ({ data = [], rowCallBack, ...props }) => {
   if (data == null) return null;
 
-  return data.map((row, index) => {
-    return (
-      <DataTable.Row key={row.id}>
-        {props.fields.map((field) => {
-          let fieldValue = _.get(row, field.api);
-          return (
-            <DataTable.Cell
-              style={tableStyle[field.api.split(".").pop()]}
-              key={field.api}
-              onPress={() => rowCallBack(row)}
-            >
-              {renderCell(fieldValue)}
-            </DataTable.Cell>
-          );
-        })}
-      </DataTable.Row>
-    );
+  return data.map((row) => {
+    return <Row key={row.id} data={row} {...props} />;
   });
+};
+
+export const Row = ({ data, ...props }) => {
+  return (
+    <DataTable.Row>
+      {props.fields.map((field) => {
+        let fieldValue = _.get(data, field.api);
+        return (
+          <DataTable.Cell
+            style={tableStyle[field.api.split(".").pop()]}
+            key={field.api}
+          >
+            {renderCell(fieldValue)}
+          </DataTable.Cell>
+        );
+      })}
+    </DataTable.Row>
+  );
 };
 
 export function renderCell(fieldValue) {
