@@ -105,7 +105,7 @@ export default ({ route = { params: null } }) => {
           onPress={() =>
             navService.navigate("topic", {
               screen: "topicAssign",
-              params: propsStore.form,
+              params: propsStore.form.topic,
             })
           }
           accessoryRight={PeopleIcon}

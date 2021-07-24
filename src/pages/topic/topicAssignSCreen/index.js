@@ -11,18 +11,19 @@ import { ScrollView } from "react-native";
 import { propsService } from "service";
 import { i18n } from "utils";
 
-let defaultForm = { semester: 123 };
+const defaultForm = { semester: 123 };
 
-let propsStore = propsService.createPropsStore(defaultForm);
-
-export default ({ council = {} }) => {
+export default ({ route = { params: null } }) => {
   const [councilVisible, setCouncilVisible] = React.useState(false);
+
+  let form = _.cloneDeep(defaultForm);
+  let propsStore = propsService.createPropsStore(defaultForm);
 
   const modalCouncilProps = {
     ...CouncilForm,
     visible: councilVisible,
     cancel: () => setCouncilVisible(false),
-    body: () => CouncilForm.body(council),
+    body: () => CouncilForm.body({}),
     submit: async () => {
       try {
         let response = await CouncilForm.submit();
@@ -36,7 +37,11 @@ export default ({ council = {} }) => {
 
   return (
     <Layout style={{ margin: 10, padding: 10 }}>
-      <MyInput {...propsStore.input("semester")} />
+      <MyInput
+        {...propsStore.input("semester")}
+        label="topic.semester.label"
+        placeholder="topic.semester.placeholder"
+      />
       <ScrollView showsVerticalScrollIndicator={true}>
         <MySelect
           {...propsStore.select("status")}
