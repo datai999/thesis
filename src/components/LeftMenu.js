@@ -19,7 +19,7 @@ import {
 import _ from "lodash";
 import * as React from "react";
 import { StyleSheet } from "react-native";
-import { languageService } from "service";
+import { languageService, navService } from "service";
 import env from "src/env";
 import i18n from "utils/i18n";
 
@@ -123,12 +123,36 @@ const DrawerMenu = ({ navigation, route }) => {
   const [currentScreen, setCurrenScreen] = React.useState();
   const [subSelected, setSubSelected] = React.useState();
 
+  const navigationAction = ({ screen, subScreen }) => {
+    let nextSelected = _.cloneDeep(selected);
+
+    let screenIndex = selected
+      .map((screenState) => screenState.name)
+      .indexOf(screen);
+
+    if (nextSelected[screenIndex].subScreen) {
+      nextSelected[screenIndex].active = true;
+
+      let subScreenIndex = nextSelected[screenIndex].subScreen.indexOf(
+        subScreen.screen
+      );
+
+      setCurrenScreen(screenIndex);
+      setSubSelected(subScreenIndex);
+      setSelected(nextSelected);
+
+      navigation.navigate(screen, subScreen);
+    }
+  };
+
   React.useEffect(() => {
     setCurrenScreen(1);
     setSubSelected(0);
     let nextData = _.cloneDeep(selected);
     nextData[1].active = true;
     setSelected(nextData);
+
+    navService.onNextState(navigationAction);
   }, []);
 
   const groupPress = (groupIndex) => {
