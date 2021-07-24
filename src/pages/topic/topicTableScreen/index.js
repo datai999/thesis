@@ -48,6 +48,8 @@ const fields = [
 ];
 
 const overTableProps = {
+  screenName: "topic",
+  subScreenCreateName: "topicCreate",
   tableName: "topicAssign",
   form: TopicForm,
   api: TopicAssignApi,
