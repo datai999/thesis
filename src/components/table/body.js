@@ -24,7 +24,7 @@ export default ({
     ...updateForm,
     visible: updateFormVisible,
     cancel: () => setUpdateFormVisible(false),
-    body: () => updateForm.body(currentRow),
+    body: () => updateForm?.body(currentRow),
     submit: async () => {
       try {
         let response = await updateForm.submit();

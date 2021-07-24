@@ -1,6 +1,6 @@
 import { Button } from "@ui-kitten/components";
-import { CreateBtn } from "components/Button";
-import { BrushIcon, FunnelIcon } from "components/icons";
+import { CreateFormButton } from "components/Button";
+import { BrushIcon, FunnelIcon, PlusIcon } from "components/icons";
 import SettingTable from "components/table/setting";
 import React from "react";
 import { ScrollView } from "react-native";
@@ -30,7 +30,20 @@ const TopBar = ({
       showsHorizontalScrollIndicator={true}
       contentContainerStyle={[{ flexDirection: "row" }]}
     >
-      <CreateBtn form={form} callBack={addNewRecord} />
+      {props.screenName ? (
+        <Button
+          style={{ margin: 5 }}
+          status="primary"
+          size="small"
+          accessoryRight={PlusIcon}
+          onPress={props.createButtonPress}
+        >
+          {i18n.t(props.newRecordLabel)}
+        </Button>
+      ) : (
+        <CreateFormButton form={form} callBack={addNewRecord} />
+      )}
+
       <Button
         {...commonBtnProps}
         accessoryRight={FunnelIcon}

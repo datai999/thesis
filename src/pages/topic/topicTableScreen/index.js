@@ -1,5 +1,4 @@
 import TopicAssignApi from "api/topic/TopicAssignApi";
-import { TopicForm } from "components/form";
 import OverTable from "components/screen/OverTable";
 import React from "react";
 import { Dimensions } from "react-native";
@@ -51,7 +50,7 @@ const overTableProps = {
   screenName: "topic",
   subScreenCreateName: "topicCreate",
   tableName: "topicAssign",
-  form: TopicForm,
+  newRecordLabel: "topic.create",
   api: TopicAssignApi,
   filterVisible: true,
   fields: assignPropsService(fields),

@@ -4,7 +4,7 @@ import MyModal from "components/Modal";
 import React from "react";
 import i18n from "utils/i18n";
 
-export const CreateBtn = ({ form, data, callBack, props }) => {
+export const CreateFormButton = ({ form, data, callBack, props }) => {
   const [createFormVisible, setCreateFormVisible] = React.useState(false);
 
   const modalCreateFormProps = {

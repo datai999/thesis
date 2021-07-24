@@ -53,6 +53,12 @@ const OverTable = ({
       .catch((err) => toastService.error("toast.search.error", err));
   };
 
+  const navigateToCreateScreen = (defaultData) =>
+    navService.navigate(props.screenName, {
+      screen: props.subScreenCreateName,
+      params: defaultData,
+    });
+
   React.useEffect(() => {
     languageService.onNextState(setLang);
     navigation.addListener("focus", () => {
@@ -79,6 +85,7 @@ const OverTable = ({
     <Layout style={styles.container}>
       <Layout style={styles.topBar}>
         <TableTopBar
+          {...props}
           fields={fields}
           setFields={setFields}
           form={form}
@@ -89,6 +96,7 @@ const OverTable = ({
             if (newRecord == "undefined" || newRecord == null) return;
             fetchSearchData(dataSearch);
           }}
+          createButtonPress={navigateToCreateScreen}
         />
       </Layout>
       <TableBody
@@ -100,12 +108,7 @@ const OverTable = ({
         filterVisible={filterVisible}
         propCallback={dataSearch}
         callback={fetchSearchData}
-        rowPress={(row) =>
-          navService.navigate(props.screenName, {
-            screen: props.subScreenCreateName,
-            params: row,
-          })
-        }
+        rowPress={navigateToCreateScreen}
       />
     </Layout>
   );
