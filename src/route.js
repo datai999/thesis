@@ -38,9 +38,8 @@ const arrRoute = [
     name: "topic",
     icon: BookOpenIcon,
     component: [
-      { name: "topicCreate", component: TopicCreateScreen },
       { name: "topicTable", component: TopicTableScreen },
-
+      { name: "topicCreate", component: TopicCreateScreen },
       { name: "topicAssign", component: TopicAssignScreen },
     ],
   },

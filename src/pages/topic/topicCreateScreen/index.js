@@ -23,7 +23,7 @@ const defaultForm = {
 
 let form = _.cloneDeep(defaultForm);
 
-const submit = () => {
+const submit = (form) => {
   form.semester = form.topic.semester;
   loadingService.start();
   return TopicAssignApi.create(form)
@@ -39,12 +39,13 @@ const submit = () => {
     });
 };
 
-export default () => {
+export default ({ route = { params: null } }) => {
   const [dimensions, setDimensions] = React.useState(Dimensions.get("window"));
   const [language, setLanguage] = React.useState(i18n.languages);
   const [multiLang, setMultiLang] = React.useState(0);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const [propsStore, setPropsStore] = React.useState();
+
+  let propsStore = propsService.createPropsStore(route.params ?? defaultForm);
 
   let commonProps = {
     styles: styles,
@@ -52,26 +53,14 @@ export default () => {
     multiLang: multiLang,
   };
 
-  const reset = async () => {
-    console.log(form);
-    // form = _.cloneDeep(defaultForm);
-    // console.log(form);
-    // let nextCommonProps = _.cloneDeep(commonProps);
-    // nextCommonProps.propStore = createProps(defaultForm);
-    // setCommonProps(nextCommonProps);
-    // setMultiLang(0);
-    // setSelectedIndex(0);
+  const reset = () => {
+    navService.nav.navigate("topic", { screen: "topicCreate", params: null });
   };
 
   React.useEffect(() => {
     Dimensions.addEventListener("change", (e) => {
       setDimensions(e.window);
     });
-    setPropsStore(propsService.createPropsStore(defaultForm));
-
-    // if (props?.route?.params) {
-    //   form = props.route.params;
-    // } else form = _.cloneDeep(defaultForm);
   }, []);
 
   React.useEffect(() => {
@@ -116,7 +105,7 @@ export default () => {
         }}
         style={styles.viewPager}
       >
-        <TopicInfo {...commonProps} />
+        <TopicInfo {...commonProps} propsStore={propsStore} />
         <TopicDescription {...commonProps} />
       </ViewPager>
 
@@ -132,7 +121,9 @@ export default () => {
           </Button>
         )}
         {selectedIndex == 1 && (
-          <Button onPress={submit}>{i18n.t("origin.submit")}</Button>
+          <Button onPress={() => submit(propsStore.form)}>
+            {i18n.t("origin.submit")}
+          </Button>
         )}
         {selectedIndex > 0 && (
           <Button
