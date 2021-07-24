@@ -1,20 +1,12 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import createHolderService from "./createHolderService";
+import navService from "./navService";
 import propsService from "./propsService";
 
-export { propsService };
+export { propsService, navService };
 
 export const loadingService = {
   start: null,
   end: null,
-};
-
-export let navService = {
-  nav: null,
-  serPersonMode: null,
-  navigate: (screen) => {
-    navService.nav.navigate(screen);
-    AsyncStorage.setItem("screen", screen);
-  },
 };
 
 export const assignPropsService = (fields, prePath = "") => {
@@ -26,22 +18,6 @@ export const assignPropsService = (fields, prePath = "") => {
       ...field,
     };
   });
-};
-
-const createHolderService = () => {
-  let listeners = [];
-  let stateStack = [];
-
-  return {
-    listeners: listeners,
-    stateStack: stateStack,
-    getCurrentState: () => stateStack[stateStack.length - 1],
-    setNextState: (nextState) => {
-      stateStack.push(nextState);
-      listeners.forEach((action) => action(nextState));
-    },
-    onNextState: (action) => listeners.push(action),
-  };
 };
 
 export const dimensionService = createHolderService();
