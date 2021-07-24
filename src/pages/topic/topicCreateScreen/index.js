@@ -1,6 +1,11 @@
 import { Button, Layout, ViewPager } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
-import { ArrowBackIcon, ArrowForwardIcon, RefreshIcon } from "components/icons";
+import {
+  ArrowBackIcon,
+  ArrowForwardIcon,
+  PeopleIcon,
+  RefreshIcon,
+} from "components/icons";
 import _ from "lodash";
 import React from "react";
 import { Dimensions, StyleSheet } from "react-native";
@@ -74,18 +79,14 @@ export default ({ route = { params: null } }) => {
     <Layout style={styles.container}>
       <Layout style={styles.headerBtn}>
         <Button
-          style={{ marginHorizontal: 5 }}
-          size="tiny"
-          status="primary"
+          {...commonPropsTopBtn}
           onPress={reset}
           accessoryRight={RefreshIcon}
         >
           {i18n.t("origin.reset.origin")}
         </Button>
         <Button
-          style={{ marginHorizontal: 5 }}
-          size="tiny"
-          status="primary"
+          {...commonPropsTopBtn}
           onPress={() => setMultiLang(multiLang + 1)}
           accessoryRight={() => (
             <IconButton
@@ -98,6 +99,18 @@ export default ({ route = { params: null } }) => {
           )}
         >
           {i18n.t("origin.multiLanguage")}
+        </Button>
+        <Button
+          {...commonPropsTopBtn}
+          onPress={() =>
+            navService.navigate("topic", {
+              screen: "topicAssign",
+              params: propsStore.form,
+            })
+          }
+          accessoryRight={PeopleIcon}
+        >
+          {i18n.t("origin.topicAssign")}
         </Button>
       </Layout>
 
@@ -120,7 +133,7 @@ export default ({ route = { params: null } }) => {
             accessoryRight={ArrowForwardIcon}
             onPress={() => setSelectedIndex(selectedIndex + 1)}
           >
-            {dimensions.width > 700 && i18n.t("origin.next")}
+            {dimensions.width > 700 && i18n.t("origin.topicDescription")}
           </Button>
         )}
         {selectedIndex == 1 && (
@@ -133,12 +146,18 @@ export default ({ route = { params: null } }) => {
             accessoryLeft={ArrowBackIcon}
             onPress={() => setSelectedIndex(selectedIndex - 1)}
           >
-            {dimensions.width > 700 && i18n.t("origin.previous")}
+            {dimensions.width > 700 && i18n.t("origin.topicInfo")}
           </Button>
         )}
       </Layout>
     </Layout>
   );
+};
+
+const commonPropsTopBtn = {
+  style: { marginHorizontal: 5 },
+  size: "tiny",
+  status: "primary",
 };
 
 const styles = StyleSheet.create({
