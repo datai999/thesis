@@ -28,7 +28,7 @@ const submit = (form) => {
       loadingService.end();
       form = _.cloneDeep(defaultForm);
       toastService.success("toast.topic.create.success");
-      navService.nav.navigate("topic", { screen: "topicTable" });
+      navService.navigate("topic", { screen: "topicTable" });
     })
     .catch((err) => {
       toastService.error(err.response.data.data[0], err);
@@ -42,17 +42,18 @@ export default ({ route = { params: null } }) => {
   const [multiLang, setMultiLang] = React.useState(0);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-  let form = route.params ?? defaultForm;
-  let propsStore = propsService.createPropsStore(form);
+  let propsStore = propsService.createPropsStore(
+    route.params ?? _.cloneDeep(defaultForm)
+  );
 
   let commonProps = {
     styles: styles,
-    propStore: createProps(form),
+    propStore: createProps({}),
     multiLang: multiLang,
   };
 
   const reset = () => {
-    navService.nav.navigate("topic", { screen: "topicCreate", params: null });
+    navService.navigate("topic", { screen: "topicCreate", params: null });
   };
 
   React.useEffect(() => {
@@ -119,7 +120,7 @@ export default ({ route = { params: null } }) => {
           </Button>
         )}
         {selectedIndex == 1 && (
-          <Button onPress={() => submit(form)}>
+          <Button onPress={() => submit(propsStore.form)}>
             {i18n.t("origin.submit")}
           </Button>
         )}
