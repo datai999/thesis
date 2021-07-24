@@ -3,9 +3,7 @@ import _ from "lodash";
 import { i18n } from "utils";
 
 export default {
-  createPropsStore: (defaultForm) => {
-    let form = _.cloneDeep(defaultForm);
-
+  createPropsStore: (form) => {
     const inputProps = (path, props) => {
       return {
         label: path + ".label",
@@ -19,7 +17,7 @@ export default {
     const inputLang = (path) => {
       const langText =
         i18n.language == "en" ? i18n.t("origin.inEn") : i18n.t("origin.inVi");
-      const cloneInputProps = inputProps(path);
+      const cloneInputProps = inputProps(path + "." + i18n.language);
       return {
         ...cloneInputProps,
         label: i18n.t(cloneInputProps.label) + langText,

@@ -21,10 +21,7 @@ const defaultForm = {
   semester: currentSemester(),
 };
 
-let form = _.cloneDeep(defaultForm);
-
 const submit = (form) => {
-  form.semester = form.topic.semester;
   loadingService.start();
   return TopicAssignApi.create(form)
     .then((response) => {
@@ -45,7 +42,8 @@ export default ({ route = { params: null } }) => {
   const [multiLang, setMultiLang] = React.useState(0);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-  let propsStore = propsService.createPropsStore(route.params ?? defaultForm);
+  let form = route.params ?? defaultForm;
+  let propsStore = propsService.createPropsStore(form);
 
   let commonProps = {
     styles: styles,
@@ -121,7 +119,7 @@ export default ({ route = { params: null } }) => {
           </Button>
         )}
         {selectedIndex == 1 && (
-          <Button onPress={() => submit(propsStore.form)}>
+          <Button onPress={() => submit(form)}>
             {i18n.t("origin.submit")}
           </Button>
         )}
