@@ -20,8 +20,8 @@ export default {
       const cloneInputProps = inputProps(path + "." + i18n.language);
       return {
         ...cloneInputProps,
-        label: i18n.t(cloneInputProps.label) + langText,
-        placeholder: i18n.t(cloneInputProps.placeholder) + langText,
+        label: i18n.t(path + ".label") + langText,
+        placeholder: i18n.t(path + ".placeholder") + langText,
       };
     };
 
