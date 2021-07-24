@@ -1,7 +1,7 @@
 import { Layout, Text } from "@ui-kitten/components";
 import { SettingApi } from "api/br";
 import CriterionTemplateApi from "api/score/CriterionTemplateApi";
-import { CreateBtn } from "components/Button";
+import { CreateFormButton } from "components/Button";
 import { CriterionForm, CriterionTemplateForm } from "components/form";
 import OverTable from "components/screen/OverTable";
 import { TableContent } from "components/table";
@@ -32,7 +32,7 @@ const fields = [
 ];
 
 const overTopBar = () => {
-  return <CreateBtn form={CriterionForm} />;
+  return <CreateFormButton form={CriterionForm} />;
 };
 
 function renderTopContent({ ...props }) {
