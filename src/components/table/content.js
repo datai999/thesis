@@ -4,7 +4,7 @@ import React from "react";
 import { DataTable, List } from "react-native-paper";
 import { getRenderText } from "utils";
 
-export default ({ data = [], rowCallBack, ...props }) => {
+export default ({ data = [], ...props }) => {
   if (data == null) return null;
 
   return data.map((row) => {
@@ -21,6 +21,9 @@ export const Row = ({ data, ...props }) => {
           <DataTable.Cell
             style={tableStyle[field.api.split(".").pop()]}
             key={field.api}
+            onPress={() =>
+              props.screenName ? props.rowPress(data) : props.rowCallBack(data)
+            }
           >
             {renderCell(fieldValue)}
           </DataTable.Cell>

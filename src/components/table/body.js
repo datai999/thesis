@@ -15,6 +15,7 @@ export default ({
   filterVisible = false,
   propCallback = {},
   callback,
+  ...props
 }) => {
   const [updateFormVisible, setUpdateFormVisible] = React.useState(false);
   const [currentRow, setCurrenRow] = React.useState(null);
@@ -54,7 +55,13 @@ export default ({
       {topContent && topContent({ rowCallBack, fields })}
       {filterVisible && <TableFilter {...commonProps} />}
       <ScrollView>
-        <TableContent fields={fields} data={data} rowCallBack={rowCallBack} />
+        <TableContent
+          {...props}
+          fields={fields}
+          data={data}
+          rowCallBack={rowCallBack}
+          rowPress={props.rowPress}
+        />
       </ScrollView>
       <TableBottom propCallback={propCallback} callback={callback} />
     </DataTable>

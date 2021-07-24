@@ -4,7 +4,7 @@ import { TableBody, TableTopBar } from "components/table";
 import localStorage from "data/localStorage";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { languageService, toastService } from "service";
+import { languageService, navService, toastService } from "service";
 import { i18n } from "utils";
 
 const defaultPage = {
@@ -92,6 +92,7 @@ const OverTable = ({
         />
       </Layout>
       <TableBody
+        {...props}
         fields={fields.filter((field) => field.visible)}
         updateForm={form}
         data={data}
@@ -99,6 +100,12 @@ const OverTable = ({
         filterVisible={filterVisible}
         propCallback={dataSearch}
         callback={fetchSearchData}
+        rowPress={(row) =>
+          navService.navigate(props.screenName, {
+            screen: props.subScreenCreateName,
+            params: row,
+          })
+        }
       />
     </Layout>
   );
