@@ -1,6 +1,7 @@
-import { Button, Layout } from "@ui-kitten/components";
+import { Button, Layout, Text, ViewPager } from "@ui-kitten/components";
 import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
+import TopicAssignApi from "api/topic/TopicAssignApi";
 import CouncilForm from "components/form/CouncilForm";
 import { MyAutocompleteTag, MyInput } from "components/Input";
 import MyModal from "components/Modal";
@@ -8,16 +9,46 @@ import { MySelect } from "components/Select";
 import constData from "data/constData";
 import React from "react";
 import { ScrollView } from "react-native";
-import { propsService } from "service";
+import { propsService, toastService } from "service";
 import { i18n } from "utils";
 
-const defaultForm = { semester: 123 };
+const queryData = (topicId) => {
+  try {
+    return TopicAssignApi.findByTopicId(topicId);
+  } catch (error) {
+    toastService.error(error.response.data.data[0], error);
+  }
+};
 
-export default ({ route = { params: null } }) => {
+export default ({ route }) => {
+  const [semesterIndex, setSemesterIndex] = React.useState(0);
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    const query = async () => {
+      // if (route.params) {
+      let queryResponse = await queryData(route.params?.id ?? 137);
+      setData(queryResponse);
+      //  }
+    };
+    query();
+  }, [route.params]);
+
+  return (
+    <Layout>
+      <ViewPager selectedIndex={semesterIndex} onSelect={setSemesterIndex}>
+        {Object.values(data).map((topicAssign) => (
+          <TopicAssign key={topicAssign.id} {...topicAssign} />
+        ))}
+      </ViewPager>
+    </Layout>
+  );
+};
+
+const TopicAssign = ({ topicAssign }) => {
   const [councilVisible, setCouncilVisible] = React.useState(false);
-
-  let form = _.cloneDeep(defaultForm);
-  let propsStore = propsService.createPropsStore(defaultForm);
+  let form = {};
+  let propsStore = propsService.createPropsStore(form);
 
   const modalCouncilProps = {
     ...CouncilForm,
