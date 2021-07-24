@@ -27,6 +27,7 @@ export const createProps = (form) => {
   };
 
   return {
+    form: form,
     set: setValue,
     input: inputProps,
     inputLang: (path) => inputProps(path + "." + i18n.language),
