@@ -41,6 +41,7 @@ export default ({ route = { params: null } }) => {
   const [language, setLanguage] = React.useState(i18n.languages);
   const [multiLang, setMultiLang] = React.useState(0);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [refresh, setRefresh] = React.useState(false);
 
   let propsStore = propsService.createPropsStore(
     route.params ?? _.cloneDeep(defaultForm)
@@ -49,11 +50,15 @@ export default ({ route = { params: null } }) => {
   let commonProps = {
     styles: styles,
     propStore: createProps({}),
+    propsStore,
     multiLang: multiLang,
   };
 
   const reset = () => {
-    navService.navigate("topic", { screen: "topicCreate", params: null });
+    route.params = null;
+    setMultiLang(0);
+    setSelectedIndex(0);
+    setRefresh(!refresh);
   };
 
   React.useEffect(() => {
@@ -104,7 +109,7 @@ export default ({ route = { params: null } }) => {
         }}
         style={styles.viewPager}
       >
-        <TopicInfo {...commonProps} propsStore={propsStore} />
+        <TopicInfo {...commonProps} />
         <TopicDescription {...commonProps} />
       </ViewPager>
 
