@@ -12,7 +12,7 @@ import {
   propsService,
   toastService,
 } from "service";
-import { createProps, currentSemester, i18n } from "utils";
+import { currentSemester, i18n } from "utils";
 import TopicDescription from "./components/topicDescription";
 import TopicInfo from "./components/topicInfo";
 
@@ -20,13 +20,13 @@ const defaultForm = {
   topic: { semester: currentSemester(), minStudentTake: 1, maxStudentTake: 3 },
   semester: currentSemester(),
 };
+let form = _.cloneDeep(defaultForm);
 
-const submit = (form) => {
+const submit = () => {
   loadingService.start();
   return TopicAssignApi.create(form)
     .then((response) => {
       loadingService.end();
-      form = _.cloneDeep(defaultForm);
       toastService.success("toast.topic.create.success");
       navService.navigate("topic", { screen: "topicTable" });
     })
@@ -43,19 +43,18 @@ export default ({ route = { params: null } }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [refresh, setRefresh] = React.useState(false);
 
-  let propsStore = propsService.createPropsStore(
-    route.params ?? _.cloneDeep(defaultForm)
-  );
+  form = route.params ?? form;
+  let propsStore = propsService.createPropsStore(form);
 
   let commonProps = {
-    styles: styles,
-    propStore: createProps({}),
+    styles,
     propsStore,
-    multiLang: multiLang,
+    multiLang,
   };
 
   const reset = () => {
     route.params = null;
+    form = _.cloneDeep(defaultForm);
     setMultiLang(0);
     setSelectedIndex(0);
     setRefresh(!refresh);
@@ -125,9 +124,7 @@ export default ({ route = { params: null } }) => {
           </Button>
         )}
         {selectedIndex == 1 && (
-          <Button onPress={() => submit(propsStore.form)}>
-            {i18n.t("origin.submit")}
-          </Button>
+          <Button onPress={() => submit()}>{i18n.t("origin.submit")}</Button>
         )}
         {selectedIndex > 0 && (
           <Button
