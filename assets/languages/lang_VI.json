@@ -94,12 +94,15 @@
     "inVi": " bằng tiếng Việt",
     "language": "Ngôn ngữ",
     "logout": "Đăng xuất",
-    "multiLanguage": "Đa ngôn ngữ",
+    "multiLanguage": "Song ngữ",
     "new": "Thêm",
     "next": "Tiếp theo",
     "page": "Trang",
     "previous": "Quay lại",
     "record": "Số bản ghi",
+    "reset": {
+      "origin": "Đặt lại"
+    },
     "status": {
       "label": "Trạng thái",
       "placeholder": "Chọn trạng thái"

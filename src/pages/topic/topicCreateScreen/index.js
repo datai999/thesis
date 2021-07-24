@@ -1,6 +1,6 @@
 import { Button, Layout, ViewPager } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
-import { ArrowBackIcon, ArrowForwardIcon } from "components/icons";
+import { ArrowBackIcon, ArrowForwardIcon, RefreshIcon } from "components/icons";
 import _ from "lodash";
 import React from "react";
 import { Dimensions, StyleSheet } from "react-native";
@@ -9,6 +9,7 @@ import {
   languageService,
   loadingService,
   navService,
+  propsService,
   toastService,
 } from "service";
 import { createProps, currentSemester, i18n } from "utils";
@@ -43,29 +44,54 @@ export default () => {
   const [language, setLanguage] = React.useState(i18n.languages);
   const [multiLang, setMultiLang] = React.useState(0);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [propsStore, setPropsStore] = React.useState();
 
-  const propStore = createProps(form);
+  let commonProps = {
+    styles: styles,
+    propStore: createProps(form),
+    multiLang: multiLang,
+  };
+
+  const reset = async () => {
+    console.log(form);
+    // form = _.cloneDeep(defaultForm);
+    // console.log(form);
+    // let nextCommonProps = _.cloneDeep(commonProps);
+    // nextCommonProps.propStore = createProps(defaultForm);
+    // setCommonProps(nextCommonProps);
+    // setMultiLang(0);
+    // setSelectedIndex(0);
+  };
 
   React.useEffect(() => {
     Dimensions.addEventListener("change", (e) => {
       setDimensions(e.window);
     });
+    setPropsStore(propsService.createPropsStore(defaultForm));
+
+    // if (props?.route?.params) {
+    //   form = props.route.params;
+    // } else form = _.cloneDeep(defaultForm);
   }, []);
 
   React.useEffect(() => {
     languageService.onNextState(setLanguage);
   }, [language]);
 
-  const commonProps = {
-    styles: styles,
-    propStore: propStore,
-    multiLang: multiLang,
-  };
-
   return (
     <Layout style={styles.container}>
       <Layout style={styles.headerBtn}>
         <Button
+          style={{ marginHorizontal: 5 }}
+          size="tiny"
+          status="primary"
+          onPress={reset}
+          accessoryRight={RefreshIcon}
+        >
+          {i18n.t("origin.reset.origin")}
+        </Button>
+        <Button
+          style={{ marginHorizontal: 5 }}
           size="tiny"
           status="primary"
           onPress={() => setMultiLang(multiLang + 1)}
