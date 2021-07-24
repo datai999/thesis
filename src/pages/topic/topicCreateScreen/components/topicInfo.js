@@ -5,24 +5,24 @@ import React from "react";
 import { ScrollView } from "react-native";
 import { i18n } from "utils";
 
-export default ({ styles, propStore, multiLang }) => {
+export default ({ styles, propsStore, multiLang }) => {
   return (
     <Layout style={styles.group}>
       <Text style={styles.headerGroup}>{i18n.t("origin.topicInfo")}</Text>
       <ScrollView showsVerticalScrollIndicator={true}>
-        <MyInput {...propStore.inputLang("topic.name")} />
+        <MyInput {...propsStore.inputLang("topic.name")} />
         {multiLang > 0 && (
-          <MyInput {...propStore.inputToggleLang("topic.name")} />
+          <MyInput {...propsStore.inputToggleLang("topic.name")} />
         )}
-        <MyInput {...propStore.input("topic.code")} />
-        <MySelect {...propStore.select("topic.educationMethod")} />
-        <MyInput {...propStore.select("topic.semester")} />
-        <MyMultiSelect {...propStore.select("topic.major")} />
+        <MyInput {...propsStore.input("topic.code")} />
+        <MySelect {...propsStore.select("topic.educationMethod")} />
+        <MyInput {...propsStore.select("topic.semester")} />
+        <MyMultiSelect {...propsStore.select("topic.major")} />
         <Layout
           style={{ justifyContent: "space-evenly", flexDirection: "row" }}
         >
-          <MySelect {...propStore.select("topic.minStudentTake")} />
-          <MySelect {...propStore.select("topic.maxStudentTake")} />
+          <MySelect {...propsStore.select("topic.minStudentTake")} />
+          <MySelect {...propsStore.select("topic.maxStudentTake")} />
         </Layout>
       </ScrollView>
     </Layout>
