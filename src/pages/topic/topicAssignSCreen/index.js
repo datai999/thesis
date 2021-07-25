@@ -144,7 +144,9 @@ const TopicAssign = ({ topicAssign }) => {
   return (
     <Layout style={styles.group}>
       <Layout style={{ flexDirection: "row", justifyContent: "center" }}>
-        <Text>{getRenderText(topicAssign.topic.name)}</Text>
+        <Text category="h6">
+          {topicAssign.topic.code} : {getRenderText(topicAssign.topic.name)}
+        </Text>
       </Layout>
 
       <Layout style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
