@@ -108,13 +108,17 @@
       "placeholder": "Select status"
     },
     "submit": "Submit",
-    "topic": "Topic",
+    "topic": {
+      "edit": "Edit topic"
+    },
     "topicAssign": {
       "new": "New topic assign",
       "origin": "Topic assign"
     },
     "topicDescription": "Topic description",
-    "topicInfo": "Topic information",
+    "topicInfo": {
+      "origin": "Topic information"
+    },
     "totalRecord": "Total record",
     "update": "Update",
     "version": "Version"

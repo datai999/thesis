@@ -108,13 +108,17 @@
       "placeholder": "Chọn trạng thái"
     },
     "submit": "Xác nhận",
-    "topic": "Đề tài",
+    "topic": {
+      "edit": "Chỉnh sửa đề tài"
+    },
     "topicAssign": {
       "new": "Thêm sự phân công đề tài",
       "origin": "Phân công đề tài"
     },
     "topicDescription": "Miêu tả đề tài",
-    "topicInfo": "Thông tin đề tài",
+    "topicInfo": {
+      "origin": "Thông tin đề tài"
+    },
     "totalRecord": "Tổng bản ghi",
     "update": "Cập nhật",
     "version": "Phiên bản"

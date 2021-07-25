@@ -10,7 +10,8 @@ import {
   PlusIcon,
 } from "components/icons";
 import { MyAutocompleteTag, MyInput } from "components/Input";
-import MyModal from "components/Modal";
+import TopicModal from "components/modal/topicModal";
+import MyModal from "components/MyModal";
 import { MySelect } from "components/Select";
 import constData from "data/constData";
 import React from "react";
@@ -29,6 +30,9 @@ const queryData = (topicId) => {
 export default ({ route }) => {
   const [semesterIndex, setSemesterIndex] = React.useState(0);
   const [data, setData] = React.useState([]);
+  const [topicModalVisible, setTopicModalVisible] = React.useState(false);
+
+  console.log(TopicModal);
 
   React.useEffect(() => {
     const query = async () => {
@@ -42,13 +46,18 @@ export default ({ route }) => {
 
   return (
     <Layout style={styles.container}>
+      <TopicModal
+        visible={topicModalVisible}
+        disableVisible={() => setTopicModalVisible(false)}
+        topic={data[0]?.topic}
+      />
       <Layout style={styles.headerBtn}>
         <Button
           {...commonPropsTopBtn}
           accessoryRight={BookOpenIcon}
-          // onPress={reset}
+          onPress={() => setTopicModalVisible(true)}
         >
-          {i18n.t("origin.topicInfo")}
+          {i18n.t("origin.topicInfo.origin")}
         </Button>
         <Button
           {...commonPropsTopBtn}

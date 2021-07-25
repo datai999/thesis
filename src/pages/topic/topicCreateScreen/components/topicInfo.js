@@ -8,7 +8,9 @@ import { i18n } from "utils";
 export default ({ styles, propsStore, multiLang }) => {
   return (
     <Layout style={styles.group}>
-      <Text style={styles.headerGroup}>{i18n.t("origin.topicInfo")}</Text>
+      <Text style={styles.headerGroup}>
+        {i18n.t("origin.topicInfo.origin")}
+      </Text>
       <ScrollView showsVerticalScrollIndicator={true}>
         <MyInput {...propsStore.inputLang("topic.name")} />
         {multiLang > 0 && (

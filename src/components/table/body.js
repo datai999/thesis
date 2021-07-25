@@ -1,4 +1,4 @@
-import MyModal from "components/Modal";
+import MyModal from "components/MyModal";
 import React from "react";
 import { ScrollView } from "react-native";
 import { DataTable } from "react-native-paper";

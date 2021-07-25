@@ -146,7 +146,7 @@ export default ({ route = { params: null } }) => {
             accessoryLeft={ArrowBackIcon}
             onPress={() => setSelectedIndex(selectedIndex - 1)}
           >
-            {dimensions.width > 700 && i18n.t("origin.topicInfo")}
+            {dimensions.width > 700 && i18n.t("origin.topicInfo.origin")}
           </Button>
         )}
       </Layout>
