@@ -39,33 +39,43 @@ export default ({ visible, disableVisible, topic }) => {
             <Text category="h6" style={{ textAlign: "center" }}>
               {getRenderText(topic.name)}
             </Text>
-            <Layout
-              style={{ flexDirection: "row", marginVertical: 15, flex: 1 }}
-            >
-              <Layout style={{ textAlign: "right" }}>
-                <Text>{i18n.t("topic.code.label")} :</Text>
-                <Text>{i18n.t("topic.educationMethod.label")} :</Text>
-                <Text>{i18n.t("topic.semester.label")} :</Text>
-                <Text>{i18n.t("topic.major.label")} :</Text>
-                <Text>{i18n.t("topic.minStudentTake.label")} :</Text>
-                <Text>{i18n.t("topic.maxStudentTake.label")} :</Text>
-                <Text>{i18n.t("topic.description.label")} :</Text>
-              </Layout>
-              <Layout style={{ marginLeft: 10, flex: 1 }}>
-                <Text> {getRenderText(topic.code)}</Text>
-                <Text> {getRenderText(topic.educationMethod?.value)}</Text>
-                <Text> {getRenderText(topic.semester)}</Text>
-                <Text> {getRenderText(topic.major)}</Text>
-                <Text> {getRenderText(topic.minStudentTake)}</Text>
-                <Text> {getRenderText(topic.maxStudentTake)}</Text>
+
+            <Layout style={{ marginVertical: 15 }}>
+              <Input
+                label={i18n.t("topic.code.label")}
+                value={getRenderText(topic.code)}
+              />
+              <Input
+                label={i18n.t("topic.educationMethod.label")}
+                value={getRenderText(topic.educationMethod)}
+              />
+              <Input
+                label={i18n.t("topic.semester.label")}
+                value={getRenderText(topic.semester)}
+              />
+              <Input
+                label={i18n.t("topic.major.label")}
+                value={getRenderText(topic.major)}
+              />
+              <Layout
+                style={{ flexDirection: "row", justifyContent: "space-evenly" }}
+              >
                 <Input
-                  multiline
-                  numberOfLines={5}
-                  status="basic"
-                  value={getRenderText(topic.description)}
-                  style={{ flex: 1 }}
+                  label={i18n.t("topic.minStudentTake.label")}
+                  value={getRenderText(topic.minStudentTake)}
+                />
+                <Input
+                  label={i18n.t("topic.maxStudentTake.label")}
+                  value={getRenderText(topic.maxStudentTake)}
                 />
               </Layout>
+
+              <Input
+                multiline
+                numberOfLines={5}
+                label={i18n.t("topic.description.label")}
+                value={getRenderText(topic.description)}
+              />
             </Layout>
 
             <Layout style={styles.bottom}>
@@ -87,8 +97,8 @@ const styles = StyleSheet.create({
   modal: {
     minWidth: "30%",
     minHeight: "30%",
-    maxWidth: "70%",
-    maxHeight: "70%",
+    maxWidth: "95%",
+    maxHeight: "80%",
   },
   backdrop: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
