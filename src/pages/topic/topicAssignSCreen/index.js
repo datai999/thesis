@@ -144,7 +144,6 @@ const TopicAssign = ({ topicAssign }) => {
   return (
     <Layout style={styles.group}>
       <Layout style={{ flexDirection: "row", justifyContent: "center" }}>
-        <Text category="s1">{i18n.t("origin.topicAssign.origin")}: </Text>
         <Text>{getRenderText(topicAssign.topic.name)}</Text>
       </Layout>
 
@@ -188,7 +187,6 @@ const TopicAssign = ({ topicAssign }) => {
           {i18n.t("council.update")}
         </Button>
       </ScrollView>
-
       <Layout style={{ marginTop: 20 }}>
         <Button
           onPress={() => {
@@ -211,6 +209,7 @@ const commonPropsTopBtn = {
 const styles = StyleSheet.create({
   container: {
     marginVertical: "1%",
+    marginBottom: 15,
     flex: 1,
     backgroundColor: "transparent",
   },
@@ -236,8 +235,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   group: {
-    flex: 1,
-    marginVertical: "1%",
     paddingVertical: "1%",
     marginHorizontal: "3%",
     paddingHorizontal: "3%",
