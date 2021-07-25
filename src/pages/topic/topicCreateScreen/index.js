@@ -110,7 +110,7 @@ export default ({ route = { params: null } }) => {
           }
           accessoryRight={PeopleIcon}
         >
-          {i18n.t("origin.topicAssign")}
+          {i18n.t("origin.topicAssign.origin")}
         </Button>
       </Layout>
 

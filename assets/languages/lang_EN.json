@@ -109,7 +109,10 @@
     },
     "submit": "Submit",
     "topic": "Topic",
-    "topicAssign": "Topic assign",
+    "topicAssign": {
+      "new": "New topic assign",
+      "origin": "Topic assign"
+    },
     "topicDescription": "Topic description",
     "topicInfo": "Topic information",
     "totalRecord": "Total record",
@@ -244,6 +247,9 @@
       "error": "Search error"
     },
     "topic": {
+      "assign": {
+        "success": "Assign topic success"
+      },
       "create": {
         "success": "Create topic success"
       }

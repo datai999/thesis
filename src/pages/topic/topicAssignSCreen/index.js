@@ -3,14 +3,20 @@ import StudentApi from "api/person/StudentApi";
 import TeacherApi from "api/person/TeacherApi";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import CouncilForm from "components/form/CouncilForm";
+import {
+  ArrowBackIcon,
+  ArrowForwardIcon,
+  BookOpenIcon,
+  PlusIcon,
+} from "components/icons";
 import { MyAutocompleteTag, MyInput } from "components/Input";
 import MyModal from "components/Modal";
 import { MySelect } from "components/Select";
 import constData from "data/constData";
 import React from "react";
-import { ScrollView } from "react-native";
-import { propsService, toastService } from "service";
-import { i18n } from "utils";
+import { ScrollView, StyleSheet } from "react-native";
+import { loadingService, propsService, toastService } from "service";
+import { getRenderText, i18n } from "utils";
 
 const queryData = (topicId) => {
   try {
@@ -27,7 +33,7 @@ export default ({ route }) => {
   React.useEffect(() => {
     const query = async () => {
       // if (route.params) {
-      let queryResponse = await queryData(route.params?.id ?? 137);
+      let queryResponse = await queryData(route.params?.id ?? 101);
       setData(queryResponse);
       //  }
     };
@@ -35,20 +41,80 @@ export default ({ route }) => {
   }, [route.params]);
 
   return (
-    <Layout>
-      <ViewPager selectedIndex={semesterIndex} onSelect={setSemesterIndex}>
-        {Object.values(data).map((topicAssign) => (
-          <TopicAssign key={topicAssign.id} {...topicAssign} />
-        ))}
-      </ViewPager>
+    <Layout style={styles.container}>
+      <Layout style={styles.headerBtn}>
+        <Button
+          {...commonPropsTopBtn}
+          accessoryRight={BookOpenIcon}
+          // onPress={reset}
+        >
+          {i18n.t("origin.topicInfo")}
+        </Button>
+        <Button
+          {...commonPropsTopBtn}
+          accessoryRight={PlusIcon}
+          // onPress={reset}
+        >
+          {i18n.t("origin.topicAssign.new")}
+        </Button>
+      </Layout>
+      <Layout style={styles.wrapViewPaper}>
+        <ViewPager
+          style={styles.viewPager}
+          selectedIndex={semesterIndex}
+          onSelect={setSemesterIndex}
+        >
+          {Object.values(data).map((topicAssign) => (
+            <TopicAssign key={topicAssign.id} topicAssign={topicAssign} />
+          ))}
+        </ViewPager>
+      </Layout>
+
+      {data.length > 1 && (
+        <Layout style={styles.bottomBtn}>
+          {semesterIndex < 1 && (
+            <Button
+              status="control"
+              appearance="outline"
+              accessoryRight={ArrowForwardIcon}
+              onPress={() => setSemesterIndex(semesterIndex + 1)}
+            >
+              {i18n.t("origin.next")}
+            </Button>
+          )}
+          {semesterIndex > 0 && (
+            <Button
+              status="control"
+              appearance="outline"
+              accessoryLeft={ArrowBackIcon}
+              onPress={() => setSemesterIndex(semesterIndex - 1)}
+            >
+              {i18n.t("origin.previous")}
+            </Button>
+          )}
+        </Layout>
+      )}
     </Layout>
   );
 };
 
+const submitTopicAssign = (form) => {
+  loadingService.start();
+  return TopicAssignApi.create(form)
+    .then((response) => {
+      loadingService.end();
+      toastService.success("toast.topic.assign.success");
+    })
+    .catch((err) => {
+      toastService.error(err.response.data.data[0], err);
+      loadingService.end();
+    });
+};
+
 const TopicAssign = ({ topicAssign }) => {
   const [councilVisible, setCouncilVisible] = React.useState(false);
-  let form = {};
-  let propsStore = propsService.createPropsStore(form);
+
+  let propsStore = propsService.createPropsStore(topicAssign);
 
   const modalCouncilProps = {
     ...CouncilForm,
@@ -67,19 +133,26 @@ const TopicAssign = ({ topicAssign }) => {
   };
 
   return (
-    <Layout style={{ margin: 10, padding: 10 }}>
-      <MyInput
-        {...propsStore.input("semester")}
-        label="topic.semester.label"
-        placeholder="topic.semester.placeholder"
-      />
-      <ScrollView showsVerticalScrollIndicator={true}>
+    <Layout style={styles.group}>
+      <Layout style={{ flexDirection: "row", justifyContent: "center" }}>
+        <Text category="s1">{i18n.t("origin.topicAssign.origin")}: </Text>
+        <Text>{getRenderText(topicAssign.topic.name)}</Text>
+      </Layout>
+
+      <Layout style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
+        <MyInput
+          {...propsStore.input("semester")}
+          label="topic.semester.label"
+          placeholder="topic.semester.placeholder"
+        />
         <MySelect
           {...propsStore.select("status")}
           arrValue={constData.topicStatus.arrValue}
           label="origin.status.label"
           placeholder="origin.status.placeholder"
         />
+      </Layout>
+      <ScrollView showsVerticalScrollIndicator={true}>
         <MyAutocompleteTag
           {...propsStore.inputSearch("guideTeacher", TeacherApi)}
           label="teacher.guide.label"
@@ -97,7 +170,7 @@ const TopicAssign = ({ topicAssign }) => {
         />
         <MyModal {...modalCouncilProps} />
         <Button
-          style={{ marginTop: 22 }}
+          style={{ marginTop: 5 }}
           appearance="outline"
           onPress={() => {
             setCouncilVisible(true);
@@ -105,16 +178,65 @@ const TopicAssign = ({ topicAssign }) => {
         >
           {i18n.t("council.update")}
         </Button>
+      </ScrollView>
 
+      <Layout style={{ marginTop: 20 }}>
         <Button
-          style={{ marginTop: 22 }}
           onPress={() => {
-            console.log(propsStore.form);
+            submitTopicAssign(propsStore.form);
           }}
         >
           {i18n.t("origin.submit")}
         </Button>
-      </ScrollView>
+      </Layout>
     </Layout>
   );
 };
+
+const commonPropsTopBtn = {
+  style: { marginHorizontal: 5 },
+  size: "small",
+  status: "primary",
+};
+
+const styles = StyleSheet.create({
+  container: {
+    marginVertical: "1%",
+    flex: 1,
+    backgroundColor: "transparent",
+  },
+  headerBtn: {
+    marginHorizontal: "3%",
+    backgroundColor: "transparent",
+    flexDirection: "row",
+  },
+  wrapViewPaper: {
+    flex: 1,
+    maxHeight: "90%",
+    backgroundColor: "transparent",
+    margin: 5,
+  },
+  viewPager: {
+    backgroundColor: "transparent",
+    maxHeight: "100%",
+  },
+  bottomBtn: {
+    marginHorizontal: "3%",
+    backgroundColor: "transparent",
+    flexDirection: "row-reverse",
+    justifyContent: "space-evenly",
+  },
+  group: {
+    flex: 1,
+    marginVertical: "1%",
+    paddingVertical: "1%",
+    marginHorizontal: "3%",
+    paddingHorizontal: "3%",
+  },
+  headerGroup: {
+    margin: 5,
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 15,
+  },
+});

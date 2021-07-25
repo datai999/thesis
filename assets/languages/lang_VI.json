@@ -109,7 +109,10 @@
     },
     "submit": "Xác nhận",
     "topic": "Đề tài",
-    "topicAssign": "Phân công đề tài",
+    "topicAssign": {
+      "new": "Thêm sự phân công đề tài",
+      "origin": "Phân công đề tài"
+    },
     "topicDescription": "Miêu tả đề tài",
     "topicInfo": "Thông tin đề tài",
     "totalRecord": "Tổng bản ghi",
@@ -238,6 +241,9 @@
       "error": "Tìm kiếm thất bại"
     },
     "topic": {
+      "assign": {
+        "success": "Phân công đề tài thành công"
+      },
       "create": {
         "success": "Tạo đề tài thành công"
       }
