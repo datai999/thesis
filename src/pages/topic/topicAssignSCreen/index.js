@@ -149,7 +149,13 @@ const TopicAssign = ({ topicAssign }) => {
         </Text>
       </Layout>
 
-      <Layout style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
+      <Layout
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          marginTop: 15,
+        }}
+      >
         <MyInput
           {...propsStore.input("semester")}
           label="topic.semester.label"
@@ -160,6 +166,7 @@ const TopicAssign = ({ topicAssign }) => {
           arrValue={constData.topicStatus.arrValue}
           label="origin.status.label"
           placeholder="origin.status.placeholder"
+          style={{ minWidth: 150 }}
         />
       </Layout>
       <ScrollView showsVerticalScrollIndicator={true}>
