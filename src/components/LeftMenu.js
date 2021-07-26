@@ -124,6 +124,14 @@ const DrawerMenu = ({ navigation, route }) => {
   const [subSelected, setSubSelected] = React.useState();
 
   const navigationAction = ({ screen, subScreen }) => {
+    if (
+      selected.filter((screenSelected) => screenSelected.name == screen)
+        .length < 1
+    ) {
+      navigation.navigate(screen, subScreen);
+      return;
+    }
+
     let nextSelected = _.cloneDeep(selected);
 
     let screenIndex = selected
@@ -133,9 +141,9 @@ const DrawerMenu = ({ navigation, route }) => {
     if (nextSelected[screenIndex].subScreen) {
       nextSelected[screenIndex].active = true;
 
-      let subScreenIndex = nextSelected[screenIndex].subScreen.indexOf(
-        subScreen.screen
-      );
+      let subScreenIndex = subScreen
+        ? nextSelected[screenIndex].subScreen.indexOf(subScreen.screen)
+        : 0;
 
       setCurrenScreen(screenIndex);
       setSubSelected(subScreenIndex);

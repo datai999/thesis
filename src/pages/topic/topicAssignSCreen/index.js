@@ -32,8 +32,6 @@ export default ({ route }) => {
   const [data, setData] = React.useState([]);
   const [topicModalVisible, setTopicModalVisible] = React.useState(false);
 
-  console.log(TopicModal);
-
   React.useEffect(() => {
     const query = async () => {
       // if (route.params) {

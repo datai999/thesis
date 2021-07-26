@@ -14,10 +14,10 @@ function navToHome(email) {
     return;
   }
 
-  TeacherApi.postExample({ email: email }).then((response) => {
-    setWhenLogin(email, response[0]?.code);
+  TeacherApi.postExample({ email: email }).then(async (response) => {
+    await setWhenLogin(email, response[0]?.code);
     notifyLogin();
-    navService.navigate("topic");
+    await navService.navigate("home");
     toastService.info("toast.login.success");
   });
 }
@@ -42,10 +42,10 @@ function logout() {
   firebase
     .auth()
     .signOut()
-    .then(() => {
-      removeWhenLogout();
-      loginListeners.forEach((listener) => listener(false));
-      navService.navigate("login");
+    .then(async () => {
+      await removeWhenLogout();
+      await loginListeners.forEach((listener) => listener(false));
+      await navService.navigate("login");
       toastService.info("toast.logout.success");
     })
     .catch((error) => {
