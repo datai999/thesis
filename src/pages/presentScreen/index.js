@@ -4,6 +4,7 @@ import React from "react";
 import { ImageBackground, StyleSheet } from "react-native";
 import { navService } from "service";
 import { env, i18n } from "utils";
+import background from "./components/background";
 import introduction from "./components/introduction";
 
 const totalPage = 5;
@@ -53,8 +54,8 @@ export default ({ nonLogin = true }) => {
           selectedIndex={viewPagerIndex}
           onSelect={setViewPaperIndex}
         >
+          <Page {...pageProps} {...background} />
           <Page {...pageProps} {...introduction} />
-          <Page {...pageProps} />
           <Page {...pageProps} />
         </ViewPager>
       </Layout>

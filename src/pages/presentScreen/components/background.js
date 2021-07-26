@@ -37,7 +37,7 @@ export default {
         <Text>
           {"\n\t"}
           Đó là lý do chính nhóm đề xuất đề tài "Xây dựng hệ thống đánh giá luận
-          văn tốt nghiêp"
+          văn tốt nghiệp"
         </Text>
       </Layout>
     );

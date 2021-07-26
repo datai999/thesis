@@ -6,24 +6,31 @@ export default {
   body: () => {
     return (
       <Layout>
-        <Text>
-          {"\t"}
-          Năm 2020-2021 là những năm đầy biến động, khó khăn và những thách thức
-          lớn, đại dịch COVID-19 đã làm thay đổi xã hội, thay đổi nền kinh tế,
-          giáo dục của nhiều nước trên thế giới.
+        <Text category="s1">
+          Xây dựng hệ thống đánh giá luận văn tốt nghiệp
         </Text>
         <Text>
           {"\n\t"}
-          Việc số hóa tài liệu trở nên cần thiết hơn. Cần công nghệ hóa các
-          phương pháp làm việc cũng như các dịch vụ hoạt động ổn định với lượng
-          người dùng chuyển đột ngột từ môi trường thực tại qua internet.
+          Là hệ thống hỗ trợ số hóa quá trình đánh giá luận văn tốt nghiệp của
+          sinh viên.
         </Text>
         <Text>
           {"\n\t"}
-          Nhận thấy rằng hệ thống đánh giá luận văn của trường Đại học Bách khoa
-          - Đại học Quốc gia TP.HCM cần được phát triển để có thể đáp ứng với
-          nhiều khó khăn trong tương lai hơn. Đó là lý do chính nhóm đề xuất đề
-          tài "Xây dưng hê thông đánh giá luận văn tốt nghiêp"
+          Bộ môn: Hệ thống thông tin
+        </Text>
+        <Text>
+          {"\n\t"}
+          Được đề xuất và hướng dẫn bởi Th.S Nguyễn Thị Ái Thảo, cán bộ giảng
+          dạy tại trường Đại học Bách Khoa.
+        </Text>
+        <Text>
+          {"\n\t"}
+          Nhóm sinh viên hiện thực gồm 1 thành viên: Nguyễn Đức Anh Tài
+          (MSSV:1713015)
+        </Text>
+        <Text>
+          {"\n\t"}
+          Ngày bắt đầu: 30/3/2021
         </Text>
       </Layout>
     );
