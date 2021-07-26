@@ -33,7 +33,7 @@ const arrRoute = [
   {
     name: "home",
     icon: HomeIcon,
-    component: [{ name: "home", component: LoginScreen }],
+    component: [{ name: "home", component: PresentScreen }],
   },
   {
     name: "topic",

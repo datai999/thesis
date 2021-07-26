@@ -6,11 +6,11 @@ import { navService } from "service";
 import { env, i18n } from "utils";
 import introduction from "./components/introduction";
 
+const totalPage = 5;
+
 const navLogin = () => {
   navService.navigate("login");
 };
-
-const totalPage = 5;
 
 export default ({ nonLogin = true }) => {
   const [viewPagerIndex, setViewPaperIndex] = React.useState(0);
@@ -52,7 +52,6 @@ export default ({ nonLogin = true }) => {
           style={{ marginVertical: 15 }}
           selectedIndex={viewPagerIndex}
           onSelect={setViewPaperIndex}
-          shouldLoadComponent={(index) => index === viewPagerIndex}
         >
           <Page {...pageProps} {...introduction} />
           <Page {...pageProps} />
@@ -128,7 +127,6 @@ const styles = StyleSheet.create({
   container: {
     marginVertical: "1%",
     marginBottom: 15,
-    maxWidth: 800,
     flex: 1,
     backgroundColor: "transparent",
   },
