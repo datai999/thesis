@@ -88,3 +88,5 @@ export const BrushIcon = (props) => <Icon {...props} name="brush-outline" />;
 export const RefreshIcon = (props) => (
   <Icon {...props} name="refresh-outline" />
 );
+
+export const UndoIcon = (props) => <Icon {...props} name="undo-outline" />;
