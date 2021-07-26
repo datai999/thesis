@@ -8,6 +8,7 @@ import background from "./components/background";
 import introduction from "./components/introduction";
 import mainFeature from "./components/mainFeature";
 import userDivide from "./components/userDivide";
+import systemRequirement from "./components/systemRequirement";
 
 const totalPage = 15;
 
@@ -16,7 +17,7 @@ const navLogin = () => {
 };
 
 export default ({ nonLogin = true }) => {
-  const [viewPagerIndex, setViewPaperIndex] = React.useState(3);
+  const [viewPagerIndex, setViewPaperIndex] = React.useState(4);
 
   const pageProps = {
     title: "Title",
@@ -60,6 +61,7 @@ export default ({ nonLogin = true }) => {
           <Page {...pageProps} {...introduction} />
           <Page {...pageProps} {...mainFeature} />
           <Page {...pageProps} {...userDivide} />
+          <Page {...pageProps} {...systemRequirement} />
         </ViewPager>
       </Layout>
       <Text style={styles.versionText}>
