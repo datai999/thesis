@@ -5,12 +5,13 @@ import { ImageBackground, StyleSheet } from "react-native";
 import { navService } from "service";
 import { env, i18n } from "utils";
 import background from "./components/background";
+import dbBase from "./components/dbBase";
+import dbBreak from "./components/dbBreak";
 import introduction from "./components/introduction";
 import mainFeature from "./components/mainFeature";
 import systemArchitecture from "./components/systemArchitecture";
 import systemRequirement from "./components/systemRequirement";
 import userDivide from "./components/userDivide";
-import dbBase from "./components/dbBase";
 
 const totalPage = 15;
 
@@ -19,7 +20,7 @@ const navLogin = () => {
 };
 
 export default ({ nonLogin = true }) => {
-  const [viewPagerIndex, setViewPaperIndex] = React.useState(6);
+  const [viewPagerIndex, setViewPaperIndex] = React.useState(7);
 
   const pageProps = {
     title: "Title",
@@ -66,6 +67,7 @@ export default ({ nonLogin = true }) => {
           <Page {...pageProps} {...systemArchitecture} />
           <Page {...pageProps} {...userDivide} />
           <Page {...pageProps} {...dbBase} />
+          <Page {...pageProps} {...dbBreak} />
         </ViewPager>
       </Layout>
       <Text style={styles.versionText}>
