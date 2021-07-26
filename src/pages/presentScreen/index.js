@@ -8,6 +8,7 @@ import background from "./components/background";
 import dbBase from "./components/dbBase";
 import dbBreak from "./components/dbBreak";
 import dbPerson from "./components/dbPerson";
+import dbScore from "./components/dbScore";
 import dbTopic from "./components/dbTopic";
 import introduction from "./components/introduction";
 import mainFeature from "./components/mainFeature";
@@ -22,7 +23,7 @@ const navLogin = () => {
 };
 
 export default ({ nonLogin = true }) => {
-  const [viewPagerIndex, setViewPaperIndex] = React.useState(9);
+  const [viewPagerIndex, setViewPaperIndex] = React.useState(10);
 
   const pageProps = {
     title: "Title",
@@ -72,6 +73,7 @@ export default ({ nonLogin = true }) => {
           <Page {...pageProps} {...dbBreak} />
           <Page {...pageProps} {...dbPerson} />
           <Page {...pageProps} {...dbTopic} />
+          <Page {...pageProps} {...dbScore} />
         </ViewPager>
       </Layout>
       <Text style={styles.versionText}>
