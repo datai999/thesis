@@ -61,9 +61,9 @@ export default ({ nonLogin = true }) => {
           <Page {...pageProps} {...background} />
           <Page {...pageProps} {...introduction} />
           <Page {...pageProps} {...mainFeature} />
-          <Page {...pageProps} {...userDivide} />
           <Page {...pageProps} {...systemRequirement} />
           <Page {...pageProps} {...systemArchitecture} />
+          <Page {...pageProps} {...userDivide} />
         </ViewPager>
       </Layout>
       <Text style={styles.versionText}>
