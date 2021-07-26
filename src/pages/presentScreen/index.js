@@ -79,7 +79,6 @@ const Page = (props) => (
       />
     )}
     style={{
-      flex: 1,
       margin: 10,
       maxWidth: 800,
     }}
