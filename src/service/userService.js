@@ -17,8 +17,8 @@ function navToHome(email) {
   TeacherApi.postExample({ email: email }).then(async (response) => {
     await setWhenLogin(email, response[0]?.code);
     notifyLogin();
-    await navService.navigate("home");
-    toastService.info("toast.login.success");
+    await navService.navigate("topic");
+    toastService.success("toast.login.success");
   });
 }
 
