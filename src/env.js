@@ -6,7 +6,7 @@ const local = {
   skipLogin: {
     email: "tai.nguyen.cse.datai",
     code: "123",
-    screen: "topic",
+    screen: "present",
     // subScreen: { screen: "topicCreate" },
   },
 };
