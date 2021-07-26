@@ -16,6 +16,10 @@ export default {
         </Text>
         <Text>
           {"\n\t"}
+          Đối tượng sử dụng chính là giáo viên và giáo vụ.
+        </Text>
+        <Text>
+          {"\n\t"}
           Bộ môn: Hệ thống thông tin
         </Text>
         <Text>

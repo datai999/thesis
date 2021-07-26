@@ -6,8 +6,9 @@ import { navService } from "service";
 import { env, i18n } from "utils";
 import background from "./components/background";
 import introduction from "./components/introduction";
+import mainFeature from "./components/mainFeature";
 
-const totalPage = 5;
+const totalPage = 15;
 
 const navLogin = () => {
   navService.navigate("login");
@@ -56,7 +57,7 @@ export default ({ nonLogin = true }) => {
         >
           <Page {...pageProps} {...background} />
           <Page {...pageProps} {...introduction} />
-          <Page {...pageProps} />
+          <Page {...pageProps} {...mainFeature} />
         </ViewPager>
       </Layout>
       <Text style={styles.versionText}>
