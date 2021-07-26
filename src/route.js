@@ -18,6 +18,7 @@ import {
   CriterionScreen,
   EvaluateScreen,
   LoginScreen,
+  PresentScreen,
   StudentScreen,
   TeacherScreen,
   TopicAssignScreen,
@@ -88,6 +89,7 @@ const Route = () => {
         <Drawer.Screen name="person" component={renderSubMenu} />
         <Drawer.Screen name="criterion" component={renderSubMenu} />
         <Drawer.Screen name="login" component={LoginScreen} />
+        <Drawer.Screen name="present" component={PresentScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

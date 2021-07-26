@@ -20,9 +20,8 @@ const Screen = () => {
           env.skipLogin.code
         );
         await localStorage.getLocalStorage();
-        navigation.navigate(localStorage.screen);
-      }
-      if (localStorage.login) navigation.navigate(localStorage.screen);
+        navigation.navigate(env.skipLogin.screen, env.skipLogin.subScreen);
+      } else if (localStorage.login) navigation.navigate(localStorage.screen);
     };
     signIn();
   }, []);
