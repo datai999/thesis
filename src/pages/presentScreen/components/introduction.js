@@ -23,7 +23,7 @@ export default {
           Nhận thấy rằng hệ thống đánh giá luận văn của trường Đại học Bách khoa
           - Đại học Quốc gia TP.HCM cần được phát triển để có thể đáp ứng với
           nhiều khó khăn trong tương lai hơn. Đó là lý do chính nhóm đề xuất đề
-          tài "Xây dưng hê thông đanh gia luân văn tôt nghiêp"
+          tài "Xây dưng hê thông đánh giá luận văn tốt nghiêp"
         </Text>
       </Layout>
     );
