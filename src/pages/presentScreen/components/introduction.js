@@ -7,7 +7,7 @@ export default {
     return (
       <Layout>
         <Text category="s1">
-          Xây dựng hệ thống đánh giá luận văn tốt nghiệp
+          Đề tài: Xây dựng hệ thống đánh giá luận văn tốt nghiệp
         </Text>
         <Text>
           {"\n\t"}

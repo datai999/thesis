@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { Button, Text } from "@ui-kitten/components";
-import { DownLoadIcon, GoogleIcon } from "components/icons";
+import { DownLoadIcon, GoogleIcon, TvIcon } from "components/icons";
 import localStorage from "data/localStorage";
 import React from "react";
 import { ImageBackground, Platform, StyleSheet } from "react-native";
@@ -43,6 +43,7 @@ const Screen = () => {
       <Button
         appearance="outline"
         status="control"
+        accessoryLeft={TvIcon}
         style={{ marginBottom: 40 }}
         onPress={() => navigation.navigate("present")}
       >

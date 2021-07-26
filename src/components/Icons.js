@@ -90,3 +90,5 @@ export const RefreshIcon = (props) => (
 );
 
 export const UndoIcon = (props) => <Icon {...props} name="undo-outline" />;
+
+export const TvIcon = (props) => <Icon {...props} name="tv-outline" />;
