@@ -43,6 +43,15 @@ const Screen = () => {
       <Button
         appearance="outline"
         status="control"
+        style={{ marginBottom: 40 }}
+        onPress={() => navigation.navigate("present")}
+      >
+        Giới thiệu ứng dụng
+      </Button>
+
+      <Button
+        appearance="outline"
+        status="control"
         accessoryLeft={GoogleIcon}
         style={styles.loginBtn}
         onPress={loginBtnPress}
