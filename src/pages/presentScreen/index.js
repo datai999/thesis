@@ -7,8 +7,9 @@ import { env, i18n } from "utils";
 import background from "./components/background";
 import introduction from "./components/introduction";
 import mainFeature from "./components/mainFeature";
-import userDivide from "./components/userDivide";
+import systemArchitecture from "./components/systemArchitecture";
 import systemRequirement from "./components/systemRequirement";
+import userDivide from "./components/userDivide";
 
 const totalPage = 15;
 
@@ -17,7 +18,7 @@ const navLogin = () => {
 };
 
 export default ({ nonLogin = true }) => {
-  const [viewPagerIndex, setViewPaperIndex] = React.useState(4);
+  const [viewPagerIndex, setViewPaperIndex] = React.useState(5);
 
   const pageProps = {
     title: "Title",
@@ -53,7 +54,7 @@ export default ({ nonLogin = true }) => {
         </Layout>
 
         <ViewPager
-          style={{ marginVertical: 15 }}
+          style={{ marginVertical: 15, flex: 1 }}
           selectedIndex={viewPagerIndex}
           onSelect={setViewPaperIndex}
         >
@@ -62,6 +63,7 @@ export default ({ nonLogin = true }) => {
           <Page {...pageProps} {...mainFeature} />
           <Page {...pageProps} {...userDivide} />
           <Page {...pageProps} {...systemRequirement} />
+          <Page {...pageProps} {...systemArchitecture} />
         </ViewPager>
       </Layout>
       <Text style={styles.versionText}>
@@ -86,6 +88,7 @@ const Page = (props) => (
     style={{
       margin: 10,
       maxWidth: 800,
+      maxHeight: "100%",
     }}
   >
     {props.body()}
