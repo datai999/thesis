@@ -1,20 +1,21 @@
 import React from "react";
 import { Image } from "react-native";
+import { Layout, Text } from "@ui-kitten/components";
 
 export default {
   title: "Kiến trúc hệ thống",
   body: () => {
     return (
-      <Image
-        source={require("assets/img/system-architecture.png")}
-        resizeMode="stretch"
-        style={{
-          flex: 1,
-          height: 530,
-          alignItems: "center",
-          marginHorizontal: 150,
-        }}
-      />
+      <Layout style={{ alignItems: "center" }}>
+        <Image
+          source={require("assets/img/system-architecture.png")}
+          resizeMode="stretch"
+          style={{
+            height: 520,
+            width: 300,
+          }}
+        />
+      </Layout>
     );
   },
 };

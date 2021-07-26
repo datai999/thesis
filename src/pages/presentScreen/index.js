@@ -10,6 +10,7 @@ import mainFeature from "./components/mainFeature";
 import systemArchitecture from "./components/systemArchitecture";
 import systemRequirement from "./components/systemRequirement";
 import userDivide from "./components/userDivide";
+import dbBase from "./components/dbBase";
 
 const totalPage = 15;
 
@@ -18,7 +19,7 @@ const navLogin = () => {
 };
 
 export default ({ nonLogin = true }) => {
-  const [viewPagerIndex, setViewPaperIndex] = React.useState(5);
+  const [viewPagerIndex, setViewPaperIndex] = React.useState(6);
 
   const pageProps = {
     title: "Title",
@@ -64,6 +65,7 @@ export default ({ nonLogin = true }) => {
           <Page {...pageProps} {...systemRequirement} />
           <Page {...pageProps} {...systemArchitecture} />
           <Page {...pageProps} {...userDivide} />
+          <Page {...pageProps} {...dbBase} />
         </ViewPager>
       </Layout>
       <Text style={styles.versionText}>
