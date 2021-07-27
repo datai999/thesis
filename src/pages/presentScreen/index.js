@@ -14,7 +14,7 @@ import deploy from "./components/deploy";
 import ideaUI from "./components/ideaUI";
 import introduction from "./components/introduction";
 import mainFeature from "./components/mainFeature";
-import result from "./components/result";
+import summary from "./components/summary";
 import systemArchitecture from "./components/systemArchitecture";
 import systemRequirement from "./components/systemRequirement";
 import technology from "./components/technology";
@@ -81,7 +81,7 @@ export default ({ nonLogin = true }) => {
           <Page {...pageProps} {...ideaUI} />
           <Page {...pageProps} {...technology} />
           <Page {...pageProps} {...deploy} />
-          <Page {...pageProps} {...result} />
+          <Page {...pageProps} {...summary} />
         </ViewPager>
       </Layout>
       <Text style={styles.versionText}>
