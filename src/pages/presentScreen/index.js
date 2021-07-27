@@ -14,6 +14,7 @@ import deploy from "./components/deploy";
 import ideaUI from "./components/ideaUI";
 import introduction from "./components/introduction";
 import mainFeature from "./components/mainFeature";
+import result from "./components/result";
 import systemArchitecture from "./components/systemArchitecture";
 import systemRequirement from "./components/systemRequirement";
 import technology from "./components/technology";
@@ -26,7 +27,7 @@ const navLogin = () => {
 };
 
 export default ({ nonLogin = true }) => {
-  const [viewPagerIndex, setViewPaperIndex] = React.useState(13);
+  const [viewPagerIndex, setViewPaperIndex] = React.useState(14);
 
   const pageProps = {
     title: "Title",
@@ -80,6 +81,7 @@ export default ({ nonLogin = true }) => {
           <Page {...pageProps} {...ideaUI} />
           <Page {...pageProps} {...technology} />
           <Page {...pageProps} {...deploy} />
+          <Page {...pageProps} {...result} />
         </ViewPager>
       </Layout>
       <Text style={styles.versionText}>
