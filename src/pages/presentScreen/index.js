@@ -27,7 +27,7 @@ const navLogin = () => {
 };
 
 export default ({ nonLogin = true }) => {
-  const [viewPagerIndex, setViewPaperIndex] = React.useState(14);
+  const [viewPagerIndex, setViewPaperIndex] = React.useState(0);
 
   const pageProps = {
     title: "Title",
