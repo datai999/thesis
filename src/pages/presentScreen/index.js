@@ -15,6 +15,7 @@ import introduction from "./components/introduction";
 import mainFeature from "./components/mainFeature";
 import systemArchitecture from "./components/systemArchitecture";
 import systemRequirement from "./components/systemRequirement";
+import technology from "./components/technology";
 import userDivide from "./components/userDivide";
 
 const totalPage = 15;
@@ -24,7 +25,7 @@ const navLogin = () => {
 };
 
 export default ({ nonLogin = true }) => {
-  const [viewPagerIndex, setViewPaperIndex] = React.useState(11);
+  const [viewPagerIndex, setViewPaperIndex] = React.useState(12);
 
   const pageProps = {
     title: "Title",
@@ -76,6 +77,7 @@ export default ({ nonLogin = true }) => {
           <Page {...pageProps} {...dbTopic} />
           <Page {...pageProps} {...dbScore} />
           <Page {...pageProps} {...ideaUI} />
+          <Page {...pageProps} {...technology} />
         </ViewPager>
       </Layout>
       <Text style={styles.versionText}>
