@@ -2,35 +2,35 @@ import tableStyle from "data/tableStyle";
 import _ from "lodash";
 import React from "react";
 import { DataTable, List } from "react-native-paper";
-import { getLinkProps, getRenderText } from "utils";
+import { getRenderText } from "utils";
 
-export default ({ links, data = [], rowCallBack, ...props }) => {
-  const linkProps = getLinkProps(links);
-
+export default ({ data = [], ...props }) => {
   if (data == null) return null;
 
-  return data.map((row, index) => {
-    return (
-      <DataTable.Row key={row.id}>
-        <DataTable.Cell style={tableStyle.no} onPress={() => rowCallBack(row)}>
-          {renderCell(index + 1)}
-        </DataTable.Cell>
-        {linkProps.map((linkProp, index) => {
-          if (!props.fields[index].visible) return;
-          let fieldValue = _.get(row, linkProp.api);
-          return (
-            <DataTable.Cell
-              style={tableStyle[linkProp.api.split(".").pop()]}
-              key={linkProp.api}
-              onPress={() => rowCallBack(row)}
-            >
-              {renderCell(fieldValue)}
-            </DataTable.Cell>
-          );
-        })}
-      </DataTable.Row>
-    );
+  return data.map((row) => {
+    return <Row key={row.id} data={row} {...props} />;
   });
+};
+
+export const Row = ({ data, ...props }) => {
+  return (
+    <DataTable.Row>
+      {props.fields.map((field) => {
+        let fieldValue = _.get(data, field.api);
+        return (
+          <DataTable.Cell
+            style={tableStyle[field.api.split(".").pop()]}
+            key={field.api}
+            onPress={() =>
+              props.screenName ? props.rowPress(data) : props.rowCallBack(data)
+            }
+          >
+            {renderCell(fieldValue)}
+          </DataTable.Cell>
+        );
+      })}
+    </DataTable.Row>
+  );
 };
 
 export function renderCell(fieldValue) {

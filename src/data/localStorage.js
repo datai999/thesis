@@ -6,8 +6,8 @@ let localStorage = {
   setWhenLogin: setWhenLogin,
   table: {},
   function: {
-    set: set,
-    setTableVisible,
+    set,
+    setTable,
   },
 };
 
@@ -18,8 +18,8 @@ export function set(key, value) {
   localStorage[key] = value;
 }
 
-export function setTableVisible(tableName, visible) {
-  _.set(localStorage, "table." + tableName + ".visible", visible);
+export function setTable(tableName, value) {
+  _.set(localStorage, "table." + tableName, value);
   set("table", localStorage.table);
 }
 

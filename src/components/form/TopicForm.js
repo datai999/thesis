@@ -4,7 +4,7 @@ import TeacherApi from "api/person/TeacherApi";
 import TopicAssignApi from "api/topic/TopicAssignApi";
 import CouncilForm from "components/form/CouncilForm";
 import { MyAutocompleteTag, MyInput } from "components/Input";
-import MyModal from "components/Modal";
+import MyModal from "components/MyModal";
 import { MyMultiSelect, MySelect } from "components/Select";
 import _ from "lodash";
 import React from "react";

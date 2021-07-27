@@ -1,4 +1,5 @@
 import {
+  Button,
   Divider,
   Drawer,
   DrawerGroup,
@@ -7,23 +8,27 @@ import {
   Text,
 } from "@ui-kitten/components";
 import {
+  ArrowDownIcon,
+  ArrowUpIcon,
   BookOpenIcon,
   CheckMarkSquare,
   HomeIcon,
   PantoneIcon,
   PeopleIcon,
 } from "components/icons";
+import _ from "lodash";
 import * as React from "react";
 import { StyleSheet } from "react-native";
+import { languageService, navService } from "service";
 import env from "src/env";
-import { i18n, langHolder } from "utils";
+import i18n from "utils/i18n";
 
 const LeftMenu = ({ navigation, route }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(null);
   const [lang, setLang] = React.useState(i18n.languages);
 
   React.useEffect(() => {
-    langHolder.listeners.push(setLang);
+    languageService.onNextState(setLang);
   }, [lang]);
 
   return (
@@ -34,14 +39,6 @@ const LeftMenu = ({ navigation, route }) => {
           setSelectedIndex(index);
 
           if (index.section) {
-            if (index.section == 3) {
-              navigation.navigate(route[index.section].name, {
-                screen: route[index.section].name,
-                params: { mode: index.row == 0 ? "teacher" : "student" },
-              });
-              return;
-            }
-
             navigation.navigate(route[index.section].name, {
               screen: route[index.section].component[index.row].name,
             });
@@ -103,15 +100,143 @@ const LeftMenu = ({ navigation, route }) => {
   );
 };
 
+const commonProps = {
+  appearance: "basic",
+  status: "ghost",
+  style: { justifyContent: "flex-start", flexDirection: "row" },
+};
+
+const screenToSelected = (screen) => {
+  let subScreen;
+  if (screen.component.length > 1) {
+    subScreen = screen.component.map((x) => x.name);
+  }
+  return {
+    name: screen.name,
+    active: false,
+    subScreen: subScreen,
+  };
+};
+
+const DrawerMenu = ({ navigation, route }) => {
+  const [selected, setSelected] = React.useState(route.map(screenToSelected));
+  const [currentScreen, setCurrenScreen] = React.useState();
+  const [subSelected, setSubSelected] = React.useState();
+
+  const navigationAction = ({ screen, subScreen }) => {
+    if (
+      selected.filter((screenSelected) => screenSelected.name == screen)
+        .length < 1
+    ) {
+      navigation.navigate(screen, subScreen);
+      return;
+    }
+
+    let nextSelected = _.cloneDeep(selected);
+
+    let screenIndex = selected
+      .map((screenState) => screenState.name)
+      .indexOf(screen);
+
+    if (nextSelected[screenIndex].subScreen) {
+      nextSelected[screenIndex].active = true;
+
+      let subScreenIndex = subScreen
+        ? nextSelected[screenIndex].subScreen.indexOf(subScreen.screen)
+        : 0;
+
+      setCurrenScreen(screenIndex);
+      setSubSelected(subScreenIndex);
+      setSelected(nextSelected);
+
+      navigation.navigate(screen, subScreen);
+    }
+  };
+
+  React.useEffect(() => {
+    setCurrenScreen(1);
+    setSubSelected(0);
+    let nextData = _.cloneDeep(selected);
+    nextData[1].active = true;
+    setSelected(nextData);
+
+    navService.onNextState(navigationAction);
+  }, []);
+
+  const groupPress = (groupIndex) => {
+    let nextData = _.cloneDeep(selected);
+    nextData[groupIndex].active = !selected[groupIndex].active;
+    setSelected(nextData);
+
+    if (nextData[groupIndex].active && !nextData[groupIndex].subScreen) {
+      setSubSelected(null);
+      setCurrenScreen(groupIndex);
+      navigation.navigate(nextData[groupIndex].name);
+    }
+  };
+
+  const itemPress = (groupIndex, index) => {
+    let nextData = _.cloneDeep(selected);
+    setCurrenScreen(groupIndex);
+    setSubSelected(index);
+    setSelected(nextData);
+    navigation.navigate(nextData[groupIndex].name, {
+      screen: nextData[groupIndex].subScreen[index],
+    });
+  };
+
+  return (
+    <Layout>
+      <Text style={styles.versionText} category="s1">
+        {i18n.t("origin.version")}: {env.version}
+      </Text>
+      {route.map((screen, groupIndex) => (
+        <Layout key={groupIndex}>
+          <Divider />
+          <Button
+            {...commonProps}
+            appearance={currentScreen == groupIndex ? "primary" : "basic"}
+            accessoryLeft={screen.icon}
+            accessoryRight={(props) => {
+              if (!selected[groupIndex].subScreen) return null;
+              return selected[groupIndex].active ? (
+                <ArrowUpIcon {...props} />
+              ) : (
+                <ArrowDownIcon {...props} />
+              );
+            }}
+            onPress={() => groupPress(groupIndex)}
+          >
+            {i18n.t("screen." + screen.name)}
+          </Button>
+          {selected[groupIndex].active &&
+            screen.component.length > 1 &&
+            screen.component.map((subScreen, subIndex) => (
+              <Button
+                key={subIndex}
+                {...commonProps}
+                appearance={
+                  currentScreen == groupIndex && subIndex == subSelected
+                    ? "primary"
+                    : "basic"
+                }
+                style={[commonProps.style, { marginLeft: 30 }]}
+                onPress={() => itemPress(groupIndex, subIndex)}
+              >
+                {i18n.t("screen." + subScreen.name)}
+              </Button>
+            ))}
+        </Layout>
+      ))}
+    </Layout>
+  );
+};
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "space-around",
-  },
   versionText: {
     margin: 5,
     textAlign: "center",
   },
 });
 
-export default LeftMenu;
+export default DrawerMenu;

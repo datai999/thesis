@@ -1,37 +1,38 @@
 import { Layout, Text } from "@ui-kitten/components";
 import { SettingApi } from "api/br";
 import CriterionTemplateApi from "api/score/CriterionTemplateApi";
-import { CreateBtn } from "components/Button";
+import { CreateFormButton } from "components/Button";
 import { CriterionForm, CriterionTemplateForm } from "components/form";
 import OverTable from "components/screen/OverTable";
 import { TableContent } from "components/table";
 import React from "react";
 import { Dimensions, StyleSheet } from "react-native";
+import { assignPropsService } from "service";
 import { i18n } from "utils";
 
 const width = Dimensions.get("window").width;
 
-const defaultFields = [
+const fields = [
   {
-    link: "criterionTemplate.name",
+    link: "name",
     visible: true,
   },
   {
-    link: "criterionTemplate.scoreMethod",
+    link: "scoreMethod",
     visible: true,
   },
   {
-    link: "criterionTemplate.description",
+    link: "description",
     visible: width > 1000,
   },
   {
-    link: "criterionTemplate.criterion",
+    link: "criterion",
     visible: width > 800,
   },
 ];
 
 const overTopBar = () => {
-  return <CreateBtn form={CriterionForm} />;
+  return <CreateFormButton form={CriterionForm} />;
 };
 
 function renderTopContent({ ...props }) {
@@ -69,9 +70,7 @@ const overTableProps = {
   api: CriterionTemplateApi,
   overTopBar: overTopBar,
   topContent: renderTopContent,
-  defaultProps: {
-    fields: defaultFields,
-  },
+  fields: assignPropsService(fields, "criterionTemplate."),
 };
 
 const CriterionScreen = () => {

@@ -2,11 +2,10 @@ import { useNavigation } from "@react-navigation/native";
 import { Layout } from "@ui-kitten/components";
 import { TableBody, TableTopBar } from "components/table";
 import localStorage from "data/localStorage";
-import _ from "lodash";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { i18n, langHolder, toastService } from "utils";
-import { dimensionService } from "utils/service";
+import { languageService, navService, toastService } from "service";
+import { i18n } from "utils";
 
 const defaultPage = {
   number: 0,
@@ -19,32 +18,21 @@ const OverTable = ({
   api,
   overTopBar,
   topContent,
-  defaultProps = { fields: [] },
-  responsive = (dimensions, currentProps) => currentProps,
   ...props
 }) => {
   const [data, setData] = React.useState([]);
   const [lang, setLang] = React.useState(i18n.languages);
-  const [currentProps, setCurrentProps] = React.useState(defaultProps);
   const [filterVisible, setFilterVisible] = React.useState(
-    defaultProps?.filterVisible ?? false
+    props?.filterVisible ?? false
   );
+  const [fields, setFields] = React.useState(props?.fields ?? []);
   const [dataSearch, setDataSearch] = React.useState({
     page: defaultPage,
     sort: {},
     filter: {},
-    ...defaultProps.dataSearch,
+    ...props.dataSearch,
   });
   const navigation = useNavigation();
-
-  const setFields = (nextFields) => {
-    let nextProps = _.cloneDeep(currentProps);
-    nextProps.fields = nextFields;
-    nextProps.sort = {};
-    nextProps.filter = {};
-    localStorage.function.setTableVisible(tableName, nextFields);
-    setCurrentProps(nextProps);
-  };
 
   const fetchSearchData = (param) => {
     api
@@ -65,35 +53,40 @@ const OverTable = ({
       .catch((err) => toastService.error("toast.search.error", err));
   };
 
-  const responsiveLayout = (dimensions) => {};
+  const navigateToCreateScreen = (defaultData) =>
+    navService.navigate(props.screenName, {
+      screen: props.subScreenCreateName,
+      params: defaultData,
+    });
 
   React.useEffect(() => {
-    langHolder.listeners.push(setLang);
+    languageService.onNextState(setLang);
     navigation.addListener("focus", () => {
       fetchSearchData(dataSearch);
     });
 
-    if (!localStorage.table || !localStorage.table[tableName]?.visible) {
-      localStorage.function.setTableVisible(tableName, defaultProps.fields);
+    if (!localStorage.table || !localStorage.table[tableName]) {
+      localStorage.function.setTable(tableName, { fields });
     }
 
-    const actionOrder = async () => {
-      await dimensionService.subscribe(responsiveLayout);
-      setFields(localStorage.table[tableName].visible);
-    };
-
-    actionOrder();
+    setFields(localStorage.table[tableName].fields);
   }, []);
 
   React.useEffect(() => {
     fetchSearchData(dataSearch);
   }, [navigation]);
 
+  React.useEffect(() => {
+    let nextTable = { fields };
+    localStorage.function.setTable(tableName, nextTable);
+  }, [fields]);
+
   return (
     <Layout style={styles.container}>
       <Layout style={styles.topBar}>
         <TableTopBar
-          fields={currentProps.fields}
+          {...props}
+          fields={fields}
           setFields={setFields}
           form={form}
           overTopBar={overTopBar}
@@ -103,16 +96,19 @@ const OverTable = ({
             if (newRecord == "undefined" || newRecord == null) return;
             fetchSearchData(dataSearch);
           }}
+          createButtonPress={navigateToCreateScreen}
         />
       </Layout>
       <TableBody
-        fields={currentProps.fields}
+        {...props}
+        fields={fields.filter((field) => field.visible)}
         updateForm={form}
         data={data}
         topContent={topContent}
         filterVisible={filterVisible}
         propCallback={dataSearch}
         callback={fetchSearchData}
+        rowPress={navigateToCreateScreen}
       />
     </Layout>
   );

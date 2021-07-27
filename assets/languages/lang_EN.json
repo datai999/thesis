@@ -55,6 +55,10 @@
   "description_ph_vi": "Type description in Vietnamese",
   "educationMethod": "Education method",
   "educationMethodSelect": "Select education method",
+  "id": {
+    "label": "Id",
+    "placeholder": "Type id"
+  },
   "login": {
     "email": {
       "label": "HCMUT mail",
@@ -96,15 +100,25 @@
     "page": "Page",
     "previous": "Previous",
     "record": "Record",
+    "reset": {
+      "origin": "Reset"
+    },
     "status": {
       "label": "Status",
       "placeholder": "Select status"
     },
     "submit": "Submit",
-    "topic": "Topic",
-    "topicAssign": "Topic assign",
+    "topic": {
+      "edit": "Edit topic"
+    },
+    "topicAssign": {
+      "new": "New topic assign",
+      "origin": "Topic assign"
+    },
     "topicDescription": "Topic description",
-    "topicInfo": "Topic information",
+    "topicInfo": {
+      "origin": "Topic information"
+    },
     "totalRecord": "Total record",
     "update": "Update",
     "version": "Version"
@@ -133,6 +147,10 @@
     "educationMethod": {
       "label": "Education method",
       "placeholder": "Select education method"
+    },
+    "email": {
+      "label": "Mail",
+      "placeholder": "Type mail"
     },
     "gender": {
       "label": "Gender",
@@ -163,7 +181,10 @@
     "setting": "Setting screen",
     "student": "Student screen",
     "teacher": "Teacher screen",
-    "topic": "Topic screen"
+    "topic": "Topic screen",
+    "topicAssign": "Topic assign",
+    "topicCreate": "Topic create",
+    "topicTable": "Topic table"
   },
   "select": {
     "all": "Select all",
@@ -228,6 +249,14 @@
     },
     "search": {
       "error": "Search error"
+    },
+    "topic": {
+      "assign": {
+        "success": "Assign topic success"
+      },
+      "create": {
+        "success": "Create topic success"
+      }
     }
   },
   "topic": {

@@ -6,6 +6,10 @@ const commonStyle = {
 };
 
 export default StyleSheet.create({
+  id: {
+    ...commonStyle,
+    maxWidth: 30,
+  },
   no: {
     ...commonStyle,
     maxWidth: 30,

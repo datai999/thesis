@@ -1,4 +1,4 @@
-import MyModal from "components/Modal";
+import MyModal from "components/MyModal";
 import React from "react";
 import { ScrollView } from "react-native";
 import { DataTable } from "react-native-paper";
@@ -15,17 +15,16 @@ export default ({
   filterVisible = false,
   propCallback = {},
   callback,
+  ...props
 }) => {
   const [updateFormVisible, setUpdateFormVisible] = React.useState(false);
   const [currentRow, setCurrenRow] = React.useState(null);
-
-  const links = fields.map((field) => field.link);
 
   const modalUpdateFormProps = {
     ...updateForm,
     visible: updateFormVisible,
     cancel: () => setUpdateFormVisible(false),
-    body: () => updateForm.body(currentRow),
+    body: () => updateForm?.body(currentRow),
     submit: async () => {
       try {
         let response = await updateForm.submit();
@@ -44,7 +43,6 @@ export default ({
   };
 
   const commonProps = {
-    links: links,
     propCallback: propCallback,
     callback: callback,
     fields: fields,
@@ -54,14 +52,15 @@ export default ({
     <DataTable style={{ flex: 1, margin: 5 }}>
       <MyModal {...modalUpdateFormProps} />
       <TableHeader {...commonProps} />
-      {topContent && topContent({ links, rowCallBack, fields })}
+      {topContent && topContent({ rowCallBack, fields })}
       {filterVisible && <TableFilter {...commonProps} />}
       <ScrollView>
         <TableContent
-          links={links}
+          {...props}
           fields={fields}
           data={data}
           rowCallBack={rowCallBack}
+          rowPress={props.rowPress}
         />
       </ScrollView>
       <TableBottom propCallback={propCallback} callback={callback} />

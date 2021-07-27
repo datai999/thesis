@@ -3,36 +3,37 @@ import { StudentForm } from "components/form";
 import OverTable from "components/screen/OverTable";
 import React from "react";
 import { Dimensions } from "react-native";
+import { assignPropsService } from "service";
 
 const width = Dimensions.get("window").width;
 
-const defaultFields = [
+const fields = [
   {
-    link: "person.code",
+    link: "code",
     visible: true,
   },
   {
-    link: "person.name",
+    link: "name",
     visible: true,
   },
   {
-    link: "person.gender",
+    link: "gender",
     visible: width > 500,
   },
   {
-    link: "person.educationMethod",
+    link: "educationMethod",
     visible: width > 500,
   },
   {
-    link: "person.major",
+    link: "major",
     visible: width > 500,
   },
   {
-    link: "person.email",
+    link: "email",
     visible: width > 700,
   },
   {
-    link: "person.phone",
+    link: "phone",
     visible: width > 800,
   },
 ];
@@ -41,9 +42,7 @@ const overTableProps = {
   tableName: "student",
   form: StudentForm,
   api: StudentApi,
-  defaultProps: {
-    fields: defaultFields,
-  },
+  fields: assignPropsService(fields, "person."),
 };
 
 const StudentScreen = () => {

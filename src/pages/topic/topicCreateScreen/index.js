@@ -1,26 +1,39 @@
 import { Button, Layout, ViewPager } from "@ui-kitten/components";
 import TopicAssignApi from "api/topic/TopicAssignApi";
-import { ArrowBackIcon, ArrowForwardIcon } from "components/icons";
+import {
+  ArrowBackIcon,
+  ArrowForwardIcon,
+  PeopleIcon,
+  RefreshIcon,
+} from "components/icons";
+import _ from "lodash";
 import React from "react";
 import { Dimensions, StyleSheet } from "react-native";
 import { IconButton } from "react-native-paper";
-import { languageService, loadingService, toastService } from "service";
-import { createProps, currentSemester, i18n } from "utils";
-import TopicAssign from "./components/topicAssign";
+import {
+  languageService,
+  loadingService,
+  navService,
+  propsService,
+  toastService,
+} from "service";
+import { currentSemester, i18n } from "utils";
 import TopicDescription from "./components/topicDescription";
 import TopicInfo from "./components/topicInfo";
 
-let form = {
-  topic: { semester: currentSemester() },
+const defaultForm = {
+  topic: { semester: currentSemester(), minStudentTake: 1, maxStudentTake: 3 },
   semester: currentSemester(),
 };
+let form = _.cloneDeep(defaultForm);
 
 const submit = () => {
-  form.semester = form.topic.semester;
   loadingService.start();
   return TopicAssignApi.create(form)
     .then((response) => {
       loadingService.end();
+      toastService.success("toast.topic.create.success");
+      navService.navigate("topic", { screen: "topicTable" });
     })
     .catch((err) => {
       toastService.error(err.response.data.data[0], err);
@@ -28,14 +41,29 @@ const submit = () => {
     });
 };
 
-export default () => {
+export default ({ route = { params: null } }) => {
   const [dimensions, setDimensions] = React.useState(Dimensions.get("window"));
   const [language, setLanguage] = React.useState(i18n.languages);
   const [multiLang, setMultiLang] = React.useState(0);
-
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [refresh, setRefresh] = React.useState(false);
 
-  const propStore = createProps(form);
+  form = route.params ?? form;
+  let propsStore = propsService.createPropsStore(form);
+
+  let commonProps = {
+    styles,
+    propsStore,
+    multiLang,
+  };
+
+  const reset = () => {
+    route.params = null;
+    form = _.cloneDeep(defaultForm);
+    setMultiLang(0);
+    setSelectedIndex(0);
+    setRefresh(!refresh);
+  };
 
   React.useEffect(() => {
     Dimensions.addEventListener("change", (e) => {
@@ -44,21 +72,21 @@ export default () => {
   }, []);
 
   React.useEffect(() => {
-    languageService.listen(setLanguage);
+    languageService.onNextState(setLanguage);
   }, [language]);
-
-  const commonProps = {
-    styles: styles,
-    propStore: propStore,
-    multiLang: multiLang,
-  };
 
   return (
     <Layout style={styles.container}>
       <Layout style={styles.headerBtn}>
         <Button
-          size="tiny"
-          status="primary"
+          {...commonPropsTopBtn}
+          onPress={reset}
+          accessoryRight={RefreshIcon}
+        >
+          {i18n.t("origin.reset.origin")}
+        </Button>
+        <Button
+          {...commonPropsTopBtn}
           onPress={() => setMultiLang(multiLang + 1)}
           accessoryRight={() => (
             <IconButton
@@ -72,31 +100,44 @@ export default () => {
         >
           {i18n.t("origin.multiLanguage")}
         </Button>
+        <Button
+          {...commonPropsTopBtn}
+          onPress={() =>
+            navService.navigate("topic", {
+              screen: "topicAssign",
+              params: propsStore.form.topic,
+            })
+          }
+          accessoryRight={PeopleIcon}
+        >
+          {i18n.t("origin.topicAssign.origin")}
+        </Button>
       </Layout>
 
       <ViewPager
         selectedIndex={selectedIndex}
-        onSelect={(index) => setSelectedIndex(index)}
+        onSelect={(index) => {
+          if (index) setSelectedIndex(index);
+        }}
         style={styles.viewPager}
       >
         <TopicInfo {...commonProps} />
         <TopicDescription {...commonProps} />
-        <TopicAssign {...commonProps} council={form.council} />
       </ViewPager>
 
       <Layout style={styles.bottomBtn}>
-        {selectedIndex < 2 && (
+        {selectedIndex < 1 && (
           <Button
             status="control"
             appearance="outline"
             accessoryRight={ArrowForwardIcon}
             onPress={() => setSelectedIndex(selectedIndex + 1)}
           >
-            {dimensions.width > 700 && i18n.t("origin.next")}
+            {dimensions.width > 700 && i18n.t("origin.topicDescription")}
           </Button>
         )}
-        {selectedIndex == 2 && (
-          <Button onPress={submit}>{i18n.t("origin.submit")}</Button>
+        {selectedIndex == 1 && (
+          <Button onPress={() => submit()}>{i18n.t("origin.submit")}</Button>
         )}
         {selectedIndex > 0 && (
           <Button
@@ -105,12 +146,18 @@ export default () => {
             accessoryLeft={ArrowBackIcon}
             onPress={() => setSelectedIndex(selectedIndex - 1)}
           >
-            {dimensions.width > 700 && i18n.t("origin.previous")}
+            {dimensions.width > 700 && i18n.t("origin.topicInfo.origin")}
           </Button>
         )}
       </Layout>
     </Layout>
   );
+};
+
+const commonPropsTopBtn = {
+  style: { marginHorizontal: 5 },
+  size: "tiny",
+  status: "primary",
 };
 
 const styles = StyleSheet.create({

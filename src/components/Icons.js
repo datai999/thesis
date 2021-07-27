@@ -84,3 +84,11 @@ export const GoogleIcon = (props) => <Icon {...props} name="google-outline" />;
 export const FunnelIcon = (props) => <Icon {...props} name="funnel-outline" />;
 
 export const BrushIcon = (props) => <Icon {...props} name="brush-outline" />;
+
+export const RefreshIcon = (props) => (
+  <Icon {...props} name="refresh-outline" />
+);
+
+export const UndoIcon = (props) => <Icon {...props} name="undo-outline" />;
+
+export const TvIcon = (props) => <Icon {...props} name="tv-outline" />;

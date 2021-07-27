@@ -1,14 +1,17 @@
 import TopicAssignApi from "api/topic/TopicAssignApi";
-import { TopicForm } from "components/form";
 import OverTable from "components/screen/OverTable";
 import React from "react";
 import { Dimensions } from "react-native";
-
-// import { currentSemester } from "utils";
+import { assignPropsService } from "service";
+import { currentSemester } from "utils";
 
 const width = Dimensions.get("window").width;
 
-const defaultFields = [
+const fields = [
+  {
+    link: "id",
+    visible: true,
+  },
   {
     link: "topic.code",
     visible: true,
@@ -30,27 +33,30 @@ const defaultFields = [
     visible: true,
   },
   {
-    link: "topicAssign.guideTeacher",
+    link: "guideTeacher",
     visible: width > 1000,
+    label: "teacher.guide.label",
+    placeholder: "teacher.guide.placeholder",
   },
   {
-    link: "topicAssign.executeStudent",
+    link: "executeStudent",
     visible: width > 1200,
+    label: "student.execute.label",
+    placeholder: "student.execute.placeholder",
   },
 ];
 
 const overTableProps = {
+  screenName: "topic",
+  subScreenCreateName: "topicCreate",
   tableName: "topicAssign",
-  form: TopicForm,
+  newRecordLabel: "topic.create",
   api: TopicAssignApi,
-  defaultProps: {
-    fields: defaultFields,
-    filterVisible: true,
-    dataSearch: {
-      sort: { field: "topic.semester", descend: true },
-      // FIXME default filter
-      // filter: { "topic.semester": currentSemester() },
-    },
+  filterVisible: true,
+  fields: assignPropsService(fields),
+  dataSearch: {
+    sort: { field: "id", descend: false },
+    filter: { "topic.semester": currentSemester() },
   },
 };
 

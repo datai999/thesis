@@ -2,17 +2,26 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useTheme } from "@ui-kitten/components";
+import {
+  BookOpenIcon,
+  CheckMarkSquare,
+  HomeIcon,
+  PantoneIcon,
+  PeopleIcon,
+} from "components/icons";
 import LeftMenu from "components/LeftMenu";
 import TopNav from "components/screen/TopNav";
 import * as React from "react";
 import { Dimensions, ImageBackground } from "react-native";
-import { navService } from "utils";
-import { dimensionService } from "utils/service";
+import { dimensionService, navService } from "service";
 import {
   CriterionScreen,
   EvaluateScreen,
   LoginScreen,
-  PersonScreen,
+  PresentScreen,
+  StudentScreen,
+  TeacherScreen,
+  TopicAssignScreen,
   TopicCreateScreen,
   TopicTableScreen,
 } from "./pages";
@@ -23,25 +32,34 @@ const Drawer = createDrawerNavigator();
 const arrRoute = [
   {
     name: "home",
-    component: [{ name: "home", component: LoginScreen }],
+    icon: HomeIcon,
+    component: [{ name: "home", component: PresentScreen }],
   },
   {
     name: "topic",
+    icon: BookOpenIcon,
     component: [
       { name: "topicTable", component: TopicTableScreen },
       { name: "topicCreate", component: TopicCreateScreen },
+      { name: "topicAssign", component: TopicAssignScreen },
     ],
   },
   {
     name: "evaluate",
+    icon: CheckMarkSquare,
     component: [{ name: "evaluate", component: EvaluateScreen }],
   },
   {
     name: "person",
-    component: [{ name: "person", component: PersonScreen }],
+    icon: PeopleIcon,
+    component: [
+      { name: "teacher", component: TeacherScreen },
+      { name: "student", component: StudentScreen },
+    ],
   },
   {
     name: "criterion",
+    icon: PantoneIcon,
     component: [{ name: "criterion", component: CriterionScreen }],
   },
 ];
@@ -71,6 +89,7 @@ const Route = () => {
         <Drawer.Screen name="person" component={renderSubMenu} />
         <Drawer.Screen name="criterion" component={renderSubMenu} />
         <Drawer.Screen name="login" component={LoginScreen} />
+        <Drawer.Screen name="present" component={PresentScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
@@ -100,9 +119,9 @@ const renderSubMenu = ({ ...drawerProps }) => {
 const WrapComponent = ({ component, ...props }) => {
   React.useEffect(() => {
     Dimensions.addEventListener("change", (e) => {
-      dimensionService.notify(e.window);
+      dimensionService.setNextState(e.window);
     });
-    dimensionService.notify(Dimensions.get("window"));
+    dimensionService.setNextState(Dimensions.get("window"));
   }, []);
 
   return (

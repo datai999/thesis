@@ -27,6 +27,7 @@ export const createProps = (form) => {
   };
 
   return {
+    form: form,
     set: setValue,
     input: inputProps,
     inputLang: (path) => inputProps(path + "." + i18n.language),
@@ -72,12 +73,8 @@ export const getLinkProps = (paths) => {
 
     let linkProps = _.get(link, path);
 
-    let apiValue = path;
-    if (linkProps != null && linkProps.api == null)
-      apiValue = path.split(".").pop();
-
     linkProps = {
-      api: apiValue,
+      api: path,
       ...linkProps,
       label: linkProps?.label
         ? i18n.t(linkProps?.label)

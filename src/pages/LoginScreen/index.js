@@ -1,10 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
 import { Button, Text } from "@ui-kitten/components";
-import { DownLoadIcon, GoogleIcon } from "components/icons";
+import { DownLoadIcon, GoogleIcon, TvIcon } from "components/icons";
 import localStorage from "data/localStorage";
 import React from "react";
 import { ImageBackground, Platform, StyleSheet } from "react-native";
-import { env, i18n, langHolder, userService } from "utils";
+import { languageService } from "service";
+import userService, { demoLogin } from "service/userService";
+import { env, i18n } from "utils";
 
 const Screen = () => {
   const navigation = useNavigation();
@@ -18,20 +20,21 @@ const Screen = () => {
           env.skipLogin.code
         );
         await localStorage.getLocalStorage();
-        navigation.navigate(localStorage.screen);
-      }
-      if (localStorage.login) navigation.navigate(localStorage.screen);
+        navigation.navigate(env.skipLogin.screen, env.skipLogin.subScreen);
+      } else if (localStorage.login) navigation.navigate(localStorage.screen);
     };
     signIn();
   }, []);
 
   React.useEffect(() => {
-    langHolder.listeners.push(setLang);
+    languageService.onNextState(setLang);
   }, [lang]);
 
-  function loginBtnPress() {
-    userService.signInWithPopup();
-  }
+  const loginBtnPress = () => {
+    if (Platform.OS != "web") {
+      demoLogin();
+    } else userService.signInWithPopup();
+  };
 
   return (
     <ImageBackground
@@ -39,6 +42,16 @@ const Screen = () => {
       style={styles.image}
       imageStyle={styles.imageStyle}
     >
+      <Button
+        appearance="outline"
+        status="control"
+        accessoryLeft={TvIcon}
+        style={{ marginBottom: 40 }}
+        onPress={() => navigation.navigate("present")}
+      >
+        Giới thiệu ứng dụng
+      </Button>
+
       <Button
         appearance="outline"
         status="control"

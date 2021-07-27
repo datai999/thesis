@@ -8,7 +8,7 @@ import {
   Toggle,
   TopNavigation,
   TopNavigationAction,
-  useTheme,
+  useTheme
 } from "@ui-kitten/components";
 import AxiosClient from "api/AxiosClient";
 import {
@@ -18,21 +18,26 @@ import {
   CloseCircleIcon,
   ExternalLinkIcon,
   InfoIcon,
-  MenuIcon,
+  MenuIcon
 } from "components/icons";
 import { localStorage } from "data";
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { langHolder, navService, toastHolder, userService } from "utils";
+import {
+  dimensionService,
+  languageService,
+  navService,
+  toastService
+} from "service";
+import userService from "service/userService";
 import i18n from "utils/i18n";
-import { dimensionService } from "utils/service";
 
 const TopNav = () => {
   const [lang, setLang] = React.useState(i18n.languages);
 
   React.useEffect(() => {
-    langHolder.listeners.push(setLang);
+    languageService.onNextState(setLang);
   }, [lang]);
 
   return (
@@ -72,8 +77,8 @@ const renderRightAction = () => {
     userService.loginListeners.push(setLogin);
     setLogin(localStorage.login);
 
-    dimensionService.subscribe(setDimensions);
-    setDimensions(dimensionService.getState());
+    dimensionService.onNextState(setDimensions);
+    setDimensions(dimensionService.getCurrentState());
   }, []);
 
   const renderPersonAvt = () => {
@@ -115,7 +120,7 @@ const SwitchLanguage = ({ status, paddingRight }) => {
   const [lang, setLang] = React.useState(i18n.languages);
 
   React.useEffect(() => {
-    langHolder.notify(lang);
+    languageService.setNextState(lang);
   }, [lang]);
 
   return (
@@ -153,7 +158,7 @@ const ToolTopNav = () => {
     animationRef.current?.zoomOut(time).then(() => setVisible(false));
 
   React.useEffect(() => {
-    toastHolder.listeners.push(setLog);
+    toastService.onNextState(setLog);
   }, []);
 
   React.useEffect(() => {

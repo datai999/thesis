@@ -2,7 +2,7 @@ import {
   Datepicker,
   IndexPath,
   Select,
-  SelectItem
+  SelectItem,
 } from "@ui-kitten/components";
 import React from "react";
 import { getRenderText, toLocalDate } from "utils";
@@ -35,8 +35,8 @@ export const MySelect = ({ callBack, ...props }) => {
 
   return (
     <Select
-      {...props}
       style={{ marginVertical: 5 }}
+      {...props}
       label={i18n.t(props.label)}
       placeholder={i18n.t(props.placeholder)}
       value={getRenderText(props.arrValue?.[indexed.row])}

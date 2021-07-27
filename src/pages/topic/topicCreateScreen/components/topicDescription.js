@@ -1,27 +1,47 @@
 import { Layout, Text } from "@ui-kitten/components";
 import { MyInput } from "components/Input";
 import React from "react";
-import { i18n } from "utils";
 import { ScrollView } from "react-native";
+import { i18n } from "utils";
 
-export default ({ styles, propStore, multiLang }) => {
+const multilineProps = { multiline: true, numberOfLines: 5 };
+
+export default ({ styles, propsStore, multiLang }) => {
   return (
     <Layout style={styles.group}>
       <Text style={styles.headerGroup}>
         {i18n.t("origin.topicDescription")}
       </Text>
       <ScrollView showsVerticalScrollIndicator={true}>
-        <MyInput {...propStore.inputLang("topic.description")} />
+        <MyInput
+          {...propsStore.inputLang("topic.description")}
+          {...multilineProps}
+        />
         {multiLang > 0 && (
-          <MyInput {...propStore.inputToggleLang("topic.description")} />
+          <MyInput
+            {...propsStore.inputToggleLang("topic.description")}
+            {...multilineProps}
+          />
         )}
-        <MyInput {...propStore.inputLang("topic.topicTask")} />
+        <MyInput
+          {...propsStore.inputLang("topic.topicTask")}
+          {...multilineProps}
+        />
         {multiLang > 0 && (
-          <MyInput {...propStore.inputToggleLang("topic.topicTask")} />
+          <MyInput
+            {...propsStore.inputToggleLang("topic.topicTask")}
+            {...multilineProps}
+          />
         )}
-        <MyInput {...propStore.inputLang("topic.thesisTask")} />
+        <MyInput
+          {...propsStore.inputLang("topic.thesisTask")}
+          {...multilineProps}
+        />
         {multiLang > 0 && (
-          <MyInput {...propStore.inputToggleLang("topic.thesisTask")} />
+          <MyInput
+            {...propsStore.inputToggleLang("topic.thesisTask")}
+            {...multilineProps}
+          />
         )}
       </ScrollView>
     </Layout>
