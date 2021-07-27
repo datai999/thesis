@@ -171,7 +171,12 @@ const DrawerMenu = ({ navigation, route }) => {
     if (nextData[groupIndex].active && !nextData[groupIndex].subScreen) {
       setSubSelected(null);
       setCurrenScreen(groupIndex);
-      navigation.navigate(nextData[groupIndex].name);
+      groupIndex == 0
+        ? navigation.navigate(nextData[groupIndex].name, {
+            screen: "home",
+            params: { nonLogin: true },
+          })
+        : navigation.navigate(nextData[groupIndex].name);
     }
   };
 
