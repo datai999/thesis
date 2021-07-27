@@ -8,6 +8,13 @@ const emailTail = "@hcmut.edu.vn";
 
 let loginListeners = [];
 
+export const demoLogin = async () => {
+  await setWhenLogin("tai.nguyen.cse.datai", 123);
+  notifyLogin();
+  await navService.navigate("topic");
+  toastService.success("toast.login.success");
+};
+
 function navToHome(email) {
   if (email.substring(email.indexOf("@")) != emailTail) {
     toastService.error(email + i18n.t("toast.email.notHcmut"), { email });

@@ -5,7 +5,7 @@ import localStorage from "data/localStorage";
 import React from "react";
 import { ImageBackground, Platform, StyleSheet } from "react-native";
 import { languageService } from "service";
-import userService from "service/userService";
+import userService, { demoLogin } from "service/userService";
 import { env, i18n } from "utils";
 
 const Screen = () => {
@@ -30,9 +30,11 @@ const Screen = () => {
     languageService.onNextState(setLang);
   }, [lang]);
 
-  function loginBtnPress() {
-    userService.signInWithPopup();
-  }
+  const loginBtnPress = () => {
+    if (Platform.OS != "web") {
+      demoLogin();
+    } else userService.signInWithPopup();
+  };
 
   return (
     <ImageBackground
