@@ -26,7 +26,7 @@ const navLogin = () => {
   navService.navigate("login");
 };
 
-export default ({ nonLogin = true }) => {
+export default ({ route }) => {
   const [viewPagerIndex, setViewPaperIndex] = React.useState(0);
 
   const pageProps = {
@@ -47,7 +47,7 @@ export default ({ nonLogin = true }) => {
         <Layout
           style={{ flexDirection: "row", backgroundColor: "transparent" }}
         >
-          {nonLogin && (
+          {!route?.params?.nonLogin && (
             <Button
               appearance="outline"
               status="control"

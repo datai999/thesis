@@ -34,10 +34,10 @@ export default ({ route }) => {
 
   React.useEffect(() => {
     const query = async () => {
-      // if (route.params) {
-      let queryResponse = await queryData(route.params?.id ?? 101);
-      setData(queryResponse);
-      //  }
+      if (route.params) {
+        let queryResponse = await queryData(route.params?.id);
+        setData(queryResponse);
+      }
     };
     query();
   }, [route.params]);
@@ -131,7 +131,8 @@ const TopicAssign = ({ topicAssign }) => {
     submit: async () => {
       try {
         let response = await CouncilForm.submit();
-        form.council = response;
+        propsStore.form.council = response;
+        // await setCouncilVisible(false);
         return response;
       } catch (error) {
         console.log(error);
