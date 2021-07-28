@@ -32,15 +32,43 @@ const FormLayout = ({ header }) => {
       <Text style={styles.headerText}>{i18n.t(header)}</Text>
       <Layout style={styles.row}>
         <Layout style={styles.left}>
-          <MyInput {...propStore.input("person.name")} />
-          <MySelect {...propStore.select("person.gender")} />
-          <MyInput {...propStore.inputMail("person.email", 50)} />
-          <MyInput {...propStore.input("person.phone")} />
+          <MyInput
+            {...propStore.input("name")}
+            label="person.name.label"
+            placeholder="person.name.placeholder"
+          />
+          <MySelect
+            {...propStore.select("gender")}
+            label="person.gender.label"
+            placeholder="person.gender.placeholder"
+          />
+          <MyInput
+            {...propStore.inputMail("email", 50)}
+            label="person.email.label"
+            placeholder="person.email.placeholder"
+          />
+          <MyInput
+            {...propStore.input("phone")}
+            label="person.phone.label"
+            placeholder="person.phone.placeholder"
+          />
         </Layout>
         <Layout style={styles.right}>
-          <MyInput {...propStore.input("person.code")} />
-          <MySelect {...propStore.select("person.educationMethod")} />
-          <MySelect {...propStore.select("person.major")} />
+          <MyInput
+            {...propStore.input("code")}
+            label="person.code.label"
+            placeholder="person.code.placeholder"
+          />
+          <MySelect
+            {...propStore.select("educationMethod")}
+            label="person.educationMethod.label"
+            placeholder="person.educationMethod.placeholder"
+          />
+          <MySelect
+            {...propStore.select("major")}
+            label="person.major.label"
+            placeholder="person.major.placeholder"
+          />
         </Layout>
       </Layout>
     </Layout>
